@@ -1,0 +1,194 @@
+ion-tabs {
+    background: #f3f3f3;
+}
+
+// ion-tab-bar  {
+//     background: #95989A;
+//     width: 90% !important;
+//     max-width: 400px !important;
+//     border-radius: 30px;
+//     margin: 5px 0px 5px 5% !important;
+//     max-height: 56px;
+//     height: 95px;
+//     max-height: 56px;
+//     border: unset;
+// }
+
+.tab-selected ion-icon {
+    color: white;
+}
+
+.tab-selected,
+ion-tab-button {
+    background: #f3f3f3;
+}
+
+#tab-button-tab5-param {
+    max-height: 70px;
+    max-width: 70px;
+}
+
+ion-tab-button:hover {
+    ion-icon,
+    ion-label {
+        color: white !important;
+        --ion-color-base: white !important;
+    }
+}
+
+ion-tabs {
+    //not selected custom image
+    ion-tab-button.custom-homepage > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-homepage.svg);
+    }
+    //selected custom image
+    ion-tab-button.tab-selected.custom-homepage > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-homepage.svg);
+    }
+
+    //not selected custom image
+    ion-tab-button.custom-notif > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-notif.svg);
+    }
+    //selected custom image
+    ion-tab-button.tab-selected.custom-notif > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-notif.svg);
+    }
+
+    //not selected custom image
+    ion-tab-button.custom-search > ion-icon {
+        color: white;
+        background-image: url(../../assets/icon/icon-search.svg);
+    }
+    //selected custom image
+    ion-tab-button.tab-selected.custom-search > ion-icon {
+        color: white;
+        background-image: url(../../assets/icon/icon-search.svg);
+    }
+
+    //not selected custom image
+    ion-tab-button.custom-profile > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-profile.svg);
+    }
+    //selected custom image
+    ion-tab-button.tab-selected.custom-profile > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-profile.svg);
+    }
+
+    //not selected custom image
+    ion-tab-button.custom-settings > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-settings.svg);
+    }
+    //selected custom image
+    ion-tab-button.tab-selected.custom-settings > ion-icon {
+        color: #95989a;
+        background-image: url(../../assets/icon/icon-settings.svg);
+    }
+}
+
+#tab-button-tab1-library {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#tab-button-tab2-notification {
+    border-top-right-radius: 15px;
+}
+
+#tab-button-tab4-profil {
+    border-top-left-radius: 15px;
+}
+
+#tab-button-tab3-search {
+    background: #f03434;
+    border-radius: 50% !important;
+    width: 68px !important;
+    height: 68px !important;
+
+    ion-icon {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 35px;
+        width: 35px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        &:before {
+            display: none;
+        }
+    }
+}
+
+#tab-button-tab3-search::part(a) {
+    --margin-top: -2px !important;
+}
+#tab-button-tab3-search > a {
+    --margin-top: -2px !important;
+}
+#tab-button-tab1-library,
+#tab-button-tab2-notification,
+#tab-button-tab4-profil,
+#tab-button-tab5-param {
+    
+    width: 68px !important;
+    height: 68px !important;
+
+    ion-icon {
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 20px;
+        width: 20px;
+        background-size: contain;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        &:before {
+            display: none;
+        }
+    }
+}
+
+#tab-button-tab5-param.tab-selected ion-icon {
+    padding-bottom: 0px;
+}
+
+// ion-badge {
+//     --background: red;
+//     --color: white;
+//     width: 23px;
+//     height: 21px;
+//     font-size: 0.8rem;
+//     margin-top: -8px;
+//     padding-top: 5px;
+// }
+
+#tab-button-tab1-library > ion-icon:after,
+#tab-button-tab2-notification > ion-icon:after,
+#tab-button-tab4-profil > ion-icon:after,
+#tab-button-tab5-param > ion-icon:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 7px;
+    position: absolute;
+    transition: width 0.4s ease 0s, background-color 0.4s ease;
+    width: 0;
+    border-radius: 5px;
+}
+
+// #tab-button-tab1-library.tab-selected > ion-icon:after,
+// #tab-button-tab2-notification.tab-selected > ion-icon:after,
+// #tab-button-tab4-profil.tab-selected > ion-icon:after,
+// #tab-button-tab5-param.tab-selected > ion-icon:after {
+//     width: 24px;
+//     background: yellow;
+// }

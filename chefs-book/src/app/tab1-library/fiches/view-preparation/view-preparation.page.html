@@ -1,0 +1,175 @@
+<ion-header >
+    <ion-toolbar class="header">  
+      <ion-buttons slot="start">
+        <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-title *ngIf="!ficheUpdate" class="pLR50 titreFiche">{{nom}}</ion-title>
+      <div *ngIf="ficheUpdate">
+        <ion-title>
+          <ion-input class="pLR50 titreFiche" placeholder="{{nom}}" type="text" [(ngModel)]="newNom" name="title"></ion-input>
+        </ion-title>
+      </div>
+      <ion-buttons slot="end" *ngIf="!showButtonUpdate">
+        <ion-icon style="color:#ffffff" icon="pencil" (click)="showUpdateFiche()"></ion-icon>
+      </ion-buttons>
+      <ion-buttons slot="end" *ngIf="showButtonUpdate">
+        <ion-icon style="color:#ffffff" icon="arrow-redo-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid style="background:#ffffff">
+    <!-- <ion-row>
+      <ion-col>
+        <ion-button class="circleButton" (click)="openModal()">
+          test
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="circleButton">
+          test
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button class="circleButton">
+          test
+        </ion-button>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-icon slot="start" src="../../../assets/icon/Calendar.svg" color="dark"></ion-icon>
+            <p>{{date}}</p>
+          </ion-item>
+          <ion-item *ngIf="!ficheUpdate" lines="none">
+            <ion-icon slot="start" src="../../../assets/icon/local_dining-24px.svg" color="dark"></ion-icon>
+            <p>{{poste}}</p>
+          </ion-item>
+          <div *ngIf="ficheUpdate">
+            <ion-select class="form-control" id="poste" placeholder="{{poste}}" [(ngModel)]="newPoste" name="poste"
+              interface="popover">
+              <ion-select-option *ngFor="let poste of postes" [value]="poste">{{poste}}</ion-select-option>
+            </ion-select>
+          </div>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-icon slot="start" src="../../../assets/icon/Profile.svg" color="dark"></ion-icon>
+            <p>{{userNom}} {{prenom}}</p>
+          </ion-item>
+          <ion-item *ngIf="!ficheUpdate" lines="none">
+            <ion-icon slot="start" src="../../../assets/icon/restaurant-24px.svg" color="dark"></ion-icon>
+            <p>{{produitRef}}</p>
+          </ion-item>
+          <div *ngIf="ficheUpdate">
+            <ion-select class="form-control" id="produitRef" placeholder="{{produitRef}}" [(ngModel)]="newProduitRef"
+              name="poste" interface="popover">
+              <ion-select-option *ngFor="let denree of denrees" [value]="denree.produit">{{denree.produit}}
+              </ion-select-option>
+            </ion-select>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid style="background:#ffffff">
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item-divider class="list" (click)="showDenrees()">
+            <ion-label>
+              Denrées
+            </ion-label>
+            <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+          </ion-item-divider>
+          <div [hidden]="denreesDisabled">
+            <ion-grid [hidden]="tableau1">
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Nature
+                  </ion-label>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Unité
+                  </ion-label>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Quantité
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                <ion-item-divider (click)="denree.toggle=!denree.toggle">
+                  <ion-label>{{denree.key}}</ion-label>
+                  <ion-icon slot="end" [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                  </ion-icon>
+                </ion-item-divider>
+                <div *ngIf="!denree.toggle">
+                  <ion-row *ngFor="let value of denree.value; let i = index ">
+                    <ion-col class="ion-text-center">{{value.produit}}</ion-col>
+                    <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
+                    <ion-col class="ion-text-center"> {{value.quantite}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-item-group>
+            </ion-grid>
+            <ion-grid [hidden]="tableau2">
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Quantité
+                  </ion-label>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Unité
+                  </ion-label>
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-label size="large">
+                    Nature
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                <ion-item-divider (click)="denree.toggle=!denree.toggle">
+                  <ion-label>{{denree.key}}</ion-label>
+                  <ion-icon slot="end" [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                  </ion-icon>
+                </ion-item-divider>
+                <div *ngIf="!denree.toggle">
+                  <ion-row *ngFor="let value of denree.value; let i = index ">
+                    <ion-col class="ion-text-center"> {{value.quantite}}</ion-col>
+                    <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
+                    <ion-col class="ion-text-center">{{value.produit}}</ion-col>
+                  </ion-row>
+                </div>
+              </ion-item-group>
+            </ion-grid>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row *ngIf="!ficheUpdate">
+      <p>
+        {{descriptionTechniques}}
+      </p>
+    </ion-row>
+    <ion-item *ngIf="ficheUpdate">
+      <ion-textarea id="description" placeholder="{{descriptionTechniques}}" rows="3"
+        [(ngModel)]="newDescriptionTechniques"></ion-textarea>
+    </ion-item>
+  </ion-grid>
+  <ion-button *ngIf="ficheUpdate">Valider la modification de la fiche</ion-button>
+</ion-content>

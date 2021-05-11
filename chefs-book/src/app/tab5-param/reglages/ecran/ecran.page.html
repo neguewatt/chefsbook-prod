@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <div id="container" class="ion-margin">
+            <strong>Ecran par défaut</strong>
+        </div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- choix de l'ecran par défaut a savoir : l'utilisateur souhaite pointer en premier lieu sur livre et non sur les fiches -->
+
+    <ion-grid>
+
+        <ion-radio-group [value]="ecran" [(ngModel)]="ecran">
+            <ion-item lines="none">
+                <ion-label>Mes fiches</ion-label>
+                <ion-radio slot="end" value="fiches" (click)="onChange('fiches')"></ion-radio>
+            </ion-item>
+            <hr>
+            <ion-item lines="none">
+                <ion-label>Mes livres</ion-label>
+                <ion-radio slot="end" value="livres" (click)="onChange('livres')"></ion-radio>
+            </ion-item>
+            <hr>
+            <ion-item lines="none" disabled="false">
+                <ion-label>Communauté</ion-label>
+                <ion-radio slot="end" value="communaute" (click)="onChange('communaute')"></ion-radio>
+            </ion-item>
+            <hr>
+            <ion-item lines="none">
+                <ion-label>Profil</ion-label>
+                <ion-radio slot="end" value="profil" (click)="onChange('profil')"></ion-radio>
+            </ion-item>
+            <hr>
+            <ion-item lines="none">
+                <ion-label>Recherche</ion-label>
+                <ion-radio slot="end" value="recherche" (click)="onChange('recherche')"></ion-radio>
+            </ion-item>
+            <hr>
+        </ion-radio-group>
+    </ion-grid>
+
+
+</ion-content>

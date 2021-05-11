@@ -1,0 +1,258 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+hr {
+    border: 0.5px solid rgb(0, 0, 0, 0.2) !important;
+    margin-bottom: 0px !important;
+  }
+
+.headerBackground {
+    --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
+}
+
+ion-header {
+    --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
+}
+
+ion-content {
+    --ion-background-color: #fff;
+}
+
+ion-segment {
+    .fiche {
+        --backgroud: #fff;
+    }
+}
+
+// .carre{
+//     width: 109px;
+//     height: 109px;
+//     --background: #F1F9FF;
+// }
+// #carre{
+//     width: 109px;
+//     height: 109px;
+//     --background: #BCE0FD;
+// }
+.listLivre {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.ion-list-size {
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+.listFT {
+    max-height: 265px;
+    overflow-y: scroll;
+}
+
+.list {
+    --background: #FFF;
+}
+
+.rectangle {
+    height: 100px;
+    width: 90%;
+    --background: #F1F9FF;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.pLR50 {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.titreFiche{
+    --ion-font-family: "Roboto";
+    src: url("./assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype");
+    font-size: 20px;
+    color: white;
+}
+
+.circleButton {
+    width: 32px;
+    height: 32px;
+    --border-radius: 16px;
+}
+
+ion-avatar {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+:root {
+    --ion-color-primary: #B73636;
+    // autre couleur
+}
+
+.centerTable {
+    margin: 10px 10px 10% 10%;
+}
+
+.Btn {
+    --background: #B73636;
+}
+
+.Btn_Update {
+    --background: linear-gradient(#146456, #169275);
+}
+
+.btn_Large_Thim {
+    --background: linear-gradient(#169275, #146456);
+}
+
+.Btn_Validate {
+    --background: #00AF2F;
+}
+
+.Btn_Cancel {
+    --background: #F03434;
+}
+
+.Btn_AddBook {
+    --background: linear-gradient(#FF512E, #FF4444);
+}
+
+.Btn_ToggleOff {
+    --background: #4E4E4E;
+}
+
+.Btn_ToggleOn {
+    --background: #F03434;
+}
+
+.Icon_Active {
+    --background: #F03434;
+}
+
+.Icon_Idle {
+    --background: #000000;
+    opacity: 0.3;
+}
+
+.Header_Creation {
+    --background: linear-gradient(#FF512E, #FF4444);
+}
+
+.Header_Main {
+    //(with image)
+    --background: linear-gradient(#FF512E, #FF4444);
+    opacity: 0.8;
+}
+
+.Header_Title {
+    --background: #FF4A4A;
+}
+
+.backround-login {
+    --background: #fff url("./assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover;
+}
+
+.login-error {
+    --margin-bottom: var(--ion-margin, 20px);
+    margin-bottom: var(--ion-margin, 20px);
+    color: red;
+    --ion-font-family: "Roboto";
+    src: url("./assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype");
+    font-size: 0.8rem;
+}
+
+.m-top-45 {
+    --margin-top: var(--ion-margin, 45px);
+    margin-top: var(--ion-margin, 45px);
+}
+
+.label-bienvenu {
+    color: white;
+    --ion-font-family: "QuickKiss";
+    src: url("./assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    font-size: 3rem;
+}
+
+.m-top-100 {
+    --margin-top: var(--ion-margin, 100px);
+    margin-top: var(--ion-margin, 100px);
+}
+
+.font-check {
+    color: white;
+    --ion-font-family: "QuickKiss";
+    src: url("./assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    font-size: 0.9rem;
+}
+
+ion-button {
+    width: 100%;
+}
+
+.iconeSize {
+    height: 30px;
+    width: 30px;
+}
+
+.my-custom-modal-css .modal-wrapper {
+    height: 275px;
+    width: 279px;
+    top: 15%;
+    bottom: 50%;
+    position: absolute;
+    display: block;
+}
+
+.addProduit-custom-modal-css .modal-wrapper {
+    height: 45%;
+    width: 90%;
+    top: 15%;
+    position: absolute;
+    display: block;
+}
+
+.choix-du-livre-modal-css .modal-wrapper {
+    height: 40%;
+    width: 90%;
+    top: 15%;
+    position: absolute;
+    display: block;
+}
+
+.ficheElementTable {
+    font: 500 20px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    letter-spacing: normal !important;
+    margin: 0px 0 5px !important;
+}
+
+.notificationTable {
+    font: 400 17px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    letter-spacing: normal !important;
+    margin: 0px 0 5px !important;
+}

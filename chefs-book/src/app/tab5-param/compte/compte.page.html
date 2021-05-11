@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <div id="container" class="ion-margin">
+      <strong>{{titre}}</strong>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item-divider>
+  </ion-item-divider>
+  <ion-grid>
+    <ion-row>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-label>
+          {{nom}} - {{prenom}}
+        </ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item lines="none">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-label>
+          {{email}}
+        </ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item lines="none">
+        <ion-label type="password" placeholder="Mot de passe">
+          Réinitialiser le mot de passe. <a href="">Cliquez ici</a>
+        </ion-label>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+
+  </ion-grid>
+  <hr>
+  <ion-row>
+    <ion-item>
+      <form onsubmit="processForm(event)" class="ion-margin-top ion-margin-horizontal">
+        <ion-label class="ion-margin-horizontal">Parrainer un ami</ion-label>
+          <ion-input type="email" class="form-control" placeholder="Adresse email" aria-label="Username"
+            aria-describedby="basic-addon1"></ion-input>
+    </form>
+    </ion-item>
+    <div class="marginTop24px ">
+      <p>Version actuelle : {{abonnement}}</p>
+      <ion-button expand="block" style="text-transform: uppercase;">Voir les options de mise à niveau</ion-button>
+    </div>
+  </ion-row> 
+
+</ion-content>

@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary" class="pLR50">Creation d'une FT plat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <p>{{date}}</p>
+          </ion-item>
+          <ion-item>
+            <p>{{fiche.poste}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <p>{{userNom}} {{prenom}}</p>
+          </ion-item>
+          <ion-item>
+            <p>{{fiche.produitRef.produit}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <hr/>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item-divider class="list" (click)="showDenrees()">
+            <ion-label>
+              Denrées
+            </ion-label>
+            <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+          </ion-item-divider>
+          <div [hidden]="denreesDisabled">
+            <table [hidden]="tableau1"  style="width: 100%" class="centerTable">
+              <thead>
+               <tr>
+                  <th>
+                    Nature
+                  </th>
+                  <th>
+                    Unité
+                  </th>
+                  <th>
+                    Quantité
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let denree of denrees">
+                  <td>
+                    {{denree.produit}}
+                  </td>
+                  <td>
+                    {{denree.unite}}
+                  </td>
+                  <td>
+                    {{denree.quantite}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table [hidden]="tableau2" style="width: 100%" class="centerTable">
+              <thead>
+               <tr>
+                  <th>
+                    Quantité
+                  </th>
+                  <th>
+                    Unité
+                  </th>
+                  <th>
+                    Nature
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let denree of denrees">
+                  <td>
+                    {{denree.quantite}}
+                  </td>
+                  <td>
+                    {{denree.unite}}
+                  </td>
+                  <td>
+                    {{denree.produit}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  <hr/>
+    <ion-row>
+      <ion-col class="ion-margin">
+        <p>
+          {{fiche.descriptionTechniques}}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button expand="full" color="secondary" 
+    (click)="openModal()">
+    AJOUTER CETTE PREPARATION
+  </ion-button>
+</ion-content>
+

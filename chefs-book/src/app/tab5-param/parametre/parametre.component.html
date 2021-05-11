@@ -1,0 +1,41 @@
+  
+<div id="container" class="ion-margin">
+  <strong>{{titre}}</strong>
+</div>
+<ion-item-divider>
+
+</ion-item-divider>
+<div class="ion-padding-top">
+  <ion-item  button (click)="buttonClick('compte')" detail="false">
+    <ion-icon color="secondary" name="person-outline" class="ion-padding-end"></ion-icon>
+    <ion-label color="secondary" >
+      Compte
+    </ion-label>
+    <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  
+  <ion-item button (click)="buttonClick('reglages')" detail="false" [disabled]="false">
+    <ion-icon color="secondary" name="settings-outline" class="ion-padding-end"></ion-icon>
+    <ion-label color="secondary" >
+      Réglages
+    </ion-label>
+    <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  
+  <ion-item button (click)="buttonClick('info-legale')" detail="false">
+    <ion-icon color="secondary" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+    <ion-label color="secondary" >
+      Informations légales
+    </ion-label>
+    <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+  
+  <ion-item button (click)="buttonClick('assistance')" detail="false">
+    <ion-icon color="secondary" name="help-circle-outline" class="ion-padding-end"></ion-icon>
+    <ion-label color="secondary" >
+      Assistance
+    </ion-label>
+    <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
+  </ion-item>
+
+</div>

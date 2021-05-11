@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true" class="BG">
+    <ion-grid class="padding-0">
+        <ion-grid class="padding-0">
+            <ion-row class="header">
+                <ion-row class="margin-auto">
+                    <ion-col>
+                        <h1 class="ion-margin-top">CHEFSBOOK</h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-end tabs-library-menu">
+                    <ion-col size="4" [style]="fichesBoolean ? chosen : notChosen">
+                        <ion-button (click)="segmentChanged('fichesBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="fichesBoolean ? textChosen : textNotChosen">
+                            Mes Fiches
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="4" [style]="livreBoolean ? chosen : notChosen">
+                        <ion-button (click)="segmentChanged('livreBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="livreBoolean ? textChosen : textNotChosen">
+                            Mes Livres
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="4" class="ion-margin-right" [style]="comBoolean ? chosen : notChosen">
+                        <ion-button disabled="false" (click)="segmentChanged('comBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="comBoolean ? textChosen : textNotChosen">
+                            Communauté
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-row>
+        </ion-grid>
+
+        <app-fiches *ngIf="fichesBoolean"></app-fiches>
+        <app-livres *ngIf="livreBoolean"></app-livres>
+        <app-communaute *ngIf="comBoolean"></app-communaute>
+
+    </ion-grid>
+    <p *ngIf="dataReturned">{{dataReturned}}</p>
+</ion-content>

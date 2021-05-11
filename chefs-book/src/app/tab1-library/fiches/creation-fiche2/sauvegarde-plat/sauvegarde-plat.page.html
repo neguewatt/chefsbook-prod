@@ -1,0 +1,169 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary" class="pLR50">{{plat.nom}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <p>{{date}}</p>
+          </ion-item>
+          <ion-item>
+            <p>{{plat.poste}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <p>{{userNom}} {{prenom}}</p>
+          </ion-item>
+          <ion-item>
+            <p>{{plat.portion}} Couverts</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col class="ion-margin">
+        <ion-label>
+          Description commercial
+        </ion-label>
+        <p>
+          {{plat.descriptionCommercial}}
+        </p>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item-divider class="list" (click)="showDenrees()">
+            <ion-label>
+              Denrées
+            </ion-label>
+            <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+          </ion-item-divider>
+          <div [hidden]="denreesDisabled">
+            <table [hidden]="tableau1" style="width: 100%" class="centerTable">
+              <thead>
+                <tr>
+                  <th>
+                    Nature
+                  </th>
+                  <th>
+                    Unité
+                  </th>
+                  <th>
+                    Quantité
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let denree of plat.denrees">
+                  <td>
+                    {{denree.produit}}
+                  </td>
+                  <td>
+                    {{denree.unite}}
+                  </td>
+                  <td>
+                    {{denree.quantite}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table [hidden]="tableau2" style="width: 100%" class="centerTable">
+              <thead>
+                <tr>
+                  <th>
+                    Quantité
+                  </th>
+                  <th>
+                    Unité
+                  </th>
+                  <th>
+                    Nature
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let denree of plat.denrees">
+                  <td>
+                    {{denree.quantite}}
+                  </td>
+                  <td>
+                    {{denree.unite}}
+                  </td>
+                  <td>
+                    {{denree.produit}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngFor="let fiche of plat.fichePreparation; let i = index; let odd=odd; let even=even;"
+      [ngClass]="{ odd: odd, even: even }">
+      <ion-col>
+        <hr>
+        <ion-row (click)="showDenrees()">
+          <ion-label color="primary">
+            {{i + 1}} - {{fiche.nom}}
+          </ion-label>
+          <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+        </ion-row>
+        
+        <ion-row>
+          <table style="width: 100%" class="centerTable">
+            <tbody>
+              <tr *ngFor="let denree of fiche.denrees">
+                <td>
+                  {{denree.quantite}}
+                </td>
+                <td>
+                  {{denree.unite}}
+                </td>
+                <td>
+                  {{denree.produit}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col class="ion-margin">
+            <p>
+              {{fiche.descriptionTechniques}}
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-margin">
+        <ion-label>
+          Description technique
+        </ion-label>
+        <p>
+          {{plat.descriptionTechnique}}
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button expand="full" color="secondary" (click)="savePlat()">
+    SAUVER LA FICHE TECHNIQUE
+  </ion-button>
+</ion-content>
