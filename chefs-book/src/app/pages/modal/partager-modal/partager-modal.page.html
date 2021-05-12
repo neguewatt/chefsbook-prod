@@ -1,0 +1,23 @@
+<ion-content>
+  <ion-text class="ion-margin">{{modalTitle}}</ion-text>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <input name="email" type="email" class="form-control" id="titre" placeholder="Adresse mail" [(ngModel)]="email">
+        <input type="texte" class="form-control" id="titre" placeholder="Message (facultatif)" [(ngModel)]="newMessage">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="partageFiche()" class="Btn_Validate" fill="outline">
+          <ion-icon name="checkmark-outline"  style="color:#00AF2F"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button (click)="closeModal()" class="Btn_Cancel" fill="outline">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

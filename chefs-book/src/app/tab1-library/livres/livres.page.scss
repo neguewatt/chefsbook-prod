@@ -1,0 +1,50 @@
+
+.carre {
+  height: 100px;
+  background-color: #7c7c7c;
+  color: white;
+}
+
+.carreAjout {
+  height: 100px;
+  background-color: white;
+}
+
+.listLivre{
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0px;
+}
+
+.listLivre ion-row{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.ion-list-size{
+    max-height: 450px;
+    overflow-y: scroll;
+  }
+.listFT{
+    max-height: 300px;
+}  
+.list{
+    
+  --background: #F1F9FF;
+  color: #2699FB;
+}
+
+ion-item-divider {
+  background-color:#b1b1b1;
+  height: 10px;
+}
+ion-item-divider ion-label {
+  color: white;
+  font-size: 0.7rem;
+}
+ion-item-divider ion-icon {
+  color: white;
+  font-size: 1rem;
+  margin-right: 20px;
+}
+

@@ -1,0 +1,107 @@
+<ion-row class="ion-align-items-start">
+    <ion-col size="4" class="ion-margin-left">
+        <ion-button (click)="segmentChanged('toutesBoolean')" buttonType="string"
+            [style]="toutesBoolean ? colorA : colorB" style=" --background: transparent; font-size: 14px;">
+            Toutes
+        </ion-button>
+    </ion-col>
+    <ion-col size="4">
+        <ion-button [disabled]="disabledplat" (click)="segmentChanged('platsBoolean')" buttonType="string"
+            [style]="platsBoolean ? colorA : colorB" style="--background: transparent; font-size: 14px;">
+            Plats
+        </ion-button>
+    </ion-col>
+    <ion-col size="4" class="ion-margin-right">
+        <ion-button (click)="segmentChanged('prepaBoolean')" buttonType="string"
+            [style]="prepaBoolean ? colorA : colorB" style="--background: transparent; font-size: 14px;">
+            Préparations
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+<ion-grid>
+
+    <!-- <ion-item-sliding>
+        <ion-item-options side="start">
+            <ion-item-option (click)="favorite(item)">Favorite</ion-item-option>
+            <ion-item-option color="danger" (click)="share(item)">Share</ion-item-option>
+        </ion-item-options>
+
+        <ion-item>
+            <ion-label>Item Options</ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+            <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding> -->
+
+    <ion-virtual-scroll *ngIf="toutesBoolean" [items]="ficheTechniquesAll" approxItemHeight="60px"
+        [headerFn]="separateLetter">
+        <ion-item-divider *virtualHeader="let header" color="primary">
+            <ion-label>
+                {{ header }}
+            </ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none" class="list" *virtualItem="let fiche">
+            <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../assets/icon/icon-prep.svg"
+                (click)="openFiche(fiche)"></ion-icon>
+            <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../assets/icon/icon-plat.svg"
+                (click)="openFiche(fiche)"></ion-icon>
+            <ion-label class="text" (click)="openFiche(fiche)">
+                <h2 class="ficheElementTable">{{fiche.nom}}</h2>
+                <p> {{fiche.livre}}</p>
+            </ion-label>
+            <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="openPopover($event, fiche)"></ion-icon>
+        </ion-item>
+    </ion-virtual-scroll>
+    <ion-virtual-scroll *ngIf="prepaBoolean" [items]="prepa" approxItemHeight="60px" [headerFn]="separateLetter">
+        <ion-item-divider *virtualHeader="let header" color="primary">
+            <ion-label>
+                {{ header }}
+            </ion-label>
+        </ion-item-divider>
+        <ion-item lines="none" class="list" *virtualItem="let fichePrepa">
+            <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fichePrepa)">
+            </ion-icon>
+            <ion-label class="text" (click)="openFiche(fichePrepa)">
+                <h2 class="ficheElementTable">{{fichePrepa.nom}}</h2>
+                <p> {{fichePrepa.livre}}</p>
+            </ion-label>
+            <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="openPopover($event, fichePrepa)">
+            </ion-icon>
+        </ion-item>
+    </ion-virtual-scroll>
+    <ion-virtual-scroll *ngIf="platsBoolean" [items]="plats" approxItemHeight="60px" [headerFn]="separateLetter">
+        <ion-item-divider *virtualHeader="let header" color="primary">
+            <ion-label>
+                {{ header }}
+            </ion-label>
+        </ion-item-divider>
+
+        <ion-item lines="none" class="list" *virtualItem="let fichePlat">
+            <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fichePlat)"></ion-icon>
+            <ion-label class="text" (click)="openFiche(fichePlat)">
+                <h2 class="ficheElementTable">{{fichePlat.nom}}</h2>
+                <p> {{fichePlat.livre}}</p>
+            </ion-label>
+            <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="openPopover($event, fichePlat)"></ion-icon>
+        </ion-item>
+    </ion-virtual-scroll>
+
+    <!-- loader -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <ion-row>
+        <ion-button class="rectangle" (click)="addficheTech()">
+            <ion-row class="ion-justify-content-center">
+                <img src="../../../assets/icon/Add.svg">
+                <ion-label color="primary" class="ion-margin-top">Ajouter une fiche technique</ion-label>
+            </ion-row>
+        </ion-button>
+    </ion-row>
+</ion-grid>

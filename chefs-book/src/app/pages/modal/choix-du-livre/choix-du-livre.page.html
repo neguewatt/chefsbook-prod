@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="cancel()">
+      <ion-icon color="primary" size="large" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Choix du livre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-select class="form-control" interface="popover" value="choixLivre" [(ngModel)]="choixLivre">
+        <ion-select-option *ngFor="let livre of livres" [value]="livre">{{livre.nom}}</ion-select-option>
+      </ion-select>
+      <ion-button expand="full" color="secondary" type="submit" (click)="addLivre()">
+        AJOUTER La fiche au livre
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

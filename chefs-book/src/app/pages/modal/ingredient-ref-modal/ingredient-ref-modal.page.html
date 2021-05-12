@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>{{modalTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <input name="texte" type="email" class="form-control" id="titre" placeholder="Quantité ingredient" [(ngModel)]="quantite">
+        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="ajoutFiche()" class="Btn_Validate" fill="outline">
+          <ion-icon name="checkmark-outline"  style="color:#00AF2F"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button (click)="closeModal()" class="Btn_Cancel" fill="outline">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

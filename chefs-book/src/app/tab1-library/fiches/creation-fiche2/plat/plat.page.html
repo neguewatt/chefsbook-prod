@@ -1,0 +1,244 @@
+<ion-grid style="color:#ffffff">
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <ion-item lines="none">
+          <p>{{date}}</p>
+        </ion-item>
+        <ion-select class="form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste"
+          interface="popover">
+          <ion-select-option *ngFor="let poste of postes" [value]="poste">{{poste}}</ion-select-option>
+        </ion-select>
+      </ion-list>
+    </ion-col>
+    <ion-col>
+      <ion-list>
+        <ion-item lines="none">
+          <p>{{userNom}} {{prenom}}</p>
+        </ion-item>
+        <ion-input class="form-control " placeholder="Nbr Portion" type="number" [(ngModel)]="newPortion" name="portion"
+          min="0"></ion-input>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<hr>
+<ion-grid style="color:#ffffff">
+  <ion-row>
+    <ion-toolbar>
+      <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Nom de la préparation"
+        [(ngModel)]="FicheRecherche">
+      </ion-searchbar>
+      <ion-list *ngIf="isItemAvailable">
+        <ion-item *ngFor="let fiche of ficheTechniques" (click)="addFiche(fiche)">
+          <ion-label class="text">
+            <ion-text>{{fiche.nom}}</ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-toolbar>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-label>
+      ou
+    </ion-label>
+  </ion-row>
+  <ion-row class="ion-margin-top">
+    <ion-button class="rectangle" [routerLink]="['fiches/creation-fiches']">
+      <ion-row class="ion-justify-content-center">
+        <img src="../../../assets/icon/Add.svg">
+        <ion-label color="primary" class="ion-margin-top">Ajouter une fiche technique</ion-label>
+      </ion-row>
+    </ion-button>
+  </ion-row>
+</ion-grid>
+<hr>
+<ion-grid style="color:#ffffff">
+  <ion-row>
+    <ion-item lines="none">
+      <ion-textarea id="DescriptionTechnique" placeholder="Déscription Commercial" rows="3"
+        [(ngModel)]="newDescriptionCommercial">
+      </ion-textarea>
+    </ion-item>
+  </ion-row>
+</ion-grid>
+<hr>
+<ion-grid style="color:#ffffff">
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <ion-col>
+      <ion-list>
+        <ion-item-divider class="list" (click)="showDenrees()">
+          <ion-label>
+            Denrées
+          </ion-label>
+          <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+        </ion-item-divider>
+        <div [hidden]="denreesDisabled">
+          <ion-grid [hidden]="tableau1" style="width: 100%" class="centerTable ion-margin-end">
+            <ion-row class="ion-margin-end">
+              <ion-col class="ion-text-center">
+                <ion-label size="large">
+                  Nature
+                </ion-label>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <ion-label size="large">
+                  Unité
+                </ion-label>
+              </ion-col>
+              <ion-col class="ion-text-center ion-margin-end">
+                <ion-label size="large">
+                  Quantité
+                </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let denree of arrayDenrees">
+              <ion-col class="ion-text-center">
+                {{denree.produit}}
+              </ion-col>
+              <ion-col class="ion-text-center">
+                {{denree.unite}}
+              </ion-col>
+              <ion-col class="ion-text-center ion-margin-end">
+                {{denree.quantite}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-grid [hidden]="tableau2" style="width: 100%" class="centerTable ion-margin-end">
+            <ion-row class="ion-margin-end">
+              <ion-col class="ion-text-center">
+                <ion-label size="large">
+                  Quantité
+                </ion-label>
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <ion-label size="large">
+                  Unité
+                </ion-label>
+              </ion-col>
+              <ion-col class="ion-text-center ion-margin-end">
+                <ion-label size="large">
+                  Nature
+                </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let denree of arrayDenrees">
+              <ion-col class="ion-text-center">
+                {{denree.quantite}}
+              </ion-col>
+              <ion-col class="ion-text-center">
+                {{denree.unite}}
+              </ion-col>
+              <ion-col class="ion-text-center ion-margin-end">
+                {{denree.produit}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<hr>
+<ion-grid>
+  <ion-row *ngFor="let fiche of plat.fichePreparation; let i = index; let odd=odd; let even=even;"
+    [ngClass]="{ odd: odd, even: even }">
+    <ion-col>
+      <ion-row class="list">
+        <ion-item-divider class="list" (click)="fiche.toggle=!fiche.toggle">
+          <ion-label color="primary">
+            {{i + 1}} - {{fiche.nom}}
+          </ion-label>
+          <ion-icon slot="end" [name]="fiche.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+        </ion-item-divider>
+      </ion-row>
+      <div *ngIf="fiche.toggle">
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item-divider class="list" (click)="fiche.denreesDisabled=!fiche.denreesDisabled">
+                <ion-label>
+                  Denrées
+                </ion-label>
+                <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+              </ion-item-divider>
+              <div *ngIf="!fiche.denreesDisabled">
+                <ion-grid [hidden]="tableau1">
+                  <ion-row>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Nature
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Unité
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Quantité
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row *ngFor="let denree of fiche.denrees; let i = index">
+                    <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
+                    <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
+                    <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+                <ion-grid [hidden]="tableau2">
+                  <ion-row>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Quantité
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Unité
+                      </ion-label>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                      <ion-label size="large">
+                        Nature
+                      </ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row *ngFor="let denree of fiche.denrees; let i = index ">
+                    <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
+                    <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
+                    <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="ion-margin">
+            <p>
+              {{fiche.descriptionTechniques}}
+            </p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<hr *ngIf="ajoutPrepa">
+<ion-grid>
+  <ion-row>
+    <ion-item lines="none">
+      <ion-textarea id="DescriptionTechnique" placeholder="Déscription Technique" rows="3"
+        [(ngModel)]="newDescriptionTechnique">
+      </ion-textarea>
+    </ion-item>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <hr *ngIf="ajoutPrepa">
+  <ion-row *ngIf="ajoutPrepa">
+    <ion-button (click)="addNewFiche()">Valider la création du plat</ion-button>
+  </ion-row>
+</ion-grid>

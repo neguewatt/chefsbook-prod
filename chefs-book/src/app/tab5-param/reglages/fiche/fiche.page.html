@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <div id="container" class="ion-margin">
+      <strong>modification tableau des fiches</strong>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-divider>
+  </ion-item-divider>
+  <!--modification du tableau des fiches exemple l'utilisateur souhaite avoir un tableau de colonne qui s'affiche | produit | mesure | quantité et non, | produit | quantité | mesure -->
+  <ion-grid>
+    <ion-radio-group [value]="tableau" [(ngModel)]="tableau">
+      <ion-item  lines="none" (click)="onChange('tableau1')">
+        <ion-label>Nature | Unité | Quantité</ion-label>
+        <ion-radio slot="end" value="tableau1" ></ion-radio>
+      </ion-item>
+      <hr>
+      <ion-item  lines="none" (click)="onChange('tableau2')">
+        <ion-label>Quantité | Unité | Nature</ion-label>
+        <ion-radio slot="end" value="tableau2" ></ion-radio>
+      </ion-item>
+      <hr>
+    </ion-radio-group>
+  </ion-grid>
+
+
+
+
+</ion-content>
