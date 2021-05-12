@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Lint
-      run: npm run lint
+      run: npx ng lint
     - name: Test
       run: npm test -- --configuration=ci
     - name: E2E
