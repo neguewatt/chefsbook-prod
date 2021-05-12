@@ -23,20 +23,20 @@ export class PrepaPage implements OnInit {
   denrees: Denrees[] = [];
   // end variable fiche
   denreesDisabled = false;
-  chevronDenreesOn = "chevron-down-outline";
-  tableau1: boolean = true;
-  tableau2: boolean = true;
+  chevronDenreesOn = 'chevron-down-outline';
+  tableau1 = true;
+  tableau2 = true;
 
   newTitre: string;
   postes: PosteDeTravail[] = [];
   newPoste: string;
-  types: string[] = ['Préparation', 'Plat'];
+  types = ['Préparation', 'Plat'];
   prepa = true;
   newProduitRef: Denrees;
   newDescriptionTechniques: string;
   today: Date;
   date: string;
-  newPortion: String;
+  newPortion: string;
   newDescriptionPlat: string;
   map: Denrees[];
 
@@ -91,12 +91,12 @@ export class PrepaPage implements OnInit {
 
 
   showDenrees() {
-    if (this.denreesDisabled == true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
 
@@ -106,13 +106,13 @@ export class PrepaPage implements OnInit {
     if (index !== -1) {
       this.denrees.splice(index, 1);
     }
-    if (denree.produit == this.newProduitRef.produit) {
+    if (denree.produit === this.newProduitRef.produit) {
       this.newProduitRef = null;
     }
   }
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
-      message: 'Le produit "' + denree.produit + '" vient d\'être retiré du tableau.',
+      message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',
       duration: 2000
     });
     toast.present();
@@ -128,7 +128,10 @@ export class PrepaPage implements OnInit {
       console.log(newDenree.data);
       if (newDenree.data !== null) {
         this.denrees.push(newDenree.data);
-        this.map = this.denrees.map((denree) => { return Object.assign({}, denree) });
+        this.map = this.denrees.map((denree) => {
+          const retour = Object.assign({}, denree);
+          return retour;
+        });
       }
     });
     return await modal.present();
@@ -136,8 +139,8 @@ export class PrepaPage implements OnInit {
 
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
-    if (this.newTitre == null || this.newDescriptionTechniques == null ||
-      this.newPoste == null || this.newProduitRef == null || this.denrees == null) {
+    if (this.newTitre === null || this.newDescriptionTechniques === null ||
+      this.newPoste === null || this.newProduitRef === null || this.denrees === null) {
       this.erreurCreationFiche();
     } else {
       const newFiche = new FicheTechniques();
@@ -149,7 +152,7 @@ export class PrepaPage implements OnInit {
       newFiche.descriptionTechniques = this.newDescriptionTechniques.charAt(0).toUpperCase() + this.newDescriptionTechniques.substr(1);
       newFiche.poste = this.newPoste;
 
-      console.log("produit ref", this.newProduitRef);
+      console.log('produit ref', this.newProduitRef);
 
       newFiche.produitRef = { ...this.newProduitRef };
       newFiche.idUtilisateur = this.dataService.user.uid;
@@ -166,13 +169,11 @@ export class PrepaPage implements OnInit {
   }
 
   refSelect() {
-    if (this.denrees.length == 0) {
+    if (this.denrees.length === 0) {
       this.erreurPasDeDenrees();
     }
   }
-
-
-  // gestion des erreurs utilisateur 
+  // gestion des erreurs utilisateur
 
   async erreurCreationFiche() {
     const toast = await this.toastController.create({

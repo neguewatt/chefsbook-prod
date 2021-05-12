@@ -69,7 +69,7 @@ export class FtByLivrePage implements OnInit {
 
   getFicheByLivre() {
     this.ficheTechniquesAll.forEach((allFiche: any) => {
-      if (allFiche.livre == this.livreNom) {
+      if (allFiche.livre ===  this.livreNom) {
         // this.dataService.getUtilisateurById(allFiche.idUtilisateur).then((user: Utilisateurs) => {
         const fiche = new FicheByCom();
         fiche.idFiche = allFiche.key;
@@ -77,7 +77,7 @@ export class FtByLivrePage implements OnInit {
         fiche.nom = allFiche.nom;
         fiche.livre = allFiche.livre;
         fiche.type = allFiche.type;
-        fiche.poste = allFiche.poste
+        fiche.poste = allFiche.poste;
         this.ftByLivre.push(fiche);
         // });
       }
@@ -93,7 +93,7 @@ export class FtByLivrePage implements OnInit {
   }
   openFiche(key: string, type: string) {
     console.log(key);
-    if ('Préparation' === type) {
+    if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(prepa => {
         console.log(prepa);
         const navigationExtras: NavigationExtras = {
@@ -118,7 +118,7 @@ export class FtByLivrePage implements OnInit {
   }
   async openPopover(ev: any, key: string, type: string) {
     console.log('popover');
-    if ('Préparation' === type) {
+    if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(async fiche => {
         const popover = await this.popoverController.create({
           component: PopoverFicheTechniqueComponent,

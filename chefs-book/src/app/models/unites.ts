@@ -1,7 +1,4 @@
 export class Unites
  {
-    constructor(
-        public nom: string      
-        ){
-    }
+    public nom: string;
 }

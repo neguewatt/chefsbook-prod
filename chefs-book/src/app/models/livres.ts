@@ -1,5 +1,5 @@
 export class Livres {
-    
+
     public key: string;
     public auteur: string;
     public idFicheTech: string[] = [];

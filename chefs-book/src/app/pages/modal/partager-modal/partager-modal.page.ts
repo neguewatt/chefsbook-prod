@@ -30,7 +30,7 @@ export class PartagerModalPage implements OnInit {
     this.fiche = this.navParams.data.fiche;
     console.log(this.fiche);
     this.modalTitle = this.navParams.data.paramTitle;
-    
+
   }
 
   async closeModal() {
@@ -82,7 +82,7 @@ export class PartagerModalPage implements OnInit {
   updateFicheIdPartage(){
     console.log(this.newMessage);
 
-    if (this.newMessage === undefined){
+    if (this.newMessage ===  undefined){
       this.newMessage = 'vide';
     }
     this.dataService.updateFicheIdPartage(this.fiche, this.userId, this.newMessage);

@@ -18,32 +18,28 @@ export class TabsPage {
 
   resetStackTabs = ['tab1-library', 'tab2-notification', 'tab3-search', 'tab4-profil', 'tab5-param'];
 
-  constructor(private dataService: AuthFirebaseService, ) {
+  constructor(private dataService: AuthFirebaseService,) {
     this.getNotification();
   }
 
   handleTabClick = (event: MouseEvent) => {
     const { tab } = event.composedPath().find((element: any) =>
-      element.tagName === 'ION-TAB-BUTTON') as EventTarget & { tab: string };
-
+      element.tagName ===  'ION-TAB-BUTTON') as EventTarget & { tab: string };
     let deep = 1;
     let canGoBack = false;
-
     const deepFn = () => {
       if (this.tabs.outlet.canGoBack(deep, tab)) {
         canGoBack = true;
         deep++;
         deepFn();
       }
-    }
-
+    };
     deepFn();
-
     if (this.resetStackTabs.includes(tab) && canGoBack) {
       event.stopImmediatePropagation();
       return this.tabs.outlet.pop(deep - 1, tab);
     }
-  }
+  };
 
   getNotification() {
     this.dataService.getNotification().snapshotChanges().pipe(
@@ -53,7 +49,7 @@ export class TabsPage {
         )
       )
     ).subscribe(res => {
-      if(res.length>0){
+      if (res.length > 0) {
         this.disabled = false;
         this.notifNumber = res.length;
         this.notifDisabled = true;

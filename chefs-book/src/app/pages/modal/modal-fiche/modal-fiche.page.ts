@@ -3,7 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { NavParams, PopoverController, ModalController, AlertController } from '@ionic/angular';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { PartagerModalPage } from '../partager-modal/partager-modal.page';
-import { FichesPage } from './../../../tab1-library/fiches/fiches.page'
+import { FichesPage } from './../../../tab1-library/fiches/fiches.page';
 
 @Component({
   selector: 'app-modal-fiche',
@@ -34,8 +34,8 @@ export class ModalFichePage implements OnInit {
   }
 
   modifier() {
-    console.log("modifier : " + this.fiche)
-    let navigationExtras: NavigationExtras = {
+    console.log('modifier : ' + this.fiche);
+    const navigationExtras: NavigationExtras = {
       state: {
         value: this.fiche,
         update: this.ficheUpdate
@@ -45,7 +45,7 @@ export class ModalFichePage implements OnInit {
     this.popoverController.dismiss();
   }
   partager() {
-    console.log("partager : " + this.fiche)
+    console.log('partager : ' + this.fiche);
     this.openModalPartager();
     this.popoverController.dismiss();
   }
@@ -86,7 +86,7 @@ export class ModalFichePage implements OnInit {
       cssClass: 'my-custom-modal-css',
       componentProps: {
         fiche: this.fiche,
-        paramTitle: "Partager votre fiche"
+        paramTitle: 'Partager votre fiche'
       }
     });
 

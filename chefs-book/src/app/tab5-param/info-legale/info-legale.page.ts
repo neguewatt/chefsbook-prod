@@ -11,7 +11,7 @@ export class InfoLegalePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.titre = "Information légale";
+    this.titre = 'Information légale';
   }
 
 }

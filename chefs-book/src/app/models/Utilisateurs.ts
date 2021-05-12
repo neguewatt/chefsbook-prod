@@ -6,13 +6,11 @@ import { Produits } from './produits';
 
 export class Utilisateurs
  {
-    public idUtilisateur: string = "";
-    public nom: string = "";
-    public prenom: string = "";
-    public email: string = "";
-    public limiteFiche: number = 5;
+    public idUtilisateur = '';
+    public nom = '';
+    public prenom = '';
+    public email = '';
+    public limiteFiche = 5;
     public date: any;
-    public abonnement: string = "";
-
-
+    public abonnement = '';
 }

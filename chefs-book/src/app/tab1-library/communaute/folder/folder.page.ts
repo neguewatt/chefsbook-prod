@@ -69,7 +69,7 @@ export class FolderPage implements OnInit {
   }
   openFiche(key: string, type: string) {
     console.log(key);
-    if ('Préparation' === type) {
+    if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(prepa => {
         console.log(prepa);
         const navigationExtras: NavigationExtras = {

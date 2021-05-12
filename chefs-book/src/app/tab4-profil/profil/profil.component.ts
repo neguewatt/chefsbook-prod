@@ -19,7 +19,7 @@ export class ProfilComponent implements OnInit {
   constructor( private dataService: AuthFirebaseService ) { }
 
   ngOnInit() {
-    let _date = new Date(this.dataService.utilisateur.date.seconds * 1000);    
+    const _date = new Date(this.dataService.utilisateur.date.seconds * 1000);
     this.dateInscription = _date.toLocaleDateString();
 
     this.limitFiches = this.dataService.utilisateur.limiteFiche;
@@ -30,7 +30,7 @@ export class ProfilComponent implements OnInit {
   }
 
   connection(){
-    if (this.toggleConnecte === true){
+    if (this.toggleConnecte ===  true){
       this.connecte = 'En ligne';
     }else{
       this.connecte = 'Hors-ligne';

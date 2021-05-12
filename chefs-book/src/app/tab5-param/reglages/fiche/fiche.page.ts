@@ -41,7 +41,7 @@ export class FichePage implements OnInit {
 
 
   onChange(value: string){
-    if(value === 'tableau1'){
+    if(value ===  'tableau1'){
       this.myTable.natureUniteQuantite = true;
       this.myTable.quantiteUniteNature = false;
     }else {

@@ -21,7 +21,7 @@ export class VueAvantSauvegardePage implements OnInit {
   prenom: string;
   denrees: Denrees[] = [];
   denreesDisabled = false;
-  chevronDenreesOn = "chevron-down-outline";
+  chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
 
@@ -86,12 +86,12 @@ export class VueAvantSauvegardePage implements OnInit {
   // }
 
   showDenrees() {
-    if (this.denreesDisabled == true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
   async openModalLivre() {

@@ -16,24 +16,26 @@ import { IngredientRefModalPage } from 'src/app/pages/modal/ingredient-ref-modal
 })
 export class VuFicheAvantAjoutPage implements OnInit {
 
-  
   dataReturned: any;
   fiche: FicheTechniques;
   plat: Plats;
   // fichePlat: FichePlat;
-  arrayDenrees: Denrees[] = []
+  arrayDenrees: Denrees[] = [];
   userNom: string;
   prenom: string;
   denrees: Denrees[] = [];
   arrayFichePlat: FicheTechniques[] = [];
   denreesDisabled = false;
-  chevronDenreesOn = "chevron-down-outline";
-  tableau1: boolean = true;
-  tableau2: boolean = true;
+  chevronDenreesOn = 'chevron-down-outline';
+  tableau1 = true;
+  tableau2 = true;
   ingredientRef: string;
   date: string;
 
-  constructor(private dataService: AuthFirebaseService, private activRoute: ActivatedRoute, private route: Router, public modalController: ModalController) {
+  constructor(private dataService: AuthFirebaseService,
+    private activRoute: ActivatedRoute,
+    private route: Router,
+    public modalController: ModalController) {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
@@ -48,7 +50,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
   ngOnInit() {
     console.log(this.arrayFichePlat);
     this.denrees = this.fiche.denrees;
-    let _date = new Date(this.fiche.date.seconds * 1000);
+    const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.userNom = this.dataService.utilisateur.nom;
     this.prenom = this.dataService.utilisateur.prenom;
@@ -93,12 +95,12 @@ export class VuFicheAvantAjoutPage implements OnInit {
   // }
 
   showDenrees(showDenrees: string) {
-    if (this.denreesDisabled == true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
 
@@ -116,7 +118,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
        // value2: this.fichePlat,
         value3: this.arrayFichePlat,
         value4: this.plat,
-        paramTitle: "Ingredient de référence"
+        paramTitle: 'Ingredient de référence'
       }
     });
     modal.onDidDismiss().then((dataReturned) => {

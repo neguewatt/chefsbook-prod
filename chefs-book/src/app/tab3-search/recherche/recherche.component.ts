@@ -1,3 +1,4 @@
+import { Plats } from './../../models/plats';
 import { FicheTechniques } from 'src/app/models/ficheTechniques';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -14,103 +15,63 @@ import { PopoverFicheTechniqueComponent } from 'src/app/pages/modal/popover-fich
 export class RechercheComponent implements OnInit {
   @Input() titre: string;
 
-  ficheTechniques: any[] = [];
-  FicheRecherche: FicheTechniques;
+  ficheTechniquesAll: any[] = [];
   isItemAvailable = false;
   items = [];
   ficheUpdate = false;
+  prepa: FicheTechniques[];
+  plats: Plats[];
+  prepaPrtage: FicheTechniques[];
+  platsPartage: Plats[];
+
 
   constructor(private popoverController: PopoverController, private dataService: AuthFirebaseService,
     private route: Router) { }
 
   ngOnInit() {
-    this.getFicheTechniquesListPlat();
-    this.getFicheTechniquespartage();
-    this.getFicheTechniquesList();
-  }
+    this.plats = this.dataService.platListe;
+    this.prepa = this.dataService.preparationListe;
 
-  getFicheTechniquesListPlat() {
-    this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(resPlat => {
-      console.log("plats :", resPlat);
-      if (resPlat != undefined) {
-        for (let i = 0; i < resPlat.length; i++) {
-          this.ficheTechniques.push(resPlat[i]);
-        }
-      }
-    });
-  }
-
-  getFicheTechniquespartage() {
-    this.dataService.getFicheTechniquesByUserIdList(this.dataService.user.uid).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-      console.log(res);
-      if (res != undefined) {
-        for (let i = 0; i < res.length; i++) {
-          this.ficheTechniques.push(res[i]);
-        }
-      }
-      console.log(this.ficheTechniques);
-
-    });
-  }
-
-  getFicheTechniquesList() {
-    this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-      if (res != undefined) {
-        for (let i = 0; i < res.length; i++) {
-          this.ficheTechniques.push(res[i]);
-        }
-      }
-      this.ficheTechniques.sort((a, b) => {
-        if (a.nom < b.nom) {
-          return -1;
-        }
-        if (a.nom > b.nom) {
-          return 1;
-        }
-        return 0;
+    if (this.prepa) {
+      this.prepa.forEach((fiche: any) => {
+        this.ficheTechniquesAll.push(fiche);
       });
-    });
-  }
-
-
-  getItems(ev: any) {
-    const val = (<HTMLInputElement>ev.target).value;
-
-    if (val && val.trim() != '') {
-      this.ficheTechniques = this.ficheTechniques.filter((fiche) => {
-        return (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-      this.isItemAvailable = true;
-    } else {
-      this.isItemAvailable = false;
-      this.ficheTechniques = [];
-      this.getFicheTechniquesListPlat();
-      this.getFicheTechniquespartage();
-      this.getFicheTechniquesList();
+    }
+    if (this.plats) {
+      this.plats.forEach((plat: any) => {
+        this.ficheTechniquesAll.push(plat);
+      });
+    }
+    if (this.prepaPrtage) {
+      this.prepaPrtage.forEach((fiche: any) => {
+        this.ficheTechniquesAll.push(fiche);
+      });
+    }
+    if (this.platsPartage) {
+      this.platsPartage.forEach((plat: any) => {
+        this.ficheTechniquesAll.push(plat);
+      });
     }
   }
 
-  openFiche(fiche: any) {
-    if(fiche.type == 'Plat'){
-      let navigationExtras: NavigationExtras = {
+  getItems(ev: any) {
+    const val = (ev.target as HTMLInputElement).value;
+
+    if (val && val.trim() !== '') {
+      this.ficheTechniquesAll = this.ficheTechniquesAll.filter((fiche: any) => {
+        const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return retour;
+      });
+      this.isItemAvailable = true;
+    } else {
+      this.isItemAvailable = false;
+      this.ficheTechniquesAll = [];
+    }
+  }
+
+  openFiche(fiche: any){
+    if(fiche.type ===  'Plat'){
+      const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
           update: this.ficheUpdate
@@ -118,7 +79,7 @@ export class RechercheComponent implements OnInit {
       };
       this.route.navigate(['view-plat'], navigationExtras);
     }else{
-      let navigationExtras: NavigationExtras = {
+      const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
           update: this.ficheUpdate
@@ -129,12 +90,12 @@ export class RechercheComponent implements OnInit {
   }
 
 
-  async openPopover(ev: any, fiche: FicheTechniques) {
+  async openPopover(ev: any, myFiche: FicheTechniques) {
     console.log('popover');
     const popover = await this.popoverController.create({
       component: PopoverFicheTechniqueComponent,
       componentProps: {
-        fiche: fiche
+        fiche: myFiche
       },
       event: ev
     });

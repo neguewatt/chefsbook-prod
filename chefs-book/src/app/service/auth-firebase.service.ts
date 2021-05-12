@@ -43,74 +43,63 @@ export class AuthFirebaseService {
   private posteDeTravailPath = '/poste';
   // end lien URL
 
-  // test
-
-
-
   // appel de la classe AngularFirestore
-  livresDb: AngularFirestoreCollection<Livres> = null;
-  livresPersoListe: Livres[] = [];
-  livresPersoDb: AngularFirestoreCollection<Livres> = null;
-  livresRefDb: AngularFirestoreCollection<Livres> = null;
-  livresAchatDb: AngularFirestoreCollection<Livres> = null;
+  private livresDb: AngularFirestoreCollection<Livres>;
+  private livresPersoListe: Livres[] = [];
+  private livresPersoDb: AngularFirestoreCollection<Livres>;
+  private livresRefDb: AngularFirestoreCollection<Livres>;
+  private livresAchatDb: AngularFirestoreCollection<Livres>;
 
-  notificationDb: AngularFirestoreCollection<Notification> = null;
+  private notificationDb: AngularFirestoreCollection<Notification>;
 
-  preparationDb: AngularFirestoreCollection<FicheTechniques>;
-  prepaObservable: Observable<FicheTechniques[]>;
+  private preparationDb: AngularFirestoreCollection<FicheTechniques>;
+  private prepaObservable: Observable<FicheTechniques[]>;
 
-  posteDeTravailDB: AngularFirestoreCollection<PosteDeTravail> = null;
-  posteDeTravailListe: PosteDeTravail[];
+  private posteDeTravailDB: AngularFirestoreCollection<PosteDeTravail>;
+  private posteDeTravailListe: PosteDeTravail[];
 
-  ficheTechniqueByLivreDb: AngularFirestoreCollection<FicheTechniques> = null;
-  ficheTechniquePrepaDb: AngularFirestoreCollection<FicheTechniques> = null;
-  preparationListe: FicheTechniques[] = [];
-  partagePrepaListe: FicheTechniques[] = [];
-  platDb: AngularFirestoreCollection<Plats> = null;
-  platListe: Plats[] = [];
-  partagePlatsListe: Plats[] = [];
-  fichesTechniqueAll: any[] = [];
+  private ficheTechniqueByLivreDb: AngularFirestoreCollection<FicheTechniques>;
+  private ficheTechniquePrepaDb: AngularFirestoreCollection<FicheTechniques>;
+  private preparationListe: FicheTechniques[] = [];
+  private partagePrepaListe: FicheTechniques[] = [];
+  private platDb: AngularFirestoreCollection<Plats>;
+  private platListe: Plats[] = [];
+  private partagePlatsListe: Plats[] = [];
+  private fichesTechniqueAll: any[] = [];
 
-  denreesDb: AngularFirestoreCollection<Denrees> = null;
-  produitDb: AngularFirestoreCollection<Produits> = null;
-  produitsListe: Produits[];
-  unitesDb: AngularFirestoreCollection<Unites> = null;
-  unitesListe: Unites[];
+  private denreesDb: AngularFirestoreCollection<Denrees>;
+  private produitDb: AngularFirestoreCollection<Produits>;
+  private produitsListe: Produits[];
+  private unitesDb: AngularFirestoreCollection<Unites>;
+  private unitesListe: Unites[];
 
-  ordreTableauFTDb: AngularFirestoreCollection<AffichageIngredients> = null;
-  tableau1 = false;
-  tableau2 = false;
-  ecranDefautDb: AngularFirestoreCollection<EcranDefaut> = null;
-  fondDb: AngularFirestoreCollection<Fond> = null;
+  private ordreTableauFTDb: AngularFirestoreCollection<AffichageIngredients>;
+  private tableau1 = false;
+  private tableau2 = false;
+  private ecranDefautDb: AngularFirestoreCollection<EcranDefaut>;
+  private fondDb: AngularFirestoreCollection<Fond>;
 
-  utilisateurDb: AngularFirestoreCollection<Utilisateurs> = null;
-  utilisateur: Utilisateurs;
-  tableData: FicheTechniques[];
+  private utilisateurDb: AngularFirestoreCollection<Utilisateurs>;
+  private utilisateur: Utilisateurs;
+  private tableData: FicheTechniques[];
   // end appel de la classe AngularFirestore
 
   constructor(public db: AngularFirestore, public authLogin: AuthLoginService) {
 
-    if (this.user != null) {
+    if (this.user !== null) {
       // this.preparationDb = db.collection<FicheTechniques>(this.preparationPath,ref => ref);
-      this.getLivrePerso() // Au démarage application 
+      this.getLivrePerso(); // Au démarage application
       this.getListePreparations();  // Au démarage application
       this.getFicheTechniquesPartage();  // Au démarage application
       this.getListePlats();  // Au démarage application
       this.getPlatsPartage();  // Au démarage application
-      this.getCompteUtilisateur()  // Au démarage application
+      this.getCompteUtilisateur();  // Au démarage application
       this.getOrdreTableau();  // Au démarage application
       // this.getPosteDeTravail();  // Au démarage de la page creation de fiche
       // this.getProduitListe();  // Au démarage de la page creation de fiche
-      this.getUnitesListe(); 
-
-      // this.posteDb = db.collection(this.postesPath);
-
-      // tslint:disable-next-line:max-line-length
-      // this.livresRefDb = db.collection(this.livresPath, ref => ref.where('idUtilisateur', '==', [this.user.uid]).where('référence', '==', true));
+      this.getUnitesListe(); // Au démarage de la page creation de fiche
 
       console.log('test auth ... ', [this.user.uid]);
-
-      // this.fondDb = this.db.collection(this.fondPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
 
     }
     // Used for design integration ONLY! (vincent rolland)
@@ -181,7 +170,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((livres: Livres[]) => {
         this.livresPersoListe = livres;
-      })
+      });
   }
   getListePreparations() {
     this.db.collection<FicheTechniques>(this.preparationPath, ref => ref
@@ -194,7 +183,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((fiches: FicheTechniques[]) => {
         this.preparationListe = fiches;
-      })
+      });
   }
   getFicheTechniquesPartage() {
     this.db.collection<FicheTechniques>(this.preparationPath, ref => ref
@@ -209,7 +198,7 @@ export class AuthFirebaseService {
       ).subscribe((fiches: FicheTechniques[]) => {
         console.log('test4', fiches);
         this.partagePrepaListe = fiches;
-      })
+      });
   }
 
   getListePlats() {
@@ -224,7 +213,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((plats: Plats[]) => {
         this.platListe = plats;
-      })
+      });
   }
   getPlatsPartage() {
     this.db.collection<Plats>(this.platPath, ref => ref
@@ -237,17 +226,17 @@ export class AuthFirebaseService {
         )
       ).subscribe((plats: Plats[]) => {
         this.partagePlatsListe = plats;
-      })
+      });
   }
   getFichesTechniqueAll(){
     if(this.preparationListe){
       this.preparationListe.forEach((fiche: any) => {
-        this.fichesTechniqueAll.push(fiche)
+        this.fichesTechniqueAll.push(fiche);
       });
     }
     if(this.platListe){
       this.preparationListe.forEach((fiche: any) => {
-        this.fichesTechniqueAll.push(fiche)
+        this.fichesTechniqueAll.push(fiche);
       });
     }
   }
@@ -262,7 +251,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((utilisateur: Utilisateurs[]) => {
         this.utilisateur = utilisateur[0];
-      })
+      });
   }
   async getUtilisateurById(key: string) {
     const user = this.db.collection(this.utilisateurPath).doc(key).get().toPromise();
@@ -286,7 +275,7 @@ export class AuthFirebaseService {
           this.tableau1 = true;
           this.tableau2 = false;
         }
-      })
+      });
   }
   getPosteDeTravail() {
     this.db.collection<PosteDeTravail>(this.posteDeTravailPath, ref => ref
@@ -299,7 +288,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((poste: PosteDeTravail[]) => {
         this.posteDeTravailListe = poste;
-      })
+      });
   }
 
   getProduitListe(){
@@ -312,7 +301,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((produits: Produits[]) => {
         this.produitsListe = produits;
-      })
+      });
   }
   getUnitesListe(){
     this.db.collection<Unites>(this.unitePath, ref => ref)
@@ -324,7 +313,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((unites: Unites[]) => {
         this.unitesListe = unites;
-      })
+      });
   }
 
 
@@ -436,7 +425,8 @@ export class AuthFirebaseService {
     return this.ecranDefautDb;
   }
   getNotification(): AngularFirestoreCollection<Notification> {
-    this.notificationDb = this.db.collection(this.notificationPath, ref => ref.where('idUtilisateur', '==', this.user.uid).orderBy('date', 'asc'));
+    this.notificationDb = this.db.collection(this.notificationPath, ref => ref
+      .where('idUtilisateur', '==', this.user.uid).orderBy('date', 'asc'));
     return this.notificationDb;
   }
 
@@ -453,7 +443,7 @@ export class AuthFirebaseService {
 
   updateFicheIdPartage(fiche: any, userId: any, message: string) {
     let path: string;
-    if (fiche.type === 'Plat') {
+    if (fiche.type ===  'Plat') {
       path = this.platPath;
     } else {
       path = this.preparationPath;
@@ -467,7 +457,7 @@ export class AuthFirebaseService {
     notification.idDocPartage = fiche.key;
     notification.date = today;
     notification.type = 'fiche ' + fiche.type;
-    notification.notification = 'la fiche technique "' + fiche.nom + '" de type : "' + fiche.type + '" vient d\'être partagé avec vous !';
+    notification.notification = 'la fiche technique ' + fiche.nom + ' de type : ' + fiche.type + ' vient d\'être partagé avec vous !';
     notification.message = message;
     this.addNotification(notification);
     return updateFiche;
@@ -488,17 +478,17 @@ export class AuthFirebaseService {
   // start delete
 
   deleteFiche(fiche) {
-    if (fiche.type = "preparation") {
+    if (fiche.type === 'preparation') {
       this.db.collection(this.preparationPath).doc(fiche.key).delete().then(() => {
-        console.log("Document successfully deleted!");
+        console.log('Document successfully deleted!');
       }).catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
       });
     } else {
       this.db.collection(this.platPath).doc(fiche.key).delete().then(() => {
-        console.log("Document successfully deleted!");
+        console.log('Document successfully deleted!');
       }).catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
       });
     }
   }
@@ -511,8 +501,8 @@ export class AuthFirebaseService {
           if (data) {
             this.db.doc(this.utilisateurPath + '/' + data.idUtilisateur).delete();
           }
-        })
-      })
+        });
+      });
 
     this.db.collection(this.ordreTableauFTPath, ref => ref.where('idUtilisateur', '==', idUser))
       .snapshotChanges().pipe(

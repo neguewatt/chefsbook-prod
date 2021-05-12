@@ -11,7 +11,7 @@ export class AssistancePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.titre = "Assistance";
+    this.titre = 'Assistance';
   }
 
 }

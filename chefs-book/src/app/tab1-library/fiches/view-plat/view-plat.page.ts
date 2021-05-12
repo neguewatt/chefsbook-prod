@@ -24,17 +24,20 @@ export class ViewPlatPage implements OnInit {
   userNom: string;
   prenom: string;
   denreesDisabled = false;
-  chevronDenreesOn = "chevron-down-outline";
+  chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
-  date: String;
+  date: string;
   newPlatDenrees = {};
   newFicheDenrees = {};
 
-  constructor(private dataService: AuthFirebaseService, public modalController: ModalController, private activRoute: ActivatedRoute, private route: Router) {
+  constructor(private dataService: AuthFirebaseService,
+    public modalController: ModalController,
+    private activRoute: ActivatedRoute,
+    private route: Router) {
 
     this.activRoute.queryParams.subscribe(params => {
-      if (this.route.getCurrentNavigation() != null) {
+      if (this.route.getCurrentNavigation() !== null) {
         console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
         this.plat = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiche2 [plat]
       }
@@ -44,13 +47,13 @@ export class ViewPlatPage implements OnInit {
 
   ngOnInit() {
     console.log(this.plat);
-    let _date = new Date(this.plat.date.seconds * 1000);
+    const _date = new Date(this.plat.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.getUtilisateurById();
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
     // this.getOrdreTableau();
-    
+
     this.newPlatDenrees = this.groupByType(this.plat.denrees);
   }
 
@@ -83,12 +86,12 @@ export class ViewPlatPage implements OnInit {
 
 
   showDenrees() {
-    if (this.denreesDisabled == true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
 

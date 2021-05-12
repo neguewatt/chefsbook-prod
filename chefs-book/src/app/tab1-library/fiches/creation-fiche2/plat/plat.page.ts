@@ -21,7 +21,6 @@ export class PlatPage implements OnInit {
   // recherche fiche techniques
   ficheTechnique: FicheTechniques;
   ficheTechniques: FicheTechniques[] = [];
-  FicheRecherche: FicheTechniques;
   isItemAvailable = false;
   items = [];
 
@@ -30,7 +29,7 @@ export class PlatPage implements OnInit {
   fiche: FicheTechniques;
   fichePreparation: FicheTechniques[];
   arrayDenrees: Denrees[] = [];
-  ajoutPrepa: boolean = false;
+  ajoutPrepa = false;
   utilisateur: Utilisateurs;
   userNom: string;
   prenom: string;
@@ -40,10 +39,10 @@ export class PlatPage implements OnInit {
   denreesDisabled = true;
   hide = true;
   presenceFichePlat = true;
-  chevronDenreesOn = "chevron-down-outline";
-  chevronficheOn = "chevron-down-outline";
-  tableau1: boolean = true;
-  tableau2: boolean = true;
+  chevronDenreesOn = 'chevron-down-outline';
+  chevronficheOn = 'chevron-down-outline';
+  tableau1 = true;
+  tableau2 = true;
 
   newTitre: string;
   postes: PosteDeTravail[] = [];
@@ -66,19 +65,19 @@ export class PlatPage implements OnInit {
     public creationFiche2Page: CreationFiche2Page) {
     // retour de la vu fiche avant ajout page
     this.activRoute.queryParams.subscribe(params => {
-      if (this.route.getCurrentNavigation() != null) {
+      if (this.route.getCurrentNavigation() !== null) {
         this.ajoutPrepa = true;
         this.fiche = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiches
         this.arrayDenrees = this.route.getCurrentNavigation().extras.state.value1;
         this.plat = this.route.getCurrentNavigation().extras.state.value4;
 
-        if (this.arrayDenrees === undefined) {
+        if (this.arrayDenrees ===  undefined) {
           this.denreesDisabled = false;
         } else {
           this.denreesDisabled = true;
         }
 
-        if (this.plat.fichePreparation === undefined) {
+        if (this.plat.fichePreparation ===  undefined) {
           this.presenceFichePlat = false;
         } else {
           this.presenceFichePlat = true;
@@ -89,7 +88,7 @@ export class PlatPage implements OnInit {
   }
 
   ngOnInit() {
-    if (this.plat === undefined) {
+    if (this.plat ===  undefined) {
       this.plat = new Plats();
     }
 
@@ -186,7 +185,7 @@ export class PlatPage implements OnInit {
   //       )
   //     )
   //   ).subscribe(res => {
-  //     if (res != undefined) {
+  //     if (res !== undefined) {
   //       for (let i = 0; i < res.length; i++) {
   //         this.ficheTechniques.push(res[i]);
   //       }
@@ -197,16 +196,17 @@ export class PlatPage implements OnInit {
   getItems(ev: any) {
     const val = ev.target.value;
 
-    if (val && val.trim() != '') {
+    if (val && val.trim() !== '') {
       this.ficheTechniques = this.ficheTechniques.filter((fiche) => {
-        return (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+        const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return retour;
+      });
       this.isItemAvailable = true;
     } else {
-      this.isItemAvailable = false;    
+      this.isItemAvailable = false;
       this.ficheTechniques = this.dataService.preparationListe;
       console.log('retour efface recherche',this.ficheTechniques);
-      
+
       // if (this.dataService.partagePrepaListe) {
       //   this.dataService.partagePrepaListe.forEach(partagePrepa => {
       //     this.ficheTechniques.push(partagePrepa);
@@ -219,17 +219,17 @@ export class PlatPage implements OnInit {
   showDenrees() {
     if (this.denreesDisabled) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
 
 
 
   addFiche(fiche: FicheTechniques) {
-    let navigationExtras: NavigationExtras = {
+    const navigationExtras: NavigationExtras = {
       state: {
         value: fiche,
         value1: this.arrayDenrees,
@@ -264,7 +264,7 @@ export class PlatPage implements OnInit {
     // if (index !== -1) {
     //   this.denrees.splice(index, 1);
     // }
-    // if (denree.produit == this.newProduitRef.produit) {
+    // if (denree.produit === this.newProduitRef.produit) {
     //   this.newProduitRef = null;
     // }
 
@@ -276,13 +276,19 @@ export class PlatPage implements OnInit {
     this.newType = this.creationFiche2Page.newType;
     console.log(this.newTitre, this.newPortion, this.newPoste, this.newDescriptionCommercial, this.plat.fichePreparation);
 
-    if (this.newTitre == null || this.newDescriptionCommercial == null || this.newDescriptionTechnique == null ||
-      this.newPoste == null || this.newPortion == null || this.plat.fichePreparation == null) {
+    if (this.newTitre === null || this.newDescriptionCommercial === null || this.newDescriptionTechnique === null ||
+      this.newPoste === null || this.newPortion === null || this.plat.fichePreparation === null) {
       this.erreurCreationFiche();
     } else {
-      if (this.newType == 'Plat') {
-        this.denrees = this.plat.denrees.map((denree) => { return Object.assign({}, denree) });
-        this.fichePreparation = this.plat.fichePreparation.map((fiche) => { return Object.assign({}, fiche) });
+      if (this.newType === 'Plat') {
+        this.denrees = this.plat.denrees.map((denree) => {
+          const retour = Object.assign({}, denree);
+          return retour;
+        });
+        this.fichePreparation = this.plat.fichePreparation.map((fiche) => {
+          const retour = Object.assign({}, fiche);
+          return retour;
+        });
         const newPlat = new Plats();
         newPlat.type = this.newType;
         newPlat.nom = this.newTitre.charAt(0).toUpperCase() + this.newTitre.substr(1);
@@ -317,7 +323,7 @@ export class PlatPage implements OnInit {
   //////////////////////////////////////////////////
 
   refSelect() {
-    if (this.denrees.length == 0) {
+    if (this.denrees.length === 0) {
       this.erreurPasDeDenrees();
     }
   }
@@ -331,7 +337,7 @@ export class PlatPage implements OnInit {
   }
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
-      message: 'Le produit "' + denree.produit + '" vient d\'être retiré du tableau.',
+      message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',
       duration: 2000
     });
     toast.present();

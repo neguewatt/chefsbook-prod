@@ -7,7 +7,6 @@ import { Platform } from '@ionic/angular';
 export class ThemeService {
 
   darkMode = false;
-  
   constructor(private plt: Platform) {
     this.plt.ready().then(() => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -15,7 +14,7 @@ export class ThemeService {
         console.log('matches : ', e);
         this.setAppTheme(e.matches);
       });
-    })
+    });
   }
   toggleAppTheme(){
     this.darkMode = !this.darkMode;

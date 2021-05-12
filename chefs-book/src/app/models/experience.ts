@@ -6,5 +6,4 @@ export class Experience {
     public idUtilisateur?: string;
     public dateDebut?: any;
     public dateDeFin?: any;
-
 }

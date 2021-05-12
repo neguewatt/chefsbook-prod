@@ -17,7 +17,7 @@ export class ComptePage implements OnInit {
   abonnement: string;
 
   constructor(private dataService: AuthFirebaseService) {
-    this.titre = "Compte";
+    this.titre = 'Compte';
    }
 
   ngOnInit() {
@@ -25,13 +25,13 @@ export class ComptePage implements OnInit {
     this.prenom = this.dataService.utilisateur.prenom;
     this.email = this.dataService.utilisateur.email;
     this.abonnement = this.dataService.utilisateur.abonnement;
-    
+
     if(this.abonnement){
       if(this.abonnement !== 'Gratuite'){
-        this.abonnement = 'Payante'
+        this.abonnement = 'Payante';
       }
     }
-    
+
     // this.getUtilisateur();
 
   }
@@ -44,7 +44,7 @@ export class ComptePage implements OnInit {
   //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
   //       )
   //     )
-  //   ).subscribe(dataUtilisateur => {      
+  //   ).subscribe(dataUtilisateur => {
   //     array = dataUtilisateur;
   //     this.utilisateur = array[0];
   //     this.nom = this.utilisateur.nom;

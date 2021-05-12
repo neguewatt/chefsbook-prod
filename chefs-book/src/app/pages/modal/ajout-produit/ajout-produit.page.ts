@@ -38,7 +38,7 @@ export class AjoutProduitPage implements OnInit {
   ngOnInit() {
     this.unites = this.dataService.unitesListe;
     console.log(this.unites);
-    
+
     this.quantite = 0;
     this.produits = this.dataService.produitsListe;
     // this.getProduit();
@@ -54,7 +54,7 @@ export class AjoutProduitPage implements OnInit {
   //   ).subscribe(res => {
   //     console.log(res);
 
-  //     if (res != undefined) {
+  //     if (res !== undefined) {
   //       for (let i = 0; i < res.length; i++) {
   //         this.produits.push(res[i]);
   //       }
@@ -64,11 +64,12 @@ export class AjoutProduitPage implements OnInit {
 
 
   getItems(ev: KeyboardEvent) {
-    const val = (<HTMLInputElement>ev.target).value;
-    if (val && val.trim() != '') {
+    const val = (ev.target as HTMLInputElement).value;
+    if (val && val.trim() !== '') {
       this.produits = this.produits.filter((produit) => {
-        return (produit.nomFr.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+        const retour = (produit.nomFr.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return retour;
+      });
       this.isItemAvailable = true;
     } else {
       this.isItemAvailable = false;
@@ -80,7 +81,7 @@ export class AjoutProduitPage implements OnInit {
     this.isnomProduit = true;
     this.isItemAvailable = false;
     this.nomProduit = produit.nomFr;
-    this.typeProduit = produit.type
+    this.typeProduit = produit.type;
   }
   onIncrement() {
     this.quantite++;
@@ -94,16 +95,16 @@ export class AjoutProduitPage implements OnInit {
     newDenree.quantite = this.quantite;
     newDenree.typeProduit = this.typeProduit;
     newDenree.unite = this.newUnite.nom;
-    this.denree = newDenree;    
+    this.denree = newDenree;
     this.produits.forEach(element => {
-      if(this.denree.produit == element.nomFr){
-        
+      if(this.denree.produit === element.nomFr){
+
       }
     });
-    if(this.denree.produit == null){
-      this.presentToastProduit()
-    }else if(this.denree.quantite == null || this.denree.unite == null){
-      this.presentToast()
+    if(this.denree.produit === null){
+      this.presentToastProduit();
+    }else if(this.denree.quantite === null || this.denree.unite === null){
+      this.presentToast();
     }else{
       await this.modalController.dismiss(this.denree);
     }

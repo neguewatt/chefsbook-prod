@@ -26,7 +26,7 @@ export class CreerUtilisateurPage implements OnInit {
   fond: Fond;
   ecranDefaut: EcranDefaut;
 
-  constructor(private authenticationService: AuthLoginService, 
+  constructor(private authenticationService: AuthLoginService,
     private dataService: AuthFirebaseService,
     private route: Router) { }
 
@@ -35,7 +35,6 @@ export class CreerUtilisateurPage implements OnInit {
 
   creerUtilisateur() {
     // ajout securité
-
 
     const newUtilisateur = new Utilisateurs();
     const newtableau = new AffichageIngredients();
@@ -48,7 +47,7 @@ export class CreerUtilisateurPage implements OnInit {
         if(user){
           this.authenticationService.signInUser(this.email, this.password).then(
             (uid) => {
-              if(uid){     
+              if(uid){
                 const key = uid.toString();
                 newUtilisateur.nom =this.nom.charAt(0).toUpperCase()+this.nom.substr(1);
                 newUtilisateur.prenom = this.prenom.charAt(0).toUpperCase()+this.prenom.substr(1);
@@ -74,16 +73,12 @@ export class CreerUtilisateurPage implements OnInit {
                 this.ordreTableauProduit = newtableau;
                 this.fond = newFond;
                 this.ecranDefaut = newEcran;
-  
                 this.dataService.addUtilisateur(key, this.utilisateur);
                 this.dataService.addOrderTable(this.ordreTableauProduit);
                 this.dataService.addFond(this.fond);
                 this.dataService.addEcranDefaut(this.ecranDefaut);
-                
-                this.dataService.user = firebase.default.auth().currentUser
+                this.dataService.user = firebase.default.auth().currentUser;
                 console.log(this.dataService.user);
-                
-
                 this.route.navigate(['chargement']);
               }
             }
@@ -91,8 +86,8 @@ export class CreerUtilisateurPage implements OnInit {
             (error) => {
               console.log(error);
             }
-          ); 
-        }    
+          );
+        }
       }
     ).catch(
       (error) => {
@@ -110,7 +105,7 @@ export class CreerUtilisateurPage implements OnInit {
             console.log('Connecté', data.user.uid);
           },
           (error) => {
-            console.log("error1", error);
+            console.log('error1', error);
             reject(error);
           }
         );

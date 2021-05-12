@@ -11,7 +11,6 @@ export class AuthLoginService {
 
   signInUser(email: string, password: string) {
     console.log(email, password);
-    
     return new Promise(
       (resolve, reject) => {
         firebase.default.auth().signInWithEmailAndPassword(email, password).then(
@@ -20,7 +19,7 @@ export class AuthLoginService {
             console.log('Connecté', data.user.uid);
           },
           (error) => {
-            console.log("error1", error);
+            console.log('error1', error);
             reject(error);
           }
         );

@@ -46,7 +46,7 @@ export class Tab2NotificationPage implements OnInit {
       )
     ).subscribe(res => {
       res.forEach(notification => {
-        if ('fiche Préparation' === notification.type) {
+        if ('fiche Préparation' ===  notification.type) {
           this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: FicheTechniques) => {
             this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
               this.userNom = user.nom;
@@ -169,7 +169,7 @@ export class Tab2NotificationPage implements OnInit {
 
   openFiche(key: string, type: string) {
     console.log(key);
-    if ('fiche Préparation' === type) {
+    if ('fiche Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(prepa => {
         console.log(prepa);
         const navigationExtras: NavigationExtras = {

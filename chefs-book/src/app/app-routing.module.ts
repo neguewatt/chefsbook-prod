@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: 'sauvegarde-plat',
-    loadChildren: () => import('./tab1-library/fiches/creation-fiche2/sauvegarde-plat/sauvegarde-plat.module').then( m => m.SauvegardePlatPageModule)
+    loadChildren: () => import('./tab1-library/fiches/creation-fiche2/sauvegarde-plat/sauvegarde-plat.module')
+    .then( m => m.SauvegardePlatPageModule)
   },
   {
     path: 'ajout-produit',

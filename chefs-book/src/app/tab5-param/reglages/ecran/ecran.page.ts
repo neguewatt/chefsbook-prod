@@ -9,7 +9,7 @@ import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
   styleUrls: ['./ecran.page.scss'],
 })
 export class EcranPage implements OnInit {
- 
+
   key: string;
   table: EcranDefaut;
   ecran: string;
@@ -46,31 +46,31 @@ export class EcranPage implements OnInit {
 
 
   onChange(value: string) {
-    if (value === 'fiches') {
+    if (value ===  'fiches') {
       this.table.mesFiches = true;
       this.table.mesLivres = false;
       this.table.communaute = false;
       this.table.profil = false;
       this.table.recherche = false;
-    } else if (value === 'livres') {
+    } else if (value ===  'livres') {
       this.table.mesFiches = false;
       this.table.mesLivres = true;
       this.table.communaute = false;
       this.table.profil = false;
       this.table.recherche = false;
-    } else if (value === 'communaute') {
+    } else if (value ===  'communaute') {
       this.table.mesFiches = false;
       this.table.mesLivres = false;
       this.table.communaute = true;
       this.table.profil = false;
       this.table.recherche = false;
-    } else if (value === 'profil') {
+    } else if (value ===  'profil') {
       this.table.mesFiches = false;
       this.table.mesLivres = false;
       this.table.communaute = false;
       this.table.profil = true;
       this.table.recherche = false;
-    } else if (value === 'recherche') {
+    } else if (value ===  'recherche') {
       this.table.mesFiches = false;
       this.table.mesLivres = false;
       this.table.communaute = false;

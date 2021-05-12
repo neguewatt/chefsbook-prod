@@ -32,7 +32,7 @@ export class ViewPreparationPage implements OnInit {
   // start variable fiche
   apportNutritionnel: string;
   coutParPortion: number;
-  date: String;
+  date: string;
   descriptionTechniques: string;
   denrees: Denrees[] = [];
   description: string;
@@ -86,8 +86,8 @@ export class ViewPreparationPage implements OnInit {
     this.tableau2 = this.dataService.tableau2;
     this.nom = this.fiche.nom;
 
-    console.log(this.fiche.date);    
-    let _date = new Date(this.fiche.date.seconds * 1000); 
+    console.log(this.fiche.date);
+    const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.descriptionTechniques = this.fiche.descriptionTechniques;
     this.description = this.fiche.description;
@@ -120,7 +120,7 @@ export class ViewPreparationPage implements OnInit {
 
   getFicheTechniqueById() {
     this.ficheTechniquesAll.forEach(resFiche => {
-      if (resFiche.key === this.keyFiche) {
+      if (resFiche.key ===  this.keyFiche) {
         this.fiche = resFiche;
       }
     });
@@ -136,7 +136,7 @@ export class ViewPreparationPage implements OnInit {
 
 
   showDenrees() {
-    if (this.denreesDisabled === true) {
+    if (this.denreesDisabled ===  true) {
       this.denreesDisabled = false;
       this.chevronDenreesOn = 'chevron-down-outline';
     } else {

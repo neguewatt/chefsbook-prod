@@ -18,7 +18,7 @@ export class PopoverFicheTechniqueComponent implements OnInit {
   ficheUpdate = true;
 
   constructor(
-    private navParams: NavParams, 
+    private navParams: NavParams,
     private popoverController: PopoverController,
     private route: Router,
     public modalController: ModalController,
@@ -35,8 +35,8 @@ export class PopoverFicheTechniqueComponent implements OnInit {
   }
 
   modifier() {
-    console.log("modifier : " + this.fiche)
-    let navigationExtras: NavigationExtras = {
+    console.log('modifier : ' + this.fiche);
+    const navigationExtras: NavigationExtras = {
       state: {
         value: this.fiche,
         update: this.ficheUpdate
@@ -46,7 +46,7 @@ export class PopoverFicheTechniqueComponent implements OnInit {
     this.popoverController.dismiss();
   }
   partager() {
-    console.log("partager : " + this.fiche)
+    console.log('partager : ' + this.fiche);
     this.openModalPartager();
     this.popoverController.dismiss();
   }
@@ -89,7 +89,7 @@ export class PopoverFicheTechniqueComponent implements OnInit {
       cssClass: 'my-custom-modal-css',
       componentProps: {
         fiche: this.fiche,
-        paramTitle: "Partager votre fiche"
+        paramTitle: 'Partager votre fiche'
       }
     });
 

@@ -137,10 +137,10 @@ export class LivresPage implements OnInit {
 
   showListeLivre(livre: string) {
     console.log(livre);
-    if (livre === 'maBibliotheque') {
+    if (livre ===  'maBibliotheque') {
       this.reference = false;
       this.achat = false;
-      if (this.bibliotheque === false) {
+      if (this.bibliotheque ===  false) {
         this.bibliotheque = true;
         this.chevronBibliotheque = 'chevron-down-outline';
         this.chevronLivreAchat = 'chevron-forward-outline';
@@ -149,10 +149,10 @@ export class LivresPage implements OnInit {
         this.bibliotheque = false;
         this.chevronBibliotheque = 'chevron-forward-outline';
       }
-    } else if (livre === 'reference') {
+    } else if (livre ===  'reference') {
       this.achat = false;
       this.bibliotheque = false;
-      if (this.reference === false) {
+      if (this.reference ===  false) {
         this.reference = true;
         this.chevronLivreRef = 'chevron-down-outline';
         this.chevronBibliotheque = 'chevron-forward-outline';
@@ -161,10 +161,10 @@ export class LivresPage implements OnInit {
         this.reference = false;
         this.chevronLivreRef = 'chevron-forward-outline';
       }
-    } else if (livre === 'achat') {
+    } else if (livre ===  'achat') {
       this.bibliotheque = false;
       this.reference = false;
-      if (this.achat === false) {
+      if (this.achat ===  false) {
         this.achat = true;
         this.chevronLivreAchat = 'chevron-down-outline';
         this.chevronBibliotheque = 'chevron-forward-outline';

@@ -12,15 +12,11 @@ export class ReglagesPage implements OnInit {
   constructor(public route: Router) { }
 
   ngOnInit() {
-    this.titre = "Réglages";
+    this.titre = 'Réglages';
   }
 
   buttonClick(page: string){
-    // routage vers la page avec le nom qui va bien 
-    // routage de page ou appel de page (ngif)
-    // exemple :  this.route.navigate(['/'+ page])
     this.route.navigate(['tabs/tab5-param/reglages/'+page]);
-
   }
 
 }

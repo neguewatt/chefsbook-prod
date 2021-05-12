@@ -22,16 +22,20 @@ export class SauvegardePlatPage implements OnInit {
   userNom: string;
   prenom: string;
   denreesDisabled = false;
-  chevronDenreesOn = "chevron-down-outline";
+  chevronDenreesOn = 'chevron-down-outline';
   tableau1 = false;
   tableau2 = false;
   today: Date;
   date: string;
 
-  constructor(private dataService: AuthFirebaseService,public modalController: ModalController, private toastController: ToastController,  private activRoute: ActivatedRoute, private route: Router) {
+  constructor(private dataService: AuthFirebaseService,
+    public modalController: ModalController,
+    private toastController: ToastController,
+    private activRoute: ActivatedRoute,
+    private route: Router) {
 
     this.activRoute.queryParams.subscribe(params => {
-      if (this.route.getCurrentNavigation() != null) {
+      if (this.route.getCurrentNavigation() !== null) {
         console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
         this.plat = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiche2 [plat]
       }
@@ -48,7 +52,7 @@ export class SauvegardePlatPage implements OnInit {
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
     this.today = new Date();
-    this.date = this.today.toLocaleDateString('fr-FR')
+    this.date = this.today.toLocaleDateString('fr-FR');
   }
 
 
@@ -60,7 +64,7 @@ export class SauvegardePlatPage implements OnInit {
   //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
   //       )
   //     )
-  //   ).subscribe(res => {      
+  //   ).subscribe(res => {
   //     array = res;
   //     this.userNom = array[0].nom;
   //     this.prenom = array[0].prenom;
@@ -88,12 +92,12 @@ export class SauvegardePlatPage implements OnInit {
 
 
   showDenrees(){
-    if (this.denreesDisabled == true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
-      this.chevronDenreesOn = "chevron-down-outline";
+      this.chevronDenreesOn = 'chevron-down-outline';
     } else {
       this.denreesDisabled = true;
-      this.chevronDenreesOn = "chevron-forward-outline";
+      this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
 
@@ -104,9 +108,8 @@ export class SauvegardePlatPage implements OnInit {
     });
 
     modal.onDidDismiss().then((res) => {
-      if (res !== null) {       
+      if (res !== null) {
         this.plat.livre = res.data.nom;
-        
         this.ajoutFiche();
         this.route.navigate(['tabs']);
       }

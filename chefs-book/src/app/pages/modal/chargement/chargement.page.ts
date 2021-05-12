@@ -24,7 +24,7 @@ export class ChargementPage implements OnInit {
   }
   ecranDefaut() {
     console.log(this.dataService.user.uid);
-    
+
     this.dataService.getEcranDefaut().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>

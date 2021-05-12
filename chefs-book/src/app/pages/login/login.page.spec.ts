@@ -62,7 +62,7 @@ describe('LoginPage', () => {
 
   it('Click sur bouton creation du compte', async(() => {
     spyOn(component, 'creerUtilisateur');
-    let button = fixture.debugElement.nativeElement.querySelector('#creer-compte');
+    const button = fixture.debugElement.nativeElement.querySelector('#creer-compte');
     button.click();
     fixture.whenStable().then(() => {
       expect(component.creerUtilisateur).toHaveBeenCalled();

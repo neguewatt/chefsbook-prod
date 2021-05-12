@@ -1,10 +1,4 @@
-export class Forum
- {
-
-    constructor(
-        public roomName: string [],     
-        public utilisateurN: string []                
-        ){
-    }
-
+export class Forum {
+    public roomName: string[];
+    public utilisateurN: string[];
 }

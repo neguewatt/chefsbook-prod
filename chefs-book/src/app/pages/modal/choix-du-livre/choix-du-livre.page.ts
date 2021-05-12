@@ -28,11 +28,10 @@ export class ChoixDuLivrePage implements OnInit {
         )
       )
     ).subscribe(res => {
-      if (res != undefined) {
-        for (let i = 0; i < res.length; i++) {
-          this.livres.push(res[i]);
-        }
-        // ça cest ok
+      if (res !== undefined) {
+        res.forEach(livre => {
+          this.livres.push(livre);
+        });
       }
     });
   }
