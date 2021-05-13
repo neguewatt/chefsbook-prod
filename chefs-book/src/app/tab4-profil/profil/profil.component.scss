@@ -1,22 +1,28 @@
-ion-toolbar{
-  height: 53px;
-  background: linear-gradient(to right, #701919, #E74C3C);
+ion-toolbar {
+    height: 53px;
+    background: linear-gradient(to right, #701919, #E74C3C);
 }
 
-.buttonColor{
-  color:#329295;
+.buttonColor {
+    color: #329295;
 }
 
+ion-label {
+    font-size: 0.9em !important;
+    --ion-font-family: "Roboto" !important;
+    src: url("./../../../assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype") !important;
+}
 
 ion-icon {
-  font-size: 30px;
+    font-size: 30px;
 }
-ion-avatar{
-  margin: auto;
+
+ion-avatar {
+    margin: auto;
 }
 
 #cvContaint {
-  margin-top: 5%;
+    margin-top: 5%;
 }
 
 #container {
@@ -24,28 +30,27 @@ ion-avatar{
     left: 0;
     right: 0;
     top: 15%;
-  }
-  
-  #container strong {
+}
+
+#container strong {
     font-size: 18px;
     line-height: 26px;
-  }
+}
 
-  .avatar {
+.avatar {
     text-align: center;
     left: 0;
     right: 0;
     top: 15%;
-  }
-
-  .vertical-align-content > *
-{
-     display: flex!important;
-     align-content: center!important;
-     align-items: center!important;
 }
 
-:host{
-  margin-inline-start: 0px !important;
-  margin-inline-end: 0px !important;
+.vertical-align-content>* {
+    display: flex!important;
+    align-content: center!important;
+    align-items: center!important;
+}
+
+:host {
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;
 }

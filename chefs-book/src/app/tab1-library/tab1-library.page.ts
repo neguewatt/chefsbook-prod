@@ -1,8 +1,10 @@
+import { LimiteFiche } from './../models/limite-fich';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { Livres } from '../models/livres';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1-library',
@@ -15,6 +17,7 @@ export class Tab1LibraryPage implements OnInit {
   livreBoolean: boolean;
   comBoolean: boolean;
   livrePerso: Livres[];
+  ficheTechniquesAll: any[] = [];
   dataReturned: any;
   chosen = 'border-bottom: 5px solid #fff;';
   notChosen = 'margin-bottom: 5px;';
@@ -24,7 +27,8 @@ export class Tab1LibraryPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private activRoute: ActivatedRoute,
-    private route: Router) {
+    private route: Router,
+    public alertController: AlertController) {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
         this.fichesBoolean = this.route.getCurrentNavigation().extras.state.fichesBoolean;
@@ -33,9 +37,24 @@ export class Tab1LibraryPage implements OnInit {
       }
     });
     this.livreBoolean = true;
+    this.dataService.lmitesListe.forEach((limite: LimiteFiche) => {
+      if(limite.abonnement === 'G' && this.dataService.utilisateur.abonnement === 'G'){
+        this.dataService.limiteFiche = limite.limite;
+      }
+      if(limite.abonnement === 'P1' && this.dataService.utilisateur.abonnement === 'P1'){
+        this.dataService.limiteFiche = limite.limite;
+      }
+      if(limite.abonnement === 'P2' && this.dataService.utilisateur.abonnement === 'P2'){
+        this.dataService.limiteFiche = limite.limite;
+      }
+    });
   }
 
   ngOnInit() {
+    this.livrePerso = this.dataService.livresPersoListe;
+    console.log(this.dataService.utilisateur);
+    console.log(this.dataService.limiteFiche);
+
 
   }
 
@@ -57,6 +76,39 @@ export class Tab1LibraryPage implements OnInit {
     }
   }
 
+  addficheTech() {
+    if (this.livrePerso.length ===  0) {
+      this.presentAlert();
+    } else {
+      console.log();
+
+      if(this.dataService.limiteFiche >= this.ficheTechniquesAll.length){
+        this.limitationFichesAlert();
+      }else{
+        this.route.navigate(['creation-fiche2']);
+      }
+    }
+  }
+
+
+  async limitationFichesAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      message: 'Vous avez ateint votre nombre de fiches maximal pour la version que vous utilisez',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention',
+      message: 'Merci de bien vouloir créer un livre pour ranger vos futurs fiches techniques',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
 
 }

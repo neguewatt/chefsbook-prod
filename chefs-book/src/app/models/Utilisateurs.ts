@@ -10,7 +10,6 @@ export class Utilisateurs
     public nom = '';
     public prenom = '';
     public email = '';
-    public limiteFiche = 5;
-    public date: any;
+    public dateCreation: any;
     public abonnement = '';
 }

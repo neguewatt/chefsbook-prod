@@ -49,46 +49,15 @@ export class PrepaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getUtilisateur();
-    this.getOrdreTableau();
+    this.userNom = this.dataService.utilisateur.nom;
+    this.prenom = this.dataService.utilisateur.prenom;
+    this.tableau1 = this.dataService.tableau1;
+    this.tableau2 = this.dataService.tableau2;
+
     this.today = new Date();
     this.date = this.today.toLocaleDateString('fr-FR');
     this.postes = this.dataService.posteDeTravailListe;
   }
-
-  getUtilisateur() {
-    this.dataService.getUtilisateur().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(dataUtilisateur => {
-      this.userNom = dataUtilisateur[0].nom;
-      this.prenom = dataUtilisateur[0].prenom;
-    });
-  }
-
-  getOrdreTableau() {
-    this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-      if (res[0].natureUniteQuantite) {
-        this.tableau1 = false;
-        this.tableau2 = true;
-      } else {
-        this.tableau1 = true;
-        this.tableau2 = false;
-      }
-      console.log('getOrdreTableau', res[0].natureUniteQuantite);
-    });
-  }
-
-
 
   showDenrees() {
     if (this.denreesDisabled === true) {

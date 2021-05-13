@@ -1,4 +1,4 @@
-import { PrepaPage } from './../tab1-library/fiches/creation-fiche2/prepa/prepa.page';
+import { LimiteFiche } from './../models/limite-fich';
 import { Unites } from './../models/unites';
 import { FicheTechniques } from './../models/ficheTechniques';
 import { Plats } from './../models/plats';
@@ -41,65 +41,71 @@ export class AuthFirebaseService {
   private utilisateurPath = '/utilisateur';
   private notificationPath = '/notification';
   private posteDeTravailPath = '/poste';
+  private limiteFichePath = '/limiteFiche';
   // end lien URL
 
   // appel de la classe AngularFirestore
   private livresDb: AngularFirestoreCollection<Livres>;
-  private livresPersoListe: Livres[] = [];
-  private livresPersoDb: AngularFirestoreCollection<Livres>;
-  private livresRefDb: AngularFirestoreCollection<Livres>;
-  private livresAchatDb: AngularFirestoreCollection<Livres>;
+  livresPersoListe: Livres[] = [];
+  private livresPersoDb: AngularFirestoreCollection<Livres> = null;
+  private livresRefDb: AngularFirestoreCollection<Livres> = null;
+  private livresAchatDb: AngularFirestoreCollection<Livres> = null;
 
-  private notificationDb: AngularFirestoreCollection<Notification>;
+  private notificationDb: AngularFirestoreCollection<Notification> = null;
 
-  private preparationDb: AngularFirestoreCollection<FicheTechniques>;
-  private prepaObservable: Observable<FicheTechniques[]>;
+  private preparationDb: AngularFirestoreCollection<FicheTechniques> =null;
+  prepaObservable: Observable<FicheTechniques[]>;
 
-  private posteDeTravailDB: AngularFirestoreCollection<PosteDeTravail>;
-  private posteDeTravailListe: PosteDeTravail[];
+  private posteDeTravailDB: AngularFirestoreCollection<PosteDeTravail> = null;
+  posteDeTravailListe: PosteDeTravail[];
 
-  private ficheTechniqueByLivreDb: AngularFirestoreCollection<FicheTechniques>;
-  private ficheTechniquePrepaDb: AngularFirestoreCollection<FicheTechniques>;
-  private preparationListe: FicheTechniques[] = [];
-  private partagePrepaListe: FicheTechniques[] = [];
-  private platDb: AngularFirestoreCollection<Plats>;
-  private platListe: Plats[] = [];
-  private partagePlatsListe: Plats[] = [];
-  private fichesTechniqueAll: any[] = [];
+  private ficheTechniqueByLivreDb: AngularFirestoreCollection<FicheTechniques> = null;
+  private ficheTechniquePrepaDb: AngularFirestoreCollection<FicheTechniques> = null;
+  preparationListe: FicheTechniques[] = [];
+  partagePrepaListe: FicheTechniques[] = [];
+  private platDb: AngularFirestoreCollection<Plats> = null;
+  platListe: Plats[] = [];
+  partagePlatsListe: Plats[] = [];
+  fichesTechniqueAll: any[] = [];
 
-  private denreesDb: AngularFirestoreCollection<Denrees>;
-  private produitDb: AngularFirestoreCollection<Produits>;
-  private produitsListe: Produits[];
-  private unitesDb: AngularFirestoreCollection<Unites>;
-  private unitesListe: Unites[];
+  private denreesDb: AngularFirestoreCollection<Denrees> = null;
+  private produitDb: AngularFirestoreCollection<Produits> = null;
+  produitsListe: Produits[];
+  private unitesDb: AngularFirestoreCollection<Unites> = null;
+  unitesListe: Unites[];
 
-  private ordreTableauFTDb: AngularFirestoreCollection<AffichageIngredients>;
-  private tableau1 = false;
-  private tableau2 = false;
-  private ecranDefautDb: AngularFirestoreCollection<EcranDefaut>;
-  private fondDb: AngularFirestoreCollection<Fond>;
+  private ordreTableauFTDb: AngularFirestoreCollection<AffichageIngredients> =null;
+  tableau1 = false;
+  tableau2 = false;
+  private ecranDefautDb: AngularFirestoreCollection<EcranDefaut> = null;
+  private fondDb: AngularFirestoreCollection<Fond> = null;
 
-  private utilisateurDb: AngularFirestoreCollection<Utilisateurs>;
-  private utilisateur: Utilisateurs;
-  private tableData: FicheTechniques[];
+  private utilisateurDb: AngularFirestoreCollection<Utilisateurs> = null;
+  utilisateur: Utilisateurs;
+  tableData: FicheTechniques[];
+  lmitesListe: LimiteFiche[];
+  limiteFiche = 0;
+
   // end appel de la classe AngularFirestore
 
   constructor(public db: AngularFirestore, public authLogin: AuthLoginService) {
 
     if (this.user !== null) {
       // this.preparationDb = db.collection<FicheTechniques>(this.preparationPath,ref => ref);
+      this.getCompteUtilisateur();  // Au démarage application
       this.getLivrePerso(); // Au démarage application
       this.getListePreparations();  // Au démarage application
       this.getFicheTechniquesPartage();  // Au démarage application
       this.getListePlats();  // Au démarage application
       this.getPlatsPartage();  // Au démarage application
-      this.getCompteUtilisateur();  // Au démarage application
       this.getOrdreTableau();  // Au démarage application
       // this.getPosteDeTravail();  // Au démarage de la page creation de fiche
       // this.getProduitListe();  // Au démarage de la page creation de fiche
       this.getUnitesListe(); // Au démarage de la page creation de fiche
+      this.getLimiteFiche();
 
-      console.log('test auth ... ', [this.user.uid]);
+
+
 
     }
     // Used for design integration ONLY! (vincent rolland)
@@ -235,7 +241,7 @@ export class AuthFirebaseService {
       });
     }
     if(this.platListe){
-      this.preparationListe.forEach((fiche: any) => {
+      this.platListe.forEach((fiche: any) => {
         this.fichesTechniqueAll.push(fiche);
       });
     }
@@ -315,8 +321,23 @@ export class AuthFirebaseService {
         this.unitesListe = unites;
       });
   }
+  getLimiteFiche(){
+    this.db.collection<LimiteFiche>(this.limiteFichePath, ref => ref)
+    .snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+        ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+      )
+    )
+  ).subscribe((limite: LimiteFiche[]) => {
+      this.lmitesListe = limite;
+    });
+  }
 
 
+
+
+  // END GET
 
 
   getFicheTechniquesByUserIdList(userId: string): AngularFirestoreCollection<FicheTechniques> {

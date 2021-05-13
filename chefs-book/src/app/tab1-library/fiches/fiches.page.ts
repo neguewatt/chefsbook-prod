@@ -21,7 +21,6 @@ export class FichesPage implements OnInit {
   prepaBoolean = false;
   platsBoolean = false;
   disabledplat = true;
-  limiteFiche: number;
   livres: Livres[] = [];
   livreKey: string;
   livreNom: string;
@@ -41,9 +40,7 @@ export class FichesPage implements OnInit {
   constructor(private popoverController: PopoverController,
     private dataService: AuthFirebaseService,
     private route: Router,
-    public alertController: AlertController) {
-      this.limiteFiche = this.dataService.utilisateur.limiteFiche;
-    }
+    public alertController: AlertController) { }
 
   ngOnInit() {
     this.plats = this.dataService.platListe;
@@ -63,28 +60,14 @@ export class FichesPage implements OnInit {
         this.ficheTechniquesAll.push(plat);
       });
     }
-    // this.getFicheTechniquesListPrepa();
-    // this.getFicheTechniquesListPlat();
-    // this.getLivresPerso();
     this.livres = this.dataService.livresPersoListe;
-
   }
 
 
   loadData(event) {
-    // Using settimeout to simulate api call
     setTimeout(() => {
-      // load more data
-      // this.getFicheTechniquespartage();
-      // this.getPlatspartage();
-      // this.getFicheTechniquesListPrepa();
-      // this.getFicheTechniquesListPlat();
-      // Hide Infinite List Loader on Complete
       event.target.complete();
-      // Rerender Virtual Scroll List After Adding New Data
       this.virtualScroll.checkEnd();
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
       if (this.ficheTechniquesAll.length ===  3) {
         event.target.disabled = true;
       }
@@ -104,54 +87,6 @@ export class FichesPage implements OnInit {
     }
     return null;
   }
-
-  // getFicheTechniquesListPlat() {
-  //   this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     if (res !== undefined) {
-  //       this.disabledplat = false;
-  //       this.plats = res;
-  //       res.forEach(resPlat => {
-  //         this.ficheTechniquesAll.push(resPlat);
-  //       });
-  //     }
-  //   });
-  // }
-
-  //  getFicheTechniquesListPrepa() {
-  //   this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     if (res !== undefined) {
-  //       this.prepaBoolean = true;
-  //       this.prepa = res;
-  //       res.forEach(resPrepa => {
-  //         this.ficheTechniquesAll.push(resPrepa);
-  //       });
-  //     }
-  //   });
-  // }
-  // getLivresPerso() {
-  //   this.dataService.getLivrePersoList().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     this.livres = res;
-  //   });
-  // }
-
 
   segmentChanged(page: any) {
     console.log(page);
@@ -206,36 +141,6 @@ export class FichesPage implements OnInit {
       this.route.navigate(['view-preparation'], navigationExtras);
     }
   }
-  addficheTech() {
-    if (this.livres.length ===  0) {
-      this.presentAlert();
-    } else {
-      if(this.ficheTechniquesAll.length ===  this.limiteFiche){
-        this.limitationFichesAlert();
-      }else{
-        this.route.navigate(['creation-fiche2']);
-      }
-    }
-  }
-  async limitationFichesAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention',
-      message: 'Vous avez ateint votre nombre de fiches maximal pour la version que vous utilisez',
-      buttons: ['OK']
-    });
 
-    await alert.present();
-  }
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention',
-      message: 'Merci de bien vouloir créer un livre pour ranger vos futurs fiches techniques',
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
 
 }

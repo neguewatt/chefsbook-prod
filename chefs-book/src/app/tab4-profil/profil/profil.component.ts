@@ -13,18 +13,22 @@ export class ProfilComponent implements OnInit {
  dateInscription: string;
  connecte: string;
  toggleConnecte: boolean;
- countFT = 0;
- limitFiches = 5;
+ countFT: number;
+ limitFiches: number;
 
-  constructor( private dataService: AuthFirebaseService ) { }
+  constructor( private dataService: AuthFirebaseService ) {
+
+    this.dataService.getFichesTechniqueAll(); // On reunis toutes les fiche de l'utilisateur
+  }
 
   ngOnInit() {
-    const _date = new Date(this.dataService.utilisateur.date.seconds * 1000);
+    const _date = new Date(this.dataService.utilisateur.dateCreation.seconds * 1000);
     this.dateInscription = _date.toLocaleDateString();
-
-    this.limitFiches = this.dataService.utilisateur.limiteFiche;
+    this.limitFiches = this.dataService.limiteFiche;
     this.toggleConnecte = true; // normalement à verifier en foction de la connection du téléphone
     this.connection();
+    console.log(this.dataService.fichesTechniqueAll);
+
     this.countFT = this.dataService.fichesTechniqueAll.length;
     // this.getFicheTechniquesListPrepa();
   }

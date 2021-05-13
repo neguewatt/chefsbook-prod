@@ -9,27 +9,29 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+
 /* Core CSS required for Ionic components to work properly */
+
 @import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
+
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
+
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
-
 hr {
     border: 0.5px solid rgb(0, 0, 0, 0.2) !important;
-    margin-bottom: 0px !important;
-  }
+    margin: 0px !important;
+}
 
 .headerBackground {
     --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
@@ -91,7 +93,8 @@ ion-segment {
     padding-left: 50px;
     padding-right: 50px;
 }
-.titreFiche{
+
+.titreFiche {
     --ion-font-family: "Roboto";
     src: url("./assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype");
     font-size: 20px;

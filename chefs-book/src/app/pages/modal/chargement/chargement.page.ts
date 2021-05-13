@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 
@@ -15,12 +16,13 @@ export class ChargementPage implements OnInit {
 
   constructor(
     private dataService: AuthFirebaseService,
-    private route: Router) {
+    private route: Router,
+    public loadingController: LoadingController) {
 
     }
 
   ngOnInit() {
-      this.ecranDefaut();
+    this.presentLoading();
   }
   ecranDefaut() {
     console.log(this.dataService.user.uid);
@@ -72,6 +74,22 @@ export class ChargementPage implements OnInit {
 
 
     });
+  }
+
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 1500
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+    console.log('charg', this.dataService.utilisateur);
+
+    this.ecranDefaut();
   }
 
 }

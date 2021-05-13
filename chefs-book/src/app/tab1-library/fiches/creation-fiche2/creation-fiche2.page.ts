@@ -1,5 +1,8 @@
+import { PrepaPage } from './prepa/prepa.page';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { FicheTechniques } from 'src/app/models/ficheTechniques';
 
 @Component({
   selector: 'app-creation-fiche2',
@@ -33,6 +36,8 @@ export class CreationFiche2Page implements OnInit {
       this.prepa = false;
     }
   }
+
+
 
 
 
