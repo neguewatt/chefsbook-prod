@@ -159,12 +159,12 @@
     </ion-grid>
     <ion-grid>
         <ion-row *ngIf="!ficheUpdate">
-            <p>
+            <ion-label>
                 {{descriptionTechniques}}
-            </p>
+            </ion-label>
         </ion-row>
         <ion-item *ngIf="ficheUpdate">
-            <ion-textarea id="description" placeholder="{{descriptionTechniques}}" rows="3" [(ngModel)]="newDescriptionTechniques"></ion-textarea>
+            <ion-textarea id="description" placeholder="{{descriptionTechniques}}" rows="13" [(ngModel)]="newDescriptionTechniques"></ion-textarea>
         </ion-item>
     </ion-grid>
     <ion-button *ngIf="ficheUpdate">Valider la modification de la fiche</ion-button>

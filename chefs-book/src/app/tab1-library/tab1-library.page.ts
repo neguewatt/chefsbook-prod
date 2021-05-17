@@ -37,25 +37,11 @@ export class Tab1LibraryPage implements OnInit {
       }
     });
     this.livreBoolean = true;
-    this.dataService.lmitesListe.forEach((limite: LimiteFiche) => {
-      if(limite.abonnement === 'G' && this.dataService.utilisateur.abonnement === 'G'){
-        this.dataService.limiteFiche = limite.limite;
-      }
-      if(limite.abonnement === 'P1' && this.dataService.utilisateur.abonnement === 'P1'){
-        this.dataService.limiteFiche = limite.limite;
-      }
-      if(limite.abonnement === 'P2' && this.dataService.utilisateur.abonnement === 'P2'){
-        this.dataService.limiteFiche = limite.limite;
-      }
-    });
   }
 
   ngOnInit() {
     this.livrePerso = this.dataService.livresPersoListe;
     console.log(this.dataService.utilisateur);
-    console.log(this.dataService.limiteFiche);
-
-
   }
 
   segmentChanged(page: string) {
@@ -80,9 +66,10 @@ export class Tab1LibraryPage implements OnInit {
     if (this.livrePerso.length ===  0) {
       this.presentAlert();
     } else {
-      console.log();
-
-      if(this.dataService.limiteFiche >= this.ficheTechniquesAll.length){
+      
+      console.log(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length);
+      
+      if(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length){
         this.limitationFichesAlert();
       }else{
         this.route.navigate(['creation-fiche2']);

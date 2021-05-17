@@ -11,29 +11,16 @@ import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 })
 export class ChoixDuLivrePage implements OnInit {
   choixLivre: Livres;
-  livres: any[] = [];
+  livres: Livres[] = [];
 
   constructor(private dataService: AuthFirebaseService,
-    private modalController: ModalController) { }
+    private modalController: ModalController) { 
+      this.livres = this.dataService.livresPersoListe; 
+    }
 
   ngOnInit() {
-    this.getLivre();
-  }
-
-  getLivre() {
-    this.dataService.getLivreList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-      if (res !== undefined) {
-        res.forEach(livre => {
-          this.livres.push(livre);
-        });
-      }
-    });
+    console.log(this.livres);
+    
   }
 
   async addLivre() {

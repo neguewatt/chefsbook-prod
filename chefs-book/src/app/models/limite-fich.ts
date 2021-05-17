@@ -1,4 +1,5 @@
 export class LimiteFiche{
     public abonnement: string;
-    public limite: number;
+    public limiteFiche: number;
+    public limiteLivre: number;
 }

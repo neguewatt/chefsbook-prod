@@ -90,6 +90,8 @@ export class ChargementPage implements OnInit {
     console.log('charg', this.dataService.utilisateur);
 
     this.ecranDefaut();
+    this.dataService.getFichesTechniqueAll();
+    this.dataService.getLimiteFiche();
   }
 
 }

@@ -24,6 +24,7 @@ export class VueAvantSauvegardePage implements OnInit {
   chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
+  date: string;
 
   livre: Livres;
   livres: Livres[];
@@ -44,6 +45,8 @@ export class VueAvantSauvegardePage implements OnInit {
 
   ngOnInit() {
     this.denrees = this.fiche.denrees;
+    const _date = new Date(this.fiche.date.seconds * 1000);
+    this.date = _date.toLocaleDateString();
     //  this.getUtilisateur();
     this.userNom = this.dataService.utilisateur.nom;
     this.prenom = this.dataService.utilisateur.prenom;
@@ -116,6 +119,7 @@ export class VueAvantSauvegardePage implements OnInit {
       message: 'La fiche technique ' + this.fiche.nom + ' vient d\'être ajouter dans le livre ' + this.fiche.livre + '.',
       duration: 2000
     });
-    toast.present();
+    return toast.present()
+    ;
   }
 }

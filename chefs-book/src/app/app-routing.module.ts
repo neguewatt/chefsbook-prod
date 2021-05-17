@@ -36,6 +36,14 @@ const routes: Routes = [
   {
     path: 'ajout-produit',
     loadChildren: () => import('./pages/modal/ajout-produit/ajout-produit.module').then( m => m.AjoutProduitPageModule)
+  },
+  {
+    path: 'vue-avant-sauvegarde',
+    loadChildren: () => import('./tab1-library/fiches/vue-avant-sauvegarde/vue-avant-sauvegarde.module').then( m => m.VueAvantSauvegardePageModule)
+  },
+  {
+    path: 'choix-du-livre',
+    loadChildren: () => import('./pages/modal/choix-du-livre/choix-du-livre.module').then( m => m.ChoixDuLivrePageModule)
   }
 ];
 @NgModule({

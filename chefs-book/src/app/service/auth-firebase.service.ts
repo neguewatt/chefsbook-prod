@@ -41,7 +41,7 @@ export class AuthFirebaseService {
   private utilisateurPath = '/utilisateur';
   private notificationPath = '/notification';
   private posteDeTravailPath = '/poste';
-  private limiteFichePath = '/limiteFiche';
+  private formulePath = '/formule';
   // end lien URL
 
   // appel de la classe AngularFirestore
@@ -93,16 +93,16 @@ export class AuthFirebaseService {
     if (this.user !== null) {
       // this.preparationDb = db.collection<FicheTechniques>(this.preparationPath,ref => ref);
       this.getCompteUtilisateur();  // Au démarage application
+      this.getformule();
       this.getLivrePerso(); // Au démarage application
       this.getListePreparations();  // Au démarage application
       this.getFicheTechniquesPartage();  // Au démarage application
       this.getListePlats();  // Au démarage application
       this.getPlatsPartage();  // Au démarage application
       this.getOrdreTableau();  // Au démarage application
-      // this.getPosteDeTravail();  // Au démarage de la page creation de fiche
-      // this.getProduitListe();  // Au démarage de la page creation de fiche
+      this.getPosteDeTravail();  // Au démarage de la page creation de fiche
+      //this.getProduitListe();  // Au démarage de la page creation de fiche
       this.getUnitesListe(); // Au démarage de la page creation de fiche
-      this.getLimiteFiche();
 
 
 
@@ -297,18 +297,21 @@ export class AuthFirebaseService {
       });
   }
 
-  getProduitListe(){
-    this.db.collection<Produits>(this.produitPath, ref => ref)
-      .snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c =>
-            ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-          )
-        )
-      ).subscribe((produits: Produits[]) => {
-        this.produitsListe = produits;
-      });
-  }
+  // getProduitListe(){
+  //   this.db.collection<Produits>(this.produitPath, ref => ref)
+  //     .snapshotChanges().pipe(
+  //       map(changes =>
+  //         changes.map(c =>
+  //           ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+  //         )
+  //       )
+  //     ).subscribe((produits: Produits[]) => {
+
+  //       console.log('produits',produits);
+  //       this.produitsListe = produits;
+  //     });
+  // }
+
   getUnitesListe(){
     this.db.collection<Unites>(this.unitePath, ref => ref)
       .snapshotChanges().pipe(
@@ -321,8 +324,8 @@ export class AuthFirebaseService {
         this.unitesListe = unites;
       });
   }
-  getLimiteFiche(){
-    this.db.collection<LimiteFiche>(this.limiteFichePath, ref => ref)
+  getformule(){
+    this.db.collection<LimiteFiche>(this.formulePath, ref => ref)
     .snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -333,7 +336,19 @@ export class AuthFirebaseService {
       this.lmitesListe = limite;
     });
   }
-
+  getLimiteFiche(){
+    this.lmitesListe.forEach((limite: LimiteFiche) => {
+      if(limite.abonnement === 'G' && this.utilisateur.abonnement === 'G'){
+        this.limiteFiche = limite.limiteFiche;
+      }
+      if(limite.abonnement === 'P1' && this.utilisateur.abonnement === 'P1'){
+        this.limiteFiche = limite.limiteFiche;
+      }
+      if(limite.abonnement === 'P2' && this.utilisateur.abonnement === 'P2'){
+        this.limiteFiche = limite.limiteFiche;
+      }
+    });
+  }
 
 
 
@@ -396,10 +411,10 @@ export class AuthFirebaseService {
     this.denreesDb = this.db.collection(this.denreesPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
     return this.denreesDb;
   }
-  getProduitList(): AngularFirestoreCollection<Produits> {
-    this.produitDb = this.db.collection(this.produitPath, ref => ref.orderBy('type', 'asc'));
-    return this.produitDb;
-  }
+  // getProduitList(): AngularFirestoreCollection<Produits> {
+  //   this.produitDb = this.db.collection(this.produitPath, ref => ref.orderBy('type', 'asc'));
+  //   return this.produitDb;
+  // }
   getOrdreTableauFT(): AngularFirestoreCollection<AffichageIngredients> {
     this.ordreTableauFTDb = this.db.collection(this.ordreTableauFTPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
     return this.ordreTableauFTDb;
@@ -499,15 +514,16 @@ export class AuthFirebaseService {
   // start delete
 
   deleteFiche(fiche) {
-    if (fiche.type === 'preparation') {
+    if (fiche.type === 'Préparation') {
       this.db.collection(this.preparationPath).doc(fiche.key).delete().then(() => {
-        console.log('Document successfully deleted!');
+        console.log('Document prepa successfully deleted!');
+        this.getListePreparations();
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
     } else {
       this.db.collection(this.platPath).doc(fiche.key).delete().then(() => {
-        console.log('Document successfully deleted!');
+        console.log('Document plat successfully deleted!');
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });

@@ -18,7 +18,7 @@ export class ProfilComponent implements OnInit {
 
   constructor( private dataService: AuthFirebaseService ) {
 
-    this.dataService.getFichesTechniqueAll(); // On reunis toutes les fiche de l'utilisateur
+    // this.dataService.getFichesTechniqueAll(); // On reunis toutes les fiche de l'utilisateur
   }
 
   ngOnInit() {
