@@ -1,5 +1,5 @@
 import { PosteDeTravail } from './../../../models/postes';
-import { FicheByCom, FicheTechniques } from '../../../models/ficheTechniques';
+import { FicheByCom, Preparation } from '../../../models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
@@ -25,7 +25,7 @@ export class FtByLivrePage implements OnInit {
   newNom: string;
   ftByLivre: FicheByCom[] = [];
   ficheTechniquesAll: any[] = [];
-  prepa: FicheTechniques[] = [];
+  prepa: Preparation[] = [];
   plats: Plats[] = [];
   // postes: string[] = [ 'Bar', 'Boulangerie', 'Cuisson poisson', 'Cuisson viande', 'Entremets', 'Garde manger', 'Patisserie'];
   postes: PosteDeTravail[] = [];

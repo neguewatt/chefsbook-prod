@@ -33,9 +33,21 @@
     <app-fiches *ngIf="fichesBoolean"></app-fiches>
     <app-livres *ngIf="livreBoolean"></app-livres>
     <app-communaute *ngIf="comBoolean"></app-communaute>
-</ion-content>
 
-<ion-toolbar *ngIf="fichesBoolean">
+    
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addficheTech()">
+        <ion-fab-button class="square">
+            <ion-icon class="addFiche"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ion-footer  *ngIf="fichesBoolean">
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-toolbar *ngIf="fichesBoolean">
     <ion-footer>
         <ion-button class="rectangle" (click)="addficheTech()">
             <ion-row class="ion-justify-content-center">
@@ -44,4 +56,4 @@
             </ion-row>
         </ion-button>
     </ion-footer>
-</ion-toolbar>
+</ion-toolbar> -->

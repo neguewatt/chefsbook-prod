@@ -1,25 +1,25 @@
 <div *ngIf="!ficheByLivre">
   <ion-list class="listLivre">
     <ion-item-group>
-      <ion-item-divider class="list" (click)="showListeLivre('maBibliotheque')">
+      <ion-item-divider color="secondary" (click)="showListeLivre('maBibliotheque')">
         <ion-label>Ma bibliothèque</ion-label>
         <ion-icon slot="end" [name]="chevronBibliotheque"></ion-icon>
       </ion-item-divider>
       <ion-row *ngIf="bibliotheque" >
         <ion-col size="4">
-            <ion-button class="carreAjout" color="light" [routerLink]="['livres/creation-livres']">
-              <ion-icon name="add-outline" color='primary'></ion-icon>
+           <ion-button class="carreAjout"  (click)="addLivre()">   <!--[routerLink]="['livres/creation-livres']" -->
+              <ion-icon  class="iconAdd"></ion-icon>
             </ion-button>
         </ion-col>
         <ion-col size="4" *ngFor="let livre of livresPerso; let i = index">
           <ion-button class="carre" color="medium" (click)="openLivre(livre)">
-            <ion-label>
+            <ion-label class="ion-text-wrap">
               {{livre.nom}}
             </ion-label>
           </ion-button>
         </ion-col>
       </ion-row>
-      <ion-item-divider class="list" (click)="showListeLivre('reference')">
+      <ion-item-divider color="secondary">  <!-- disabled (click)="showListeLivre('reference')"> -->
         <ion-label>
           Mes livres de référence
         </ion-label>
@@ -27,10 +27,10 @@
       </ion-item-divider>
       <ion-row *ngIf="reference">
         <ion-col size="4">
-          <ion-button class="carreAjout" color="light">
-            <ion-icon name="add-outline" color='primary'></ion-icon>
+          <ion-button class="carreAjout" [routerLink]="['livres/creation-livres']">
+            <ion-icon  class="iconAdd"></ion-icon>
           </ion-button>
-        </ion-col>
+      </ion-col>
         <ion-col size="4" *ngFor="let livre of livreRef; let i = index">
           <ion-button class="carre" color="medium" (click)="openLivre(livre)">
             <ion-label>

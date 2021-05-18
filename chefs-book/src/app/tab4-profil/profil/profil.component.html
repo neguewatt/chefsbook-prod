@@ -21,7 +21,7 @@
                 <p>23 abonnés</p>
             </div>
         </ion-col>
-        <ion-col class="ion-justify-content-center" *ngIf="countFT">
+        <ion-col class="ion-justify-content-center">
             <ion-item lines="none">
                 <ion-icon size="small" class="ion-margin-end" name="folder-outline"></ion-icon>
                 <ion-label size="small">{{countFT}} / {{limitFiches}} FT</ion-label>
@@ -32,36 +32,36 @@
 <hr>
 <ion-grid>
     <ion-row>
-        <ion-item lines="none" [disabled]="true">
-            <ion-label color="primary">Statut : {{connecte}}</ion-label>
-            <ion-toggle [(ngModel)]="toggleConnecte" (ionChange)="connection()"></ion-toggle>
-        </ion-item>
+        <ion-col>
+            <ion-item lines="none" [disabled]="true">
+                <ion-label color="primary">Statut : {{connecte}}</ion-label>
+                <ion-toggle  [(ngModel)]="toggleConnecte" (ionChange)="connection()"></ion-toggle>
+            </ion-item>
+        </ion-col>
     </ion-row>
 </ion-grid>
 <hr>
 <ion-grid>
-    <ion-row>
-        <ion-item id="container" disabled>
-            <ion-button class="btn_Large_Thim ion-margin-top">
-                VOIR LES OPTIONS DE MISE A NIVEAU
-            </ion-button>
-        </ion-item>
-    </ion-row>
+    <ion-button expand="block" class="btn_Large_Thim">
+        VOIR LES OPTIONS DE MISE A NIVEAU
+    </ion-button>
 </ion-grid>
 <hr>
 <ion-grid>
-    <ion-row id="cvContaint" *ngIf="supprimeMoiPlusTard">
-        <ion-toolbar color="primary">
-            <ion-title>EXPERIENCE</ion-title>
+    <ion-row id="cvContaint" >
+        <ion-toolbar>
+            <ion-title style="height: 50px;">EXPERIENCE</ion-title>
         </ion-toolbar>
         <ion-button expand="full" fill="outline" color="secondary">
-            <ion-icon name="add-circle-outline"></ion-icon>Ajouter une expérience
+            <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
+            <ion-label color="primary" class="ion-margin-left">Ajouter une expérience</ion-label>
         </ion-button>
-        <ion-toolbar color="primary">
-            <ion-title>FORMATION</ion-title>
+        <ion-toolbar>
+            <ion-title style="height: 50px;">FORMATION</ion-title>
         </ion-toolbar>
         <ion-button expand="full" fill="outline" color="secondary">
-            <ion-icon name="add-circle-outline"></ion-icon>Ajouter une formation
+            <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
+            <ion-label color="primary" class="ion-margin-left">Ajouter une formation</ion-label>
         </ion-button>
     </ion-row>
 </ion-grid>

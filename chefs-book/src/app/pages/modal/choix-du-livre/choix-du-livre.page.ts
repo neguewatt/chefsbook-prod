@@ -14,13 +14,13 @@ export class ChoixDuLivrePage implements OnInit {
   livres: Livres[] = [];
 
   constructor(private dataService: AuthFirebaseService,
-    private modalController: ModalController) { 
-      this.livres = this.dataService.livresPersoListe; 
+    private modalController: ModalController) {
+      this.livres = this.dataService.livresPersoListe;
     }
 
   ngOnInit() {
     console.log(this.livres);
-    
+
   }
 
   async addLivre() {

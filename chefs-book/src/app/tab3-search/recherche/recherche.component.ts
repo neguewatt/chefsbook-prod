@@ -1,5 +1,6 @@
+import { ModalFichePage } from './../../pages/modal/modal-fiche/modal-fiche.page';
 import { Plats } from './../../models/plats';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
@@ -17,41 +18,75 @@ export class RechercheComponent implements OnInit {
 
   ficheTechniquesAll: any[] = [];
   isItemAvailable = false;
+  ficheRecherche: Preparation ;
   items = [];
   ficheUpdate = false;
-  prepa: FicheTechniques[];
-  plats: Plats[];
-  prepaPrtage: FicheTechniques[];
-  platsPartage: Plats[];
-
 
   constructor(private popoverController: PopoverController, private dataService: AuthFirebaseService,
     private route: Router) { }
 
   ngOnInit() {
-    this.plats = this.dataService.platListe;
-    this.prepa = this.dataService.preparationListe;
+    this.getFicheTechniquesListPlat();
+    this.getFicheTechniquespartage();
+    this.getFicheTechniquesList();
+  }
 
-    if (this.prepa) {
-      this.prepa.forEach((fiche: any) => {
-        this.ficheTechniquesAll.push(fiche);
+  getFicheTechniquesListPlat() {
+    this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(resPlat => {
+      if (resPlat !== undefined) {
+        resPlat.forEach(res => {
+          this.ficheTechniquesAll.push(res);
+        });
+      }
+    });
+  }
+
+  getFicheTechniquespartage() {
+    this.dataService.getPrepaPartage().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(resPrepa => {
+      if (resPrepa !== undefined) {
+        resPrepa.forEach(res => {
+          this.ficheTechniquesAll.push(res);
+        });
+      }
+
+    });
+  }
+
+  getFicheTechniquesList() {
+    this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(resPrepa => {
+      if (resPrepa !== undefined) {
+        resPrepa.forEach(res => {
+          this.ficheTechniquesAll.push(res);
+        });
+      }
+      this.ficheTechniquesAll.sort((a, b) => {
+        if (a.nom < b.nom) {
+          return -1;
+        }
+        if (a.nom > b.nom) {
+          return 1;
+        }
+        return 0;
       });
-    }
-    if (this.plats) {
-      this.plats.forEach((plat: any) => {
-        this.ficheTechniquesAll.push(plat);
-      });
-    }
-    if (this.prepaPrtage) {
-      this.prepaPrtage.forEach((fiche: any) => {
-        this.ficheTechniquesAll.push(fiche);
-      });
-    }
-    if (this.platsPartage) {
-      this.platsPartage.forEach((plat: any) => {
-        this.ficheTechniquesAll.push(plat);
-      });
-    }
+    });
   }
 
   getItems(ev: any) {
@@ -66,6 +101,9 @@ export class RechercheComponent implements OnInit {
     } else {
       this.isItemAvailable = false;
       this.ficheTechniquesAll = [];
+      this.getFicheTechniquesListPlat();
+      this.getFicheTechniquespartage();
+      this.getFicheTechniquesList();
     }
   }
 
@@ -90,10 +128,10 @@ export class RechercheComponent implements OnInit {
   }
 
 
-  async openPopover(ev: any, myFiche: FicheTechniques) {
+  async openPopover(ev: any, myFiche: Preparation) {
     console.log('popover');
     const popover = await this.popoverController.create({
-      component: PopoverFicheTechniqueComponent,
+      component: ModalFichePage,
       componentProps: {
         fiche: myFiche
       },

@@ -42,7 +42,7 @@ ion-header {
 }
 
 ion-content {
-    --ion-background-color: #fff;
+    --background: #fff;
 }
 
 ion-segment {
@@ -81,12 +81,16 @@ ion-segment {
 }
 
 .rectangle {
-    height: 100px;
-    width: 90%;
-    --background: #F1F9FF;
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
+    // height: 100px;
+    // width: 90%;
+    // --background: #F1F9FF;
+    // margin-top: 5%;
+    // margin-left: 5%;
+    // margin-right: 5%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    --background: #f03434;
 }
 
 .pLR50 {
@@ -96,7 +100,7 @@ ion-segment {
 
 .titreFiche {
     --ion-font-family: "Roboto";
-    src: url("./assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype");
+    src: url("./assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype");
     font-size: 20px;
     color: white;
 }
@@ -115,6 +119,7 @@ ion-avatar {
 
 :root {
     --ion-color-primary: #B73636;
+    --ion-color-secondary: #FF4A4A;
     // autre couleur
 }
 
@@ -186,7 +191,7 @@ ion-avatar {
     margin-bottom: var(--ion-margin, 20px);
     color: red;
     --ion-font-family: "Roboto";
-    src: url("./assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype");
+    src: url("./assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype");
     font-size: 0.8rem;
 }
 
@@ -198,7 +203,7 @@ ion-avatar {
 .label-bienvenu {
     color: white;
     --ion-font-family: "QuickKiss";
-    src: url("./assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    src: url("./assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
     font-size: 3rem;
 }
 
@@ -210,7 +215,7 @@ ion-avatar {
 .font-check {
     color: white;
     --ion-font-family: "QuickKiss";
-    src: url("./assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    src: url("./assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
     font-size: 0.9rem;
 }
 

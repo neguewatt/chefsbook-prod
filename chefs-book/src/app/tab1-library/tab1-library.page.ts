@@ -1,4 +1,4 @@
-import { LimiteFiche } from './../models/limite-fich';
+import { Abonnement } from '../models/abonnement';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
@@ -66,9 +66,9 @@ export class Tab1LibraryPage implements OnInit {
     if (this.livrePerso.length ===  0) {
       this.presentAlert();
     } else {
-      
+
       console.log(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length);
-      
+
       if(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length){
         this.limitationFichesAlert();
       }else{

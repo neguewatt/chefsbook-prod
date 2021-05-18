@@ -1,4 +1,4 @@
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, NavParams, ModalController, AlertController } from '@ionic/angular';
 import { PartagerModalPage } from '../partager-modal/partager-modal.page';

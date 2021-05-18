@@ -91,7 +91,7 @@ export class ChargementPage implements OnInit {
 
     this.ecranDefaut();
     this.dataService.getFichesTechniqueAll();
-    this.dataService.getLimiteFiche();
+    this.dataService.getAbonnement();
   }
 
 }

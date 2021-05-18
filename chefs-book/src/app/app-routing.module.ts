@@ -39,7 +39,8 @@ const routes: Routes = [
   },
   {
     path: 'vue-avant-sauvegarde',
-    loadChildren: () => import('./tab1-library/fiches/vue-avant-sauvegarde/vue-avant-sauvegarde.module').then( m => m.VueAvantSauvegardePageModule)
+    loadChildren: () => import('./tab1-library/fiches/vue-avant-sauvegarde/vue-avant-sauvegarde.module')
+    .then( m => m.VueAvantSauvegardePageModule)
   },
   {
     path: 'choix-du-livre',

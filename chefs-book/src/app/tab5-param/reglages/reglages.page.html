@@ -3,54 +3,78 @@
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <div id="container" class="ion-margin">
-      <strong>{{titre}}</strong>
-    </div>
+    <ion-title>{{titre}}</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-item-divider color="secondary"></ion-item-divider>
 <ion-content>
-  <ion-item-divider>
-
-  </ion-item-divider>
-  <div class="ion-padding-top">
-    <ion-item button (click)="buttonClick('ecran')" detail="false">
-      <ion-icon color="secondary" name="person-outline" class="ion-padding-end"></ion-icon>
-      <ion-label color="secondary">
-        Ecran par défaut
-      </ion-label>
-      <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item button (click)="buttonClick('langue')" detail="false" [disabled]="true">
-      <ion-icon color="secondary" name="settings-outline" class="ion-padding-end"></ion-icon>
-      <ion-label color="secondary">
-        Langues
-      </ion-label>
-      <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item button (click)="buttonClick('fond')" detail="false">
-      <ion-icon color="secondary" name="information-circle-outline" class="ion-padding-end"></ion-icon>
-      <ion-label color="secondary">
-        Apparence
-      </ion-label>
-      <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item button (click)="buttonClick('fiche')" detail="false">
-      <ion-icon color="secondary" name="help-circle-outline" class="ion-padding-end"></ion-icon>
-      <ion-label color="secondary">
-        Fiche technique
-      </ion-label>
-      <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <ion-item button (click)="buttonClick('notification')" detail="false">
-      <ion-icon color="secondary" name="information-circle-outline" class="ion-padding-end"></ion-icon>
-      <ion-label color="secondary">
-        Notifications
-      </ion-label>
-      <ion-icon color="secondary" name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('ecran')" detail="false">
+          <ion-icon color="dark" name="person-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Ecran par défaut
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('langue')" detail="false" [disabled]="true">
+          <ion-icon color="dark" name="settings-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Langues
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('fond')" detail="false">
+          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Apparence
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('fiche')" detail="false">
+          <ion-icon color="dark" name="help-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Fiche technique
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('notification')" detail="false">
+          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Notifications
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

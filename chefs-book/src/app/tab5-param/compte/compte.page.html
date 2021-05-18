@@ -3,23 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <div id="container" class="ion-margin">
-      <strong>{{titre}}</strong>
-    </div>
+    <ion-title>{{titre}}</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-item-divider color="secondary"></ion-item-divider>
 
-<ion-content [fullscreen]="true">
-  <ion-item-divider>
-  </ion-item-divider>
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-item lines="none">
-        <ion-icon slot="start" name="person-outline"></ion-icon>
-        <ion-label>
-          {{nom}} - {{prenom}}
-        </ion-label>
-      </ion-item>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label>
+            {{nom}} - {{prenom}}
+          </ion-label>
+        </ion-item>
+      </ion-col>
     </ion-row>
     <ion-row>
       <ion-item lines="none">
@@ -41,18 +40,24 @@
 
   </ion-grid>
   <hr>
-  <ion-row>
-    <ion-item>
-      <form onsubmit="processForm(event)" class="ion-margin-top ion-margin-horizontal">
-        <ion-label class="ion-margin-horizontal">Parrainer un ami</ion-label>
-          <ion-input type="email" class="form-control" placeholder="Adresse email" aria-label="Username"
-            aria-describedby="basic-addon1"></ion-input>
-    </form>
-    </ion-item>
-    <div class="marginTop24px ">
-      <p>Version actuelle : {{abonnement}}</p>
-      <ion-button expand="block" style="text-transform: uppercase;">Voir les options de mise à niveau</ion-button>
-    </div>
-  </ion-row> 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label class="ion-margin-horizontal">Parrainer un ami</ion-label>
+          <ion-input name="email" type="email" placeholder="filleul(e)@email.com" [(ngModel)]="emailFillo"
+            style="color:#F03434" (keyup)="getItems($event)"></ion-input>
+        </ion-item>
+        <ion-button *ngIf="boolButton">Envoyer mail</ion-button>
+        <ion-item lines="none" class="marginTop24px ">
+          <ion-label>Version actuelle : {{abonnement}}</ion-label>
+        </ion-item>        
+        <!-- <ion-button [disabled] expand="block" style="text-transform: uppercase;">Voir les options de mise à niveau</ion-button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
+<ion-footer>
+  <ion-button color="danger" (click)="deleteUser()">Supprimer compte</ion-button>
+</ion-footer>

@@ -41,86 +41,60 @@ export class LivresPage implements OnInit {
               public alertController: AlertController) { }
 
   ngOnInit() {
-
     this.bibliotheque = true;
     this.chevronBibliotheque = 'chevron-down-outline';
     this.ficheByLivre = false;
-    // this.getLivresAchat();
-    // this.getUtilisateur();
     this.livresPerso = this.dataService.livresPersoListe;
     this.prenom = this.dataService.utilisateur.prenom;
-    // this.getLivresRef();
+    this.getLivresPerso();
   }
 
-
-  // getLivresPerso() {
-  //   // TODO faire un tri pour les livre (bibliotheque / ref / achat)
-  //   try {
-  //     this.dataService.getLivrePersoList().snapshotChanges().pipe(
-  //       map(changes =>
-  //         changes.map(c =>
-  //           ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //         )
-  //       )
-  //     ).subscribe(dataLivres => {
-  //       this.livrePerso = dataLivres;
-  //     });
-  //   } catch (error) {
-  //     this.alertNewUser();
-  //   }
-
-  // }
-  // getLivresRef(){
-  //   // TODO faire un tri pour les livre (bibliotheque / ref / achat)
-  //   this.dataService.getLivreRefList().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(dataLivres => {
-  //     this.livreRef = dataLivres;
-  //   });
-  // }
-  // getLivresAchat() {
-  //   // TODO faire un tri pour les livre (bibliotheque / ref / achat)
-  //   this.dataService.getLivreAchatList().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(dataLivres => {
-  //     this.livreAchat = dataLivres;
-  //   });
-  // }
-
-  // getUtilisateur() {
-  //   let array = [];
-  //   this.dataService.getUtilisateur().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(dataUtilisateur => {
-  //     array = dataUtilisateur;
-  //     this.utilisateur = array[0];
-  //     this.prenom = this.utilisateur.prenom;
-  //   });
-  //   this.getLivresPerso();
-  // }
-
+  getLivresPerso() {
+    // TODO faire un tri pour les livre (bibliotheque / ref / achat)
+    try {
+      this.dataService.getLivrePersoList().snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+          )
+        )
+      ).subscribe(dataLivres => {
+        this.livresPerso = dataLivres;
+      });
+    } catch (error) {
+      this.alertNewUser();
+    }
+  }
   async alertNewUser() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Tutoriel',
-      message: 'Bonjour ' + this.prenom + ' pour continuer merci de bien vouloir créer un livre.',
+      message: 'Bonjour ' + this.prenom + ' pour continuer merci de bien vouloir créer votre premier livre.',
       buttons: ['OK']
     });
 
     await alert.present();
   }
+
+  addLivre(){
+    if(this.livresPerso.length >= 5){
+      this.alertLimiteLivre();
+    }else{
+      this.route.navigate(['tabs/tab1-library/livres/creation-livres']);
+    }
+  }
+  async alertLimiteLivre() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Limite ' + this.livresPerso.length + '/5',
+      message: 'La limite du nombre de création de livre a été ateinte. La version premium arrive bientôt patience !',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+
   openLivre(livre: Livres) {
     const navigationExtras: NavigationExtras = {
       state: {
@@ -130,11 +104,6 @@ export class LivresPage implements OnInit {
     this.route.navigate(['tabs/tab1-library/livres/ft-by-livre'], navigationExtras);
 
   }
-
-  // creationLivre(){
-  //   this.route.navigate(['/creation-livre'])
-  // }
-
   showListeLivre(livre: string) {
     console.log(livre);
     if (livre ===  'maBibliotheque') {

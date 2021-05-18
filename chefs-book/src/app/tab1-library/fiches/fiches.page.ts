@@ -1,11 +1,12 @@
 import { ModalFichePage } from './../../pages/modal/modal-fiche/modal-fiche.page';
 import { Plats } from './../../models/plats';
 import { Livres } from 'src/app/models/livres';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonInfiniteScroll, IonRefresher, IonVirtualScroll, PopoverController } from '@ionic/angular';
+import { AlertController, IonInfiniteScroll, IonVirtualScroll, PopoverController } from '@ionic/angular';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class FichesPage implements OnInit {
   livreKey: string;
   livreNom: string;
   ficheTechniquesAll: any[] = [];
-  prepa: FicheTechniques[] = [];
+  prepa: Preparation[] = [];
   plats: Plats[] = [];
   ficheTechniquesByLivres: any[] = [];
 
@@ -43,26 +44,66 @@ export class FichesPage implements OnInit {
     public alertController: AlertController) { }
 
   ngOnInit() {
-    this.plats = this.dataService.platListe;
-    this.prepa = this.dataService.preparationListe;
-    if (this.prepa) {
-      this.prepaBoolean = true;
-      this.prepa.forEach((fiche: any) => {
-        this.ficheTechniquesAll.push(fiche);
-      });
-    } else if (this.plats) {
-      this.platsBoolean = true;
-    }
-
-    if (this.plats) {
-      this.disabledplat = false;
-      this.plats.forEach((plat: any) => {
-        this.ficheTechniquesAll.push(plat);
-      });
-    }
+    this.getFicheTechniquesListPrepa();
+    this.getFicheTechniquesListPlat();
     this.livres = this.dataService.livresPersoListe;
   }
 
+  getFicheTechniquesListPlat() {
+    this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(res => {
+      if (res !== undefined) {
+        this.disabledplat = false;
+        this.dataService.platListe = res;
+        this.plats = res;
+        this.ficheTechniquesAll = [];
+        this.getAllFiche();
+      }
+    });
+  }
+   getFicheTechniquesListPrepa() {
+    this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(res => {
+      if (res !== undefined) {
+        this.prepaBoolean = true;
+        this.dataService.preparationListe = res;
+        this.prepa = res;
+        this.ficheTechniquesAll = [];
+        this.getAllFiche();
+      }
+    });
+  }
+
+  getAllFiche(){
+    this.prepa.forEach(element => {
+      this.pushFicheIfNotExist(element);
+    });
+    this.plats.forEach(element => {
+      this.pushFicheIfNotExist(element);
+    });
+  }
+
+  pushFicheIfNotExist(ficheA: any){
+    const index = this.ficheTechniquesAll.findIndex((e) => e.key === ficheA.key);
+    console.log(index);
+
+    if(index === -1){
+      this.ficheTechniquesAll.push(ficheA);
+    }else{
+      this.ficheTechniquesAll[index] = ficheA;
+    }
+    this.dataService.fichesTechniqueAll = this.ficheTechniquesAll;
+  }
 
   loadData(event) {
     setTimeout(() => {

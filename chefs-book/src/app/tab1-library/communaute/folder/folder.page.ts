@@ -1,5 +1,5 @@
 import { Utilisateurs } from './../../../models/Utilisateurs';
-import { FicheByCom, FicheTechniques } from './../../../models/ficheTechniques';
+import { FicheByCom, Preparation } from '../../../models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class FolderPage implements OnInit {
   iconPrepa = true;
   ficheUpdate = false;
   newItems: FicheByCom[] = [];
-  prepa: FicheTechniques[] = [];
+  prepa: Preparation[] = [];
   plats: Plats[] = [];
 
   constructor(private dataService: AuthFirebaseService,
@@ -30,7 +30,7 @@ export class FolderPage implements OnInit {
     this.plats = this.dataService.partagePlatsListe;
     this.prepa = this.dataService.partagePrepaListe;
     if (this.prepa) {
-      this.prepa.forEach((fiche: FicheTechniques) => {
+      this.prepa.forEach((fiche: Preparation) => {
         this.ficheTechniquesAll.push(fiche);
       });
     }
@@ -67,6 +67,7 @@ export class FolderPage implements OnInit {
       return r;
     }, Object.create(null));
   }
+
   openFiche(key: string, type: string) {
     console.log(key);
     if ('Préparation' ===  type) {

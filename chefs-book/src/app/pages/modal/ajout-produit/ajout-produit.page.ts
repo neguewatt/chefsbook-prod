@@ -43,7 +43,7 @@ export class AjoutProduitPage implements OnInit {
     this.quantite = 0;
    // this.produits = this.dataService.produitsListe;
     console.log(this.produits);
-    
+
   }
 
   getItems(ev: KeyboardEvent) {

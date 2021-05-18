@@ -1,12 +1,9 @@
 import { Plats } from './../../../models/plats';
 import { Denrees } from 'src/app/models/denrees';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
-import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
-import { FichePlat } from 'src/app/models/fichePlat';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-ingredient-ref-modal',
@@ -19,14 +16,13 @@ export class IngredientRefModalPage implements OnInit {
   modalTitle: string;
   today: Date;
   plat: Plats;
-  fiche: FicheTechniques;
+  fiche: Preparation ;
   arrayDenrees: Denrees[] = [];
-  arrayFichePlat: FicheTechniques[] = [];
+  arrayFichePlat: Preparation[] = [];
 
   constructor(private modalController: ModalController,
     private navParams: NavParams,
-    private route: Router, private datepipe: DatePipe,
-    private dataService: AuthFirebaseService) { }
+    private route: Router) { }
 
   ngOnInit() {
     this.fiche = this.navParams.data.value;
@@ -55,11 +51,6 @@ export class IngredientRefModalPage implements OnInit {
       const total = (this.quantite / this.fiche.produitRef.quantite * denree.quantite);
       denree.quantite = Math.round(total * 100) / 100;
     });
-    // for (let i = 0; i < this.fiche.denrees.length; i++) {
-    //   // newQTE diviser par refQTE multiplier par oldQte = total
-    //   let total = (this.quantite / this.fiche.produitRef.quantite * this.fiche.denrees[i].quantite)
-    //   this.fiche.denrees[i].quantite = Math.round(total * 100) / 100;
-    // }
 
     console.log('denrées fiche après calcul : ' , this.fiche.denrees);
 
@@ -72,13 +63,7 @@ export class IngredientRefModalPage implements OnInit {
     this.plat.fichePreparation.push(this.fiche);
 
     // creation du tableau de fiche plat
-    // if (!this.arrayFichePlat) {
-    //   this.arrayFichePlat = this.plat.fichePlats;
-    //   console.log('test 1 ', this.arrayFichePlat);
-    // } else {
-    //   this.arrayFichePlat.push(this.plat.fichePlats[0]);
-    //   console.log('test 2 ', this.arrayFichePlat);
-    // }
+
     console.log('newplat 1 ', this.plat);
 
     // fin
@@ -92,24 +77,6 @@ export class IngredientRefModalPage implements OnInit {
       });
     }
     console.log('arrayDenrees 2 ', this.plat.denrees);
-
-
-    // const sumOfAges = this.arrayDenrees.reduce((sum, currentValue) => {
-    //   return sum + currentValue.quantite;
-    // }, 0);
-
-    // const result = this.arrayDenrees.reduce(function (r, a) {
-    //   r[a.produit] = r[a.produit] || [];
-    //   r[a.produit].push(a);
-    //   return r;
-    // }, Object.create(null));
-
-    // console.log('new arrayDenrees', result);
-
-    // this.plat.fichePlats = this.arrayFichePlat;
-    // this.plat.denrees = this.arrayDenrees;
-    // fin tableau denrées
-
 
     // fin création plat
 

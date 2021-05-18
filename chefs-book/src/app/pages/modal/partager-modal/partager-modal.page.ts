@@ -1,4 +1,4 @@
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, AlertController, ToastController } from '@ionic/angular';

@@ -1,7 +1,13 @@
 ion-toolbar {
-    height: 53px;
-    background: linear-gradient(to right, #701919, #E74C3C);
+    height: 50px;
+    --background: #F03434;
 }
+
+ion-toolbar ion-title {
+    height: 50px;
+    color: white;
+}
+
 
 .buttonColor {
     color: #329295;
@@ -10,7 +16,7 @@ ion-toolbar {
 ion-label {
     font-size: 0.9em !important;
     --ion-font-family: "Roboto" !important;
-    src: url("./../../../assets/Fonts/01\ -\ Roboto/Roboto-Black.ttf") format("truetype") !important;
+    src: url("./../../../assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype") !important;
 }
 
 ion-icon {

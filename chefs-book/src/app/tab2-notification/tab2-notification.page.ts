@@ -1,5 +1,5 @@
 import { Utilisateurs } from '../models/Utilisateurs';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { NotificationFiche } from '../models/notification';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
@@ -47,7 +47,7 @@ export class Tab2NotificationPage implements OnInit {
     ).subscribe(res => {
       res.forEach(notification => {
         if ('fiche Préparation' ===  notification.type) {
-          this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: FicheTechniques) => {
+          this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: Preparation) => {
             this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
               this.userNom = user.nom;
               this.userPrenom = user.prenom;

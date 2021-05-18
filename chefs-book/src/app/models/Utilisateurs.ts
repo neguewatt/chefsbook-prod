@@ -11,5 +11,5 @@ export class Utilisateurs
     public prenom = '';
     public email = '';
     public dateCreation: any;
-    public abonnement = '';
+    public abonnement = 'G';
 }

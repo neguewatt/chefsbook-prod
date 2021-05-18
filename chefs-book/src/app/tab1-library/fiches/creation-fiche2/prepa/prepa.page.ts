@@ -4,7 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ToastController, ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { Denrees } from 'src/app/models/denrees';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { AjoutProduitPage } from 'src/app/pages/modal/ajout-produit/ajout-produit.page';
 import { PosteDeTravail } from 'src/app/models/postes';
@@ -15,7 +15,7 @@ import { PosteDeTravail } from 'src/app/models/postes';
   styleUrls: ['./prepa.page.scss'],
 })
 export class PrepaPage implements OnInit {
-  ficheTechnique: FicheTechniques;
+  ficheTechnique: Preparation ;
 
   userNom: string;
   prenom: string;
@@ -112,7 +112,7 @@ export class PrepaPage implements OnInit {
       this.newPoste === null || this.newProduitRef === null || this.denrees === null) {
       this.erreurCreationFiche();
     } else {
-      const newFiche = new FicheTechniques();
+      const newFiche = new Preparation();
       newFiche.type = 'Préparation';
       newFiche.nom = this.newTitre.charAt(0).toUpperCase() + this.newTitre.substr(1);
       newFiche.date = this.today;

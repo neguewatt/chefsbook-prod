@@ -3,7 +3,7 @@ import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { ToastController, ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { Denrees } from 'src/app/models/denrees';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { Plats } from 'src/app/models/plats';
 import { PosteDeTravail } from 'src/app/models/postes';
 import { Utilisateurs } from 'src/app/models/Utilisateurs';
@@ -19,15 +19,15 @@ import { CreationFiche2Page } from '../creation-fiche2.page';
 export class PlatPage implements OnInit {
 
   // recherche fiche techniques
-  ficheTechnique: FicheTechniques;
-  ficheTechniques: FicheTechniques[] = [];
+  ficheTechnique: Preparation ;
+  ficheTechniques: Preparation[] = [];
   isItemAvailable = false;
   items = [];
 
   // creation du plat
   plat: Plats;
-  fiche: FicheTechniques;
-  fichePreparation: FicheTechniques[];
+  fiche: Preparation ;
+  fichePreparation: Preparation[];
   arrayDenrees: Denrees[] = [];
   ajoutPrepa = false;
   utilisateur: Utilisateurs;
@@ -91,12 +91,6 @@ export class PlatPage implements OnInit {
     if (this.plat ===  undefined) {
       this.plat = new Plats();
     }
-
-    // this.getUtilisateur();
-    this.userNom = this.dataService.utilisateur.nom;
-    this.prenom = this.dataService.utilisateur.prenom;
-    // this.getFicheTechniquespartage()
-    this.ficheTechniques = this.dataService.preparationListe;
     if (this.dataService.partagePrepaListe) {
       this.dataService.partagePrepaListe.forEach(partagePrepa => {
         this.ficheTechniques.push(partagePrepa);
@@ -113,85 +107,16 @@ export class PlatPage implements OnInit {
       }
       return 0;
     });
-    // this.getFicheTechniquesList();
-    // this.getOrdreTableau();
+    this.userNom = this.dataService.utilisateur.nom;
+    this.prenom = this.dataService.utilisateur.prenom;
+    this.ficheTechniques = this.dataService.preparationListe;
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
     this.postes = this.dataService.posteDeTravailListe;
-    console.log(this.postes);
-
     this.today = new Date();
     this.date = this.today.toLocaleDateString('fr-FR');
+    console.log(this.postes);
   }
-
-  // getUtilisateur() {
-  //   this.dataService.getUtilisateur().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(dataUtilisateur => {
-  //     this.userNom = dataUtilisateur[0].nom;
-  //     this.prenom = dataUtilisateur[0].prenom;
-  //   });
-  // }
-
-  // getOrdreTableau() {
-  //   this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     if (res[0].natureUniteQuantite) {
-  //       this.tableau1 = false;
-  //       this.tableau2 = true;
-  //     } else {
-  //       this.tableau1 = true;
-  //       this.tableau2 = false;
-  //     }
-  //     console.log('getOrdreTableau', res);
-  //   });
-  // }
-  // getFicheTechniquesList() {
-  //   this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     this.ficheTechniques = res
-  //     this.ficheTechniques.sort((a, b) => {
-  //       if (a.nom < b.nom) {
-  //         return -1;
-  //       }
-  //       if (a.nom > b.nom) {
-  //         return 1;
-  //       }
-  //       return 0;
-  //     });
-  //   });
-  // }
-
-
-  // getFicheTechniquespartage() {
-  //   this.dataService.getFicheTechniquesByUserIdList(this.dataService.user.uid).snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     if (res !== undefined) {
-  //       for (let i = 0; i < res.length; i++) {
-  //         this.ficheTechniques.push(res[i]);
-  //       }
-  //     }
-  //   });
-  // }
 
   getItems(ev: any) {
     const val = ev.target.value;
@@ -228,7 +153,7 @@ export class PlatPage implements OnInit {
 
 
 
-  addFiche(fiche: FicheTechniques) {
+  addFiche(fiche: Preparation) {
     const navigationExtras: NavigationExtras = {
       state: {
         value: fiche,

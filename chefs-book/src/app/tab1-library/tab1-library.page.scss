@@ -20,3 +20,18 @@ ion-button{
 .padding-0 {
     padding:0px;
 }
+
+.addFiche {
+    color: white;
+    background-image: url(../../assets/icon/icon-add.svg);
+}
+
+
+ion-footer ion-toolbar{
+    height: 60x;
+    --border-width:0 0 0;
+}
+ion-fab-button{    
+    --background-activated: #FF4A4A;
+}
+.sqare{}
