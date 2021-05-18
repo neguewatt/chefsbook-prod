@@ -1,21 +1,17 @@
 name: Angular-CI
 
-on: [push]
+on: push
 
 jobs:
   build:
-
-    # Machine environment:
-    # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
-    # We specify the Node.js version manually below, and use versioned Chrome from Puppeteer.
-    runs-on: ubuntu-18.04
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js 16.1.0
+    - name: cache node modules
       uses: actions/setup-node@v1
-      with:
-        node-version: 12.8
+      with: 
+        node-version: 16.1.0
     - name: Install dependencies
       run: npm install
     - name: Lint
