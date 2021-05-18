@@ -1,7 +1,7 @@
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Denrees } from 'src/app/models/denrees';
 
-export class FicheTechniques {
+export class Preparation {
 
     public key?: string;
     public apportNutritionnel = '';

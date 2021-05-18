@@ -2,11 +2,10 @@ import { Denrees } from '../../../../models/denrees';
 import { Plats } from '../../../../models/plats';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { FichePlat } from 'src/app/models/fichePlat';
 import { IngredientRefModalPage } from 'src/app/pages/modal/ingredient-ref-modal/ingredient-ref-modal.page';
 
 @Component({
@@ -17,14 +16,13 @@ import { IngredientRefModalPage } from 'src/app/pages/modal/ingredient-ref-modal
 export class VuFicheAvantAjoutPage implements OnInit {
 
   dataReturned: any;
-  fiche: FicheTechniques;
+  fiche: Preparation ;
   plat: Plats;
-  // fichePlat: FichePlat;
   arrayDenrees: Denrees[] = [];
   userNom: string;
   prenom: string;
   denrees: Denrees[] = [];
-  arrayFichePlat: FicheTechniques[] = [];
+  arrayFichePlat: Preparation[] = [];
   denreesDisabled = false;
   chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;

@@ -1,42 +1,33 @@
-<ion-header >
-  <ion-toolbar class="header">  
-    <ion-buttons slot="start">
-      <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
-    </ion-buttons>
-      <ion-title>
-        <ion-input class="pLR50 titreFiche" placeholder="Titre" type="text" [(ngModel)]="newTitre" name="title"></ion-input>
-      </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar class="header">
+        <ion-buttons slot="start">
+            <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <ion-input class="pLR50 titreFiche" placeholder="Titre de la fiche" type="text" [(ngModel)]="newTitre" name="title"></ion-input>
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content>
-  <ion-grid style="color:#ffffff">
-    <ion-radio-group [(ngModel)]="newType">
-      <ion-row >
-        <ion-col>
-          <ion-item lines="none">
-            Type :
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item lines="none" (click)="viewFiche($event)">
-            <ion-label>Préparation</ion-label>
-            <ion-radio value="Préparation"></ion-radio>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item lines="none" (click)="viewFiche($event)">
-           <ion-label>Plat</ion-label>
-            <ion-radio value="Plat"></ion-radio>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-radio-group>
-  </ion-grid>
-  <hr>
-
-  <app-prepa *ngIf="prepa"></app-prepa>
-  <app-plat *ngIf="!prepa"></app-plat>
+    <ion-grid style="background:#ffffff">
+        <ion-radio-group [(ngModel)]="newType">
+            <ion-row>
+                <ion-item lines="none">
+                    <ion-label>Type :</ion-label>
+                </ion-item>
+                <ion-item lines="none" (click)="viewFiche($event)">
+                    <ion-label>Préparation</ion-label>
+                    <ion-radio value="Préparation"></ion-radio>
+                </ion-item>
+                <ion-item lines="none" (click)="viewFiche($event)">
+                    <ion-label>Plat</ion-label>
+                    <ion-radio value="Plat"></ion-radio>
+                </ion-item>
+            </ion-row>
+        </ion-radio-group>
+    </ion-grid>
+    <hr>
+    <app-prepa *ngIf="prepa"></app-prepa>
+    <app-plat *ngIf="!prepa"></app-plat>
 </ion-content>

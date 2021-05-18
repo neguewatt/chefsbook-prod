@@ -1,5 +1,8 @@
+import { PrepaPage } from './prepa/prepa.page';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { Preparation } from 'src/app/models/preparation';
 
 @Component({
   selector: 'app-creation-fiche2',
@@ -18,10 +21,13 @@ export class CreationFiche2Page implements OnInit {
 
 
   constructor(private dataService: AuthFirebaseService) {
-    this.dataService.getPosteDeTravail();
+    // if(!this.dataService.produitsListe){
+    //   this.dataService.getProduitListe();
+    // }
   }
 
   ngOnInit() {
+    console.log(this.dataService.posteDeTravailListe);
     this.newType = 'Préparation';
   }
 
@@ -33,6 +39,8 @@ export class CreationFiche2Page implements OnInit {
       this.prepa = false;
     }
   }
+
+
 
 
 

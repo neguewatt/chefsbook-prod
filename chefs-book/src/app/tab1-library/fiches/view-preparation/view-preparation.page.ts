@@ -1,7 +1,7 @@
 import { Utilisateurs } from './../../../models/Utilisateurs';
 import { Denrees } from './../../../models/denrees';
 import { Produits } from '../../../models/produits';
-import { FicheTechniques } from '../../../models/ficheTechniques';
+import { Preparation } from '../../../models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { map } from 'rxjs/operators';
@@ -19,8 +19,8 @@ export class ViewPreparationPage implements OnInit {
 
 
   dataReturned: any;
-  ficheTechniquesAll: FicheTechniques[] = [];
-  fiche: FicheTechniques;
+  ficheTechniquesAll: Preparation[] = [];
+  fiche: Preparation ;
   keyFiche: any;
   dataDenrees: any[] = [];
   dataProduits: Produits[] = [];

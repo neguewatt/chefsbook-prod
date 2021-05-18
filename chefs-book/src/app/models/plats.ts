@@ -1,6 +1,6 @@
 import { Livres } from 'src/app/models/livres';
 import { Denrees } from './denrees';
-import { FicheTechniques } from './ficheTechniques';
+import { Preparation } from './preparation';
 export class Plats {
 
     public key?: string;
@@ -8,7 +8,7 @@ export class Plats {
     public date?: any;
     public nom?: string;
     public idUtilisateur?: string;
-    public fichePreparation?: Array<FicheTechniques> = [];
+    public fichePreparation?: Array<Preparation> = [];
     public descriptionCommercial?: string;
     public descriptionTechnique?: string;
     public livre?: string;
@@ -17,3 +17,4 @@ export class Plats {
     public type?: string;
 
 }
+

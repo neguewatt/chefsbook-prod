@@ -2,6 +2,8 @@ import { Utilisateurs } from './../../models/Utilisateurs';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { map } from 'rxjs/operators';
+import { FindValueSubscriber } from 'rxjs/internal/operators/find';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-compte',
@@ -15,8 +17,11 @@ export class ComptePage implements OnInit {
   prenom: string;
   email: string;
   abonnement: string;
+  emailFillo: string;
+  boolButton = false;
 
-  constructor(private dataService: AuthFirebaseService) {
+  constructor(private dataService: AuthFirebaseService,
+    private alertController: AlertController) {
     this.titre = 'Compte';
    }
 
@@ -27,32 +32,51 @@ export class ComptePage implements OnInit {
     this.abonnement = this.dataService.utilisateur.abonnement;
 
     if(this.abonnement){
-      if(this.abonnement !== 'Gratuite'){
+      if(this.dataService.utilisateur.abonnement === 'G'){
+        this.abonnement = 'Gratuite';
+      }else{
         this.abonnement = 'Payante';
       }
     }
-
-    // this.getUtilisateur();
-
   }
 
-  // getUtilisateur() {
-  //   let array = [];
-  //   this.dataService.getUtilisateur().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(dataUtilisateur => {
-  //     array = dataUtilisateur;
-  //     this.utilisateur = array[0];
-  //     this.nom = this.utilisateur.nom;
-  //     this.prenom = this.utilisateur.prenom;
-  //     this.email = this.utilisateur.email;
-  //   });
-  // }
+  getItems(ev: any){
+    const val = (ev.target as HTMLInputElement).value;
+    if (val && val.trim() !== '') {
+      this.boolButton = true;
+    }else{
+      this.boolButton = false;
+    }
+  }
 
+  deleteUser(){
+    this.presentAlertConfirm();
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Attention ! ',
+      message: 'Êtes vous sur de bien vouloir <strong> nous quitter </strong> ?',
+      buttons: [
+        {
+          text: 'Noooo',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.dataService.deleteUser(this.dataService.user.uid);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 
 }

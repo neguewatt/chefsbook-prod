@@ -4,6 +4,7 @@ import { Produits } from './../../../models/produits';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { ModalController, ToastController } from '@ionic/angular';
+import  produitsListe  from './../../../../produits.json';
 
 @Component({
   selector: 'app-ajout-produit',
@@ -32,7 +33,7 @@ export class AjoutProduitPage implements OnInit {
     public toastController: ToastController,
     private dataService: AuthFirebaseService) {
       // creation de la liste produitsListe
-      this.dataService.getProduitList();
+      this.produits = produitsListe;
      }
 
   ngOnInit() {
@@ -40,28 +41,10 @@ export class AjoutProduitPage implements OnInit {
     console.log(this.unites);
 
     this.quantite = 0;
-    this.produits = this.dataService.produitsListe;
-    // this.getProduit();
+   // this.produits = this.dataService.produitsListe;
+    console.log(this.produits);
+
   }
-
-  // getProduit() {
-  //   this.dataService.getProduitList().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     console.log(res);
-
-  //     if (res !== undefined) {
-  //       for (let i = 0; i < res.length; i++) {
-  //         this.produits.push(res[i]);
-  //       }
-  //     }
-  //   });
-  // }
-
 
   getItems(ev: KeyboardEvent) {
     const val = (ev.target as HTMLInputElement).value;
@@ -73,9 +56,10 @@ export class AjoutProduitPage implements OnInit {
       this.isItemAvailable = true;
     } else {
       this.isItemAvailable = false;
-      this.produits = this.dataService.produitsListe;
+      this.produits = produitsListe;
     }
   }
+
   ajoutNomPtoduit(produit: Produits){
     console.log(produit);
     this.isnomProduit = true;

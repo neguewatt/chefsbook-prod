@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="BG">
+<ion-header class="BG">
     <ion-grid class="padding-0">
         <ion-grid class="padding-0">
             <ion-row class="header">
@@ -26,11 +26,34 @@
                 </ion-row>
             </ion-row>
         </ion-grid>
-
-        <app-fiches *ngIf="fichesBoolean"></app-fiches>
-        <app-livres *ngIf="livreBoolean"></app-livres>
-        <app-communaute *ngIf="comBoolean"></app-communaute>
-
     </ion-grid>
-    <p *ngIf="dataReturned">{{dataReturned}}</p>
+</ion-header>
+
+<ion-content>
+    <app-fiches *ngIf="fichesBoolean"></app-fiches>
+    <app-livres *ngIf="livreBoolean"></app-livres>
+    <app-communaute *ngIf="comBoolean"></app-communaute>
+
+    
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addficheTech()">
+        <ion-fab-button class="square">
+            <ion-icon class="addFiche"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
+<ion-footer  *ngIf="fichesBoolean">
+    <ion-toolbar>
+    </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-toolbar *ngIf="fichesBoolean">
+    <ion-footer>
+        <ion-button class="rectangle" (click)="addficheTech()">
+            <ion-row class="ion-justify-content-center">
+                <img src="../../../assets/icon/Add.svg">
+                <ion-label color="primary" class="ion-margin-top">Ajouter une fiche technique</ion-label>
+            </ion-row>
+        </ion-button>
+    </ion-footer>
+</ion-toolbar> -->

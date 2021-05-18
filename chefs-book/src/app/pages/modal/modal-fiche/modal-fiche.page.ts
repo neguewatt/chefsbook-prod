@@ -76,7 +76,6 @@ export class ModalFichePage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 

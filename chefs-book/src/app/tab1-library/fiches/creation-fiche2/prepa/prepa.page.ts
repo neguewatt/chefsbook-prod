@@ -4,7 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ToastController, ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { Denrees } from 'src/app/models/denrees';
-import { FicheTechniques } from 'src/app/models/ficheTechniques';
+import { Preparation } from 'src/app/models/preparation';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { AjoutProduitPage } from 'src/app/pages/modal/ajout-produit/ajout-produit.page';
 import { PosteDeTravail } from 'src/app/models/postes';
@@ -15,7 +15,7 @@ import { PosteDeTravail } from 'src/app/models/postes';
   styleUrls: ['./prepa.page.scss'],
 })
 export class PrepaPage implements OnInit {
-  ficheTechnique: FicheTechniques;
+  ficheTechnique: Preparation ;
 
   userNom: string;
   prenom: string;
@@ -49,46 +49,15 @@ export class PrepaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getUtilisateur();
-    this.getOrdreTableau();
+    this.userNom = this.dataService.utilisateur.nom;
+    this.prenom = this.dataService.utilisateur.prenom;
+    this.tableau1 = this.dataService.tableau1;
+    this.tableau2 = this.dataService.tableau2;
+
     this.today = new Date();
     this.date = this.today.toLocaleDateString('fr-FR');
     this.postes = this.dataService.posteDeTravailListe;
   }
-
-  getUtilisateur() {
-    this.dataService.getUtilisateur().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(dataUtilisateur => {
-      this.userNom = dataUtilisateur[0].nom;
-      this.prenom = dataUtilisateur[0].prenom;
-    });
-  }
-
-  getOrdreTableau() {
-    this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-      if (res[0].natureUniteQuantite) {
-        this.tableau1 = false;
-        this.tableau2 = true;
-      } else {
-        this.tableau1 = true;
-        this.tableau2 = false;
-      }
-      console.log('getOrdreTableau', res[0].natureUniteQuantite);
-    });
-  }
-
-
 
   showDenrees() {
     if (this.denreesDisabled === true) {
@@ -143,7 +112,7 @@ export class PrepaPage implements OnInit {
       this.newPoste === null || this.newProduitRef === null || this.denrees === null) {
       this.erreurCreationFiche();
     } else {
-      const newFiche = new FicheTechniques();
+      const newFiche = new Preparation();
       newFiche.type = 'Préparation';
       newFiche.nom = this.newTitre.charAt(0).toUpperCase() + this.newTitre.substr(1);
       newFiche.date = this.today;

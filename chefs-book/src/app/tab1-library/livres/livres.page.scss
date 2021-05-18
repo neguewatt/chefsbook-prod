@@ -5,9 +5,19 @@
   color: white;
 }
 
+.iconAdd{
+  height: 48px;
+  width: 48px;
+  color: #FF4A4A !important;
+  background-image: url(../../../assets/icon/icon-add.svg);
+}
+
+
 .carreAjout {
+  border: #FF4A4A;
   height: 100px;
-  background-color: white;
+  --background: white;
+  --background-activated: white;
 }
 
 .listLivre{
@@ -34,13 +44,11 @@
   color: #2699FB;
 }
 
-ion-item-divider {
-  background-color:#b1b1b1;
-  height: 10px;
-}
 ion-item-divider ion-label {
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  --ion-font-family: "Roboto" !important;
+    src: url("../../../assets/Fonts/Roboto/Roboto-Bold.ttf") format("truetype");
 }
 ion-item-divider ion-icon {
   color: white;

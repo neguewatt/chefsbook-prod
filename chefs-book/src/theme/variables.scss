@@ -2,7 +2,20 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/Fonts/Roboto/Roboto-Black.ttf"); //change url accordingly
+  font-weight: normal;
+  font-style: normal;
+  }
+
+
+
 :root {
+
+  /** font family **/
+  --ion-font-family: "Roboto";
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

@@ -17,7 +17,7 @@
     color: white;
     font-weight: bold;
     --ion-font-family: "QuickKiss";
-    src: url("./../../../assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
     font-size: 0.8rem;
   }
   .login-error ion-icon {
@@ -31,7 +31,7 @@
   .label-bienvenue {
     color: white;
     --ion-font-family: "QuickKiss";
-    src: url("./../../../assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
     font-size: 3.5rem;
   }
   
@@ -43,7 +43,7 @@
   .font-check {
     color: white;
     --ion-font-family: "QuickKiss";
-    src: url("./../../../assets/Fonts/02\ -\ QuickKiss/QuickKiss.ttf") format("truetype");
+    src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
     font-size: 0.9rem;
   }
   
@@ -54,6 +54,7 @@
   .btn-connexion {
     --padding-top: 25px;
     --padding-bottom: 25px;
+    --background-activated: #FF4A4A;
   }
 
  #creer-compte{

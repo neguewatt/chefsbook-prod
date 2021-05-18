@@ -39,7 +39,7 @@ ion-tab-button:hover {
 ion-tabs {
     //not selected custom image
     ion-tab-button.custom-homepage > ion-icon {
-        color: #95989a;
+        --color: #95989a;
         background-image: url(../../assets/icon/icon-homepage.svg);
     }
     //selected custom image
@@ -107,10 +107,15 @@ ion-tabs {
 }
 
 #tab-button-tab3-search {
+    // background: #f03434;
+    // border-radius: 50% !important;
+    // width: 68px !important;
+    // height: 68px !important;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
     background: #f03434;
-    border-radius: 50% !important;
-    width: 68px !important;
-    height: 68px !important;
 
     ion-icon {
         background-repeat: no-repeat;
