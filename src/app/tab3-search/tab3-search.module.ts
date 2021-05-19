@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { Tab3SearchPage } from './tab3-search.page';
 
 import { Tab3SearchPageRoutingModule } from './tab3-search-routing.module';
-import { RechercheComponent } from './recherche/recherche.component';
 
 @NgModule({
   imports: [
@@ -16,6 +15,6 @@ import { RechercheComponent } from './recherche/recherche.component';
     RouterModule.forChild([{ path: '', component: Tab3SearchPage }]),
     Tab3SearchPageRoutingModule,
   ],
-  declarations: [Tab3SearchPage, RechercheComponent]
+  declarations: [Tab3SearchPage]
 })
 export class Tab3SearchPageModule {}

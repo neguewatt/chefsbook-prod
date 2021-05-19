@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
 
 @Component({
@@ -11,14 +12,13 @@ export class Tab5ParamPage implements OnInit {
   idUser: string;
 
 
-  constructor( private dataservice: AuthFirebaseService ) { }
+  constructor( public route: Router ) { }
 
   ngOnInit() {
   }
 
-
-  deleteUser(){
-    this.dataservice.deleteUser(this.idUser);
+  buttonClick(page: string){
+    this.route.navigate(['tabs/tab5-param/'+page]);
   }
 
 

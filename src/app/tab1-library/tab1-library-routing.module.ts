@@ -6,18 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: Tab1LibraryPage,
-  },
-  {
-    path: 'communaute',
-    loadChildren: () => import('./communaute/communaute.module').then( m => m.CommunautePageModule)
-  },
-  {
-    path: 'fiches',
-    loadChildren: () => import('./fiches/fiches.module').then( m => m.FichesPageModule)
-  },
-  {
-    path: 'livres',
-    loadChildren: () => import('./livres/livres.module').then( m => m.LivresPageModule)
   }
 ];
 

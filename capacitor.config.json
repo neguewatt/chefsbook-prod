@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "Chef's book",
+  "appName": "Chef's Book",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

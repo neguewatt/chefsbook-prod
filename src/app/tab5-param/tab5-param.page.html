@@ -8,7 +8,61 @@
 <ion-item-divider color="secondary"></ion-item-divider>
 
 <ion-content>
-  <app-parametre titre="Paramètres"></app-parametre>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('compte')" detail="false">
+          <ion-icon color="dark" name="person-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Compte
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('reglages')" detail="false" [disabled]="false">
+          <ion-icon color="dark" name="settings-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Réglages
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('info-legale')" detail="false">
+          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Informations légales
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" button (click)="buttonClick('assistance')" detail="false">
+          <ion-icon color="dark" name="help-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-label color="dark">
+            Assistance
+          </ion-label>
+          <ion-icon color="dark" name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 

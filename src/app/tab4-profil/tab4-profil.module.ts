@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { Tab4PageRoutingModule } from './tab4-profil-routing.module';
 
 import { Tab4ProfilPage } from './tab4-profil.page';
-import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   imports: [
@@ -16,6 +15,6 @@ import { ProfilComponent } from './profil/profil.component';
     IonicModule,
     Tab4PageRoutingModule
   ],
-  declarations: [Tab4ProfilPage, ProfilComponent]
+  declarations: [Tab4ProfilPage]
 })
 export class Tab4ProfilPageModule {}
