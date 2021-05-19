@@ -17,6 +17,8 @@ jobs:
         node-version: '16.1.0'
     - name: Install dependencies
       run: npm i
+    - name: Eslint test
+      run: npm lint
     - name: Build
       run: npm run build:ci
     - name: Test
