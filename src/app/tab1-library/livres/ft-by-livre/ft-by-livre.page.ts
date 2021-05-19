@@ -8,7 +8,7 @@ import { Livres } from 'src/app/models/livres';
 import { Plats } from 'src/app/models/plats';
 import { Utilisateurs } from 'src/app/models/Utilisateurs';
 import { PopoverController } from '@ionic/angular';
-import { PopoverFicheTechniqueComponent } from 'src/app/pages/modal/popover-fiche-technique/popover-fiche-technique.component';
+import { ModalFichePage } from 'src/app/pages/modal/modal-fiche/modal-fiche.page';
 
 @Component({
   selector: 'app-ft-by-livre',
@@ -121,7 +121,7 @@ export class FtByLivrePage implements OnInit {
     if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(async fiche => {
         const popover = await this.popoverController.create({
-          component: PopoverFicheTechniqueComponent,
+          component: ModalFichePage,
           componentProps: {
             fiche
           },
@@ -132,7 +132,7 @@ export class FtByLivrePage implements OnInit {
     } else {
       this.dataService.getPlatPartageById(key).then(async fiche => {
         const popover = await this.popoverController.create({
-          component: PopoverFicheTechniqueComponent,
+          component: ModalFichePage,
           componentProps: {
             fiche
           },

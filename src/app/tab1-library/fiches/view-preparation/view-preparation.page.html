@@ -83,7 +83,7 @@
                         <ion-label>
                             Denrées
                         </ion-label>
-                        <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+                        <ion-icon slot="end" [name]="chevronDenreesOn  ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
                     </ion-item-divider>
                     <div [hidden]="denreesDisabled">
                         <ion-grid [hidden]="tableau1">

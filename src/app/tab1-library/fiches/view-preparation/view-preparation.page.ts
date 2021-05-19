@@ -47,6 +47,7 @@ export class ViewPreparationPage implements OnInit {
   type: string;
   // end variable fiche
   denreesDisabled = false;
+  denreeToggle = false;
   chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
@@ -59,10 +60,7 @@ export class ViewPreparationPage implements OnInit {
   newProduitRef: string;
   newDescriptionTechniques: string;
 
-  newItems = {};
-
-
-
+  newItems:  Array<any> = [];
 
   constructor(private dataService: AuthFirebaseService,
               private activRoute: ActivatedRoute,
@@ -100,24 +98,6 @@ export class ViewPreparationPage implements OnInit {
     this.newItems = this.groupByType(this.denrees);
   }
 
-  // getOrdreTableau() {
-  //   this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
-  //     map(changes =>
-  //       changes.map(c =>
-  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-  //       )
-  //     )
-  //   ).subscribe(res => {
-  //     if (res[0].natureUniteQuantite) {
-  //       this.tableau1 = false;
-  //       this.tableau2 = true;
-  //     } else {
-  //       this.tableau1 = true;
-  //       this.tableau2 = false;
-  //     }
-  //   });
-  // }
-
   getFicheTechniqueById() {
     this.ficheTechniquesAll.forEach(resFiche => {
       if (resFiche.key ===  this.keyFiche) {
@@ -133,8 +113,6 @@ export class ViewPreparationPage implements OnInit {
     });
   }
 
-
-
   showDenrees() {
     if (this.denreesDisabled ===  true) {
       this.denreesDisabled = false;
@@ -144,6 +122,15 @@ export class ViewPreparationPage implements OnInit {
       this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
+  // showTypeDenrees(toggle){
+  //   console.log(ev);
+  //   if (this.denreeToggle ===  true) {
+  //     this.denreeToggle = false;
+  //   } else {
+  //     this.denreeToggle = true;
+  //   }
+  // }
+
   async openModal() {
     const modal = await this.modalController.create({
       component: PartagerModalPage,

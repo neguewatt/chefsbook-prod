@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { Tab5ParamPageRoutingModule } from './tab5-param-routing.module';
 
 import { Tab5ParamPage } from './tab5-param.page';
-import { ParametreComponent } from './parametre/parametre.component';
 
 @NgModule({
   imports: [
@@ -16,6 +15,6 @@ import { ParametreComponent } from './parametre/parametre.component';
     IonicModule,
     Tab5ParamPageRoutingModule
   ],
-  declarations: [Tab5ParamPage, ParametreComponent]
+  declarations: [Tab5ParamPage]
 })
 export class Tab5ParamPageModule {}
