@@ -7,14 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: CreationFiche2Page
-  },
-  {
-    path: 'prepa',
-    loadChildren: () => import('./prepa/prepa.module').then( m => m.PrepaPageModule)
-  },
-  {
-    path: 'plat',
-    loadChildren: () => import('./plat/plat.module').then( m => m.PlatPageModule)
   }
 ];
 

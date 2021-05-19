@@ -15,6 +15,6 @@ import { PlatPage } from './plat.page';
     IonicModule,
     PlatPageRoutingModule
   ],
-  declarations: [PlatPage]
+  declarations: []
 })
 export class PlatPageModule {}

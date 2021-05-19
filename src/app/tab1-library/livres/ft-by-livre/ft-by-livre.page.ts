@@ -32,7 +32,7 @@ export class FtByLivrePage implements OnInit {
   ficheTechByPostes: any[] = [];
   ficheUpdate = false;
 
-  newFtByLivre = {};
+  newFtByLivre = [];
 
 
   constructor(private dataService: AuthFirebaseService, private popoverController: PopoverController,
@@ -64,7 +64,11 @@ export class FtByLivrePage implements OnInit {
     this.getFicheByLivre();
     // this.getFtByLivrePartage(this.livreNom);
     // this.getFtByLivre(this.livreNom);
-    this.newFtByLivre = this.groupByType(this.ftByLivre);
+    this.newFtByLivre = this.ftByLivre.reduce((r, a) => {
+      r[a.poste] = r[a.poste] || [];
+      r[a.poste].push(a);
+      return r;
+    }, Object.create(null));
   }
 
   getFicheByLivre() {

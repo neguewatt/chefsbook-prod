@@ -2,7 +2,6 @@ import { Utilisateurs } from './../../../models/Utilisateurs';
 import { FicheByCom, Preparation } from '../../../models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { Plats } from 'src/app/models/plats';
 

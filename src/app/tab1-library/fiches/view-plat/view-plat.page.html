@@ -65,13 +65,12 @@
     <ion-row>
       <ion-col>
         <ion-list>
-          <ion-item-divider class="list" (click)="showDenrees()">
+          <ion-item-divider class="list">
             <ion-label>
               Denrées
             </ion-label>
             <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
           </ion-item-divider>
-          <div [hidden]="denreesDisabled">
             <ion-grid [hidden]="tableau1">
               <ion-row>
                 <ion-col class="ion-text-center">
@@ -91,12 +90,12 @@
                 </ion-col>
               </ion-row>
               <ion-item-group *ngFor="let denree of newPlatDenrees | keyvalue; let i = index">
-                <ion-item-divider (click)="denree.toggle=!denree.toggle">
+                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
                   <ion-label>{{denree.key}}</ion-label>
-                  <ion-icon slot="end" [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                  <ion-icon slot="end" [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                   </ion-icon>
                 </ion-item-divider>
-                <div *ngIf="!denree.toggle">
+                <div *ngIf="!denree.value.toggle">
                   <ion-row *ngFor="let value of denree.value; let i = index ">
                     <ion-col class="ion-text-center">{{value.produit}}</ion-col>
                     <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
@@ -124,12 +123,12 @@
                 </ion-col>
               </ion-row>
               <ion-item-group *ngFor="let denree of newPlatDenrees | keyvalue; let i = index ">
-                <ion-item-divider (click)="denree.toggle=!denree.toggle">
+                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
                   <ion-label>{{denree.key}}</ion-label>
-                  <ion-icon slot="end" [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                  <ion-icon slot="end" [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                   </ion-icon>
                 </ion-item-divider>
-                <div *ngIf="!denree.toggle">
+                <div *ngIf="!denree.value.toggle">
                   <ion-row *ngFor="let value of denree.value; let i = index ">
                     <ion-col class="ion-text-center"> {{value.quantite}}</ion-col>
                     <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
@@ -138,7 +137,6 @@
                 </div>
               </ion-item-group>
             </ion-grid>
-          </div>
         </ion-list>
       </ion-col>
     </ion-row>
@@ -161,13 +159,13 @@
             <ion-col [ngClass]="{ odd: odd, even: even }">
               <ion-list>
                 <ion-item-divider [ngClass]="{ odd: odd, even: even }"
-                  (click)="fiche.denreesDisabled=!fiche.denreesDisabled">
+                  (click)="fiche.ficheDenreesToggle=!fiche.ficheDenreesToggle">
                   <ion-label>
                     Denrées
                   </ion-label>
-                  <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+                  <ion-icon slot="end" [name]="!fiche.ficheDenreesToggle ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
                 </ion-item-divider>
-                <div *ngIf="!fiche.denreesDisabled">
+                <div *ngIf="!fiche.ficheDenreesToggle">
                   <ion-grid [hidden]="tableau1" [ngClass]="{ odd: odd, even: even }">
                     <ion-row [ngClass]="{ odd: odd, even: even }">
                       <ion-col class="ion-text-center">
@@ -188,21 +186,11 @@
                     </ion-row>
                     <ion-item-group *ngFor="let denree of fiche.denrees; let i = index"
                       [ngClass]="{ odd: odd, even: even }">
-                      <!-- <ion-item-divider (click)="denree.toggle=!denree.toggle">
-                        <ion-label>{{denree.key}}</ion-label>
-                        <ion-icon slot="end"
-                          [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
-                        </ion-icon>
-                      </ion-item-divider> -->
-                      <!-- <div *ngIf="!denree.toggle">  
-                        <ion-row > -->
                       <ion-row>
                         <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
                         <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
                         <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
                       </ion-row>
-                      <!--  </ion-row>
-                        </div> -->
                     </ion-item-group>
                   </ion-grid>
                   <ion-grid [hidden]="tableau2" [ngClass]="{ odd: odd, even: even }">
@@ -225,21 +213,11 @@
                     </ion-row>
                     <ion-item-group *ngFor="let denree of fiche.denrees; let i = index "
                       [ngClass]="{ odd: odd, even: even }">
-                      <!-- <ion-item-divider (click)="denree.toggle=!denree.toggle">
-                        <ion-label>{{denree.key}}</ion-label>
-                        <ion-icon slot="end"
-                          [name]="!denree.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
-                        </ion-icon>
-                      </ion-item-divider>
-                      <div *ngIf="!denree.toggle">
-                        <ion-row *ngFor="let value of denree.value; let i = index "> -->
                       <ion-row>
                         <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
                         <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
                         <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
                       </ion-row>
-                      <!-- </ion-row>
-                      </div> -->
                     </ion-item-group>
                   </ion-grid>
                 </div>

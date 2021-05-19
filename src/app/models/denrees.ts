@@ -8,4 +8,5 @@ export class Denrees
   public quantite = 0;
   public typeProduit?: string;
   public unite?: string;
+  // public toggle?: boolean;
 }

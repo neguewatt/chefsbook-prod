@@ -26,8 +26,7 @@
 <ion-grid style="color:#ffffff">
   <ion-row>
     <ion-toolbar>
-      <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Nom de la préparation"
-        [(ngModel)]="FicheRecherche">
+      <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)" placeholder="Nom de la préparation">
       </ion-searchbar>
       <ion-list *ngIf="isItemAvailable">
         <ion-item *ngFor="let fiche of ficheTechniques" (click)="addFiche(fiche)">
@@ -156,13 +155,13 @@
         <ion-row>
           <ion-col>
             <ion-list>
-              <ion-item-divider class="list" (click)="fiche.denreesDisabled=!fiche.denreesDisabled">
+              <ion-item-divider class="list" (click)="fiche.ficheDenreesToggle=!fiche.ficheDenreesToggle">
                 <ion-label>
                   Denrées
                 </ion-label>
                 <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
               </ion-item-divider>
-              <div *ngIf="!fiche.denreesDisabled">
+              <div *ngIf="!fiche.ficheDenreesToggle">
                 <ion-grid [hidden]="tableau1">
                   <ion-row>
                     <ion-col class="ion-text-center">

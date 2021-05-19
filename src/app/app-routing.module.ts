@@ -38,6 +38,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modal/ajout-produit/ajout-produit.module').then( m => m.AjoutProduitPageModule)
   },
   {
+    path: 'partager-modal',
+    loadChildren: () => import('./pages/modal/partager-modal/partager-modal.module').then( m => m.PartagerModalPageModule)
+  },
+  {
+    path: '-modal-fiche',
+    loadChildren: () => import('./pages/modal/modal-fiche/modal-fiche.module').then( m => m.ModalFichePageModule)
+  },
+  {
     path: 'vue-avant-sauvegarde',
     loadChildren: () => import('./tab1-library/fiches/vue-avant-sauvegarde/vue-avant-sauvegarde.module')
     .then( m => m.VueAvantSauvegardePageModule)
