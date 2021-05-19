@@ -16,6 +16,6 @@ import { PrepaPage } from './prepa.page';
     IonicModule,
     PrepaPageRoutingModule
   ],
-  declarations: [PrepaPage]
+  declarations: []
 })
 export class PrepaPageModule {}

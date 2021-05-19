@@ -1,9 +1,7 @@
 import { Denrees } from 'src/app/models/denrees';
-import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController, ToastController } from '@ionic/angular';
-import { map } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
 import { Plats } from 'src/app/models/plats';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { Utilisateurs } from 'src/app/models/Utilisateurs';
@@ -19,17 +17,20 @@ import { Utilisateurs } from 'src/app/models/Utilisateurs';
 })
 export class ViewPlatPage implements OnInit {
 
+
   plat: Plats;
   denrees: Denrees[];
   userNom: string;
   prenom: string;
-  denreesDisabled = false;
   chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
   date: string;
-  newPlatDenrees = {};
-  newFicheDenrees = {};
+  newPlatDenrees = [];
+  newFicheDenrees = [];
+  ficheUpdate: boolean;
+  showButtonUpdate = false;
+  newNom: string;
 
   constructor(private dataService: AuthFirebaseService,
     public modalController: ModalController,
@@ -54,7 +55,12 @@ export class ViewPlatPage implements OnInit {
     this.tableau2 = this.dataService.tableau2;
     // this.getOrdreTableau();
 
-    this.newPlatDenrees = this.groupByType(this.plat.denrees);
+    this.newPlatDenrees = this.plat.denrees.reduce((r, a) => {
+      // a.toggle=false;
+      r[a.typeProduit] = r[a.typeProduit] || [];
+      r[a.typeProduit].push(a);
+      return r;
+    }, Object.create(null));
   }
 
 
@@ -85,15 +91,6 @@ export class ViewPlatPage implements OnInit {
   // }
 
 
-  showDenrees() {
-    if (this.denreesDisabled === true) {
-      this.denreesDisabled = false;
-      this.chevronDenreesOn = 'chevron-down-outline';
-    } else {
-      this.denreesDisabled = true;
-      this.chevronDenreesOn = 'chevron-forward-outline';
-    }
-  }
 
   groupByType(array: any) {
     return array.reduce((r, a) => {
@@ -101,6 +98,11 @@ export class ViewPlatPage implements OnInit {
       r[a.typeProduit].push(a);
       return r;
     }, Object.create(null));
+  }
+
+  showUpdateFiche(){
+    this.showButtonUpdate = true;
+    this.ficheUpdate = true;
   }
 
 }

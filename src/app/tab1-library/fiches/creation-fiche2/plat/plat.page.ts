@@ -70,19 +70,16 @@ export class PlatPage implements OnInit {
         this.fiche = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiches
         this.arrayDenrees = this.route.getCurrentNavigation().extras.state.value1;
         this.plat = this.route.getCurrentNavigation().extras.state.value4;
-
         if (this.arrayDenrees ===  undefined) {
           this.denreesDisabled = false;
         } else {
           this.denreesDisabled = true;
         }
-
         if (this.plat.fichePreparation ===  undefined) {
           this.presenceFichePlat = false;
         } else {
           this.presenceFichePlat = true;
         }
-
       }
     });
   }

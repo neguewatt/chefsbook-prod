@@ -19,7 +19,8 @@ export class Preparation {
     public poste?: string;
     public produitRef?: Denrees;
     public type?: string;
-
+    public toggle?: boolean;
+    public ficheDenreesToggle?: boolean;
 }
 
 export class FicheByCom {
@@ -29,4 +30,5 @@ export class FicheByCom {
     public nom?: string;
     public type?: string;
     public poste?: string;
+    public toggle?: boolean;
 }

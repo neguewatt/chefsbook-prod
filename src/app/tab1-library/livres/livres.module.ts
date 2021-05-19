@@ -15,6 +15,6 @@ import { LivresPage } from './livres.page';
     IonicModule,
     LivresPageRoutingModule
   ],
-  declarations: [LivresPage]
+  declarations: []
 })
 export class LivresPageModule {}

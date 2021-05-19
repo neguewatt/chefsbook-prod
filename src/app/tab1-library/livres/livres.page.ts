@@ -80,7 +80,7 @@ export class LivresPage implements OnInit {
     if(this.livresPerso.length >= 5){
       this.alertLimiteLivre();
     }else{
-      this.route.navigate(['tabs/tab1-library/livres/creation-livres']);
+      this.route.navigate(['./tabs/tab1-library/livres/creation-livres']);
     }
   }
   async alertLimiteLivre() {
@@ -101,7 +101,7 @@ export class LivresPage implements OnInit {
         livre
       }
     };
-    this.route.navigate(['tabs/tab1-library/livres/ft-by-livre'], navigationExtras);
+    this.route.navigate(['tabs/tab-library/livres/ft-by-livre'], navigationExtras);
 
   }
   showListeLivre(livre: string) {

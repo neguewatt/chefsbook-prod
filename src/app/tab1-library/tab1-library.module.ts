@@ -1,3 +1,4 @@
+import { FolderPage } from './communaute/folder/folder.page';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -16,6 +17,6 @@ import { LivresPage } from './livres/livres.page';
     FormsModule,
     Tab1LibraryPageRoutingModule,
   ],
-  declarations: [Tab1LibraryPage, CommunautePage, FichesPage, LivresPage]
+  declarations: [Tab1LibraryPage, CommunautePage, FichesPage, LivresPage, FolderPage]
 })
 export class Tab1LibraryPageModule {}

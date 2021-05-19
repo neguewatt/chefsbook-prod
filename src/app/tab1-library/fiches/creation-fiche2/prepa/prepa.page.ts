@@ -69,7 +69,7 @@ export class PrepaPage implements OnInit {
     }
   }
 
-  deleteProduit(denree: Denrees) {
+  deleteProduit(denree: any) {
     this.suppressionDenree(denree);
     const index: number = this.denrees.indexOf(denree);
     if (index !== -1) {
