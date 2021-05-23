@@ -9,7 +9,7 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
-
+@import "./theme/variables.scss";
 /* Core CSS required for Ionic components to work properly */
 
 @import "~@ionic/angular/css/core.css";
@@ -19,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 
@@ -28,13 +28,75 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 hr {
-    border: 0.5px solid rgb(0, 0, 0, 0.2) !important;
+    border-top: 0.5px solid rgb(0, 0, 0, 0.1) !important;
     margin: 0px !important;
 }
 
-.headerBackground {
-    --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
+.header {
+    background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    height: 60px;
+    padding: 0px;
+}
+
+.headerFiche {
+    --background: #fff url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    height: 58px;
+    padding: 0px;
+}
+
+.iconFiche {
+    font-size: 24px;
+    color: #7f7f7f;
+    --ionicon-stroke-width: 16px;
+}
+
+.policeFiche {
+    font-family: "Roboto-Regular" !important;
+    font-size: 12px !important;
+    color: #7f7f7f !important;
+}
+
+.classTitreSection {
+    font-weight: 500;
+    font-family: "Roboto" !important;
+    font-size: 18px !important;
+    color: #f03434 !important;
+}
+.classTitreDenreeTableau {
+    font-family: "Roboto-Bold" !important;
+    font-size: 16px !important;
+    --color: #393939 !important;
+}
+.classDenreeTableau {
+    font-family: "Roboto-Regular" !important;
+    font-size: 14px !important;
+    --color: #393939 !important;
+}
+.dividerLettre {
+    --background: #ff4a4a;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+.textDivider {
+    --background: #e6e6e6;
+    color: #7f7f7f;
+    font-size: 14px;
+    font-weight: 500;
+}
+.descCss {
+    font-family: "Roboto-Regular" !important;
+    --color: #ff4a4a !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+.descTexteCss {
+    font-family: "Roboto-Regular" !important;
+    --color: #7f7f7f !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
 }
 
 ion-header {
@@ -42,7 +104,8 @@ ion-header {
 }
 
 ion-content {
-    --background: #fff;
+    height: 100%;
+    --background: #e6e6e6;
 }
 
 ion-segment {
@@ -77,7 +140,7 @@ ion-segment {
 }
 
 .list {
-    --background: #FFF;
+    --background: #fff;
 }
 
 .rectangle {
@@ -91,6 +154,20 @@ ion-segment {
     height: 60px;
     border-radius: 50%;
     --background: #f03434;
+}
+
+.sc-ion-modal-ios-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+.sc-ion-modal-md-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+
+.sc-ion-alert-ios-h {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+.sc-ion-alert-md-h {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
 }
 
 .pLR50 {
@@ -118,8 +195,8 @@ ion-avatar {
 }
 
 :root {
-    --ion-color-primary: #B73636;
-    --ion-color-secondary: #FF4A4A;
+    --ion-color-primary: #b73636;
+    --ion-color-secondary: #ff4a4a;
     // autre couleur
 }
 
@@ -128,7 +205,7 @@ ion-avatar {
 }
 
 .Btn {
-    --background: #B73636;
+    --background: #b73636;
 }
 
 .Btn_Update {
@@ -140,27 +217,27 @@ ion-avatar {
 }
 
 .Btn_Validate {
-    --background: #00AF2F;
+    --background: #00af2f;
 }
 
 .Btn_Cancel {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Btn_AddBook {
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
 }
 
 .Btn_ToggleOff {
-    --background: #4E4E4E;
+    --background: #4e4e4e;
 }
 
 .Btn_ToggleOn {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Icon_Active {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Icon_Idle {
@@ -169,17 +246,17 @@ ion-avatar {
 }
 
 .Header_Creation {
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
 }
 
 .Header_Main {
     //(with image)
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
     opacity: 0.8;
 }
 
 .Header_Title {
-    --background: #FF4A4A;
+    --background: #ff4a4a;
 }
 
 .backround-login {
@@ -219,9 +296,7 @@ ion-avatar {
     font-size: 0.9rem;
 }
 
-ion-button {
-    width: 100%;
-}
+
 
 .iconeSize {
     height: 30px;
@@ -254,9 +329,9 @@ ion-button {
 }
 
 .ficheElementTable {
-    font: 500 20px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    font: 500 14px/25px Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: normal !important;
-    margin: 0px 0 5px !important;
+    margin: 0px !important;
 }
 
 .notificationTable {

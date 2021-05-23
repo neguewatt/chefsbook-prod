@@ -67,9 +67,9 @@ export class Tab1LibraryPage implements OnInit {
       this.presentAlert();
     } else {
 
-      console.log(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length);
+      console.log(this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length);
 
-      if(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length){
+      if(this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length){
         this.limitationFichesAlert();
       }else{
         this.route.navigate(['creation-fiche2']);

@@ -6,9 +6,9 @@
         <ion-icon slot="end" [name]="chevronBibliotheque"></ion-icon>
       </ion-item-divider>
       <ion-row *ngIf="bibliotheque" >
-        <ion-col size="4">
+        <ion-col size="4" class="ion-text-center ion-padding-vertical">
            <ion-button class="carreAjout"  (click)="addLivre()">   <!--[routerLink]="['livres/creation-livres']" -->
-              <ion-icon  class="iconAdd"></ion-icon>
+              <ion-icon  class="iconAdd" src="../../../assets/icon/icon-add.svg" color="white"></ion-icon>
             </ion-button>
         </ion-col>
         <ion-col size="4" *ngFor="let livre of livresPerso; let i = index">

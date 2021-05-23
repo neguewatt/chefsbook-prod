@@ -11,24 +11,25 @@ import { AuthFirebaseService } from '../service/auth-firebase.service';
   templateUrl: 'tab3-search.page.html',
   styleUrls: ['tab3-search.page.scss']
 })
-export class Tab3SearchPage implements OnInit{
+export class Tab3SearchPage implements OnInit {
 
   ficheTechniquesAll: any[] = [];
   isItemAvailable = false;
-  ficheRecherche: Preparation ;
+  ficheRecherche: string;
   items = [];
   ficheUpdate = false;
 
   constructor(private popoverController: PopoverController, private dataService: AuthFirebaseService,
-    private route: Router) { }
-
-  ngOnInit() {
-    this.getFicheTechniquesListPlat();
+    private route: Router) {
+    this.getPlat();
     this.getFicheTechniquespartage();
-    this.getFicheTechniquesList();
+    this.getPreparation();
   }
 
-  getFicheTechniquesListPlat() {
+  ngOnInit() {
+  }
+
+  getPlat() {
     this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -43,7 +44,6 @@ export class Tab3SearchPage implements OnInit{
       }
     });
   }
-
   getFicheTechniquespartage() {
     this.dataService.getPrepaPartage().snapshotChanges().pipe(
       map(changes =>
@@ -57,11 +57,22 @@ export class Tab3SearchPage implements OnInit{
           this.ficheTechniquesAll.push(res);
         });
       }
-
+    });
+    this.dataService.getPlatPartage().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(resPlat => {
+      if (resPlat !== undefined) {
+        resPlat.forEach(res => {
+          this.ficheTechniquesAll.push(res);
+        });
+      }
     });
   }
-
-  getFicheTechniquesList() {
+  getPreparation() {
     this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -98,14 +109,16 @@ export class Tab3SearchPage implements OnInit{
     } else {
       this.isItemAvailable = false;
       this.ficheTechniquesAll = [];
-      this.getFicheTechniquesListPlat();
+      this.getPlat();
       this.getFicheTechniquespartage();
-      this.getFicheTechniquesList();
+      this.getPreparation();
     }
   }
 
-  openFiche(fiche: any){
-    if(fiche.type ===  'Plat'){
+
+
+  openFiche(fiche: any) {
+    if (fiche.type === 'Plat') {
       const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
@@ -113,7 +126,8 @@ export class Tab3SearchPage implements OnInit{
         }
       };
       this.route.navigate(['view-plat'], navigationExtras);
-    }else{
+      this.ficheRecherche = '';
+    } else {
       const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
@@ -121,18 +135,28 @@ export class Tab3SearchPage implements OnInit{
         }
       };
       this.route.navigate(['view-preparation'], navigationExtras);
+      this.ficheRecherche = '';
     }
   }
   async openPopover(ev: any, myFiche: Preparation) {
-    console.log('popover');
+    console.log(ev);
     const popover = await this.popoverController.create({
       component: ModalFichePage,
       componentProps: {
         fiche: myFiche
       },
-      event: ev
+      event: ev,
+      animated: true
     });
-    return await popover.present();
+    popover.onDidDismiss().then((res) => {
+      console.log('datares', res);
+      if (res.data === 'Suppression') {
+        this.ficheRecherche = '';
+      }
+      if (res.data === 'modifier') {
+        this.ficheRecherche = '';
+      }
+    });
+    await popover.present();
   }
-
 }

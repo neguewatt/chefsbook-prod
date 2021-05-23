@@ -1,3 +1,4 @@
+import { Tab3SearchPage } from './../../../tab3-search/tab3-search.page';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { NavParams, PopoverController, ModalController, AlertController } from '@ionic/angular';
@@ -42,7 +43,7 @@ export class ModalFichePage implements OnInit {
       }
     };
     this.route.navigate(['view-preparation'], navigationExtras);
-    this.popoverController.dismiss();
+    this.popoverController.dismiss('modifier');
   }
   partager() {
     console.log('partager : ' + this.fiche);
@@ -52,7 +53,6 @@ export class ModalFichePage implements OnInit {
   supprimer() {
     console.log(this.fiche);
     this.presentAlertConfirm();
-    this.popoverController.dismiss();
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -71,6 +71,7 @@ export class ModalFichePage implements OnInit {
           text: 'Okay',
           handler: () => {
             console.log('Confirm Okay');
+            this.popoverController.dismiss('Suppression');
             this.dataService.deleteFiche(this.fiche);
           }
         }

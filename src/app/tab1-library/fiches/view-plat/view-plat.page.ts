@@ -22,6 +22,7 @@ export class ViewPlatPage implements OnInit {
   denrees: Denrees[];
   userNom: string;
   prenom: string;
+  denreesDisabled = false;
   chevronDenreesOn = 'chevron-down-outline';
   tableau1 = true;
   tableau2 = true;
@@ -91,6 +92,15 @@ export class ViewPlatPage implements OnInit {
   // }
 
 
+  showDenrees(){
+    if (this.denreesDisabled === true) {
+      this.denreesDisabled = false;
+      this.chevronDenreesOn = 'chevron-down-outline';
+    } else {
+      this.denreesDisabled = true;
+      this.chevronDenreesOn = 'chevron-forward-outline';
+    }
+  }
 
   groupByType(array: any) {
     return array.reduce((r, a) => {

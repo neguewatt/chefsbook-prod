@@ -25,6 +25,7 @@ export class CreerUtilisateurPage implements OnInit {
   ordreTableauProduit: AffichageIngredients;
   fond: Fond;
   ecranDefaut: EcranDefaut;
+  toDay: Date;
 
   constructor(private authenticationService: AuthLoginService,
     private dataService: AuthFirebaseService,
@@ -34,9 +35,9 @@ export class CreerUtilisateurPage implements OnInit {
   }
 
   creerUtilisateur() {
-    // ajout securité
-
+    this.toDay = new Date();
     const newUtilisateur = new Utilisateurs();
+    const newDateCreation = new Date(this.toDay);
     const newtableau = new AffichageIngredients();
     const newFond = new Fond();
     const newEcran = new EcranDefaut();
@@ -53,6 +54,7 @@ export class CreerUtilisateurPage implements OnInit {
                 newUtilisateur.prenom = this.prenom.charAt(0).toUpperCase()+this.prenom.substr(1);
                 newUtilisateur.email = this.email;
                 newUtilisateur.idUtilisateur = uid.toString();
+                newUtilisateur.dateCreation = newDateCreation;
                 console.log(newUtilisateur);
                 newtableau.natureUniteQuantite = true;
                 newtableau.quantiteUniteNature = false;

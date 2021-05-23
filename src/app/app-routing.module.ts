@@ -17,6 +17,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modal/chargement/chargement.module').then(m => m.ChargementPageModule)
   },
   {
+    path: 'creation-livres',
+    loadChildren: () => import('./tab1-library/livres/creation-livres/creation-livres.module').then( m => m.CreationLivresPageModule)
+  },
+  {
+    path: 'ft-by-livre',
+    loadChildren: () => import('./tab1-library/livres/ft-by-livre/ft-by-livre.module').then( m => m.FtByLivrePageModule)
+  },
+  {
+    path: 'vu-fiche-avant-ajout',
+    loadChildren: () => import('./tab1-library/fiches/creation-fiche2/vu-fiche-avant-ajout/vu-fiche-avant-ajout.module').
+    then( m => m.VuFicheAvantAjoutPageModule)
+  },
+  {
     path: 'view-preparation',
     loadChildren: () => import('./tab1-library/fiches/view-preparation/view-preparation.module').then(m => m.ViewPreparationPageModule)
   },
@@ -42,8 +55,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modal/partager-modal/partager-modal.module').then( m => m.PartagerModalPageModule)
   },
   {
-    path: '-modal-fiche',
+    path: 'modal-fiche',
     loadChildren: () => import('./pages/modal/modal-fiche/modal-fiche.module').then( m => m.ModalFichePageModule)
+  },
+  {
+    path: 'ingredient-ref-modal',
+    loadChildren: () => import('./pages/modal/ingredient-ref-modal/ingredient-ref-modal.module').then( m => m.IngredientRefModalPageModule)
   },
   {
     path: 'vue-avant-sauvegarde',

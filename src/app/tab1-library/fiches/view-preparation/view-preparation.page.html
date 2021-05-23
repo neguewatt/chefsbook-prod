@@ -1,12 +1,13 @@
 <ion-header>
-    <ion-toolbar class="header">
+    <ion-toolbar class="headerFiche ion-padding-vertical">
         <ion-buttons slot="start">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
         <ion-title *ngIf="!ficheUpdate" class="pLR50 titreFiche">{{nom}}</ion-title>
         <div *ngIf="ficheUpdate">
             <ion-title>
-                <ion-input class="pLR50 titreFiche" placeholder="{{nom}}" type="text" [(ngModel)]="newNom" name="title"></ion-input>
+                <ion-input class="pLR50 titreFiche" placeholder="{{nom}}" type="text" [(ngModel)]="newNom" name="title">
+                </ion-input>
             </ion-title>
         </div>
         <ion-buttons slot="end" *ngIf="!showButtonUpdate">
@@ -37,40 +38,41 @@
       </ion-col>
     </ion-row> -->
         <ion-row>
-            <ion-col>
-                <ion-list>
-                    <ion-item lines="none">
-                        <ion-icon slot="start" src="../../../assets/icon/Calendar.svg" color="dark"></ion-icon>
-                        <p>{{date}}</p>
-                    </ion-item>
-                    <ion-item *ngIf="!ficheUpdate" lines="none">
-                        <ion-icon slot="start" src="../../../assets/icon/local_dining-24px.svg" color="dark"></ion-icon>
-                        <p>{{poste}}</p>
-                    </ion-item>
-                    <div *ngIf="ficheUpdate">
-                        <ion-select class="form-control" id="poste" placeholder="{{poste}}" [(ngModel)]="newPoste" name="poste" interface="popover">
-                            <ion-select-option *ngFor="let poste of postes" [value]="poste">{{poste}}</ion-select-option>
-                        </ion-select>
-                    </div>
-                </ion-list>
+            <ion-col class="ion-padding-horizontal" style="padding: 0;">
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-calendar.svg"></ion-icon>
+                    <p class="policeFiche">{{date}}</p>
+                </ion-item>
+                <ion-item *ngIf="!ficheUpdate" lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-prepa.svg">
+                    </ion-icon>
+                    <p class="policeFiche">{{poste}}</p>
+                </ion-item>
+                <div *ngIf="ficheUpdate">
+                    <ion-select class="form-control" id="poste" placeholder="{{poste}}" [(ngModel)]="newPoste"
+                        name="poste" interface="popover">
+                        <ion-select-option *ngFor="let poste of postes" [value]="poste">{{poste}}
+                        </ion-select-option>
+                    </ion-select>
+                </div>
             </ion-col>
-            <ion-col>
-                <ion-list>
-                    <ion-item lines="none">
-                        <ion-icon slot="start" src="../../../assets/icon/Profile.svg" color="dark"></ion-icon>
-                        <p>{{userNom}} {{prenom}}</p>
-                    </ion-item>
-                    <ion-item *ngIf="!ficheUpdate" lines="none">
-                        <ion-icon slot="start" src="../../../assets/icon/restaurant-24px.svg" color="dark"></ion-icon>
-                        <p>{{produitRef}}</p>
-                    </ion-item>
-                    <div *ngIf="ficheUpdate">
-                        <ion-select class="form-control" id="produitRef" placeholder="{{produitRef}}" [(ngModel)]="newProduitRef" name="poste" interface="popover">
-                            <ion-select-option *ngFor="let denree of denrees" [value]="denree.produit">{{denree.produit}}
-                            </ion-select-option>
-                        </ion-select>
-                    </div>
-                </ion-list>
+            <ion-col class="ion-padding-horizontal" style="padding: 0;">
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-profile.svg"></ion-icon>
+                    <p class="policeFiche">{{userNom}} {{prenom}}</p>
+                </ion-item>
+                <ion-item *ngIf="!ficheUpdate" lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-couverts.svg"></ion-icon>
+                    <p class="policeFiche">{{produitRef}}</p>
+                </ion-item>
+                <div *ngIf="ficheUpdate">
+                    <ion-select class="form-control" id="produitRef" placeholder="{{produitRef}}"
+                        [(ngModel)]="newProduitRef" name="poste" interface="popover">
+                        <ion-select-option *ngFor="let denree of denrees" [value]="denree.produit">
+                            {{denree.produit}}
+                        </ion-select-option>
+                    </ion-select>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -80,59 +82,76 @@
             <ion-col>
                 <ion-list>
                     <ion-item-divider class="list" (click)="showDenrees()">
-                        <ion-label>
+                        <ion-label class="classTitreSection">
                             Denrées
                         </ion-label>
-                        <ion-icon slot="end" [name]="chevronDenreesOn  ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+                        <ion-icon class="iconFiche" slot="end"
+                            [name]="chevronDenreesOn  ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
                     </ion-item-divider>
                     <div [hidden]="denreesDisabled">
                         <ion-grid [hidden]="tableau1">
                             <ion-row>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Nature
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Unité
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Quantité
                                     </ion-label>
                                 </ion-col>
                             </ion-row>
                             <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
-                                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
+                                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle" class="textDivider">
                                     <ion-label>{{denree.key}}</ion-label>
-                                    <ion-icon slot="end" [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                    <ion-icon class="iconFiche" slot="end"
+                                        [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                                     </ion-icon>
                                 </ion-item-divider>
                                 <div *ngIf="!denree.value.toggle">
                                     <ion-row *ngFor="let value of denree.value; let i = index ">
-                                        <ion-col class="ion-text-center">{{value.produit}}</ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <!-- <ion-col class="ion-text-center">{{value.produit}}</ion-col>
                                         <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
-                                        <ion-col class="ion-text-center"> {{value.quantite}}</ion-col>
+                                        <ion-col class="ion-text-center"> {{value.quantite}}</ion-col> -->
                                     </ion-row>
                                 </div>
                             </ion-item-group>
                         </ion-grid>
                         <ion-grid [hidden]="tableau2">
                             <ion-row>
-                                <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                <ion-col class="ion-text-center" >
+                                    <ion-label class="classTitreDenreeTableau">
                                         Quantité
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Unité
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Nature
                                     </ion-label>
                                 </ion-col>
@@ -140,14 +159,27 @@
                             <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
                                 <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
                                     <ion-label>{{denree.key}}</ion-label>
-                                    <ion-icon slot="end" [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                    <ion-icon class="iconFiche" slot="end"
+                                        [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                                     </ion-icon>
                                 </ion-item-divider>
                                 <div *ngIf="!denree.value.toggle">
                                     <ion-row *ngFor="let value of denree.value; let i = index ">
-                                        <ion-col class="ion-text-center"> {{value.quantite}}</ion-col>
-                                        <ion-col class="ion-text-center"> {{value.unite}}</ion-col>
-                                        <ion-col class="ion-text-center">{{value.produit}}</ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
                                     </ion-row>
                                 </div>
                             </ion-item-group>
@@ -159,12 +191,20 @@
     </ion-grid>
     <ion-grid>
         <ion-row *ngIf="!ficheUpdate">
-            <ion-label>
+            <ion-item-divider>
+                <ion-label class="classTitreSection">
+                    Description technique
+                </ion-label>
+            </ion-item-divider>
+            <ion-item lines="none" color="trensparent">
+              <ion-label class="descTexteCss ion-text-wrap">
                 {{descriptionTechniques}}
-            </ion-label>
+              </ion-label>
+            </ion-item>
         </ion-row>
         <ion-item *ngIf="ficheUpdate">
-            <ion-textarea id="description" placeholder="{{descriptionTechniques}}" rows="13" [(ngModel)]="newDescriptionTechniques"></ion-textarea>
+            <ion-textarea id="description" placeholder="{{descriptionTechniques}}" rows="13"
+                [(ngModel)]="newDescriptionTechniques"></ion-textarea>
         </ion-item>
     </ion-grid>
     <ion-button *ngIf="ficheUpdate">Valider la modification de la fiche</ion-button>

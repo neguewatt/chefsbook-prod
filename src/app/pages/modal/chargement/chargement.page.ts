@@ -17,7 +17,7 @@ export class ChargementPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
-    public loadingController: LoadingController) {
+    private loadingController: LoadingController) {
 
     }
 
@@ -25,8 +25,6 @@ export class ChargementPage implements OnInit {
     this.presentLoading();
   }
   ecranDefaut() {
-    console.log(this.dataService.user.uid);
-
     this.dataService.getEcranDefaut().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
@@ -67,15 +65,8 @@ export class ChargementPage implements OnInit {
       } else if (res[0].profil){
         this.route.navigate(['/tabs/tab4']);
       }
-
-
-
-
-
-
     });
   }
-
 
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -86,12 +77,10 @@ export class ChargementPage implements OnInit {
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-    console.log('charg', this.dataService.utilisateur);
-
+    this.dataService.getCompteUtilisateur();
     this.ecranDefaut();
     this.dataService.getFichesTechniqueAll();
-    this.dataService.getAbonnement();
+    this.dataService.getformule();
   }
 
 }

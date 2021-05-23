@@ -43,7 +43,8 @@ export class AuthFirebaseService {
   utilisateur: Utilisateurs;
   tableData: Preparation[];
   lmitesListe: Abonnement[];
-  limiteFiche = 0;
+  limitFiches = 0;
+  badgeNotif: number;
 
 
   // liens URL
@@ -72,6 +73,7 @@ export class AuthFirebaseService {
   private livresRefDb: AngularFirestoreCollection<Livres> = null;
   private livresAchatDb: AngularFirestoreCollection<Livres> = null;
   private notificationDb: AngularFirestoreCollection<Notification> = null;
+  private notificationAllDb: AngularFirestoreCollection<Notification> = null;
   private preparationDb: AngularFirestoreCollection<Preparation> = null;
   private ficheTechniqueByLivreDb: AngularFirestoreCollection<Preparation> = null;
   private platDb: AngularFirestoreCollection<Plats> = null;
@@ -162,6 +164,22 @@ export class AuthFirebaseService {
 
   /** Start  : GETER au démarage de l'application  **/
 
+  getBadgeNotif() {
+    this.db.collection<Notification>(this.notificationPath, ref => ref
+      .where('idUtilisateur', '==', this.user.uid)
+      .where('notifDisabled', '==', true)
+      .orderBy('date', 'desc'))
+      .snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(res => {
+        this.badgeNotif = res.length;
+    });
+  }
+
   getCompteUtilisateur() {
     this.db.collection<Utilisateurs>(this.utilisateurPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)).snapshotChanges().pipe(
@@ -203,7 +221,7 @@ export class AuthFirebaseService {
   }
   getFicheTechniquesPartage() {
     this.db.collection<Preparation>(this.preparationPath, ref => ref
-      .where('idPartage', '==', [this.user.uid])
+      .where('idPartage', 'array-contains', this.user.uid)
       .orderBy('nom', 'asc'))
       .snapshotChanges().pipe(
         map(changes =>
@@ -232,7 +250,7 @@ export class AuthFirebaseService {
   }
   getPlatsPartage() {
     this.db.collection<Plats>(this.platPath, ref => ref
-      .where('idPartage', '==', [this.user.uid])
+      .where('idPartage', 'array-contains', this.user.uid)
       .orderBy('nom', 'asc')).snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -316,6 +334,7 @@ export class AuthFirebaseService {
         )
       ).subscribe((limite: Abonnement[]) => {
         this.lmitesListe = limite;
+        this.getAbonnement();
       });
   }
   getAbonnement() {
@@ -323,20 +342,19 @@ export class AuthFirebaseService {
     this.lmitesListe.forEach((limite: Abonnement) => {
       if (limite.abonnement === 'G' && this.utilisateur.abonnement === 'G') {
         console.log(limite.limiteFiche);
-
-        this.limiteFiche = limite.limiteFiche;
+        this.limitFiches = limite.limiteFiche;
       }
       if (limite.abonnement === 'P1' && this.utilisateur.abonnement === 'P1') {
-        this.limiteFiche = limite.limiteFiche;
+        this.limitFiches = limite.limiteFiche;
       }
       if (limite.abonnement === 'P2E' && this.utilisateur.abonnement === 'P2E') {
-        this.limiteFiche = limite.limiteFiche;
+        this.limitFiches = limite.limiteFiche;
       }
       if (limite.abonnement === 'P3' && this.utilisateur.abonnement === 'P3') {
-        this.limiteFiche = limite.limiteFiche;
+        this.limitFiches = limite.limiteFiche;
       }
       if (limite.abonnement === 'P4' && this.utilisateur.abonnement === 'P4') {
-        this.limiteFiche = limite.limiteFiche;
+        this.limitFiches = limite.limiteFiche;
       }
     });
   }
@@ -353,7 +371,7 @@ export class AuthFirebaseService {
   }
   getPrepaPartage(): AngularFirestoreCollection<Preparation> {
     this.preparationDb = this.db.collection(this.preparationPath, ref => ref
-      .where('idPartage', '==', [this.user.uid]).orderBy('nom', 'asc'));
+      .where('idPartage', 'array-contains', this.user.uid).orderBy('nom', 'asc'));
     return this.preparationDb;
   }
   async getPlatPartageById(key: string) {
@@ -361,7 +379,7 @@ export class AuthFirebaseService {
     return (await prepa).data();
   }
   getPlatPartage(): AngularFirestoreCollection<Plats> {
-    this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', '==', [this.user.uid]));
+    this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', 'array-contains', this.user.uid));
     return this.platDb;
   }
 
@@ -372,10 +390,6 @@ export class AuthFirebaseService {
     return this.preparationDb;
   }
 
-  getPlatspartage(userId: string): AngularFirestoreCollection<Plats> {
-    this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', '==', [userId]));
-    return this.platDb;
-  }
   getFicheTechniquesListPlat(): AngularFirestoreCollection<Plats> {
     this.platDb = this.db.collection(this.platPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
@@ -449,8 +463,13 @@ export class AuthFirebaseService {
     return this.ecranDefautDb;
   }
   getNotification(): AngularFirestoreCollection<Notification> {
+    this.notificationAllDb = this.db.collection(this.notificationPath, ref => ref
+      .where('idUtilisateur', '==', this.user.uid).orderBy('date', 'desc'));
+    return this.notificationAllDb;
+  }
+  getNotificationBadge(): AngularFirestoreCollection<Notification> {
     this.notificationDb = this.db.collection(this.notificationPath, ref => ref
-      .where('idUtilisateur', '==', this.user.uid).orderBy('date', 'asc'));
+      .where('idUtilisateur', '==', this.user.uid).where('notifDisabled', '==', true).orderBy('date', 'desc'));
     return this.notificationDb;
   }
 
@@ -494,6 +513,11 @@ export class AuthFirebaseService {
     return table;
   }
 
+  updateNotification(key: string, disabled: boolean) {
+    const updateNotif = this.db.collection(this.notificationPath).doc(key).update({ notifDisabled: disabled });
+    return updateNotif;
+  }
+
   // end update documents
 
   // start delete
@@ -515,8 +539,8 @@ export class AuthFirebaseService {
     }
   }
 
-  deleteUser(idUser: string) {
-    this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', idUser))
+  deleteUser() {
+    this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .valueChanges().subscribe(res => {
         res.map((data: Utilisateurs) => {
           console.log(data);
@@ -526,7 +550,7 @@ export class AuthFirebaseService {
         });
       });
 
-    this.db.collection(this.ordreTableauFTPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.ordreTableauFTPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -540,7 +564,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.ecranDefautPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.ecranDefautPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -554,7 +578,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.experiencePath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.experiencePath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -568,7 +592,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.fondPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.fondPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -582,7 +606,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.formationPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.formationPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -596,7 +620,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.livresPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.livresPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -612,7 +636,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.notificationPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.notificationPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -628,7 +652,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.platPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.platPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -644,7 +668,7 @@ export class AuthFirebaseService {
         }
       });
 
-    this.db.collection(this.preparationPath, ref => ref.where('idUtilisateur', '==', idUser))
+    this.db.collection(this.preparationPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -659,11 +683,9 @@ export class AuthFirebaseService {
           });
         }
       });
+      this.user.delete();
+      this.authLogin.signOutUser();
   }
-
-
-
-
 
 
 }

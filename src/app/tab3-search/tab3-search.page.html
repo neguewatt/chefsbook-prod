@@ -14,13 +14,15 @@
 <ion-content>
   <ion-toolbar>
 
-      <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (keyup)="getItems($event)"></ion-searchbar>
+      <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="getItems($event)"></ion-searchbar>
 
       <!-- <ion-searchbar animated color="primary" placeholder="Recherché" type="text" debounce="500"
     (ionChange)="getItems($event)"></ion-searchbar> -->
       <ion-list *ngIf="isItemAvailable">
           <ion-item *ngFor="let fiche of ficheTechniquesAll">
-              <ion-icon slot="start" name="reader-outline" (click)="openFiche(fiche)"></ion-icon>
+              <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fiche)"></ion-icon>
+              <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fiche)"></ion-icon>
+              
               <ion-label class="text" (click)="openFiche(fiche)">
                   <h2>{{fiche.nom}}</h2>
                   <p> {{fiche.livre}}</p>

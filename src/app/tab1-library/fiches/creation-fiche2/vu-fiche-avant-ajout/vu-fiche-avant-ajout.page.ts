@@ -92,7 +92,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
   //   });
   // }
 
-  showDenrees(showDenrees: string) {
+  showDenrees() {
     if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
       this.chevronDenreesOn = 'chevron-down-outline';

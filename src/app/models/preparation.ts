@@ -8,7 +8,7 @@ export class Preparation {
     public coutParPortion = 0;
     public date?: any;
     public descriptionTechniques?: string;
-    public denrees?: Array<any> = [];
+    public denrees?: Array<Denrees> = [];
     public description?: string = '';
     public dressage?: string = '';
     public idPartage?: string[] = [];

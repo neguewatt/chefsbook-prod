@@ -1,24 +1,24 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="red">
     <ion-tab-button tab="tab1-library" (click)="handleTabClick($event)" class="custom-homepage">
-      <ion-icon></ion-icon>
+      <ion-icon src="../../../assets/icon/icon-homepage.svg" style="color:#707070"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2-notification" disabled="{{disabled}}" (click)="handleTabClick($event)" class="custom-notif">
-      <ion-icon></ion-icon>
+    <ion-tab-button tab="tab2-notification" (click)="handleTabClick($event)" class="custom-notif">
+      <ion-icon src="../../assets/icon/icon-notif.svg" style="color:#707070"></ion-icon>
       <ion-badge *ngIf="notifDisabled" color="danger">{{notifNumber}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="tab3-search" (click)="handleTabClick($event)" class="custom-search custom-tab">
-      <ion-icon></ion-icon>
+      <ion-icon src="../../assets/icon/icon-search.svg" style="color:white"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="tab4-profil" (click)="handleTabClick($event)" class="custom-profile">
-      <ion-icon></ion-icon>
+      <ion-icon src="../../assets/icon/icon-profile.svg" style="color:#707070"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="tab5-param" (click)="handleTabClick($event)" class="custom-settings">
-      <ion-icon></ion-icon>
+      <ion-icon src="../../assets/icon/icon-settings.svg" style="color:#707070"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

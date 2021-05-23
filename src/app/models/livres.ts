@@ -7,6 +7,6 @@ export class Livres {
     public nom: string;
     public photo: string;
     public position: string;
-    public référence: boolean;
+    public reference: boolean;
 
 }

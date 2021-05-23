@@ -3,11 +3,8 @@
         <ion-grid class="padding-0">
             <ion-row class="header">
                 <ion-row class="margin-auto">
-                    <ion-col>
-                        <h1 class="ion-margin-top">CHEFSBOOK</h1>
-                    </ion-col>
                 </ion-row>
-                <ion-row class="ion-align-items-end tabs-library-menu">
+                <ion-row class="ion-align-items-end ion-padding-horizontal boutonHeader">
                     <ion-col size="4" [style]="fichesBoolean ? chosen : notChosen">
                         <ion-button (click)="segmentChanged('fichesBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="fichesBoolean ? textChosen : textNotChosen">
                             Mes Fiches
@@ -32,20 +29,14 @@
 <ion-content>
     <app-fiches *ngIf="fichesBoolean"></app-fiches>
     <app-livres *ngIf="livreBoolean"></app-livres>
-    <app-communaute *ngIf="comBoolean"></app-communaute>
-
-    
+    <app-communaute *ngIf="comBoolean"></app-communaute>   
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addficheTech()">
-        <ion-fab-button class="square">
-            <ion-icon class="addFiche"></ion-icon>
+        <ion-fab-button>
+            <ion-icon class="addFiche" src="../../assets/icon/icon-add.svg" style="color:white"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 </ion-content>
-<ion-footer  *ngIf="fichesBoolean">
-    <ion-toolbar>
-    </ion-toolbar>
-</ion-footer>
 
 <!-- <ion-toolbar *ngIf="fichesBoolean">
     <ion-footer>

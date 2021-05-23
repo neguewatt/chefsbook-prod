@@ -1,0 +1,21 @@
+.form-control{
+    border: solid grey 0.5px;
+
+}
+
+
+.validateButton{
+    height: 60px;
+    width: 60px;
+    --background: transparent;
+    border: solid #00AF2F 0.5px;
+    border-radius: 50%;
+    margin-left: 60px;
+}
+.cancelButton{
+    height: 60px;
+    width: 60px;
+    --background: transparent;
+    border: solid #f03434 0.5px;
+    border-radius: 50%;
+}

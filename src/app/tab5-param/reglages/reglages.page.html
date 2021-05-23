@@ -12,7 +12,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('ecran')" detail="false">
-          <ion-icon color="dark" name="person-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon  src="../../../assets/icon/icon-phone.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Ecran par défaut
           </ion-label>
@@ -26,7 +26,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('langue')" detail="false" [disabled]="true">
-          <ion-icon color="dark" name="settings-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon src="../../../assets/icon/icon-international.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Langues
           </ion-label>
@@ -40,7 +40,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('fond')" detail="false">
-          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon  src="../../../assets/icon/icon-image.svg" style="color:#707070"  class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Apparence
           </ion-label>
@@ -54,7 +54,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('fiche')" detail="false">
-          <ion-icon color="dark" name="help-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon src="../../../assets/icon/icon-folder.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Fiche technique
           </ion-label>
@@ -64,11 +64,11 @@
     </ion-row>
   </ion-grid>
   <hr>
-  <ion-grid>
+  <ion-grid [hidden]="true">
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('notification')" detail="false">
-          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon src="../../../assets/icon/icon-notif.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Notifications
           </ion-label>

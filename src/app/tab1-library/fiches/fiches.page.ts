@@ -18,6 +18,9 @@ export class FichesPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+
   toutesBoolean = false;
   prepaBoolean = false;
   platsBoolean = false;
@@ -31,9 +34,6 @@ export class FichesPage implements OnInit {
   ficheTechniquesByLivres: any[] = [];
 
   ficheUpdate = false;
-
-  colorA = 'font-weight: bold';
-  colorB = '';
 
   iconPlat = true;
   iconPrepa = true;

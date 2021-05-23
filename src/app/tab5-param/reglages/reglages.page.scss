@@ -1,12 +1,19 @@
-  
 #container {
-    text-align: center;
-    left: 0;
-    right: 0;
-    top: 15%;
-  }
-  
-  #container strong {
-    font-size: 18px;
-    line-height: 26px;
-  }
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 15%;
+}
+
+#container strong {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+ion-header {
+  height: 68px;
+}
+
+ion-toolbar {
+  height: 100%;
+}

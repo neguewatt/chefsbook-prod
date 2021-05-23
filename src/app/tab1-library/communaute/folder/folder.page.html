@@ -18,18 +18,18 @@
 
 
 
-<ion-item-group *ngFor="let fiche of ficheGroup; let i = index">
+<ion-item-group *ngFor="let fiche of ficheTechniquesAll; let i = index">
   <ion-item-divider>
     <ion-label>{{fiche.idUtilisateur}}</ion-label>
   </ion-item-divider>
-    <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top" color="secondary">
-      <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../assets/icon/cooking.svg"
-        (click)="openFiche(fiche.idFiche, fiche.type)"></ion-icon>
-      <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../assets/icon/food.svg"
-        (click)="openFiche(fiche.idFiche, fiche.type)"></ion-icon>
-      <ion-label class="text" (click)="openFiche(fiche.idFiche, fiche.type)">
-        <h2 class="ficheElementTable">{{fiche.nom}}</h2>
-        <p> {{fiche.livre}}</p>
-      </ion-label>
-    </ion-item>
+  <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top" color="secondary">
+    <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../../assets/icon/icon-prep.svg"
+      (click)="openFiche(fiche.idFiche, fiche.type)"></ion-icon>
+    <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../../assets/icon/icon-plat.svg"
+      (click)="openFiche(fiche.idFiche, fiche.type)"></ion-icon>
+    <ion-label class="text" (click)="openFiche(fiche.idFiche, fiche.type)">
+      <h2 class="ficheElementTable">{{fiche.nom}}</h2>
+      <p> {{fiche.livre}}</p>
+    </ion-label>
+  </ion-item>
 </ion-item-group>

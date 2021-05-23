@@ -15,6 +15,6 @@ import { ShopPage } from './shop.page';
     IonicModule,
     ShopPageRoutingModule
   ],
-  declarations: [ShopPage]
+  declarations: []
 })
 export class ShopPageModule {}

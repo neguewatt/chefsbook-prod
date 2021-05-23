@@ -1,29 +1,37 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-title>
-      <ion-text class="ion-text-wrap">{{modalTitle}}</ion-text>
-    </ion-title>
-    <ion-icon slot="end" name="close-outline" (click)="closeModal()"></ion-icon>
-  </ion-toolbar>
-</ion-header>
-<ion-item-divider color="secondary"></ion-item-divider>
+
 <ion-content>
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-item lines="none">
-          <ion-input name="email" type="email" class="form-control" id="titre" placeholder="Adresse mail"
+          <ion-label>
+            Partager cette fiche
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none" class="form-control">
+          <ion-input name="email" type="email"  id="titre" placeholder="Adresse mail"
             [(ngModel)]="email"></ion-input>
         </ion-item>
-        <ion-item lines="none">
-          <ion-input type="texte" class="form-control" id="titre" placeholder="Message (facultatif)"
+        <ion-item [hidden]="true" lines="none" class="form-control ion-margin-top">
+          <ion-input type="texte"  id="titre" placeholder="Message (facultatif)"
             [(ngModel)]="newMessage"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
   <hr>
-  <ion-button expand="full" (click)="partageFiche()">
-    <ion-icon name="checkmark-outline" style="color:#00AF2F"></ion-icon>
-  </ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-button  (click)="partageFiche()" class="validateButton">
+          <ion-icon src="../../../assets/icon/icon-yes.svg" style="color:#00AF2F"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button  (click)="partageFiche()" class="cancelButton">
+          <ion-icon src="../../../assets/icon/icon-no.svg" color="secondary"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

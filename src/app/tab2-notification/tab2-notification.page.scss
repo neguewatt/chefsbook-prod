@@ -1,26 +1,35 @@
-.header {
-    background: #fff url("../../assets/Background/HeaderImg_red.jpg") no-repeat center center / cover;
-    height: 150px;
-    padding: 0px;
-}
-.header h1{
+
+.header h1 {
     font-size: 1rem;
-    margin-top:15px;
+    margin-top: 15px;
     font-weight: bold;
-    color:white;
+    color: white;
 }
 .margin-auto {
-    margin:auto;
+    margin: auto;
 }
-ion-button{
+ion-button {
     font-size: 13px;
     --border-radius: 5px;
-    color:white;
+    color: white;
 }
 .padding-0 {
-    padding:0px;
+    padding: 0px;
 }
 
-.noteSize-s{
+.noteSize-s {
     font-size: 0.8rem;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+.notifBlack{
+    color: black;
+}
+
+.notifGrey{
+    color: grey;
 }

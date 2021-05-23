@@ -23,7 +23,7 @@ export class Tab4ProfilPage implements OnInit {
   ngOnInit() {
     const _date = new Date(this.dataService.utilisateur.dateCreation.seconds * 1000);
     this.dateInscription = _date.toLocaleDateString();
-    this.limitFiches = this.dataService.limiteFiche;
+    this.limitFiches = this.dataService.limitFiches;
     this.toggleConnecte = true; // normalement à verifier en foction de la connection du téléphone
     this.connection();
     console.log(this.dataService.fichesTechniqueAll);

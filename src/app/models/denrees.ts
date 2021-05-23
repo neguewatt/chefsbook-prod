@@ -5,7 +5,7 @@ export class Denrees
   public produit?: string;
   public ptht = 0;
   public puht = 0;
-  public quantite = 0;
+  public quantite?: number;
   public typeProduit?: string;
   public unite?: string;
   // public toggle?: boolean;

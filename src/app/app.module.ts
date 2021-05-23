@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     Ng2SearchPipeModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule],
   providers: [
     StatusBar,

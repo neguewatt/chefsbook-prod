@@ -8,16 +8,16 @@
 .iconAdd{
   height: 48px;
   width: 48px;
-  color: #FF4A4A !important;
-  background-image: url(../../../assets/icon/icon-add.svg);
 }
 
 
 .carreAjout {
   border: #FF4A4A;
-  height: 100px;
-  --background: white;
-  --background-activated: white;
+  --border-radius: 32px;
+  height: 64px;
+  width: 64px;
+  --background: #FF4A4A;
+  --background-activated: #FF4A4A;
 }
 
 .listLivre{

@@ -12,7 +12,8 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class IngredientRefModalPage implements OnInit {
 
-  quantite: any;
+  newQuantite: number;
+  refQuantite: any;
   modalTitle: string;
   today: Date;
   plat: Plats;
@@ -30,6 +31,11 @@ export class IngredientRefModalPage implements OnInit {
     this.arrayFichePlat = this.navParams.data.value3;
     this.plat = this.navParams.data.value4;
     this.modalTitle = this.navParams.data.paramTitle;
+    this.refQuantite = this.fiche.produitRef.quantite;
+  }
+
+  onKey(ev: any){
+    console.log('affiche' , this.newQuantite);
   }
 
   async closeModal() {
@@ -38,21 +44,19 @@ export class IngredientRefModalPage implements OnInit {
   }
 
   async ajoutFiche() {
-
     // création du tableau de denrées générale
-
     // const newPlat = new Plats();
     this.today = new Date();
     this.plat.date = this.today;
-
     // mise à jour des denrées pour tableau fiche
     // calcul des denrees identique test
+    console.log('calcul' , this.newQuantite);
     this.fiche.denrees.forEach(denree => {
-      const total = (this.quantite / this.fiche.produitRef.quantite * denree.quantite);
+      console.log('calcul' , denree.quantite);
+      const total = (this.newQuantite / this.fiche.produitRef.quantite * denree.quantite);
       denree.quantite = Math.round(total * 100) / 100;
     });
-
-    console.log('denrées fiche après calcul : ' , this.fiche.denrees);
+    console.log('calcul' , this.fiche.denrees);
 
     this.plat.descriptionCommercial = this.plat.descriptionCommercial;
     this.plat.nom = this.plat.nom;

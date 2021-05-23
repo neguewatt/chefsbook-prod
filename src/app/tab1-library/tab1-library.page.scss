@@ -1,8 +1,5 @@
-.header {
-    background: #fff url("../../assets/Background/HeaderImg_red.jpg") no-repeat center center / cover;
-    height: 150px;
-    padding: 0px;
-}
+
+
 .header h1{
     font-size: 1rem;
     margin-top:15px;
@@ -22,8 +19,8 @@ ion-button{
 }
 
 .addFiche {
-    color: white;
-    background-image: url(../../assets/icon/icon-add.svg);
+    // color: white;
+    // background-image: url(../../assets/icon/icon-add.svg);
 }
 
 
@@ -32,6 +29,13 @@ ion-footer ion-toolbar{
     --border-width:0 0 0;
 }
 ion-fab-button{    
-    --background-activated: #FF4A4A;
+    --background: #FF3D51 !important;
+    --background-activated: #FF3D51 !important;
+    border-color: #F03434 !important;
 }
-.sqare{}
+
+.boutonHeader{
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
