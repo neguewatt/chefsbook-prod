@@ -28,6 +28,8 @@ export class VueAvantSauvegardePage implements OnInit {
 
   livre: Livres;
   livres: Livres[];
+  newItems:  Array<any> = [];
+
 
   constructor(private dataService: AuthFirebaseService,
     private activRoute: ActivatedRoute,
@@ -53,6 +55,7 @@ export class VueAvantSauvegardePage implements OnInit {
     //  this.getOrdreTableau();
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
+    this.newItems = this.groupByType(this.denrees);
   }
 
   // getOrdreTableau() {
@@ -121,5 +124,13 @@ export class VueAvantSauvegardePage implements OnInit {
     });
     return toast.present()
     ;
+  }
+
+  groupByType(array: any){
+    return array.reduce((r, a) => {
+          r[a.typeProduit] = r[a.typeProduit] || [];
+          r[a.typeProduit].push(a);
+          return r;
+      }, Object.create(null));
   }
 }

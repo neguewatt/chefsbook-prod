@@ -15,6 +15,10 @@ import { CreationFiche2Page } from '../creation-fiche2.page';
   selector: 'app-plat',
   templateUrl: './plat.page.html',
   styleUrls: ['./plat.page.scss'],
+  styles: [`
+  .even { background-color: #F2F2F2; }
+  .odd { background-color: #FFFFFF; }
+  `],
 })
 export class PlatPage implements OnInit {
 

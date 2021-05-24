@@ -10,30 +10,30 @@
     </ion-row>
     <ion-row>
         <ion-col size="6">
-                <!-- <ion-item lines="none">
+            <!-- <ion-item lines="none">
                     <p>{{date}}</p>
                 </ion-item> -->
-                <ion-item lines="none">
-                    <ion-icon slot="start" src="../../../assets/icon/icon-type-plat.svg" class="iconFiche"></ion-icon>
-                    <ion-select class="form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste"
-                        interface="popover">
-                        <ion-select-option *ngFor="let poste of postes" [value]="poste.nom">{{poste.nom}}
-                        </ion-select-option>
-                    </ion-select>
-                </ion-item>
+            <ion-item lines="none">
+                <ion-icon slot="start" src="../../../assets/icon/icon-type-plat.svg" class="iconFiche"></ion-icon>
+                <ion-select class="form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste"
+                    interface="popover">
+                    <ion-select-option *ngFor="let poste of postes" [value]="poste.nom">{{poste.nom}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
         </ion-col>
         <ion-col size="6">
-                <!-- <ion-item lines="none">
+            <!-- <ion-item lines="none">
                     <p>{{userNom}} {{prenom}}</p>
                 </ion-item> -->
-                <ion-item lines="none">
-                    <ion-icon slot="start" src="../../../assets/icon/icon-couverts.svg" class="iconFiche"></ion-icon>
-                    <ion-select class="form-control" id="produitRef" placeholder="Produit de référence"
-                        [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
-                        <ion-select-option *ngFor="let denree of denrees" [value]="denree">{{denree.produit}}
-                        </ion-select-option>
-                    </ion-select>
-                </ion-item>
+            <ion-item lines="none">
+                <ion-icon slot="start" src="../../../assets/icon/icon-ref.svg" class="iconFiche"></ion-icon>
+                <ion-select class="form-control" id="produitRef" placeholder="Produit de référence"
+                    [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
+                    <ion-select-option *ngFor="let denree of denrees" [value]="denree">{{denree.produit}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
         </ion-col>
     </ion-row>
 </ion-grid>
@@ -53,66 +53,90 @@
                     </ion-col>
                 </ion-row>
                 <div [hidden]="denreesDisabled">
-                    <ion-row [hidden]="tableau1">
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Nature
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Unité
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Quantité
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-icon color="primary" size="small" (click)="addProduit()" name="add-circle-outline">
-                            </ion-icon>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row *ngFor="let denree of denrees; let i = index">
-                        <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
-                        <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
-                        <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-icon color="primary" size="small" name="trash-outline" (click)="deleteProduit(denree)">
-                            </ion-icon>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row [hidden]="tableau2">
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Quantité
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Unité
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-label size="large">
-                                Nature
-                            </ion-label>
-                        </ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-icon color="primary" size="small" (click)="addProduit()" name="add-circle-outline">
-                            </ion-icon>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row *ngFor="let denree of denrees; let i = index ">
-                        <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
-                        <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
-                        <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
-                        <ion-col class="ion-text-center">
-                            <ion-icon color="primary" size="small" name="trash-outline" (click)="deleteProduit(i)">
-                            </ion-icon>
-                        </ion-col>
-                    </ion-row>
+                    <ion-grid [hidden]="tableau1">
+                        <ion-row>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Nature
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Unité
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Quantité
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                </ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let denree of denrees; let i = index">
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.produit}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.unite}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.quantite}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <ion-grid [hidden]="tableau2">
+                        <ion-row>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Quantité
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Unité
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classTitreDenreeTableau">
+                                    Nature
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                </ion-icon>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row *ngFor="let denree of denrees; let i = index">
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.quantite}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.unite}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                                <ion-label class="classDenreeTableau">
+                                    {{denree.produit}}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
                 </div>
             </ion-list>
         </ion-col>
@@ -128,8 +152,8 @@
                 </ion-label>
             </ion-item-divider>
             <ion-item lines="none" color="transparent">
-                <ion-textarea wrap="hard" id="DescriptionTechnique"
-                    placeholder="Description technique HUGRO TROUVE UN TEXTE ..." rows="12"
+                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCSS"
+                    placeholder="Ecris les details techniques, le dressage, tes notes..." rows="12"
                     [(ngModel)]="newDescriptionTechniques">
                 </ion-textarea>
             </ion-item>
@@ -141,7 +165,7 @@
     <ion-row>
         <ion-col>
             <ion-button expand="block" (click)="addNewFiche()">
-                <ion-icon  src="../../../assets/icon/icon-arrow-forward.svg" class="iconFiche" color="white"></ion-icon>
+                <ion-icon src="../../../assets/icon/icon-arrow-forward.svg" class="iconFiche" color="white"></ion-icon>
             </ion-button>
         </ion-col>
     </ion-row>

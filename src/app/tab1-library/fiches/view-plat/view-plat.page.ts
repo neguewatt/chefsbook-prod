@@ -1,3 +1,4 @@
+import { PosteDeTravail } from 'src/app/models/postes';
 import { Denrees } from 'src/app/models/denrees';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +12,7 @@ import { Utilisateurs } from 'src/app/models/Utilisateurs';
   templateUrl: './view-plat.page.html',
   styleUrls: ['./view-plat.page.scss'],
   styles: [`
-  .even { background-color: #FFF1F1; }
+  .even { background-color: #F2F2F2; }
   .odd { background-color: #FFFFFF; }
   `],
 })
@@ -19,6 +20,7 @@ export class ViewPlatPage implements OnInit {
 
 
   plat: Plats;
+  fiche: Plats;
   denrees: Denrees[];
   userNom: string;
   prenom: string;
@@ -27,6 +29,7 @@ export class ViewPlatPage implements OnInit {
   tableau1 = true;
   tableau2 = true;
   date: string;
+  postes: PosteDeTravail[] = [];
   newPlatDenrees = [];
   newFicheDenrees = [];
   ficheUpdate: boolean;
@@ -43,6 +46,14 @@ export class ViewPlatPage implements OnInit {
         console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
         this.plat = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiche2 [plat]
       }
+      if (this.route.getCurrentNavigation().extras.state) {
+        console.log('param ok ', this.route.getCurrentNavigation().extras.state);
+        this.fiche = this.route.getCurrentNavigation().extras.state.value;
+        this.fiche.key = this.route.getCurrentNavigation().extras.state.key;
+        if (this.route.getCurrentNavigation().extras.state.update){
+          this.showUpdateFiche();
+        }
+      }
     });
   }
 
@@ -54,6 +65,7 @@ export class ViewPlatPage implements OnInit {
     this.getUtilisateurById();
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
+    this.postes = this.dataService.posteDeTravailListe;
     // this.getOrdreTableau();
 
     this.newPlatDenrees = this.plat.denrees.reduce((r, a) => {
@@ -113,6 +125,27 @@ export class ViewPlatPage implements OnInit {
   showUpdateFiche(){
     this.showButtonUpdate = true;
     this.ficheUpdate = true;
+  }
+
+
+  updateFiche(){
+    const _date = new Date();
+    const newFiche = new Plats();
+    newFiche.key = this.fiche.key;
+    newFiche.date = new Date(_date);
+    newFiche.descriptionTechnique = this.plat.descriptionTechnique;
+    newFiche.descriptionCommercial = this.plat.descriptionCommercial;
+    newFiche.denrees = this.fiche.denrees;
+    newFiche.idPartage = this.plat.idPartage;
+    newFiche.idUtilisateur = this.plat.idUtilisateur;
+    newFiche.livre = this.plat.livre;
+    newFiche.nom = this.plat.nom;
+    newFiche.poste = this.plat.poste;
+    newFiche.portion = this.plat.portion;
+    newFiche.fichePreparation = this.plat.fichePreparation;
+    this.fiche = newFiche;
+    console.log(this.fiche);
+    this.dataService.updateFichePlat(this.fiche.key ,this.fiche);
   }
 
 }

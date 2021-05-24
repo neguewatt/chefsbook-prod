@@ -1,6 +1,6 @@
+import { Preparation } from 'src/app/models/preparation';
 import { Abonnement } from '../models/abonnement';
 import { Unites } from './../models/unites';
-import { Preparation } from '../models/preparation';
 import { Plats } from './../models/plats';
 import { Notification } from './../models/notification';
 import { Produits } from './../models/produits';
@@ -502,6 +502,57 @@ export class AuthFirebaseService {
     this.addNotification(notification);
     return updateFiche;
   }
+
+  updateFichePrepa(key: string, fiche: Preparation ) {
+    const updateFiche = this.db.collection(this.preparationPath).doc(key).update({
+       date: fiche.date,
+       descriptionTechniques: fiche.descriptionTechniques,
+       //denrees:
+       nom: fiche.nom,
+       poste: fiche.poste,
+       produitRef: fiche.produitRef,
+    });
+
+    // const notification = new Notification();
+    // const today = new Date();
+    // notification.idUtilisateur = userId;
+    // notification.idDocPartage = fiche.key;
+    // notification.date = today;
+    // notification.type = 'fiche ' + fiche.type;
+    // notification.notification = 'la fiche technique ' + fiche.nom + ' de type : ' + fiche.type + ' vient d\'être partagé avec vous !';
+    // notification.message = message;
+    // this.addNotification(notification);
+    return updateFiche;
+  }
+
+
+  updateFichePlat(key: string, fiche: Plats ) {
+    const updateFiche = this.db.collection(this.preparationPath).doc(key).update({
+      date: fiche.date,
+      // denrees:
+      // portion:
+      nom: fiche.nom,
+      poste: fiche.poste,
+      // fichePreparation:
+      descriptionCommercial: fiche.descriptionCommercial,
+      descriptionTechnique: fiche.descriptionTechnique,
+
+    });
+
+    // const notification = new Notification();
+    // const today = new Date();
+    // notification.idUtilisateur = userId;
+    // notification.idDocPartage = fiche.key;
+    // notification.date = today;
+    // notification.type = 'fiche ' + fiche.type;
+    // notification.notification = 'la fiche technique ' + fiche.nom + ' de type : ' + fiche.type + ' vient d\'être partagé avec vous !';
+    // notification.message = message;
+    // this.addNotification(notification);
+    return updateFiche;
+  }
+
+
+
 
   updateTableauFiche(key: string, tableau: AffichageIngredients) {
     const table1 = this.db.collection(this.ordreTableauFTPath).doc(key).update(tableau);

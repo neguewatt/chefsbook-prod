@@ -1,12 +1,11 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start" (click)="cancel()">
-            <ion-icon color="primary" size="large" name="arrow-back-outline"></ion-icon>
+            <ion-icon color="secondary" size="large" name="arrow-back-outline"></ion-icon>
         </ion-buttons>
-        <ion-title>Choix du livre</ion-title>
+        <ion-title class="titreModal">Choix du livre</ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content>
     <ion-row>
         <ion-col>
@@ -17,7 +16,13 @@
     </ion-row>
 </ion-content>
 <ion-footer>
-    <ion-button expand="full" style="margin:0px" color="secondary" type="submit" (click)="addLivre()">
-        AJOUTER La fiche au livre
-    </ion-button>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" style="margin:0px" color="primary" type="submit" (click)="addLivre()">
+                    Ajouter la fiche au livre
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-footer>

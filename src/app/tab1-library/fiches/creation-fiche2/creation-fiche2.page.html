@@ -1,16 +1,26 @@
 <ion-header>
     <ion-toolbar class="headerFiche">
-        <ion-buttons slot="start">
+        <ion-buttons slot="start" class="buttonBack">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-title>
-            <ion-input class="pLR50 titreFiche" placeholder="Titre de la fiche" type="text" [(ngModel)]="newTitre"
-                name="title"></ion-input>
+        <ion-title class="titrePage titreFiche">
+            {{newTitre}}
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none">
+                    <ion-input contenteditable="true" class="pLR50 " placeholder="Titre de la fiche" type="text" [(ngModel)]="newTitre"
+                        name="title"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <hr>
     <ion-grid style="background:#ffffff">
         <ion-radio-group [(ngModel)]="newType">
             <ion-row>

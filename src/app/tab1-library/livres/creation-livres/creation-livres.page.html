@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar class="header">
-    <ion-buttons slot="start">
-      <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
-    </ion-buttons>
-    <ion-title style="color:#ffffff">
-      Création d'un nouveau livre
-    </ion-title>
+  <ion-toolbar class="headerFiche">
+      <ion-buttons slot="start" class="buttonBack">
+          <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="titrePage titreFiche">
+        Création d'un livre
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,13 +13,9 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item lines="none">
           <ion-input type="title" class="form-control" id="titre" placeholder="Titre : " [(ngModel)]="titre" (keyup)="buttonValide($event)"></ion-input>
         </ion-item>
-        <!-- <ion-item>
-          <ion-input type="title" class="form-control" id="auteur" placeholder="Auteur : {{prenom}}-{{nom}}"
-            [(ngModel)]="auteur"></ion-input>
-        </ion-item> -->
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -47,7 +43,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button expand="full" color="secondary" [disabled]="disabled" type="submit" (click)="redirectToStep()">
+        <ion-button expand="block" color="primary" [disabled]="disabled" type="submit" (click)="redirectToStep()">
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </ion-button>
       </ion-col>

@@ -61,9 +61,9 @@ export class ChargementPage implements OnInit {
         };
         this.route.navigate(['/tabs/tab1-library'], navigationExtras);
       } else if (res[0].recherche){
-        this.route.navigate(['/tabs/tab3']);
+        this.route.navigate(['/tabs/tab3-search']);
       } else if (res[0].profil){
-        this.route.navigate(['/tabs/tab4']);
+        this.route.navigate(['/tabs/tab4-profil']);
       }
     });
   }

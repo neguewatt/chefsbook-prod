@@ -2,10 +2,10 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-item lines="none">
+      <ion-col >
+        <ion-item lines="none" class="ion-text-center">
           <ion-label>
-            Partager cette fiche
+            Partager {{fiche.nom}}
           </ion-label>
         </ion-item>
         <ion-item lines="none" class="form-control">
@@ -22,12 +22,12 @@
   <hr>
   <ion-grid>
     <ion-row>
-      <ion-col >
+      <ion-col class="ion-text-center" >
         <ion-button  (click)="partageFiche()" class="validateButton">
           <ion-icon src="../../../assets/icon/icon-yes.svg" style="color:#00AF2F"></ion-icon>
         </ion-button>
       </ion-col>
-      <ion-col>
+      <ion-col class="ion-text-center">
         <ion-button  (click)="partageFiche()" class="cancelButton">
           <ion-icon src="../../../assets/icon/icon-no.svg" color="secondary"></ion-icon>
         </ion-button>

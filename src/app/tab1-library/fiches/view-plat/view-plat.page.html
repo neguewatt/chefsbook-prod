@@ -1,20 +1,17 @@
 <ion-header>
   <ion-toolbar class="headerFiche">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" class="buttonBack">
       <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-title color="primary" class="pLR50 titreFiche">{{plat.nom}}</ion-title>
-    <div *ngIf="ficheUpdate">
-      <ion-title>
-        <ion-input class="pLR50 titreFiche" placeholder="{{plat.nom}}" type="text" [(ngModel)]="newNom" name="title">
-        </ion-input>
-      </ion-title>
-    </div>
+    <ion-title *ngIf="!ficheUpdate" class="titrePage titreFiche">{{plat.nom}}</ion-title>
+    <ion-title *ngIf="ficheUpdate">
+      <ion-input class="titrePage titreFiche"  type="text" [(ngModel)]="plat.nom" name="title"></ion-input>
+    </ion-title>
     <ion-buttons slot="end" *ngIf="!showButtonUpdate">
-      <ion-icon style="color:#ffffff" icon="pencil" (click)="showUpdateFiche()"></ion-icon>
+      <ion-icon class="iconFiche" style="color:#ffffff" icon="pencil" (click)="showUpdateFiche()"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="showButtonUpdate">
-      <ion-icon style="color:#ffffff" icon="arrow-redo-outline"></ion-icon>
+      <ion-icon class="iconFiche" style="color:#ffffff" icon="arrow-redo-outline" (click)="updateFiche()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -28,10 +25,17 @@
             <ion-icon slot="start" src="../../../assets/icon/icon-calendar.svg" class="iconFiche"></ion-icon>
             <p class="policeFiche">{{date}}</p>
           </ion-item>
-          <ion-item lines="none">
+          <ion-item lines="none" *ngIf="!ficheUpdate">
             <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" class="iconFiche"></ion-icon>
             <p class="policeFiche">{{plat.poste}}</p>
           </ion-item>
+          <div *ngIf="ficheUpdate">
+            <ion-select class="form-control" id="poste" placeholder="{{plat.poste}}" [(ngModel)]="plat.poste"
+              name="poste" interface="popover">
+              <ion-select-option *ngFor="let poste of postes" [value]="poste">{{poste.nom}}
+              </ion-select-option>
+            </ion-select>
+          </div>
         </ion-list>
       </ion-col>
       <ion-col class="ion-padding-horizontal" style="padding: 0;">
@@ -53,13 +57,17 @@
       <ion-col>
         <ion-item-divider style="background:#ffffff">
           <ion-label class="classTitreSection">
-            Description commercial
+            Description commerciale
           </ion-label>
         </ion-item-divider>
-        <ion-item lines="none">
+        <ion-item *ngIf="!ficheUpdate" lines="none" color="trensparent">
           <ion-label class="descTexteCss ion-text-wrap">
             {{plat.descriptionCommercial}}
           </ion-label>
+        </ion-item>
+        <ion-item *ngIf="ficheUpdate" lines="none" color="trensparent">
+          <ion-textarea class="descTexteCss ion-text-wrap" id="description" placeholder="{{plat.descriptionCommercial}}"
+            [(ngModel)]="plat.descriptionCommercial"></ion-textarea>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -250,8 +258,8 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <hr *ngIf="plat.descriptionTechnique">
-  <ion-grid *ngIf="plat.descriptionTechnique">
+  <hr *ngIf="plat.descriptionTechnique || ficheUpdate">
+  <ion-grid *ngIf="plat.descriptionTechnique || ficheUpdate">
     <ion-row>
       <ion-col>
         <ion-item-divider>
@@ -259,10 +267,14 @@
             Description technique
           </ion-label>
         </ion-item-divider>
-        <ion-item lines="none" color="trensparent">
+        <ion-item *ngIf="!ficheUpdate" lines="none" color="trensparent">
           <ion-label class="descTexteCss ion-text-wrap">
             {{plat.descriptionTechnique}}
           </ion-label>
+        </ion-item>
+        <ion-item *ngIf="ficheUpdate" lines="none" color="trensparent">
+          <ion-textarea id="description" placeholder="{{plat.descriptionTechnique}}" rows="13"
+            [(ngModel)]="plat.descriptionTechnique"></ion-textarea>
         </ion-item>
       </ion-col>
     </ion-row>

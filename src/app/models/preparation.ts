@@ -9,8 +9,6 @@ export class Preparation {
     public date?: any;
     public descriptionTechniques?: string;
     public denrees?: Array<Denrees> = [];
-    public description?: string = '';
-    public dressage?: string = '';
     public idPartage?: string[] = [];
     public idUtilisateur?: string;
     public livre?: string;
@@ -19,8 +17,8 @@ export class Preparation {
     public poste?: string;
     public produitRef?: Denrees;
     public type?: string;
-    public toggle?: boolean;
-    public ficheDenreesToggle?: boolean;
+    public toggle?: boolean = true;
+    public ficheDenreesToggle?: boolean = true;
 }
 
 export class FicheByCom {

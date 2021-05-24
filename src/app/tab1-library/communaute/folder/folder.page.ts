@@ -98,25 +98,26 @@ export class FolderPage implements OnInit {
     }, Object.create(null));
   }
 
-  openFiche(key: string, type: string) {
-    console.log(key);
+  openFiche(keyFiche: string, type: string) {
     if ('Préparation' === type) {
-      this.dataService.getPrepaPartageById(key).then(prepa => {
+      this.dataService.getPrepaPartageById(keyFiche).then(prepa => {
         console.log(prepa);
         const navigationExtras: NavigationExtras = {
           state: {
             value: prepa,
-            update: this.ficheUpdate
+            update: this.ficheUpdate,
+            key: keyFiche
           }
         };
         this.route.navigate(['view-preparation'], navigationExtras);
       });
     } else {
-      this.dataService.getPlatPartageById(key).then(plat => {
+      this.dataService.getPlatPartageById(keyFiche).then(plat => {
         const navigationExtras: NavigationExtras = {
           state: {
             value: plat,
-            update: this.ficheUpdate
+            update: this.ficheUpdate,
+            key: keyFiche
           }
         };
         this.route.navigate(['view-plat'], navigationExtras);

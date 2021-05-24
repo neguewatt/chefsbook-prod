@@ -1,4 +1,4 @@
-<ion-header class="BG">
+<ion-header>
     <ion-grid class="padding-0">
         <ion-grid class="padding-0">
             <ion-row class="header">
@@ -15,32 +15,42 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-avatar>
-                <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            </ion-avatar>
+            <ion-col>
+                <ion-avatar>
+                    <img class="avatar"
+                        src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                </ion-avatar>
+            </ion-col>
         </ion-row>
     </ion-grid>
     <ion-grid>
-        <ion-item lines="none">
-            <ion-label class="ion-text-center">
-                A rejoint la communauté depuis le {{dateInscription}}
-            </ion-label>
-        </ion-item>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none" color="trensparent">
+                    <ion-label class="ion-text-center descTexteCss">
+                        A rejoint la communauté depuis le {{dateInscription}}
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
     </ion-grid>
     <ion-grid>
         <ion-row class="vertical-align-content">
             <!-- le nombre d'abonnés est masqué pour le moment -->
-            <ion-col class="ion-margin-start ion-margin-end" *ngIf="supprimeMoiPlusTard">
-                <div>
-                    <ion-icon size="small" class="ion-margin-end" name="heart-outline"></ion-icon>
-                    <p>23 abonnés</p>
-                </div>
-            </ion-col>
+            <ion-row class="ion-align-items-center">
+                <ion-col class="ion-margin-start ion-margin-end" *ngIf="supprimeMoiPlusTard">
+                    <ion-icon size="small" class="ion-margin-end" name="heart-outline"></ion-icon> <br />
+                    <ion-label class="descTexteCss">23 abonnés</ion-label>
+                </ion-col>
+            </ion-row>
+            
             <ion-col class="ion-justify-content-center">
-                <ion-item lines="none">
-                    <ion-icon size="small" class="ion-margin-end" name="folder-outline"></ion-icon>
-                    <ion-label size="small">{{countFT}} / {{limitFiches}} FT</ion-label>
-                </ion-item>
+                <ion-row class="ion-align-items-center">
+                    <ion-col class="ion-text-center">
+                            <ion-icon class="iconeProfil"  src="../../../assets/icon/icon-folder.svg"></ion-icon> <br />
+                            <ion-label class="descTexteCss">{{countFT}} / {{limitFiches}} FT</ion-label>
+                    </ion-col>
+                </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -50,34 +60,39 @@
             <ion-col>
                 <ion-item lines="none" [disabled]="true">
                     <ion-label color="primary">Statut : {{connecte}}</ion-label>
-                    <ion-toggle  [(ngModel)]="toggleConnecte" (ionChange)="connection()"></ion-toggle>
+                    <ion-toggle [(ngModel)]="toggleConnecte" (ionChange)="connection()"></ion-toggle>
                 </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>
     <hr>
     <ion-grid>
-        <ion-button [disabled]="true" expand="block" class="btn_Large_Thim">
-            VOIR LES OPTIONS DE MISE A NIVEAU
-        </ion-button>
+        <ion-row>
+            <ion-col>
+                <ion-button [disabled]="true" expand="block" class="btn_Large_Thim">
+                    VOIR LES OPTIONS DE MISE A NIVEAU
+                </ion-button>
+            </ion-col>
+        </ion-row>
     </ion-grid>
-    <hr>
     <ion-grid>
-        <ion-row id="cvContaint" >
-            <ion-toolbar>
-                <ion-title style="height: 50px;">EXPERIENCE</ion-title>
-            </ion-toolbar>
-            <ion-button [disabled]="true" expand="full" fill="outline" color="secondary">
-                <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
-                <ion-label color="primary" class="ion-margin-left">Ajouter une expérience</ion-label>
-            </ion-button>
-            <ion-toolbar>
-                <ion-title style="height: 50px;">FORMATION</ion-title>
-            </ion-toolbar>
-            <ion-button [disabled]="true"  expand="full" fill="outline" color="secondary">
-                <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
-                <ion-label color="primary" class="ion-margin-left">Ajouter une formation</ion-label>
-            </ion-button>
+        <ion-row id="cvContaint">
+            <ion-col>
+                <ion-toolbar>
+                    <ion-title style="height: 50px;">EXPERIENCE</ion-title>
+                </ion-toolbar>
+                <ion-button [disabled]="true" expand="full" fill="outline" color="secondary">
+                    <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
+                    <ion-label color="primary" class="ion-margin-left">Ajouter une expérience</ion-label>
+                </ion-button>
+                <ion-toolbar>
+                    <ion-title style="height: 50px;">FORMATION</ion-title>
+                </ion-toolbar>
+                <ion-button [disabled]="true" expand="full" fill="outline" color="secondary">
+                    <ion-icon class="ion-padding-end" name="add-circle-outline"></ion-icon>
+                    <ion-label color="primary" class="ion-margin-left">Ajouter une formation</ion-label>
+                </ion-button>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

@@ -1,19 +1,19 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button text="" icon="arrow-back-outline"></ion-back-button>
+    <ion-toolbar class="headerFiche">
+        <ion-buttons slot="start" class="buttonBack">
+            <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-title *ngIf="!livreUpdate" color="primary" class="pLR50">{{livreNom}}</ion-title>
+        <ion-title *ngIf="!livreUpdate" class="titrePage titreFiche" >{{livreNom}}</ion-title>
         <div *ngIf="livreUpdate">
             <ion-title>
-                <ion-input placeholder="{{livreNom}}" type="text" [(ngModel)]="newNom" name="title"></ion-input>
+                <ion-input class="titrePage titreFiche" placeholder="{{livreNom}}" type="text" [(ngModel)]="newNom" name="title"></ion-input>
             </ion-title>
         </div>
         <ion-buttons slot="end" *ngIf="!showButtonUpdate">
-            <ion-icon icon="pencil" (click)="showUpdateLivre()"></ion-icon>
+            <ion-icon class="iconUpdate" icon="pencil" (click)="showUpdateLivre()"></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end" *ngIf="showButtonUpdate">
-            <ion-icon icon="arrow-redo-outline" (click)="updateLivre(livre.key)"></ion-icon>
+            <ion-icon class="iconUpdate" icon="arrow-redo-outline" (click)="updateLivre(livre.key)"></ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -21,7 +21,7 @@
 <ion-content>
     <ion-list>
         <ion-item-group *ngFor="let fiche of newFtByLivre | keyvalue; let i = index">
-            <ion-item-divider (click)="fiche.value.toggle=!fiche.value.toggle">
+            <ion-item-divider (click)="fiche.value.toggle=!fiche.value.toggle" class="dividerLettre" style="margin-bottom: 1px;">
                 <ion-label>{{fiche.key}}</ion-label>
                 <ion-icon slot="end" [name]="fiche.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                 </ion-icon>
@@ -29,7 +29,7 @@
             <div *ngIf="fiche.value.toggle">
                 <ion-row *ngFor="let value of fiche.value; let i = index ">
                     <ion-col>
-                        <ion-item>
+                        <ion-item lines="none">
                             <ion-icon *ngIf="value.type==='Préparation'" slot="start"
                                 src="../../../../assets/icon/icon-prep.svg" (click)="openFiche(value.idFiche, value.type)"></ion-icon>
                             <ion-icon *ngIf="value.type==='Plat'" slot="start"
