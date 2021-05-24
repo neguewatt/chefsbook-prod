@@ -1,3 +1,4 @@
+import { LivresPage } from './livres/livres.page';
 import { Abonnement } from '../models/abonnement';
 import { Component, OnInit } from '@angular/core';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
@@ -42,7 +43,23 @@ export class Tab1LibraryPage implements OnInit {
   ngOnInit() {
     this.livrePerso = this.dataService.livresPersoListe;
     console.log(this.dataService.utilisateur);
+    this.getLivresPerso();
   }
+
+
+  getLivresPerso() {
+    // TODO faire un tri pour les livre (bibliotheque / ref / achat)
+    this.dataService.getLivrePersoList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(dataLivres => {
+      this.livrePerso = dataLivres;
+    });
+  }
+
 
   segmentChanged(page: string) {
     console.log(page);
@@ -63,15 +80,16 @@ export class Tab1LibraryPage implements OnInit {
   }
 
   addficheTech() {
-    if (this.livrePerso.length ===  0) {
+
+    if (this.livrePerso.length === 0) {
       this.presentAlert();
     } else {
 
-      console.log(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length);
+      console.log(this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length);
 
-      if(this.dataService.limiteFiche <= this.dataService.fichesTechniqueAll.length){
+      if (this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length) {
         this.limitationFichesAlert();
-      }else{
+      } else {
         this.route.navigate(['creation-fiche2']);
       }
     }

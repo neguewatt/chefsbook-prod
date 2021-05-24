@@ -45,13 +45,16 @@ export class Tab2NotificationPage implements OnInit {
         )
       )
     ).subscribe(res => {
+      this.notifications = [];
+      console.log('relou', res);
       res.forEach(notification => {
-        if ('fiche Préparation' ===  notification.type) {
+        if ('fiche Préparation' === notification.type) {
+          const resNotif = new NotificationFiche();
           this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: Preparation) => {
             this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
               this.userNom = user.nom;
               this.userPrenom = user.prenom;
-              const resNotif = new NotificationFiche();
+
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;
@@ -63,52 +66,54 @@ export class Tab2NotificationPage implements OnInit {
               difference -= daysDifference * 1000 * 60 * 60 * 24;
               console.log('daysDifference : ', daysDifference);
               const hoursDifference = Math.floor(difference / 1000 / 60 / 60);
-              difference -= hoursDifference  * 1000 * 60 * 60;
-              console.log('hoursDifference : ', hoursDifference );
+              difference -= hoursDifference * 1000 * 60 * 60;
+              console.log('hoursDifference : ', hoursDifference);
               const minutesDifference = Math.floor(difference / 1000 / 60);
               console.log('minuteTotal : ', minutesDifference);
               difference -= minutesDifference * 1000 * 60;
               console.log('minuteTotal 2 : ', minutesDifference);
               const secondsDifference = Math.floor(difference / 1000);
               // finir algo pour aller plus loin dans le temps
-              if (monthDifference > 0){
-                resNotif.date =  monthDifference + ' mois';
-              }else if (daysDifference > 7){
+              if (monthDifference > 0) {
+                resNotif.date = monthDifference + ' mois';
+              } else if (daysDifference > 7) {
                 resNotif.date = '1 sem';
-                if (daysDifference > 14){
+                if (daysDifference > 14) {
                   resNotif.date = '2 sem';
                 }
-                if (daysDifference > 21){
+                if (daysDifference > 21) {
                   resNotif.date = '3 sem';
                 }
-                if (daysDifference > 27){
+                if (daysDifference > 27) {
                   resNotif.date = '4 sem';
                 }
               }
-              else if (daysDifference > 0){
+              else if (daysDifference > 0) {
                 resNotif.date = daysDifference + ' j';
-              }else if (hoursDifference > 0){
+              } else if (hoursDifference > 0) {
                 resNotif.date = hoursDifference + ' h';
-              }else{
+              } else {
                 resNotif.date = minutesDifference + ' min';
               }
+              resNotif.key = notification.key;
               resNotif.type = notification.type;
               resNotif.nom = prepa.nom;
               resNotif.notification = notification.notification;
               resNotif.message = notification.message;
               resNotif.nomProprietaire = this.userNom;
               resNotif.prenomProprietaire = this.userPrenom;
+              resNotif.notifDisabled = notification.notifDisabled;
               this.notificationFiche = resNotif;
-              console.log(resNotif);
-              this.notifications.push(this.notificationFiche);
             });
           });
+          this.notifications.push(resNotif);
         } else {
+          const resNotif = new NotificationFiche();
+          console.log('test2', this.notifications);
           this.dataService.getPlatPartageById(notification.idDocPartage).then((plat: Plats) => {
             this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
               this.userNom = user.nom;
               this.userPrenom = user.prenom;
-              const resNotif = new NotificationFiche();
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;
@@ -120,46 +125,46 @@ export class Tab2NotificationPage implements OnInit {
               difference -= daysDifference * 1000 * 60 * 60 * 24;
               console.log('daysDifference : ', daysDifference);
               const hoursDifference = Math.floor(difference / 1000 / 60 / 60);
-              difference -= hoursDifference  * 1000 * 60 * 60;
-              console.log('hoursDifference : ', hoursDifference );
+              difference -= hoursDifference * 1000 * 60 * 60;
+              console.log('hoursDifference : ', hoursDifference);
               const minutesDifference = Math.floor(difference / 1000 / 60);
               console.log('minuteTotal : ', minutesDifference);
               difference -= minutesDifference * 1000 * 60;
               console.log('minuteTotal 2 : ', minutesDifference);
               const secondsDifference = Math.floor(difference / 1000);
               // finir algo pour aller plus loin dans le temps
-              if (monthDifference > 0){
-                resNotif.date =  monthDifference + ' mois';
-              }else if (daysDifference > 7){
+              if (monthDifference > 0) {
+                resNotif.date = monthDifference + ' mois';
+              } else if (daysDifference > 7) {
                 resNotif.date = '1 sem';
-                if (daysDifference > 14){
+                if (daysDifference > 14) {
                   resNotif.date = '2 sem';
                 }
-                if (daysDifference > 21){
+                if (daysDifference > 21) {
                   resNotif.date = '3 sem';
                 }
-                if (daysDifference > 27){
+                if (daysDifference > 27) {
                   resNotif.date = '4 sem';
                 }
-              }else if (daysDifference > 0){
+              } else if (daysDifference > 0) {
                 resNotif.date = daysDifference + ' j';
-              }else if (hoursDifference > 0){
+              } else if (hoursDifference > 0) {
                 resNotif.date = hoursDifference + ' h';
-              }else{
+              } else {
                 resNotif.date = minutesDifference + ' min';
               }
-
+              resNotif.key = notification.key;
               resNotif.type = notification.type;
               resNotif.nom = plat.nom;
               resNotif.notification = notification.notification;
               resNotif.message = notification.message;
               resNotif.nomProprietaire = this.userNom;
               resNotif.prenomProprietaire = this.userPrenom;
+              resNotif.notifDisabled = notification.notifDisabled;
               this.notificationFiche = resNotif;
-              console.log(resNotif);
-              this.notifications.push(this.notificationFiche);
             });
           });
+          this.notifications.push(this.notificationFiche);
         }
       });
     });
@@ -167,10 +172,11 @@ export class Tab2NotificationPage implements OnInit {
 
 
 
-  openFiche(key: string, type: string) {
-    console.log(key);
-    if ('fiche Préparation' ===  type) {
-      this.dataService.getPrepaPartageById(key).then(prepa => {
+  openFiche(notification: NotificationFiche, type: string) {
+    const disabledNotif = false;
+    this.dataService.updateNotification(notification.key, disabledNotif);
+    if ('fiche Préparation' === type) {
+      this.dataService.getPrepaPartageById(notification.idDocPartage).then(prepa => {
         console.log(prepa);
         const navigationExtras: NavigationExtras = {
           state: {
@@ -181,7 +187,7 @@ export class Tab2NotificationPage implements OnInit {
         this.route.navigate(['view-preparation'], navigationExtras);
       });
     } else {
-      this.dataService.getPlatPartageById(key).then(plat => {
+      this.dataService.getPlatPartageById(notification.idDocPartage).then(plat => {
         const navigationExtras: NavigationExtras = {
           state: {
             value: plat,

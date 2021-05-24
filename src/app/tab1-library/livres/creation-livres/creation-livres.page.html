@@ -1,43 +1,52 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="" icon="arrow-back-outline"></ion-back-button>
-    </ion-buttons>
-    <ion-title color="primary" class="pLR50">Création d'un nouveau livre</ion-title>
+  <ion-toolbar class="headerFiche">
+      <ion-buttons slot="start" class="buttonBack">
+          <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="titrePage titreFiche">
+        Création d'un livre
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-row>
-    <ion-col>
-      <form class="ion-margin-top" [formGroup]="livreForm">
-        <div >
-          <input type="title" class="form-control" id="titre" placeholder="Titre" formControlName="titre">
-        </div>
-        <div >
-          <input type="title" class="form-control" id="auteur" placeholder="{{prenom}} {{nom}}" formControlName="auteur">
-        </div>
-        <div [hidden]="true" >
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-input type="title" class="form-control" id="titre" placeholder="Titre : " [(ngModel)]="titre" (keyup)="buttonValide($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <ion-grid [hidden]="true">
+    <ion-row>
+      <ion-col>
+        <ion-item >
           <ion-label>Livre de référence</ion-label>
-          <ion-checkbox checked="false" id="reference" formControlName="reference"></ion-checkbox>
-        </div>
-        
-      </form>
-    </ion-col>
-  </ion-row>
-  <div class="ion-margin-top">
-    <ion-button class="rectangle" (click)="ajoutPhoto()">
-      <ion-row class="ion-justify-content-center">
-        <img src="../../../assets/icon/Add.svg">
-        <ion-label color="primary" class="ion-margin-top">Ajouter une photo</ion-label>
-      </ion-row>
-    </ion-button>
-  </div>
-  <ion-row>
-    <ion-col>
-      <ion-button expand="full" color="secondary" [disabled]="disabled" type="submit" (click)="redirectToStep()">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
+          <ion-checkbox checked="false" id="reference" [(ngModel)]="reference"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-margin-top" [hidden]="true">
+    <ion-row>
+      <ion-col>
+        <ion-button  (click)="ajoutPhoto()">
+            <ion-icon slot="start" src="../../../assets/icon/Add.svg"></ion-icon>
+            <ion-label color="primary" class="ion-margin-top">Ajouter une photo</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="primary" [disabled]="disabled" type="submit" (click)="redirectToStep()">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

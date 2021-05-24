@@ -1,29 +1,29 @@
 <ion-content class="BG">
-  <ion-grid class="padding-0">
-      <ion-grid class="padding-0">
-          <ion-row class="header">
-              <ion-row class="margin-auto">
-                  <ion-col>
-                      <h1 class="ion-margin-top">CHEFSBOOK</h1>
-                  </ion-col>
-              </ion-row>
-          </ion-row>
-      </ion-grid>
-  </ion-grid>
+    <ion-grid class="padding-0">
+        <ion-grid class="padding-0">
+            <ion-row class="header">
+                <ion-row class="margin-auto">
+                    <ion-col>
+                        <h1 class="ion-margin-top">Notification</h1>
+                    </ion-col>
+                </ion-row>
+            </ion-row>
+        </ion-grid>
+    </ion-grid>
 
-  <ion-item *ngFor="let notification of notifications">
-      <ion-icon *ngIf="notification.type==='fiche Préparation'" slot="start" src="../../../assets/icon/cooking.svg" (click)="openFiche(notification.idDocPartage, notification.type)"></ion-icon>
-      <ion-icon *ngIf="notification.type==='fiche Plat'" slot="start" src="../../../assets/icon/food.svg" (click)="openFiche(notification.idDocPartage, notification.type)"></ion-icon>
-      <ion-label (click)="openFiche(notification.idDocPartage, notification.type)">
-          <p>
-              <strong class="notificationTable">{{notification.prenomProprietaire}} {{notification.nomProprietaire}}</strong> a partagé avec vous : <br> la {{notification.type}}
-              <strong class="notificationTable">{{notification.nom}}</strong>
-          </p>
+    <ion-item *ngFor="let notification of notifications" lines="none" >
+        <ion-avatar slot="start" style="height: 50px; width: 50px;">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" >
+        </ion-avatar>
+        <ion-label class="ion-text-wrap" (click)="openFiche(notification, notification.type)">
+            <p [class]="!notification.notifDisabled ? 'notifBlack' : 'notifGrey'">
+                <strong class="notificationTable">{{notification.prenomProprietaire}}
+                    {{notification.nomProprietaire}}</strong> a partagé avec vous : <br> la {{notification.type}}
+                <strong class="notificationTable">{{notification.nom}}</strong>
+            </p>
 
-      </ion-label>
-      <ion-note slot="end" class="noteSize-s">{{notification.date}}</ion-note>
-  </ion-item>
-
-
-
+        </ion-label>
+        <ion-note slot="end" class="noteSize-s">{{notification.date}}</ion-note>
+    </ion-item>
+    <hr>
 </ion-content>

@@ -19,7 +19,7 @@ export class TabsPage {
   resetStackTabs = ['tab1-library', 'tab2-notification', 'tab3-search', 'tab4-profil', 'tab5-param'];
 
   constructor(private dataService: AuthFirebaseService,) {
-    this.getNotification();
+    this.getBadgeNotif();
   }
 
   handleTabClick = (event: MouseEvent) => {
@@ -37,12 +37,12 @@ export class TabsPage {
     deepFn();
     if (this.resetStackTabs.includes(tab) && canGoBack) {
       event.stopImmediatePropagation();
-      return this.tabs.outlet.pop(deep - 1, tab);
+      return this.tabs.outlet.pop(1, tab);
     }
   };
 
-  getNotification() {
-    this.dataService.getNotification().snapshotChanges().pipe(
+  getBadgeNotif() {
+    this.dataService.getNotificationBadge().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ key: c.payload.doc.id, ...c.payload.doc.data() })
@@ -53,6 +53,10 @@ export class TabsPage {
         this.disabled = false;
         this.notifNumber = res.length;
         this.notifDisabled = true;
+      }else {
+        this.disabled = true;
+        this.notifNumber = res.length;
+        this.notifDisabled = false;
       }
     });
   }

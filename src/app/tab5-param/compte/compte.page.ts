@@ -1,9 +1,10 @@
+import { Router } from '@angular/router';
 import { Utilisateurs } from './../../models/Utilisateurs';
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-compte',
@@ -21,7 +22,9 @@ export class ComptePage implements OnInit {
   boolButton = false;
 
   constructor(private dataService: AuthFirebaseService,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private loadingController: LoadingController,
+    private route: Router) {
     this.titre = 'Compte';
    }
 
@@ -70,13 +73,24 @@ export class ComptePage implements OnInit {
           text: 'Okay',
           handler: () => {
             console.log('Confirm Okay');
-            this.dataService.deleteUser(this.dataService.user.uid);
+            this.dataService.deleteUser();
+            this.presentLoading();
           }
         }
       ]
     });
     await alert.present();
   }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Aurevoir...',
+      duration: 3000
+    });
+    await loading.present();
 
+    await loading.onDidDismiss();
+    this.route.navigate(['']);
+  }
 
 }

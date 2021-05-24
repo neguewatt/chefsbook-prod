@@ -1,4 +1,4 @@
-import { CreationFiche2Page } from './../creation-fiche2.page';
+import { CreationFiche2Page } from '../creation-fiche2.page';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController, ModalController } from '@ionic/angular';
@@ -94,8 +94,8 @@ export class PrepaPage implements OnInit {
       cssClass: 'addProduit-custom-modal-css'
     });
     modal.onDidDismiss().then((newDenree) => {
-      console.log(newDenree.data);
-      if (newDenree.data !== null) {
+      if (newDenree.data !== undefined) {
+        console.log('newDenree', newDenree.data);
         this.denrees.push(newDenree.data);
         this.map = this.denrees.map((denree) => {
           const retour = Object.assign({}, denree);

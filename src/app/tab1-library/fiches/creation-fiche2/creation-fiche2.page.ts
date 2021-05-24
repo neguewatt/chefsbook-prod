@@ -11,6 +11,9 @@ import { Preparation } from 'src/app/models/preparation';
 })
 export class CreationFiche2Page implements OnInit {
 
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+
   userNom: string;
   prenom: string;
 
@@ -32,16 +35,11 @@ export class CreationFiche2Page implements OnInit {
   }
 
   viewFiche(ev){
-    console.log(ev);
     if(ev.target.value === 'Préparation') {
       this.prepa = true;
     }else{
       this.prepa = false;
     }
   }
-
-
-
-
 
 }

@@ -32,11 +32,17 @@
               </ion-input>
             </ion-item>
             <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
-              <ion-input type="password" id="password" placeholder="Mot de passe" [(ngModel)]="password"
+              <ion-input type="password" id="password" placeholder="Mot de passe" [(ngModel)]="password"  (keyup)="testValidation($event)"
                 style="color:#F03434"></ion-input>
-              <!-- <ion-icon slot="end">voir</ion-icon> -->
+                <ion-icon *ngIf="booleanIconValid" slot="end" name="checkmark-circle-outline"></ion-icon>
             </ion-item>
-            <ion-item lines="none" class="ion-text-center">
+            <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
+              <ion-input type="password" id="password" placeholder="Confirmation" [(ngModel)]="password2" (keyup)="testValidationDif($event)"
+                style="color:#F03434"></ion-input>
+              <ion-icon *ngIf="booleanIconValidDif" slot="end" name="checkmark-circle-outline"></ion-icon>
+
+            </ion-item>
+            <ion-item lines="none" class="ion-text-center" color="trensparent">
               <ion-text class="label-conditions">
                 En créant un compte, vous acceptez nos conditions d'utilisation et politique de confidentialité
               </ion-text>

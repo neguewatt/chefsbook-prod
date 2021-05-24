@@ -12,7 +12,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('compte')" detail="false">
-          <ion-icon color="dark" name="person-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon src="../../../assets/icon/icon-profile.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Compte
           </ion-label>
@@ -26,7 +26,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('reglages')" detail="false" [disabled]="false">
-          <ion-icon color="dark" name="settings-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon  src="../../../assets/icon/icon-settings.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Réglages
           </ion-label>
@@ -40,7 +40,7 @@
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('info-legale')" detail="false">
-          <ion-icon color="dark" name="information-circle-outline" class="ion-padding-end"></ion-icon>
+          <ion-icon src="../../../assets/icon/icon-information.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
           <ion-label color="dark">
             Informations légales
           </ion-label>
@@ -50,7 +50,7 @@
     </ion-row>
   </ion-grid>
   <hr>
-  <ion-grid>
+  <ion-grid [hidden]="true">
     <ion-row>
       <ion-col>
         <ion-item lines="none" button (click)="buttonClick('assistance')" detail="false">

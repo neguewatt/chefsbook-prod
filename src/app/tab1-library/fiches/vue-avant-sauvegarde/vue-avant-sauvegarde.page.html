@@ -1,54 +1,36 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-buttons slot="start">
+    <ion-toolbar class="headerFiche">
+        <ion-buttons slot="start" class="buttonBack">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-title style="color:#ffffff" class="pLR50">{{fiche.nom}}</ion-title>
-        <ion-buttons slot="end">
-            <ion-back-button style="color:#ffffff" text="" icon="pencil"></ion-back-button>
-        </ion-buttons>
+        <ion-title class="titrePage titreFiche">{{fiche.nom}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
     <ion-grid style="background:#ffffff">
-        <!-- <ion-row>
-      <ion-col>
-        <ion-button class="circleButton">
-          test
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button class="circleButton">
-          test
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button class="circleButton">
-          test
-        </ion-button>
-      </ion-col>
-    </ion-row> -->
         <ion-row>
-            <ion-col size="6">
-                <ion-list>
-                    <ion-item lines="none">
-                        <p>{{date}}</p>
-                    </ion-item>
-                    <ion-item lines="none">
-                        <p>{{fiche.poste}}</p>
-                    </ion-item>
-                </ion-list>
+            <ion-col class="ion-padding-horizontal" style="padding: 0;">
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-calendar.svg"></ion-icon>
+                    <p class="policeFiche">{{date}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-prep.svg">
+                    </ion-icon>
+                    <p class="policeFiche">{{fiche.poste}}</p>
+                </ion-item>
             </ion-col>
-            <ion-col size="6">
-                <ion-list>
-                    <ion-item lines="none">
-                        <p>{{userNom}} {{prenom}}</p>
-                    </ion-item>
-                    <ion-item lines="none">
-                        <p>{{fiche.produitRef.produit}}</p>
-                    </ion-item>
-                </ion-list>
+            <ion-col class="ion-padding-horizontal" style="padding: 0;">
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-profile.svg"></ion-icon>
+                    <p class="policeFiche">{{userNom}} {{prenom}}</p>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-ref.svg"></ion-icon>
+                    <p class="policeFiche">{{fiche.produitRef.produit}}</p>
+                </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -58,91 +40,132 @@
             <ion-col>
                 <ion-list>
                     <ion-item-divider class="list" (click)="showDenrees()">
-                        <ion-label>
+                        <ion-label class="classTitreSection">
                             Denrées
                         </ion-label>
-                        <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
+                        <ion-icon class="iconFiche" slot="end"
+                            [name]="chevronDenreesOn  ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
                     </ion-item-divider>
                     <div [hidden]="denreesDisabled">
                         <ion-grid [hidden]="tableau1">
                             <ion-row>
-                                <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                <ion-col class="ion-text-center" size="6" >
+                                    <ion-label class="classTitreDenreeTableau">
                                         Nature
                                     </ion-label>
                                 </ion-col>
-                                <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                <ion-col class="ion-text-center" size="3">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Unité
                                     </ion-label>
                                 </ion-col>
-                                <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                <ion-col class="ion-text-center" size="3">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Quantité
                                     </ion-label>
                                 </ion-col>
-                                <!-- <ion-col class="ion-text-center">
-                  <ion-icon color="primary" size="small" (click)="addProduit()" name="add-circle-outline"></ion-icon>
-                </ion-col> -->
                             </ion-row>
-                            <ion-row *ngFor="let denree of denrees; let i = index">
-                                <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
-                                <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
-                                <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
-                                <!-- <ion-col class="ion-text-center">
-                  <ion-icon color="primary" size="small" name="trash-outline" (click)="deleteProduit(denree)"></ion-icon> 
-                </ion-col> -->
-                            </ion-row>
+                            <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle"
+                                    class="textDivider">
+                                    <ion-label>{{denree.key}}</ion-label>
+                                    <ion-icon class="iconFiche" slot="end"
+                                        [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                    </ion-icon>
+                                </ion-item-divider>
+                                <div *ngIf="!denree.value.toggle">
+                                    <ion-row *ngFor="let value of denree.value; let i = index ">
+                                        <ion-col class="ion-text-left" size="6">
+                                            <ion-label class="classDenreeTableau ion-text-wrap" >
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center" size="3">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center" size="3">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </div>
+                            </ion-item-group>
                         </ion-grid>
                         <ion-grid [hidden]="tableau2">
                             <ion-row>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Quantité
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Unité
                                     </ion-label>
                                 </ion-col>
                                 <ion-col class="ion-text-center">
-                                    <ion-label size="large">
+                                    <ion-label class="classTitreDenreeTableau">
                                         Nature
                                     </ion-label>
                                 </ion-col>
-                                <!-- <ion-col class="ion-text-center">
-                  <ion-icon color="primary" size="small" (click)="addProduit()" name="add-circle-outline"></ion-icon>
-                </ion-col> -->
                             </ion-row>
-                            <ion-row *ngFor="let denree of denrees; let i = index ">
-                                <ion-col class="ion-text-center"> {{denree.quantite}}</ion-col>
-                                <ion-col class="ion-text-center"> {{denree.unite}}</ion-col>
-                                <ion-col class="ion-text-center">{{denree.produit}}</ion-col>
-                                <!-- <ion-col class="ion-text-center">
-                  <ion-icon color="primary" size="small" name="trash-outline" (click)="deleteProduit(denree)"></ion-icon>
-                </ion-col> -->
-                            </ion-row>
+                            <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                                <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
+                                    <ion-label>{{denree.key}}</ion-label>
+                                    <ion-icon class="iconFiche" slot="end"
+                                        [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                    </ion-icon>
+                                </ion-item-divider>
+                                <div *ngIf="!denree.value.toggle">
+                                    <ion-row *ngFor="let value of denree.value; let i = index ">
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col class="ion-text-center">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
+                                    </ion-row>
+                                </div>
+                            </ion-item-group>
                         </ion-grid>
                     </div>
                 </ion-list>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <hr/>
+    <hr />
     <ion-grid>
         <ion-row>
-            <ion-item lines="none" color="transparent">
-                <ion-label class="ion-text-wrap">
-                    {{fiche.descriptionTechniques}}
-                </ion-label>
-            </ion-item>
+            <ion-col>
+                <ion-item-divider color="trensparent">
+                    <ion-label class="classTitreSection">
+                        Description technique
+                    </ion-label>
+                </ion-item-divider>
+                <ion-item lines="none" >
+                    <ion-label class="descTexteCss ion-text-wrap">
+                        {{fiche.descriptionTechniques}}
+                    </ion-label>
+                </ion-item>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-        <ion-button expand="full" color="secondary" (click)="openModalLivre()">
+        <ion-button expand="block" color="primary" (click)="openModalLivre()">
             Sauvegarder
         </ion-button>
     </ion-toolbar>

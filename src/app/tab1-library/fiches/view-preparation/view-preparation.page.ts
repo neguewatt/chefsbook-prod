@@ -1,3 +1,4 @@
+import { PosteDeTravail } from 'src/app/models/postes';
 import { Utilisateurs } from './../../../models/Utilisateurs';
 import { Denrees } from './../../../models/denrees';
 import { Produits } from '../../../models/produits';
@@ -43,7 +44,7 @@ export class ViewPreparationPage implements OnInit {
   nombreDePortion: number;
   photo: string;
   poste: string;
-  produitRef: string;
+  produitRef: Denrees;
   type: string;
   // end variable fiche
   denreesDisabled = false;
@@ -55,9 +56,9 @@ export class ViewPreparationPage implements OnInit {
   ficheUpdate: boolean;
   showButtonUpdate = false;
   newNom: string;
-  postes: string[] = ['Bar', 'Boulangerie', 'Cuisson poisson', 'Cuisson viande', 'Entremets', 'Garde manger', 'Patisserie', 'Saucier'];
+  postes: PosteDeTravail[] = [];
   newPoste: string;
-  newProduitRef: string;
+  newProduitRef: Denrees;
   newDescriptionTechniques: string;
 
   newItems:  Array<any> = [];
@@ -70,6 +71,7 @@ export class ViewPreparationPage implements OnInit {
       if (this.route.getCurrentNavigation().extras.state) {
         console.log('param ok ', this.route.getCurrentNavigation().extras.state);
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
+        this.fiche.key = this.route.getCurrentNavigation().extras.state.key;
         if (this.route.getCurrentNavigation().extras.state.update){
           this.showUpdateFiche();
         }
@@ -84,15 +86,15 @@ export class ViewPreparationPage implements OnInit {
     this.tableau2 = this.dataService.tableau2;
     this.nom = this.fiche.nom;
 
-    console.log(this.fiche.date);
+    console.log(this.fiche.key);
     const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.descriptionTechniques = this.fiche.descriptionTechniques;
-    this.description = this.fiche.description;
-    this.produitRef = this.fiche.produitRef.produit;
+    // this.description = this.fiche.description;
+    this.produitRef = this.fiche.produitRef;
     console.log('ref: ', this.produitRef);
 
-    this.poste = this.fiche.poste;
+    this.postes = this.dataService.posteDeTravailListe;
     this.denrees = this.fiche.denrees;
 
     this.newItems = this.groupByType(this.denrees);
@@ -153,6 +155,26 @@ export class ViewPreparationPage implements OnInit {
     this.showButtonUpdate = true;
     this.ficheUpdate = true;
   }
+
+  updateFiche(){
+    const _date = new Date();
+    const newFiche = new Preparation();
+    newFiche.key = this.fiche.key;
+    newFiche.date = new Date(_date);
+    newFiche.descriptionTechniques = this.descriptionTechniques;
+    newFiche.denrees = this.fiche.denrees;
+    newFiche.idPartage = this.fiche.idPartage;
+    newFiche.idUtilisateur = this.fiche.idUtilisateur;
+    newFiche.livre = this.fiche.livre;
+    newFiche.nom = this.nom;
+    newFiche.poste = this.poste;
+    newFiche.produitRef = this.produitRef;
+    newFiche.type = this.fiche.type;
+    this.fiche = newFiche;
+    console.log(this.fiche);
+    this.dataService.updateFichePrepa(this.fiche.key ,this.fiche);
+  }
+
   groupByType(array: any){
     return array.reduce((r, a) => {
           r[a.typeProduit] = r[a.typeProduit] || [];

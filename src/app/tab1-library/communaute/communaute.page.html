@@ -1,11 +1,18 @@
-<ion-list>
-    <ion-item lines="none">
-        <ion-icon class="marRW10" src="../../../assets/icon/icon-homepage.svg" style="color: brown;" ></ion-icon>
-        <ion-icon class="marRW10" src="../../../assets/icon/icon-share.svg" style="color: brown;" ></ion-icon>
-        <ion-icon class="marRW10" src="../../../assets/icon/icon-folder.svg" style="--color: blue;" ></ion-icon>
-        <ion-icon class="marRW10" src="../../../assets/icon/icon-workxp.svg" style="color: brown;" ></ion-icon>
-        <ion-icon class="marRW10" src="../../../assets/icon/icon-like.svg" style="color: brown;" ></ion-icon>
-    </ion-item>
-</ion-list>
-
+<ion-row class="bandeau">
+    <ion-col class="ion-text-center">
+        <ion-icon [hidden]="true" class="iconeSize" src="../../../assets/icon/icon-homepage.svg" style="color: yellow;" ></ion-icon>
+    </ion-col>
+    <ion-col class="ion-text-center">
+        <ion-icon [hidden]="true" class="iconeSize" src="../../../assets/icon/icon-share.svg" style="color: brown;" ></ion-icon>
+    </ion-col>
+    <ion-col class="ion-text-center">
+        <ion-icon class="iconeSize" src="../../../assets/icon/icon-folder.svg" style="--color: red;" ></ion-icon>
+    </ion-col>
+    <ion-col class="ion-text-center">
+        <ion-icon [hidden]="true" class="iconeSize" src="../../../assets/icon/icon-workxp.svg" style="color: brown;" ></ion-icon>
+    </ion-col>
+    <ion-col class="ion-text-center">
+        <ion-icon [hidden]="true" class="iconeSize" src="../../../assets/icon/icon-like.svg" style="color: blue;" ></ion-icon>
+    </ion-col>
+</ion-row>
 <app-folder></app-folder>

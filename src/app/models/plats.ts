@@ -7,6 +7,7 @@ export class Plats {
     public denrees?: Array<Denrees> = [];
     public date?: any;
     public nom?: string;
+    public idPartage?: string[] = [];
     public idUtilisateur?: string;
     public fichePreparation?: Array<Preparation> = [];
     public descriptionCommercial?: string;

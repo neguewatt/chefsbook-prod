@@ -30,6 +30,8 @@ export class VuFicheAvantAjoutPage implements OnInit {
   ingredientRef: string;
   date: string;
 
+  newItems:  Array<any> = [];
+
   constructor(private dataService: AuthFirebaseService,
     private activRoute: ActivatedRoute,
     private route: Router,
@@ -56,8 +58,16 @@ export class VuFicheAvantAjoutPage implements OnInit {
   //  this.getOrdreTableau();
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
+    this.newItems = this.groupByType(this.denrees);
   }
 
+  groupByType(array: any){
+    return array.reduce((r, a) => {
+          r[a.typeProduit] = r[a.typeProduit] || [];
+          r[a.typeProduit].push(a);
+          return r;
+      }, Object.create(null));
+  }
   // getOrdreTableau() {
   //   this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
   //     map(changes =>
@@ -92,7 +102,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
   //   });
   // }
 
-  showDenrees(showDenrees: string) {
+  showDenrees() {
     if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
       this.chevronDenreesOn = 'chevron-down-outline';

@@ -15,6 +15,10 @@ import { CreationFiche2Page } from '../creation-fiche2.page';
   selector: 'app-plat',
   templateUrl: './plat.page.html',
   styleUrls: ['./plat.page.scss'],
+  styles: [`
+  .even { background-color: #F2F2F2; }
+  .odd { background-color: #FFFFFF; }
+  `],
 })
 export class PlatPage implements OnInit {
 
@@ -34,6 +38,7 @@ export class PlatPage implements OnInit {
   userNom: string;
   prenom: string;
   denrees: Denrees[];
+  prepaRecherche = '';
 
   // affichage denrees
   denreesDisabled = true;
@@ -158,40 +163,9 @@ export class PlatPage implements OnInit {
         value4: this.plat
       }
     };
-    this.route.navigate(['creation-fiche2/plat/vu-fiche-avant-ajout/'], navigationExtras);
+    this.route.navigate(['vu-fiche-avant-ajout/'], navigationExtras);
+    this.prepaRecherche = '';
   }
-
-
-  // supprimer plus tard
-  async addProduit() {
-    const modal = await this.modalController.create({
-      component: AjoutProduitPage,
-      cssClass: 'addProduit-custom-modal-css'
-    });
-
-    modal.onDidDismiss().then((newDenree) => {
-      console.log(newDenree.data);
-      if (newDenree.data !== null) {
-        this.denrees.push(newDenree.data);
-
-      }
-    });
-    return await modal.present();
-  }
-
-  // supprimer plus tard
-  deleteProduit(denree: Denrees) {
-    // this.suppressionDenree(denree);
-    // const index: number = this.denrees.indexOf(denree);
-    // if (index !== -1) {
-    //   this.denrees.splice(index, 1);
-    // }
-    // if (denree.produit === this.newProduitRef.produit) {
-    //   this.newProduitRef = null;
-    // }
-
-  }
-
 
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;

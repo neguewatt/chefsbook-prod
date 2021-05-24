@@ -12,8 +12,8 @@ import { ChoixDuLivrePage } from 'src/app/pages/modal/choix-du-livre/choix-du-li
   templateUrl: './sauvegarde-plat.page.html',
   styleUrls: ['./sauvegarde-plat.page.scss'],
   styles: [`
-  .even { background-color: #FFF1F1; }
-  .odd {  }
+  .even { background-color: #F2F2F2; }
+  .odd { background-color: #FFFFFF; }
   `],
 })
 export class SauvegardePlatPage implements OnInit {
@@ -27,6 +27,7 @@ export class SauvegardePlatPage implements OnInit {
   tableau2 = false;
   today: Date;
   date: string;
+  newPlatDenrees = [];
 
   constructor(private dataService: AuthFirebaseService,
     public modalController: ModalController,
@@ -53,6 +54,13 @@ export class SauvegardePlatPage implements OnInit {
     this.tableau2 = this.dataService.tableau2;
     this.today = new Date();
     this.date = this.today.toLocaleDateString('fr-FR');
+
+    this.newPlatDenrees = this.plat.denrees.reduce((r, a) => {
+      // a.toggle=false;
+      r[a.typeProduit] = r[a.typeProduit] || [];
+      r[a.typeProduit].push(a);
+      return r;
+    }, Object.create(null));
   }
 
 

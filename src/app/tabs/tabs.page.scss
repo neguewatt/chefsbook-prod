@@ -15,7 +15,7 @@ ion-tabs {
 // }
 
 .tab-selected ion-icon {
-    color: white;
+    color: #F03434;
 }
 
 .tab-selected,
@@ -31,67 +31,69 @@ ion-tab-button {
 ion-tab-button:hover {
     ion-icon,
     ion-label {
-        color: white !important;
-        --ion-color-base: white !important;
+        color: #F03434 !important;
+        --ion-color-base: #F03434 !important;
     }
 }
 
-ion-tabs {
-    //not selected custom image
-    ion-tab-button.custom-homepage > ion-icon {
-        --color: #95989a;
-        background-image: url(../../assets/icon/icon-homepage.svg);
-    }
-    //selected custom image
-    ion-tab-button.tab-selected.custom-homepage > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-homepage.svg);
-    }
 
-    //not selected custom image
-    ion-tab-button.custom-notif > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-notif.svg);
-    }
-    //selected custom image
-    ion-tab-button.tab-selected.custom-notif > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-notif.svg);
-    }
 
-    //not selected custom image
-    ion-tab-button.custom-search > ion-icon {
-        color: white;
-        background-image: url(../../assets/icon/icon-search.svg);
-    }
-    //selected custom image
-    ion-tab-button.tab-selected.custom-search > ion-icon {
-        color: white;
-        background-image: url(../../assets/icon/icon-search.svg);
-    }
+// ion-tabs {
+//     //not selected custom image
+//     ion-tab-button.custom-homepage > ion-icon {
+//         --color: #F03434 !important;
+//         --background-image: url(../../assets/icon/icon-homepage.svg);
+//     }
+//     //selected custom image
+//     ion-tab-button.tab-selected.custom-homepage > ion-icon {
+//         --color: blue;
+//         background-image: url(../../assets/icon/icon-homepage.svg);
+//     }
 
-    //not selected custom image
-    ion-tab-button.custom-profile > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-profile.svg);
-    }
-    //selected custom image
-    ion-tab-button.tab-selected.custom-profile > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-profile.svg);
-    }
+//     //not selected custom image
+//     ion-tab-button.custom-notif > ion-icon {
+//         --color: #95989a;
+//         background-image: url(../../assets/icon/icon-notif.svg);
+//     }
+//     //selected custom image
+//     ion-tab-button.tab-selected.custom-notif > ion-icon {
+//         --color: #95989a;
+//         background-image: url(../../assets/icon/icon-notif.svg);
+//     }
 
-    //not selected custom image
-    ion-tab-button.custom-settings > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-settings.svg);
-    }
-    //selected custom image
-    ion-tab-button.tab-selected.custom-settings > ion-icon {
-        color: #95989a;
-        background-image: url(../../assets/icon/icon-settings.svg);
-    }
-}
+//     //not selected custom image
+//     ion-tab-button.custom-search > ion-icon {
+//         --color: white;
+//         background-image: url(../../assets/icon/icon-search.svg);
+//     }
+//     //selected custom image
+//     ion-tab-button.tab-selected.custom-search > ion-icon {
+//         --color: white;
+//         background-image: url(../../assets/icon/icon-search.svg);
+//     }
+
+//     //not selected custom image
+//     ion-tab-button.custom-profile > ion-icon {
+//         --color: #95989a;
+//         background-image: url(../../assets/icon/icon-profile.svg);
+//     }
+//     //selected custom image
+//     ion-tab-button.tab-selected.custom-profile > ion-icon {
+//         --color: #95989a;
+//         background-image: url(../../assets/icon/icon-profile.svg);
+//     }
+
+//     //not selected custom image
+//     ion-tab-button.custom-settings > ion-icon {
+//         color: #95989a;
+//         background-image: url(../../assets/icon/icon-settings.svg);
+//     }
+//     //selected custom image
+//     ion-tab-button.tab-selected.custom-settings > ion-icon {
+//         color: #95989a;
+//         background-image: url(../../assets/icon/icon-settings.svg);
+//     }
+// }
 
 #tab-button-tab1-library {
     border-top-left-radius: 30px;
@@ -115,7 +117,7 @@ ion-tabs {
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background: #f03434;
+    background: #FF3D51;
 
     ion-icon {
         background-repeat: no-repeat;

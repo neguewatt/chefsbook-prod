@@ -9,7 +9,7 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
-
+@import "./theme/variables.scss";
 /* Core CSS required for Ionic components to work properly */
 
 @import "~@ionic/angular/css/core.css";
@@ -19,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 
@@ -28,13 +28,105 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 hr {
-    border: 0.5px solid rgb(0, 0, 0, 0.2) !important;
+    border-top: 0.5px solid rgb(0, 0, 0, 0.1) !important;
     margin: 0px !important;
 }
 
-.headerBackground {
-    --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
+.header {
+    background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    height: 60px;
+    padding: 0px;
+}
+
+.headerFiche {
+    --background: #fff url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    height: 58px;
+    padding: 0px;
+}
+
+.iconUpdate {
+    color: #ffffff;
+    width: 24px;
+    height: 24px;
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.iconFiche {
+    font-size: 20px;
+    color: #7f7f7f;
+    --ionicon-stroke-width: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.titreModal {
+    font-family: "Roboto";
+    font-size: 16px;
+    color: #f03434 !important;
+}
+
+.iconeProfil {
+    font-size: 24px;
+    color: #7f7f7f;
+    --ionicon-stroke-width: 16px;
+}
+
+.boutonheader {
+    text-align: center;
+}
+.buttonBack {
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.policeFiche {
+    font-family: "Roboto-Regular" !important;
+    font-size: 14px !important;
+    color: #7f7f7f !important;
+}
+
+.classTitreSection {
+    font-weight: 400;
+    font-family: "Roboto" !important;
+    font-size: 18px !important;
+    color: #f03434 !important;
+}
+.classTitreDenreeTableau {
+    font-family: "Roboto" !important;
+    font-size: 16px !important;
+    --color: #393939 !important;
+}
+.classDenreeTableau {
+    font-family: "Roboto" !important;
+    font-size: 16px !important;
+    color: rgb(0, 0, 0, 0.5) !important;
+}
+.dividerLettre {
+    --background: #ff4a4a;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+.textDivider {
+    --background: #e6e6e6;
+    color: #7f7f7f;
+    font-size: 14px;
+    font-weight: 500;
+}
+.descCss {
+    font-family: "Roboto-Regular" !important;
+    --color: #ff4a4a !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+.descTexteCss {
+    font-family: "Roboto-Regular" !important;
+    --color: #7f7f7f !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
 }
 
 ion-header {
@@ -42,7 +134,8 @@ ion-header {
 }
 
 ion-content {
-    --background: #fff;
+    height: 100%;
+    --background: #ffffff;
 }
 
 ion-segment {
@@ -51,16 +144,6 @@ ion-segment {
     }
 }
 
-// .carre{
-//     width: 109px;
-//     height: 109px;
-//     --background: #F1F9FF;
-// }
-// #carre{
-//     width: 109px;
-//     height: 109px;
-//     --background: #BCE0FD;
-// }
 .listLivre {
     height: 100%;
     overflow-y: scroll;
@@ -77,7 +160,11 @@ ion-segment {
 }
 
 .list {
-    --background: #FFF;
+    --background: #fff;
+}
+
+.padding-0 {
+    padding: 0px;
 }
 
 .rectangle {
@@ -91,6 +178,26 @@ ion-segment {
     height: 60px;
     border-radius: 50%;
     --background: #f03434;
+}
+
+.sc-ion-modal-ios-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+.sc-ion-modal-md-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+
+.sc-ion-alert-ios-h {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+.sc-ion-alert-md-h {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
+}
+
+.titrePage {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
 }
 
 .pLR50 {
@@ -118,8 +225,8 @@ ion-avatar {
 }
 
 :root {
-    --ion-color-primary: #B73636;
-    --ion-color-secondary: #FF4A4A;
+    --ion-color-primary: #b73636;
+    --ion-color-secondary: #f03434;
     // autre couleur
 }
 
@@ -128,7 +235,7 @@ ion-avatar {
 }
 
 .Btn {
-    --background: #B73636;
+    --background: #b73636;
 }
 
 .Btn_Update {
@@ -140,27 +247,27 @@ ion-avatar {
 }
 
 .Btn_Validate {
-    --background: #00AF2F;
+    --background: #00af2f;
 }
 
 .Btn_Cancel {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Btn_AddBook {
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
 }
 
 .Btn_ToggleOff {
-    --background: #4E4E4E;
+    --background: #4e4e4e;
 }
 
 .Btn_ToggleOn {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Icon_Active {
-    --background: #F03434;
+    --background: #f03434;
 }
 
 .Icon_Idle {
@@ -169,17 +276,17 @@ ion-avatar {
 }
 
 .Header_Creation {
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
 }
 
 .Header_Main {
     //(with image)
-    --background: linear-gradient(#FF512E, #FF4444);
+    --background: linear-gradient(#ff512e, #ff4444);
     opacity: 0.8;
 }
 
 .Header_Title {
-    --background: #FF4A4A;
+    --background: #ff4a4a;
 }
 
 .backround-login {
@@ -219,44 +326,30 @@ ion-avatar {
     font-size: 0.9rem;
 }
 
-ion-button {
-    width: 100%;
-}
-
 .iconeSize {
     height: 30px;
     width: 30px;
 }
 
 .my-custom-modal-css .modal-wrapper {
-    height: 275px;
-    width: 279px;
-    top: 15%;
-    bottom: 50%;
     position: absolute;
     display: block;
 }
 
 .addProduit-custom-modal-css .modal-wrapper {
-    height: 45%;
-    width: 90%;
-    top: 15%;
     position: absolute;
     display: block;
 }
 
 .choix-du-livre-modal-css .modal-wrapper {
-    height: 40%;
-    width: 90%;
-    top: 15%;
     position: absolute;
     display: block;
 }
 
 .ficheElementTable {
-    font: 500 20px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    font: 500 14px/25px Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: normal !important;
-    margin: 0px 0 5px !important;
+    margin: 0px !important;
 }
 
 .notificationTable {

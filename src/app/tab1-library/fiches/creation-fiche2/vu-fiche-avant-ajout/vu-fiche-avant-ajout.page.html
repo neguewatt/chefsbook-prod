@@ -1,119 +1,181 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="" icon="arrow-back-outline"></ion-back-button>
+  <ion-toolbar class="headerFiche">
+    <ion-buttons slot="start" class="buttonBack">
+      <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-title color="primary" class="pLR50">Creation d'une FT plat</ion-title>
+    <ion-title class="titrePage titreFiche">
+      {{fiche.nom}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid style="background:#ffffff">
     <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-item>
-            <p>{{date}}</p>
-          </ion-item>
-          <ion-item>
-            <p>{{fiche.poste}}</p>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col>
-        <ion-list>
-          <ion-item>
-            <p>{{userNom}} {{prenom}}</p>
-          </ion-item>
-          <ion-item>
-            <p>{{fiche.produitRef.produit}}</p>
-          </ion-item>
-        </ion-list>
-      </ion-col>
+        <ion-col class="ion-padding-horizontal" style="padding: 0;">
+            <ion-item lines="none">
+                <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-calendar.svg"></ion-icon>
+                <p class="policeFiche">{{date}}</p>
+            </ion-item>
+            <ion-item  lines="none">
+                <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-type-plat.svg">
+                </ion-icon>
+                <p class="policeFiche">{{fiche.poste}}</p>
+            </ion-item>
+        </ion-col>
+        <ion-col class="ion-padding-horizontal" style="padding: 0;">
+            <ion-item lines="none">
+                <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-profile.svg"></ion-icon>
+                <p class="policeFiche">{{userNom}} {{prenom}}</p>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-ref.svg"></ion-icon>
+                <p class="policeFiche">{{fiche.produitRef.produit}}</p>
+            </ion-item>
+        </ion-col>
     </ion-row>
-    <hr/>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-item-divider class="list" (click)="showDenrees()">
-            <ion-label>
-              Denrées
-            </ion-label>
-            <ion-icon slot="end" [name]="chevronDenreesOn"></ion-icon>
-          </ion-item-divider>
-          <div [hidden]="denreesDisabled">
-            <table [hidden]="tableau1"  style="width: 100%" class="centerTable">
-              <thead>
-               <tr>
-                  <th>
-                    Nature
-                  </th>
-                  <th>
-                    Unité
-                  </th>
-                  <th>
-                    Quantité
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let denree of denrees">
-                  <td>
-                    {{denree.produit}}
-                  </td>
-                  <td>
-                    {{denree.unite}}
-                  </td>
-                  <td>
-                    {{denree.quantite}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table [hidden]="tableau2" style="width: 100%" class="centerTable">
-              <thead>
-               <tr>
-                  <th>
-                    Quantité
-                  </th>
-                  <th>
-                    Unité
-                  </th>
-                  <th>
-                    Nature
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let denree of denrees">
-                  <td>
-                    {{denree.quantite}}
-                  </td>
-                  <td>
-                    {{denree.unite}}
-                  </td>
-                  <td>
-                    {{denree.produit}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  <hr/>
-    <ion-row>
-      <ion-col class="ion-margin">
-        <p>
-          {{fiche.descriptionTechniques}}
-        </p>
-      </ion-col>
-    </ion-row>
+</ion-grid>
+    <hr>
+    <ion-grid style="background:#ffffff">
+      <ion-row>
+          <ion-col>
+              <ion-list>
+                  <ion-item-divider class="list" (click)="showDenrees()">
+                      <ion-label class="classTitreSection">
+                          Denrées
+                      </ion-label>
+                      <ion-icon class="iconFiche" slot="end"
+                          [name]="chevronDenreesOn  ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+                  </ion-item-divider>
+                  <div [hidden]="denreesDisabled">
+                      <ion-grid [hidden]="tableau1">
+                          <ion-row>
+                              <ion-col class="ion-text-left" size="6">
+                                  <ion-label class="classTitreDenreeTableau">
+                                      Nature
+                                  </ion-label>
+                              </ion-col>
+                              <ion-col class="ion-text-center" size="3">
+                                  <ion-label class="classTitreDenreeTableau">
+                                      Unité
+                                  </ion-label>
+                              </ion-col>
+                              <ion-col class="ion-text-center" size="3">
+                                  <ion-label class="classTitreDenreeTableau">
+                                      Quantité
+                                  </ion-label>
+                              </ion-col>
+                          </ion-row>
+                          <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                              <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle"
+                                  class="textDivider">
+                                  <ion-label>{{denree.key}}</ion-label>
+                                  <ion-icon class="iconFiche" slot="end"
+                                      [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                  </ion-icon>
+                              </ion-item-divider>
+                              <div *ngIf="!denree.value.toggle">
+                                  <ion-row *ngFor="let value of denree.value; let i = index ">
+                                      <ion-col class="ion-text-left" size="6">
+                                          <ion-label class="classDenreeTableau ion-text-wrap">
+                                              {{value.produit}}
+                                          </ion-label>
+                                      </ion-col>
+                                      <ion-col class="ion-text-center" size="3">
+                                          <ion-label class="classDenreeTableau">
+                                              {{value.unite}}
+                                          </ion-label>
+                                      </ion-col>
+                                      <ion-col class="ion-text-center" size="3">
+                                          <ion-label class="classDenreeTableau">
+                                              {{value.quantite}}
+                                          </ion-label>
+                                      </ion-col>
+                                      <!-- <ion-col class="ion-text-center" size="4">{{value.produit}}</ion-col>
+                                      <ion-col class="ion-text-center" size="4"> {{value.unite}}</ion-col>
+                                      <ion-col class="ion-text-center" size="4"> {{value.quantite}}</ion-col> -->
+                                  </ion-row>
+                              </div>
+                          </ion-item-group>
+                      </ion-grid>
+                      <ion-grid [hidden]="tableau2">
+                          <ion-row>
+                              <ion-col class="ion-text-left" size="6">
+                                  <ion-label class="classTitreDenreeTableau">
+                                      Quantité
+                                  </ion-label>
+                              </ion-col>
+                              <ion-col class="ion-text-center" size="3">
+                                  <ion-label class="classTitreDenreeTableau">
+                                      Unité
+                                  </ion-label>
+                              </ion-col>
+                              <ion-col class="ion-text-center" size="3">
+                                  <ion-label class="classTitreDenreeTableau ">
+                                      Nature
+                                  </ion-label>
+                              </ion-col>
+                          </ion-row>
+                          <ion-item-group *ngFor="let denree of newItems | keyvalue; let i = index">
+                              <ion-item-divider (click)="denree.value.toggle=!denree.value.toggle">
+                                  <ion-label>{{denree.key}}</ion-label>
+                                  <ion-icon class="iconFiche" slot="end"
+                                      [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
+                                  </ion-icon>
+                              </ion-item-divider>
+                              <div *ngIf="!denree.value.toggle">
+                                  <ion-row *ngFor="let value of denree.value; let i = index ">
+                                      <ion-col class="ion-text-left" size="6">
+                                          <ion-label class="classDenreeTableau">
+                                              {{value.quantite}}
+                                          </ion-label>
+                                      </ion-col>
+                                      <ion-col class="ion-text-center" size="3">
+                                          <ion-label class="classDenreeTableau">
+                                              {{value.unite}}
+                                          </ion-label>
+                                      </ion-col>
+                                      <ion-col class="ion-text-center" size="3">
+                                          <ion-label class="classDenreeTableau ion-text-wrap">
+                                              {{value.produit}}
+                                          </ion-label>
+                                      </ion-col>
+                                  </ion-row>
+                              </div>
+                          </ion-item-group>
+                      </ion-grid>
+                  </div>
+              </ion-list>
+          </ion-col>
+      </ion-row>
   </ion-grid>
-  <ion-button expand="full" color="secondary" 
-    (click)="openModal()">
-    AJOUTER CETTE PREPARATION
-  </ion-button>
+    <hr />
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item-divider class="list">
+            <ion-label class="classTitreSection">
+              Description technique
+            </ion-label>
+          </ion-item-divider>
+          <ion-item lines="none" color="trensparent">
+            <ion-label class="descTexteCss ion-text-wrap">
+              {{fiche.descriptionTechniques}}
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>
+<ion-footer>
+<ion-grid>
+  <ion-row>
+    <ion-col>      
+    <ion-button expand="block" color="primary" (click)="openModal()">
+      AJOUTER CETTE PREPARATION
+    </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
+</ion-footer>

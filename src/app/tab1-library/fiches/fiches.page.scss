@@ -1,0 +1,16 @@
+.dividerLettre{
+    --background: #FF4A4A;
+    color:white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+ion-header{
+    height: 42px;
+}
+
+.livreNom{
+    font-weight: 200;
+    font-size: 12px;
+    color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.8);
+}

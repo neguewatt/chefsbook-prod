@@ -18,6 +18,9 @@ export class FichesPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+
   toutesBoolean = false;
   prepaBoolean = false;
   platsBoolean = false;
@@ -31,9 +34,6 @@ export class FichesPage implements OnInit {
   ficheTechniquesByLivres: any[] = [];
 
   ficheUpdate = false;
-
-  colorA = 'font-weight: bold';
-  colorB = '';
 
   iconPlat = true;
   iconPrepa = true;
@@ -75,6 +75,7 @@ export class FichesPage implements OnInit {
       )
     ).subscribe(res => {
       if (res !== undefined) {
+        console.log('fiche', res);
         this.prepaBoolean = true;
         this.dataService.preparationListe = res;
         this.prepa = res;
@@ -168,7 +169,8 @@ export class FichesPage implements OnInit {
       const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
-          update: this.ficheUpdate
+          update: this.ficheUpdate,
+          key: fiche.key
         }
       };
       this.route.navigate(['view-plat'], navigationExtras);
@@ -176,7 +178,8 @@ export class FichesPage implements OnInit {
       const navigationExtras: NavigationExtras = {
         state: {
           value: fiche,
-          update: this.ficheUpdate
+          update: this.ficheUpdate,
+          key: fiche.key
         }
       };
       this.route.navigate(['view-preparation'], navigationExtras);
