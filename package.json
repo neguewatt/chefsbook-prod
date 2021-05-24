@@ -1,8 +1,8 @@
 {
     "name": "chefs-book",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "https://ionicframework.com/",
+    "author": "Tana-Tech",
+    "homepage": "https://tana-tech.fr/",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -42,7 +42,7 @@
         "zone.js": "~0.10.2"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~0.1102.4",
+        "@angular-devkit/build-angular": "^0.901.15",
         "@angular-eslint/builder": "2.0.2",
         "@angular-eslint/eslint-plugin": "2.0.2",
         "@angular-eslint/eslint-plugin-template": "2.0.2",
