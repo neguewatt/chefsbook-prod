@@ -10,6 +10,7 @@
  */
 
 @import "./theme/variables.scss";
+
 /* Core CSS required for Ionic components to work properly */
 
 @import "~@ionic/angular/css/core.css";
@@ -28,7 +29,6 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
 hr {
     border-top: 0.5px solid rgb(0, 0, 0, 0.1) !important;
     margin: 0px !important;
@@ -36,13 +36,20 @@ hr {
 
 .header {
     background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
-    height: 60px;
+    height: 100px;
     padding: 0px;
+}
+
+.header h1 {
+    font-size: 1rem;
+    margin-top: 15px;
+    font-weight: bold;
+    color: white;
 }
 
 .headerFiche {
     --background: #fff url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
-    height: 58px;
+    height: 100px;
     padding: 0px;
 }
 
@@ -77,6 +84,7 @@ hr {
 .boutonheader {
     text-align: center;
 }
+
 .buttonBack {
     padding-left: 15px;
     padding-top: 10px;
@@ -94,34 +102,40 @@ hr {
     font-size: 18px !important;
     color: #f03434 !important;
 }
+
 .classTitreDenreeTableau {
     font-family: "Roboto" !important;
     font-size: 16px !important;
     --color: #393939 !important;
 }
+
 .classDenreeTableau {
     font-family: "Roboto" !important;
     font-size: 16px !important;
     color: rgb(0, 0, 0, 0.5) !important;
 }
+
 .dividerLettre {
     --background: #ff4a4a;
     color: white;
     font-size: 14px;
     font-weight: 500;
 }
+
 .textDivider {
     --background: #e6e6e6;
     color: #7f7f7f;
     font-size: 14px;
     font-weight: 500;
 }
+
 .descCss {
     font-family: "Roboto-Regular" !important;
     --color: #ff4a4a !important;
     font-size: 14px !important;
     font-weight: 500 !important;
 }
+
 .descTexteCss {
     font-family: "Roboto-Regular" !important;
     --color: #7f7f7f !important;
@@ -131,6 +145,7 @@ hr {
 
 ion-header {
     --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
+    height: 100px;
 }
 
 ion-content {
@@ -183,6 +198,7 @@ ion-segment {
 .sc-ion-modal-ios-h:first-of-type {
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
 }
+
 .sc-ion-modal-md-h:first-of-type {
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
 }
@@ -190,6 +206,7 @@ ion-segment {
 .sc-ion-alert-ios-h {
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
 }
+
 .sc-ion-alert-md-h {
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.6);
 }

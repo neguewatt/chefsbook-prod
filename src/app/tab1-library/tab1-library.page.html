@@ -1,35 +1,37 @@
-<ion-header class="BG">
-    <ion-grid class="padding-0">
+<ion-header>
+    <ion-toolbar>
         <ion-grid class="padding-0">
-            <ion-row class="header">
-                <ion-row class="margin-auto">
+            <ion-grid class="padding-0">
+                <ion-row class="header">
+                    <ion-row class="margin-auto">
+                    </ion-row>
+                    <ion-row class="ion-align-items-end ion-padding-horizontal boutonHeader">
+                        <ion-col size="4" [style]="fichesBoolean ? chosen : notChosen" class="boutonheader">
+                            <ion-button (click)="segmentChanged('fichesBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="fichesBoolean ? textChosen : textNotChosen">
+                                Mes Fiches
+                            </ion-button>
+                        </ion-col>
+                        <ion-col size="4" [style]="livreBoolean ? chosen : notChosen" class="boutonheader">
+                            <ion-button (click)="segmentChanged('livreBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="livreBoolean ? textChosen : textNotChosen">
+                                Mes Livres
+                            </ion-button>
+                        </ion-col>
+                        <ion-col size="4" class="ion-margin-right" [style]="comBoolean ? chosen : notChosen" class="boutonheader">
+                            <ion-button disabled="false" (click)="segmentChanged('comBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="comBoolean ? textChosen : textNotChosen">
+                                Communauté
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
                 </ion-row>
-                <ion-row class="ion-align-items-end ion-padding-horizontal boutonHeader">
-                    <ion-col size="4" [style]="fichesBoolean ? chosen : notChosen" class="boutonheader">
-                        <ion-button (click)="segmentChanged('fichesBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="fichesBoolean ? textChosen : textNotChosen">
-                            Mes Fiches
-                        </ion-button>
-                    </ion-col>
-                    <ion-col size="4" [style]="livreBoolean ? chosen : notChosen" class="boutonheader">
-                        <ion-button (click)="segmentChanged('livreBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="livreBoolean ? textChosen : textNotChosen">
-                            Mes Livres
-                        </ion-button>
-                    </ion-col>
-                    <ion-col size="4" class="ion-margin-right" [style]="comBoolean ? chosen : notChosen" class="boutonheader">
-                        <ion-button disabled="false" (click)="segmentChanged('comBoolean')" buttonType="string" style="text-transform: uppercase; --background: transparent;" [style]="comBoolean ? textChosen : textNotChosen">
-                            Communauté
-                        </ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-row>
+            </ion-grid>
         </ion-grid>
-    </ion-grid>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <app-fiches *ngIf="fichesBoolean"></app-fiches>
     <app-livres *ngIf="livreBoolean"></app-livres>
-    <app-communaute *ngIf="comBoolean"></app-communaute>   
+    <app-communaute *ngIf="comBoolean"></app-communaute>
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addficheTech()">
         <ion-fab-button>

@@ -1,15 +1,17 @@
 <ion-header>
-    <ion-grid class="padding-0">
+    <ion-toolbar>
         <ion-grid class="padding-0">
-            <ion-row class="header">
-                <ion-row class="margin-auto">
-                    <ion-col>
-                        <h1 class="ion-margin-top">Profil</h1>
-                    </ion-col>
+            <ion-grid class="padding-0">
+                <ion-row class="header">
+                    <ion-row class="margin-auto">
+                        <ion-col>
+                            <h1 class="ion-margin-top">Profil</h1>
+                        </ion-col>
+                    </ion-row>
                 </ion-row>
-            </ion-row>
+            </ion-grid>
         </ion-grid>
-    </ion-grid>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -17,8 +19,7 @@
         <ion-row>
             <ion-col>
                 <ion-avatar>
-                    <img class="avatar"
-                        src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                    <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
                 </ion-avatar>
             </ion-col>
         </ion-row>
@@ -43,12 +44,12 @@
                     <ion-label class="descTexteCss">23 abonnés</ion-label>
                 </ion-col>
             </ion-row>
-            
+
             <ion-col class="ion-justify-content-center">
                 <ion-row class="ion-align-items-center">
                     <ion-col class="ion-text-center">
-                            <ion-icon class="iconeProfil"  src="../../../assets/icon/icon-folder.svg"></ion-icon> <br />
-                            <ion-label class="descTexteCss">{{countFT}} / {{limitFiches}} FT</ion-label>
+                        <ion-icon class="iconeProfil" src="../../../assets/icon/icon-folder.svg"></ion-icon> <br />
+                        <ion-label class="descTexteCss">{{countFT}} / {{limitFiches}} FT</ion-label>
                     </ion-col>
                 </ion-row>
             </ion-col>

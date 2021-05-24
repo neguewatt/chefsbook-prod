@@ -1,21 +1,15 @@
-
-
-.header h1{
-    font-size: 1rem;
-    margin-top:15px;
-    font-weight: bold;
-    color:white;
-}
 .margin-auto {
-    margin:auto;
+    margin: auto;
 }
-ion-button{
+
+ion-button {
     font-size: 13px;
     --border-radius: 5px;
-    color:white;
+    color: white;
 }
+
 .padding-0 {
-    padding:0px;
+    padding: 0px;
 }
 
 .addFiche {
@@ -23,18 +17,18 @@ ion-button{
     // background-image: url(../../assets/icon/icon-add.svg);
 }
 
-
-ion-footer ion-toolbar{
+ion-footer ion-toolbar {
     height: 60x;
-    --border-width:0 0 0;
+    --border-width: 0 0 0;
 }
-ion-fab-button{    
+
+ion-fab-button {
     --background: #FF3D51 !important;
     --background-activated: #FF3D51 !important;
     border-color: #F03434 !important;
 }
 
-.boutonHeader{
+.boutonHeader {
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
