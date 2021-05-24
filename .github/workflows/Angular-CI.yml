@@ -7,20 +7,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@main
     - name: Use Node.js 16.1.0
       uses: actions/setup-node@v1
       with:
         node-version: '16.1.0'
     - name: Install dependencies
-      run: npm i
+      run: npm install
     - name: install ionic
       run: npm install -g @ionic/cli
-    - name: start ionic
-      run: ionic start
     - name: Eslint test
       run: npm run lint
     - name: Test
