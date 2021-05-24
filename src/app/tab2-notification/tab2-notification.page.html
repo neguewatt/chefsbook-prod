@@ -1,19 +1,25 @@
-<ion-content class="BG">
-    <ion-grid class="padding-0">
+<ion-header>
+    <ion-toolbar>
         <ion-grid class="padding-0">
-            <ion-row class="header">
-                <ion-row class="margin-auto">
-                    <ion-col>
-                        <h1 class="ion-margin-top">Notification</h1>
-                    </ion-col>
+            <ion-grid class="padding-0">
+                <ion-row class="header">
+                    <ion-row class="margin-auto">
+                        <ion-col>
+                            <h1 class="ion-margin-top">Notification</h1>
+                        </ion-col>
+                    </ion-row>
                 </ion-row>
-            </ion-row>
+            </ion-grid>
         </ion-grid>
-    </ion-grid>
+    </ion-toolbar>
+</ion-header>
 
-    <ion-item *ngFor="let notification of notifications" lines="none" >
+
+<ion-content>
+
+    <ion-item *ngFor="let notification of notifications" lines="none">
         <ion-avatar slot="start" style="height: 50px; width: 50px;">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" >
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
         </ion-avatar>
         <ion-label class="ion-text-wrap" (click)="openFiche(notification, notification.type)">
             <p [class]="!notification.notifDisabled ? 'notifBlack' : 'notifGrey'">

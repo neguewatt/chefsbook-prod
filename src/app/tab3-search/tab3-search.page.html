@@ -1,34 +1,37 @@
-<ion-header class="BG">
-  <ion-grid class="padding-0">
-      <ion-grid class="padding-0">
-          <ion-row class="header">
-              <ion-row class="margin-auto">
-                  <ion-col>
-                      <h1 class="ion-margin-top">Recherche</h1>
-                  </ion-col>
-              </ion-row>
-          </ion-row>
-      </ion-grid>
-  </ion-grid>
+<ion-header>
+    <ion-toolbar>
+        <ion-grid class="padding-0">
+            <ion-grid class="padding-0">
+                <ion-row class="header">
+                    <ion-row class="margin-auto">
+                        <ion-col>
+                            <h1 class="ion-margin-top">Recherche</h1>
+                        </ion-col>
+                    </ion-row>
+                </ion-row>
+            </ion-grid>
+        </ion-grid>
+    </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <ion-toolbar>
+    <ion-toolbar>
 
-      <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="getItems($event)"></ion-searchbar>
+        <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="getItems($event)"></ion-searchbar>
 
-      <!-- <ion-searchbar animated color="primary" placeholder="Recherché" type="text" debounce="500"
+        <!-- <ion-searchbar animated color="primary" placeholder="Recherché" type="text" debounce="500"
     (ionChange)="getItems($event)"></ion-searchbar> -->
-      <ion-list *ngIf="isItemAvailable">
-          <ion-item *ngFor="let fiche of ficheTechniquesAll">
-              <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fiche)"></ion-icon>
-              <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fiche)"></ion-icon>
-              
-              <ion-label class="text" (click)="openFiche(fiche)">
-                  <h2>{{fiche.nom}}</h2>
-                  <p> {{fiche.livre}}</p>
-              </ion-label>
-              <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="openPopover($event, fiche)"></ion-icon>
-          </ion-item>
-      </ion-list>
-  </ion-toolbar>
+        <ion-list *ngIf="isItemAvailable">
+            <ion-item *ngFor="let fiche of ficheTechniquesAll">
+                <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fiche)"></ion-icon>
+                <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fiche)"></ion-icon>
+
+                <ion-label class="text" (click)="openFiche(fiche)">
+                    <h2>{{fiche.nom}}</h2>
+                    <p> {{fiche.livre}}</p>
+                </ion-label>
+                <ion-icon slot="end" name="ellipsis-vertical-outline" (click)="openPopover($event, fiche)"></ion-icon>
+            </ion-item>
+        </ion-list>
+    </ion-toolbar>
 </ion-content>
