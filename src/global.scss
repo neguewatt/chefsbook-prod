@@ -35,9 +35,12 @@ hr {
 }
 
 .header {
-    background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
-    height: 100px;
-    padding: 0px;
+    --background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    --padding-bottom: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+
+    --color: #ffffff;
 }
 
 .header h1 {
@@ -141,11 +144,6 @@ hr {
     --color: #7f7f7f !important;
     font-size: 17px !important;
     font-weight: 400 !important;
-}
-
-ion-header {
-    --background: #fff, url("./assets/Background/HeaderImg.jpg") no-repeat center center / cover;
-    height: 100px;
 }
 
 ion-content {
