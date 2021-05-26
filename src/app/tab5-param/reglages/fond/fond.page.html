@@ -1,23 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <div id="container" class="ion-margin">
-      <strong>Apparence</strong>
-    </div>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="paddingL15">
+            <ion-back-button style="color:#000000" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Apparence
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
+<ion-item-divider color="secondary"></ion-item-divider>
+
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-icon slot="start" name="moon"></ion-icon>
-      <ion-label>Dark mode</ion-label>
-      <ion-toggle (ionChange)="updateDarkMode()"></ion-toggle>
-    </ion-item>
-    <ion-button color="primary" ></ion-button>
-  </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-icon slot="start" name="moon"></ion-icon>
+            <ion-label>Dark mode</ion-label>
+            <ion-toggle (ionChange)="updateDarkMode()"></ion-toggle>
+        </ion-item>
+        <ion-button color="primary"></ion-button>
+    </ion-list>
 
 
 

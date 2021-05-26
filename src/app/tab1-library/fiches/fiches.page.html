@@ -1,4 +1,4 @@
-<ion-header>
+<ion-grid>
     <ion-toolbar style="height: 100%; --border-width: 0;">
         <ion-row class="ion-align-items-start ">
             <!-- <ion-col size="4" class="ion-margin-left " style="padding: 0;">
@@ -7,20 +7,18 @@
                 </ion-button>
             </ion-col> -->
             <ion-col size="6" style="padding: 0;" class="boutonheader">
-                <ion-button [disabled]="disabledplat" (click)="segmentChanged('platsBoolean')" 
-                buttonType="string" [style]="platsBoolean ? cssButtonSelect : cssButtonSelectNo" style="--background: transparent; font-size: 14px;margin: 0 auto;">
+                <ion-button [disabled]="disabledplat" (click)="segmentChanged('platsBoolean')" buttonType="string" [style]="platsBoolean ? cssButtonSelect : cssButtonSelectNo" style="--background: transparent; font-size: 14px;margin: 0 auto;">
                     Plats
                 </ion-button>
             </ion-col>
-            <ion-col size="6" class="ion-margin-right" style="padding: 0;" class="boutonheader" >
-                <ion-button (click)="segmentChanged('prepaBoolean')" 
-                buttonType="string" [style]="prepaBoolean ? cssButtonSelect : cssButtonSelectNo" style="--background: transparent; font-size: 14px;margin: 0 auto;">
+            <ion-col size="6" class="ion-margin-right" style="padding: 0;" class="boutonheader">
+                <ion-button (click)="segmentChanged('prepaBoolean')" buttonType="string" [style]="prepaBoolean ? cssButtonSelect : cssButtonSelectNo" style="--background: transparent; font-size: 14px;margin: 0 auto;">
                     Préparations
                 </ion-button>
             </ion-col>
         </ion-row>
     </ion-toolbar>
-</ion-header>
+</ion-grid>
 
 <ion-grid style="padding: 0;">
 
@@ -49,10 +47,10 @@
                 {{ header }}
             </ion-label>
         </ion-item-divider>
-        <ion-item lines="none"  *virtualItem="let fichePrepa">
-            <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fichePrepa)" >
+        <ion-item lines="none" *virtualItem="let fichePrepa">
+            <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fichePrepa)">
             </ion-icon>
-            <ion-label class="text" (click)="openFiche(fichePrepa)" >
+            <ion-label class="text" (click)="openFiche(fichePrepa)">
                 <h2 class="ficheElementTable">{{fichePrepa.nom}}</h2>
                 <p class="livreNom"> {{fichePrepa.livre}}</p>
             </ion-label>
@@ -68,7 +66,7 @@
             </ion-label>
         </ion-item-divider>
 
-        <ion-item lines="none" class="list" *virtualItem="let fichePlat" >
+        <ion-item lines="none" class="list" *virtualItem="let fichePlat">
             <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fichePlat)"></ion-icon>
             <ion-label class="text" (click)="openFiche(fichePlat)">
                 <h2 class="ficheElementTable">{{fichePlat.nom}}</h2>

@@ -160,8 +160,6 @@ export class FichesPage implements OnInit {
     popover.onDidDismiss().then((res) => {
       this.ngOnInit();
     });
-
-
     return await popover.present();
   }
   openFiche(fiche: any) {

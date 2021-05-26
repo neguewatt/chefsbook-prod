@@ -35,11 +35,10 @@ hr {
 }
 
 .header {
-    --background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    --background: url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
     --padding-bottom: 0;
     --padding-end: 0;
     --padding-start: 0;
-
     --color: #ffffff;
 }
 
@@ -51,7 +50,7 @@ hr {
 }
 
 .headerFiche {
-    --background: #fff url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    --background: url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
     height: 100px;
     padding: 0px;
 }
@@ -144,6 +143,17 @@ hr {
     --color: #7f7f7f !important;
     font-size: 17px !important;
     font-weight: 400 !important;
+}
+
+.paddingL15 {
+    padding-left: 15px;
+}
+
+.toolbar {
+    --padding-bottom: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --color: #000000;
 }
 
 ion-content {

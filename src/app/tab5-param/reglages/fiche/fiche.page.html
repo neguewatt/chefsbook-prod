@@ -1,43 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <div id="container" class="ion-margin">
-      <strong>Fiche technique</strong>
-    </div>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="paddingL15">
+            <ion-back-button style="color:#000000" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Fiche technique
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
-  <ion-item-divider>
-  </ion-item-divider>
+
+<ion-item-divider color="secondary"></ion-item-divider>
+
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="none" detail="false">
-          <ion-icon src="../../../assets/icon/icon-profile.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
-          <ion-label color="dark">
-            Compte
-          </ion-label>
-          <ion-icon color="dark" name="chevron-forward-backward" slot="end"></ion-icon>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-radio-group [value]="tableau" [(ngModel)]="tableau">
-      <ion-item  lines="none" (click)="onChange('tableau1')">
-        <ion-label>Nature | Unité | Quantité</ion-label>
-        <ion-radio slot="end" value="tableau1" ></ion-radio>
-      </ion-item>
-      <hr>
-      <ion-item  lines="none" (click)="onChange('tableau2')">
-        <ion-label>Quantité | Unité | Nature</ion-label>
-        <ion-radio slot="end" value="tableau2" ></ion-radio>
-      </ion-item>
-      <hr>
-    </ion-radio-group>
-  </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none" detail="false">
+                    <ion-icon src="../../../assets/icon/icon-profile.svg" style="color:#707070" class="ion-padding-end"></ion-icon>
+                    <ion-label color="dark">
+                        Compte
+                    </ion-label>
+                    <ion-icon color="dark" name="chevron-forward-backward" slot="end"></ion-icon>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-radio-group [value]="tableau" [(ngModel)]="tableau">
+            <ion-item lines="none" (click)="onChange('tableau1')">
+                <ion-label>Nature | Unité | Quantité</ion-label>
+                <ion-radio slot="end" value="tableau1"></ion-radio>
+            </ion-item>
+            <hr>
+            <ion-item lines="none" (click)="onChange('tableau2')">
+                <ion-label>Quantité | Unité | Nature</ion-label>
+                <ion-radio slot="end" value="tableau2"></ion-radio>
+            </ion-item>
+            <hr>
+        </ion-radio-group>
+    </ion-grid>
 
 
 
