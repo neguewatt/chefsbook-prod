@@ -20,7 +20,7 @@ export class Tab2NotificationPage implements OnInit {
   notifBoolean = true;
   userNom: string;
   userPrenom: string;
-  toDay = Math.round(new Date().getTime() / 1000);
+  toDay: any;
 
 
 
@@ -35,6 +35,7 @@ export class Tab2NotificationPage implements OnInit {
 
   ngOnInit() {
     this.getNotification();
+    this.toDay = Math.round(new Date().getTime() / 1000);
   }
 
   getNotification() {

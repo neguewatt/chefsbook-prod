@@ -100,19 +100,19 @@ hr {
 
 .classTitreSection {
     font-weight: 400;
-    font-family: "Roboto" !important;
+    font-family: "Roboto-Black" !important;
     font-size: 18px !important;
     color: #f03434 !important;
 }
 
 .classTitreDenreeTableau {
-    font-family: "Roboto" !important;
+    font-family: "Roboto-Black" !important;
     font-size: 16px !important;
     --color: #393939 !important;
 }
 
 .classDenreeTableau {
-    font-family: "Roboto" !important;
+    font-family: "Roboto-Black" !important;
     font-size: 16px !important;
     color: rgb(0, 0, 0, 0.5) !important;
 }
@@ -253,6 +253,12 @@ ion-avatar {
     --ion-color-primary: #b73636;
     --ion-color-secondary: #f03434;
     // autre couleur
+    --ion-toolbar-background: transparent;
+    /** font family **/
+    --ion-font-family: "Roboto-Black";
+    --ion-font-family: "Roboto-Bold";
+    --ion-font-family: "Roboto-Regular";
+    --ion-font-family: "Roboto-Medium";
 }
 
 .centerTable {
@@ -381,4 +387,32 @@ ion-avatar {
     font: 400 17px/25px Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: normal !important;
     margin: 0px 0 5px !important;
+}
+
+@font-face {
+    font-family: Roboto-Black;
+    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("/src/assets/Fonts/Roboto/Roboto-Bold.ttf") format("truetype"); //change url accordingly
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Roboto-Medium;
+    src: url("/src/assets/Fonts/Roboto/Roboto-Medium.ttf") format("truetype"); //change url accordingly
+    font-weight: normal;
+    font-style: normal;
 }
