@@ -154,6 +154,8 @@ export class ViewPreparationPage implements OnInit {
   showUpdateFiche() {
     this.showButtonUpdate = true;
     this.ficheUpdate = true;
+    console.log(this.poste);
+    
   }
 
   updateFiche(){

@@ -14,11 +14,18 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col>
+            <ion-col size="7">
                 <ion-item lines="none">
                     <ion-icon slot="start" src="../../../assets/icon/icon-profile.svg" style="color:#707070"></ion-icon>
                     <ion-label>
                         {{nom}} - {{prenom}}
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="5">
+                <ion-item lines="none">
+                    <ion-label (click)="deconnexion()">
+                        <a href="">Déconnexion</a>
                     </ion-label>
                 </ion-item>
             </ion-col>

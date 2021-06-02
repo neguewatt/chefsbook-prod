@@ -1,7 +1,7 @@
 import { EcranDefaut } from './../../models/ecranDefaut';
 import { AffichageIngredients } from './../../models/affichageIngredients';
 import { Utilisateurs } from './../../models/Utilisateurs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ContentChild, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthLoginService } from 'src/app/service/auth-login.service';
 import { Router, NavigationExtras } from '@angular/router';
@@ -15,8 +15,8 @@ import { AlertController, ToastController } from '@ionic/angular';
   templateUrl: './creer-compte.page.html',
   styleUrls: ['./creer-compte.page.scss'],
 })
-export class CreerUtilisateurPage implements OnInit {
 
+export class CreerUtilisateurPage implements OnInit {
 
   nom: string;
   prenom: string;
@@ -30,6 +30,7 @@ export class CreerUtilisateurPage implements OnInit {
   toDay: Date;
   booleanIconValid: boolean;
   booleanIconValidDif: boolean;
+  showPassword = false;
 
   constructor(private authenticationService: AuthLoginService,
     private dataService: AuthFirebaseService, public toastController: ToastController,
@@ -80,7 +81,11 @@ export class CreerUtilisateurPage implements OnInit {
                       newEcran.communaute = false;
                       console.log(newEcran);
                       this.utilisateur = newUtilisateur;
+                      newtableau.natureUniteQuantite = true;
+                      newtableau.quantiteUniteNature = false;
                       this.ordreTableauProduit = newtableau;
+                      newFond.clair = true;
+                      newFond.sombre = false;
                       this.fond = newFond;
                       this.ecranDefaut = newEcran;
                       this.dataService.addUtilisateur(key, this.utilisateur);
@@ -157,6 +162,10 @@ export class CreerUtilisateurPage implements OnInit {
       duration: 3000
     });
     toast.present();
+  }
+
+  toggleShow() {
+    this.showPassword = !this.showPassword;
   }
 
   async alertErreurCreation() {

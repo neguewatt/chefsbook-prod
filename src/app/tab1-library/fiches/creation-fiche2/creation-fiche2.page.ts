@@ -20,6 +20,7 @@ export class CreationFiche2Page implements OnInit {
   newTitre: string;
   types: string[] = ['Préparation', 'Plat'];
   prepa = true;
+  plat = false;
   newType: string;
 
 
@@ -35,9 +36,13 @@ export class CreationFiche2Page implements OnInit {
   }
 
   viewFiche(ev){
+    console.log(ev.target.value);
+    
     if(ev.target.value === 'Préparation') {
       this.prepa = true;
+      this.plat = false
     }else{
+      this.plat = true;
       this.prepa = false;
     }
   }

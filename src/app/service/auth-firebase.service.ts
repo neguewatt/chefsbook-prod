@@ -93,24 +93,30 @@ export class AuthFirebaseService {
 
     if (this.user !== null) {
 
-      this.getCompteUtilisateur();  // Au démarage application
-      this.getformule(); // Au démarage application
-      this.getLivrePerso(); // Au démarage application
-      this.getFicheTechniquesPartage();  // Au démarage application
-      this.getPlatsPartage();  // Au démarage application
-      this.getOrdreTableau();  // Au démarage application
-      this.getPosteDeTravail();  // Au démarage de la page creation de fiche
-      //this.getProduitListe();  // Au démarage de la page creation de fiche
-      this.getUnitesListe(); // Au démarage de la page creation de fiche
-      this.getFichesTechniqueAll();
-      if (this.preparationListe.length === 0) {
-        this.getListePreparations();  // Au démarage application
-      }
-      if (this.platListe.length === 0) {
-        this.getListePlats();  // Au démarage application
-      }
+      this.initialiseGet();
+      
     }
   }
+
+  initialiseGet(){
+    this.getCompteUtilisateur();  // Au démarage application
+    this.getformule(); // Au démarage application
+    this.getLivrePerso(); // Au démarage application
+    this.getFicheTechniquesPartage();  // Au démarage application
+    this.getPlatsPartage();  // Au démarage application
+    this.getOrdreTableau();  // Au démarage application
+    this.getPosteDeTravail();  // Au démarage de la page creation de fiche
+    //this.getProduitListe();  // Au démarage de la page creation de fiche
+    this.getUnitesListe(); // Au démarage de la page creation de fiche
+    this.getFichesTechniqueAll();
+    if (this.preparationListe.length === 0) {
+      this.getListePreparations();  // Au démarage application
+    }
+    if (this.platListe.length === 0) {
+      this.getListePlats();  // Au démarage application
+    }
+  }
+
 
   /** creation des documents **/
 

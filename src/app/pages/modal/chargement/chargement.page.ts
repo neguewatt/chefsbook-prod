@@ -3,6 +3,10 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
+import { registerPlugin } from '@capacitor/core'
+const { PushNotifications } = registerPlugin('Echo');
+
+
 
 @Component({
   selector: 'app-chargement',
@@ -23,7 +27,13 @@ export class ChargementPage implements OnInit {
 
   ngOnInit() {
     this.presentLoading();
+    this.resetBadgeCount();
   }
+
+  resetBadgeCount() {
+    PushNotifications.removeAllDeliveredNotifications();
+  }
+
   ecranDefaut() {
     this.dataService.getEcranDefaut().snapshotChanges().pipe(
       map(changes =>
@@ -77,10 +87,10 @@ export class ChargementPage implements OnInit {
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
+
     this.dataService.getCompteUtilisateur();
     this.ecranDefaut();
-    this.dataService.getFichesTechniqueAll();
-    this.dataService.getformule();
+    this.dataService.initialiseGet();
   }
 
 }

@@ -11,6 +11,7 @@ import { AuthLoginService } from './../../service/auth-login.service';
 export class LoginPage implements OnInit {
 
   loginform: FormGroup;
+  showPassword = false;
   errorLogin = '';
   colorA = 'color: red;  --ion-item-border-color: red;';
   colorB = '';
@@ -34,6 +35,11 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+  toggleShow() {
+    this.showPassword = !this.showPassword;
+  }
+
 
   onSubmitSigninForm() {
     this.errorLogin = '';

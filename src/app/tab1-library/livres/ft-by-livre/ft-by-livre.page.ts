@@ -150,6 +150,13 @@ export class FtByLivrePage implements OnInit {
     this.showButtonUpdate = true;
     this.livreUpdate = true;
   }
+
+  showCloseUpdate(){
+    this.showButtonUpdate = false;
+    this.livreUpdate = false;
+  }
+
+
   updateLivre(key: string) {
     console.log(key);
     console.log(this.newNom);

@@ -20,25 +20,30 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <ion-item lines="none">
-                            <ion-input type="text" id="nom" placeholder="Nom" [(ngModel)]="nom" style="color:#F03434"></ion-input>
-                        </ion-item>
                         <ion-item lines="none" class="ion-margin-top">
                             <ion-input type="text" id="prenom" placeholder="Prénom" [(ngModel)]="prenom" style="color:#F03434">
                             </ion-input>
                         </ion-item>
+                        <ion-item lines="none">
+                            <ion-input type="text" id="nom" placeholder="Nom" [(ngModel)]="nom" style="color:#F03434"></ion-input>
+                        </ion-item>
                         <ion-item lines="none" class="ion-margin-top">
-                            <ion-input type="text" id="email" placeholder="Email" [(ngModel)]="email" style="color:#F03434">
+                            <ion-input type="email" id="email" placeholder="Email" [(ngModel)]="email" style="color:#F03434">
                             </ion-input>
                         </ion-item>
-                        <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
-                            <ion-input type="password" id="password" placeholder="Mot de passe" [(ngModel)]="password" (keyup)="testValidation($event)" style="color:#F03434"></ion-input>
-                            <ion-icon *ngIf="booleanIconValid" slot="end" name="checkmark-circle-outline"></ion-icon>
-                        </ion-item>
-                        <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
-                            <ion-input type="password" id="password" placeholder="Confirmation" [(ngModel)]="password2" (keyup)="testValidationDif($event)" style="color:#F03434"></ion-input>
-                            <ion-icon *ngIf="booleanIconValidDif" slot="end" name="checkmark-circle-outline"></ion-icon>
 
+                        <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
+                            <ion-input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Mot de passe" [(ngModel)]="password" (keyup)="testValidation($event)" style="color:#F03434"></ion-input>
+                            <ion-icon *ngIf="booleanIconValid" slot="end" name="checkmark-circle-outline"></ion-icon>
+                            <ion-icon class="show-option" [hidden]="showPassword" name="eye-off-outline" (click)="toggleShow()"></ion-icon>
+                            <ion-icon class="hide-option" [hidden]="!showPassword" name="eye-outline" (click)="toggleShow()"></ion-icon>
+                        </ion-item>
+
+                        <ion-item lines="none" class="ion-margin-top ion-margin-bottom">
+                            <ion-input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Confirmation" [(ngModel)]="password2" (keyup)="testValidationDif($event)" style="color:#F03434"></ion-input>
+                            <ion-icon *ngIf="booleanIconValidDif" slot="end" name="checkmark-circle-outline"></ion-icon>
+                            <ion-icon class="show-option" [hidden]="showPassword" name="eye-off-outline" (click)="toggleShow()"></ion-icon>
+                            <ion-icon class="hide-option" [hidden]="!showPassword" name="eye-outline" (click)="toggleShow()"></ion-icon>
                         </ion-item>
                         <ion-item lines="none" class="ion-text-center" color="trensparent">
                             <ion-text class="label-conditions">
