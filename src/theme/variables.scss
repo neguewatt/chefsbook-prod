@@ -3,40 +3,7 @@
 
 /** Ionic CSS Variables **/
 
-@font-face {
-    font-family: "Roboto-Black";
-    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: "Roboto-Bold";
-    src: url("/src/assets/Fonts/Roboto/Roboto-Bold.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Roboto-Regular";
-    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Roboto-Medium";
-    src: url("/src/assets/Fonts/Roboto/Roboto-Medium.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "QuickKiss";
-    src: url("/src/assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
 
 :root {
     /** primary **/
@@ -102,6 +69,42 @@
     --ion-color-light-contrast-rgb: 0, 0, 0;
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
+    /** font family **/
+    --ion-font-family: 'QuickKiss', 'Roboto' !important;
+}
+
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf"); //change url accordingly
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/src/assets/Fonts/Roboto/Roboto-Bold.ttf"); //change url accordingly
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/src/assets/Fonts/Roboto/Roboto-Regular.ttf"); //change url accordingly
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/src/assets/Fonts/Roboto/Roboto-Medium.ttf"); //change url accordingly
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "QuickKiss";
+    src: url("/src/assets/Fonts/QuickKiss/QuickKiss.ttf"); //change url accordingly
 }
 
 @media (prefers-color-scheme: dark) {

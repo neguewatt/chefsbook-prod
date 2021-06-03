@@ -18,8 +18,8 @@ export class FichesPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
-  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto"; font-weight: 500;';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
 
   toutesBoolean = false;
   prepaBoolean = false;

@@ -50,9 +50,9 @@ export class Tab2NotificationPage implements OnInit {
       )
     ).subscribe(res => {
       this.notifications = [];
-      console.log('relou', res);
       res.forEach(notification => {
         if ('fiche Préparation' === notification.type) {
+          // fiche technique préparation partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
           this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: Preparation) => {
             this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
@@ -77,7 +77,7 @@ export class Tab2NotificationPage implements OnInit {
               difference -= minutesDifference * 1000 * 60;
               console.log('minuteTotal 2 : ', minutesDifference);
               const secondsDifference = Math.floor(difference / 1000);
-              // finir algo pour aller plus loin dans le temps
+              // Algo pour la gestion du temps
               if (monthDifference > 0) {
                 resNotif.date = monthDifference + ' mois';
               } else if (daysDifference > 7) {
@@ -112,8 +112,8 @@ export class Tab2NotificationPage implements OnInit {
           });
           this.notifications.push(resNotif);
         } else {
+          // fiche technique plats partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
-          console.log('test2', this.notifications);
           this.dataService.getPlatPartageById(notification.idDocPartage).then((plat: Plats) => {
             this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
               this.userNom = user.nom;

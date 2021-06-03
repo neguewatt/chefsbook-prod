@@ -5,7 +5,8 @@
   background-color: #7c7c7c;
   color: white;
   min-height: 118px;
-  min-width: 118px;
+  min-width: 118px;  
+  font-weight: 400;
 }
 
 .iconAdd {
@@ -49,7 +50,7 @@
 ion-item-divider ion-label {
   color: white;
   font-size: 0.8rem;
-  --ion-font-family: "Roboto" !important;
+  --ion-font-family: "Roboto-Black" !important;
 }
 ion-item-divider ion-icon {
   color: white;
