@@ -2,7 +2,7 @@ import { Plats } from './../../../models/plats';
 import { Denrees } from 'src/app/models/denrees';
 import { Preparation } from 'src/app/models/preparation';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
@@ -23,6 +23,7 @@ export class IngredientRefModalPage implements OnInit {
 
   constructor(private modalController: ModalController,
     private navParams: NavParams,
+    private toastController: ToastController,
     private route: Router) { }
 
   ngOnInit() {
@@ -36,6 +37,9 @@ export class IngredientRefModalPage implements OnInit {
 
   onKey(ev: any){
     console.log('affiche' , this.newQuantite);
+    if(this.newQuantite < 0){
+      this.errorQte();
+    }
   }
 
   async closeModal() {
@@ -97,6 +101,14 @@ export class IngredientRefModalPage implements OnInit {
       }
     };
     this.route.navigate(['creation-fiche2'], navigationExtras);
+  }
+
+  async errorQte() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir mettre un nombre supperieur à 0 !',
+      duration: 2000
+    });
+    toast.present();
   }
 
 }

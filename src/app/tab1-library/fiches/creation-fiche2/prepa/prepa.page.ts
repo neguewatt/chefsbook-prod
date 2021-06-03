@@ -108,10 +108,17 @@ export class PrepaPage implements OnInit {
 
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
-    if (this.newTitre === null || this.newDescriptionTechniques === null ||
-      this.newPoste === null || this.newProduitRef === null || this.denrees === null) {
-      this.erreurCreationFiche();
-    } else {
+    if(this.newTitre === undefined ){
+      this.erreurTitre();
+    }else if (this.newPoste === undefined) {
+      this.erreurPoste();
+    }else if (this.newProduitRef === undefined) {
+      this.erreurProduitRef();
+    }else if (this.denrees.length === 0) {
+      this.erreurDenrées();
+    }else if (this.newDescriptionTechniques === undefined ) {
+      this.erreurDescription();
+    }else {
       const newFiche = new Preparation();
       newFiche.type = 'Préparation';
       newFiche.nom = this.newTitre.charAt(0).toUpperCase() + this.newTitre.substr(1);
@@ -144,13 +151,45 @@ export class PrepaPage implements OnInit {
   }
   // gestion des erreurs utilisateur
 
-  async erreurCreationFiche() {
+  async erreurTitre() {
     const toast = await this.toastController.create({
-      message: 'Merci de bien vouiloir remplir la fiche entierement !',
+      message: 'Merci de bien vouiloir remplir le titre de la fiche !',
       duration: 2000
     });
     toast.present();
   }
+  async erreurPoste() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir donner un poste à la fiche !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurProduitRef() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir renseigner un produit de référence !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurDenrées() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir ajouter au moins une denrées !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurDescription() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir remplir la partie description !',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
+
+  
   async erreurPasDeDenrees() {
     const toast = await this.toastController.create({
       message: 'Veuillez ajouter des denrées pour choisir votre aliment de référence.',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { IonRouterOutlet, LoadingController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
-import { registerPlugin } from '@capacitor/core'
-const { PushNotifications } = registerPlugin('Echo');
+// import { registerPlugin } from '@capacitor/core'
+// const { PushNotifications } = registerPlugin('Echo');
 
 
 
@@ -21,18 +21,20 @@ export class ChargementPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private routerOutlet: IonRouterOutlet) {
 
     }
 
   ngOnInit() {
+    this.routerOutlet.swipeGesture = false;
     this.presentLoading();
-    this.resetBadgeCount();
+    // this.resetBadgeCount();
   }
 
-  resetBadgeCount() {
-    PushNotifications.removeAllDeliveredNotifications();
-  }
+  // resetBadgeCount() {
+  //   PushNotifications.removeAllDeliveredNotifications();
+  // }
 
   ecranDefaut() {
     this.dataService.getEcranDefaut().snapshotChanges().pipe(

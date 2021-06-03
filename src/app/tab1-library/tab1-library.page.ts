@@ -5,7 +5,7 @@ import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { Livres } from '../models/livres';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonRouterOutlet } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1-library',
@@ -29,6 +29,7 @@ export class Tab1LibraryPage implements OnInit {
     private dataService: AuthFirebaseService,
     private activRoute: ActivatedRoute,
     private route: Router,
+    private routerOutlet: IonRouterOutlet,
     public alertController: AlertController) {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
@@ -41,6 +42,7 @@ export class Tab1LibraryPage implements OnInit {
   }
 
   ngOnInit() {
+    this.routerOutlet.swipeGesture = false;
     this.livrePerso = this.dataService.livresPersoListe;
     console.log(this.dataService.utilisateur);
     this.getLivresPerso();

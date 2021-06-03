@@ -37,7 +37,7 @@ export class PlatPage implements OnInit {
   utilisateur: Utilisateurs;
   userNom: string;
   prenom: string;
-  denrees: Denrees[];
+  denrees: Denrees[] = [];
   prepaRecherche = '';
 
   // affichage denrees
@@ -60,7 +60,7 @@ export class PlatPage implements OnInit {
   newDescriptionTechnique: string;
   today: Date;
   date: string;
-  newPortion: string;
+  newPortion: number;
 
   constructor(private dataService: AuthFirebaseService,
     private toastController: ToastController,
@@ -170,12 +170,23 @@ export class PlatPage implements OnInit {
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
     this.newType = this.creationFiche2Page.newType;
-    console.log(this.newTitre, this.newPortion, this.newPoste, this.newDescriptionCommercial, this.plat.fichePreparation);
-
-    if (this.newTitre === null || this.newDescriptionCommercial === null || this.newDescriptionTechnique === null ||
-      this.newPoste === null || this.newPortion === null || this.plat.fichePreparation === null) {
-      this.erreurCreationFiche();
-    } else {
+    console.log(this.denrees);
+    
+    if(this.newTitre === undefined ){
+      this.erreurTitre();
+    }else if (this.newPoste === undefined) {
+      this.erreurPoste();
+    }else if (this.newPortion === undefined) {
+      this.erreurPortion();
+    }else if (this.newPortion <= 0) {
+      this.erreurPortionNeg();
+    }else if (this.newDescriptionCommercial === undefined) {
+      this.erreurDescription();
+    }else if (this.denrees.length === 0) {
+      this.erreurDenrées();
+    }else if (this.newDescriptionTechnique === undefined) {
+      this.erreurDescription();
+    }else {
       if (this.newType === 'Plat') {
         this.denrees = this.plat.denrees.map((denree) => {
           const retour = Object.assign({}, denree);
@@ -224,13 +235,49 @@ export class PlatPage implements OnInit {
     }
   }
 
-  async erreurCreationFiche() {
+  async erreurTitre() {
     const toast = await this.toastController.create({
-      message: 'Merci de bien vouiloir remplir la fiche entierement !',
+      message: 'Merci de bien vouiloir remplir le titre de la fiche !',
       duration: 2000
     });
     toast.present();
   }
+  async erreurPoste() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir donner un poste à la fiche !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurPortion() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir renseigner un nombre de portion !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurPortionNeg() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir renseigner un nombre de portion supperieur à 0 !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurDenrées() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir ajouter au moins une denrées !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async erreurDescription() {
+    const toast = await this.toastController.create({
+      message: 'Merci de bien vouiloir remplir la partie description !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
       message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',

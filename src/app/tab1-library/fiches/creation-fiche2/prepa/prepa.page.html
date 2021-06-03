@@ -150,14 +150,14 @@
                 </ion-label>
             </ion-item-divider>
             <ion-item lines="none" color="transparent">
-                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss" placeholder="Ecris les details techniques, le dressage, tes notes..." rows="12" [(ngModel)]="newDescriptionTechniques">
+                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss" placeholder="Ecris les details techniques, le dressage, tes notes..." rows="8" [(ngModel)]="newDescriptionTechniques">
                 </ion-textarea>
             </ion-item>
         </ion-col>
     </ion-row>
 </ion-grid>
 
-<ion-grid style="bottom: 1px">
+<ion-toolbar>
     <ion-row>
         <ion-col>
             <ion-button expand="block" (click)="addNewFiche()">
@@ -165,4 +165,4 @@
             </ion-button>
         </ion-col>
     </ion-row>
-</ion-grid>
+</ion-toolbar>

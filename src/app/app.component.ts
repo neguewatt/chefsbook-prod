@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
-import { FcmService } from './service/fcm.service';
-import { PushNotificationSchema, PushNotifications,
-  Token, ActionPerformed, } from '@capacitor/push-notifications';
+// import { FcmService } from './service/fcm.service';
+// import { PushNotificationSchema, PushNotifications,
+  // Token, ActionPerformed, } from '@capacitor/push-notifications';
 
 
 @Component({
@@ -12,14 +12,14 @@ import { PushNotificationSchema, PushNotifications,
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private fcmService: FcmService) {
+  constructor() {
     this.initializeApp();
   }
 
   initializeApp() {
     firebase.default.initializeApp(environment.firebaseConfig);
     this.checkDarkTheme();
-    this.fcmService.initPush();
+    // this.fcmService.initPush();
   }
 
   checkDarkTheme() {

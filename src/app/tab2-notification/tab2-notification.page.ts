@@ -6,6 +6,7 @@ import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
 import { Plats } from '../models/plats';
+import { IonRouterOutlet } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2-notification',
@@ -28,12 +29,14 @@ export class Tab2NotificationPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
+    private routerOutlet: IonRouterOutlet
   ) {
 
   }
 
 
   ngOnInit() {
+    this.routerOutlet.swipeGesture = false;
     this.getNotification();
     this.toDay = Math.round(new Date().getTime() / 1000);
   }

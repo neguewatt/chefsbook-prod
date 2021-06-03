@@ -27,6 +27,7 @@ export class AjoutProduitPage implements OnInit {
   produitUpdate = false;
   quantite: number;
   typeProduit: string;
+  qteSupBool = false;
 
   constructor(
     private modalController: ModalController,
@@ -60,6 +61,14 @@ export class AjoutProduitPage implements OnInit {
     }
   }
 
+  qteChange(){
+    if(this.quantite > 0){
+      this.qteSupBool = true;
+    }else{
+      this.qteSupBool = false;
+    }
+  }
+
   ajoutNomPtoduit(produit: Produits){
     console.log(produit);
     this.isnomProduit = true;
@@ -69,28 +78,35 @@ export class AjoutProduitPage implements OnInit {
   }
   onIncrement() {
     this.quantite++;
+    this.qteChange();
   }
   onDecrement() {
     this.quantite--;
+    this.qteChange();
   }
   async addProduitArray() {
-    const newDenree = new Denrees();
-    newDenree.produit = this.nomProduit;
-    newDenree.quantite = this.quantite;
-    newDenree.typeProduit = this.typeProduit;
-    newDenree.unite = this.newUnite.nom;
-    this.denree = newDenree;
-    this.produits.forEach(element => {
-      if(this.denree.produit === element.nomFr){
 
-      }
-    });
-    if(this.denree.produit === null){
-      this.presentToastProduit();
-    }else if(this.denree.quantite === null || this.denree.unite === null){
-      this.presentToast();
+    if(this.quantite <= 0){
+      this.alertError();
     }else{
-      await this.modalController.dismiss(this.denree);
+      const newDenree = new Denrees();
+      newDenree.produit = this.nomProduit;
+      newDenree.quantite = this.quantite;
+      newDenree.typeProduit = this.typeProduit;
+      newDenree.unite = this.newUnite.nom;
+      this.denree = newDenree;
+      // this.produits.forEach(element => {
+      //   if(this.denree.produit === element.nomFr){
+  
+      //   }
+      // });
+      if(this.denree.produit === null){
+        this.presentToastProduit();
+      }else if(this.denree.quantite === null || this.denree.unite === null){
+        this.presentToast();
+      }else{
+        await this.modalController.dismiss(this.denree);
+      }
     }
   }
   async presentToast() {
@@ -110,5 +126,15 @@ export class AjoutProduitPage implements OnInit {
   async cancel(){
     await this.modalController.dismiss();
   }
+
+  async alertError() {
+    const toast = await this.toastController.create({
+      message: 'Erreur sur la quantité !',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
 
 }

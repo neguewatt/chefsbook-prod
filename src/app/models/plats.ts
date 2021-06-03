@@ -13,7 +13,7 @@ export class Plats {
     public descriptionCommercial?: string;
     public descriptionTechnique?: string;
     public livre?: string;
-    public portion?: string;
+    public portion?: number;
     public poste?: string;
     public type?: string;
 

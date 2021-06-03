@@ -72,7 +72,7 @@ hr {
 }
 
 .titreModal {
-    font-family: "Roboto";
+    font-family: Roboto-Black !important;
     font-size: 16px;
     color: #f03434 !important;
 }
@@ -93,26 +93,26 @@ hr {
 }
 
 .policeFiche {
-    font-family: "Roboto-Regular" !important;
+    font-family: Roboto-Regular !important;
     font-size: 14px !important;
     color: #7f7f7f !important;
 }
 
 .classTitreSection {
     font-weight: 400;
-    font-family: "Roboto-Black" !important;
+    font-family: Roboto-Black !important;
     font-size: 18px !important;
     color: #f03434 !important;
 }
 
 .classTitreDenreeTableau {
-    font-family: "Roboto-Black" !important;
+    font-family: Roboto-Black !important;
     font-size: 16px !important;
     --color: #393939 !important;
 }
 
 .classDenreeTableau {
-    font-family: "Roboto-Black" !important;
+    font-family: Roboto-Black !important;
     font-size: 16px !important;
     color: rgb(0, 0, 0, 0.5) !important;
 }
@@ -132,14 +132,14 @@ hr {
 }
 
 .descCss {
-    font-family: "Roboto-Regular" !important;
+    font-family: Roboto-Regular !important;
     --color: #ff4a4a !important;
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 
 .descTexteCss {
-    font-family: "Roboto-Regular" !important;
+    font-family: Roboto-Regular !important;
     --color: #7f7f7f !important;
     font-size: 17px !important;
     font-weight: 400 !important;
@@ -328,8 +328,7 @@ ion-avatar {
     --margin-bottom: var(--ion-margin, 20px);
     margin-bottom: var(--ion-margin, 20px);
     color: red;
-    --ion-font-family: "Roboto";
-    src: url("./assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype");
+    font-family: Roboto-Black !important;
     font-size: 0.8rem;
 }
 
@@ -338,10 +337,9 @@ ion-avatar {
     margin-top: var(--ion-margin, 45px);
 }
 
-.label-bienvenu {
+.label-bienvenue {
     color: white;
-    --ion-font-family: "QuickKiss";
-    src: url("./assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
+    font-family: QuickKiss !important;
     font-size: 3rem;
 }
 
@@ -387,32 +385,4 @@ ion-avatar {
     font: 400 17px/25px Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: normal !important;
     margin: 0px 0 5px !important;
-}
-
-@font-face {
-    font-family: Roboto-Black;
-    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Roboto-Bold;
-    src: url("/src/assets/Fonts/Roboto/Roboto-Bold.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Roboto-Regular;
-    src: url("/src/assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Roboto-Medium;
-    src: url("/src/assets/Fonts/Roboto/Roboto-Medium.ttf") format("truetype"); //change url accordingly
-    font-weight: normal;
-    font-style: normal;
 }
