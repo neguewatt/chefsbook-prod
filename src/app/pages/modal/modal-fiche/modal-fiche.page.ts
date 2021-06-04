@@ -31,11 +31,11 @@ export class ModalFichePage implements OnInit {
   ngOnInit() {
     //Get data from popover page
     this.fiche = this.navParams.get('fiche');
-    console.log(this.fiche);
+   //  console.log(this.fiche);
   }
 
   modifier() {
-    console.log('modifier : ' + this.fiche);
+   //  console.log('modifier : ' + this.fiche);
     const navigationExtras: NavigationExtras = {
       state: {
         value: this.fiche,
@@ -46,12 +46,12 @@ export class ModalFichePage implements OnInit {
     this.popoverController.dismiss('modifier');
   }
   partager() {
-    console.log('partager : ' + this.fiche);
+   //  console.log('partager : ' + this.fiche);
     this.openModalPartager();
     this.popoverController.dismiss();
   }
   supprimer() {
-    console.log(this.fiche);
+   //  console.log(this.fiche);
     this.presentAlertConfirm();
   }
   async presentAlertConfirm() {
@@ -65,12 +65,12 @@ export class ModalFichePage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           //  console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
+           //  console.log('Confirm Okay');
             this.popoverController.dismiss('Suppression');
             this.dataService.deleteFiche(this.fiche);
           }

@@ -139,7 +139,7 @@ export class Tab3SearchPage implements OnInit {
     }
   }
   async openPopover(ev: any, myFiche: Preparation) {
-    console.log(ev);
+   //  console.log(ev);
     const popover = await this.popoverController.create({
       component: ModalFichePage,
       componentProps: {
@@ -149,7 +149,7 @@ export class Tab3SearchPage implements OnInit {
       animated: true
     });
     popover.onDidDismiss().then((res) => {
-      console.log('datares', res);
+     //  console.log('datares', res);
       if (res.data === 'Suppression') {
         this.ficheRecherche = '';
       }

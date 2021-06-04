@@ -31,18 +31,18 @@
 //     PushNotifications.addListener(
 //       'registration',
 //       (token: Token) => {
-//         console.log('My token: ' + JSON.stringify(token));
+//        //  console.log('My token: ' + JSON.stringify(token));
 //       }
 //     );
  
 //     PushNotifications.addListener('registrationError', (error: any) => {
-//       console.log('Error: ' + JSON.stringify(error));
+//      //  console.log('Error: ' + JSON.stringify(error));
 //     });
  
 //     PushNotifications.addListener(
 //       'pushNotificationReceived',
 //       async (notification: PushNotificationSchema) => {
-//         console.log('Push received: ' + JSON.stringify(notification));
+//        //  console.log('Push received: ' + JSON.stringify(notification));
 //       }
 //     );
  
@@ -50,7 +50,7 @@
 //       'pushNotificationActionPerformed',
 //       async (notification: ActionPerformed) => {
 //         const data = notification.notification.data;
-//         console.log('Action performed: ' + JSON.stringify(notification.notification));
+//        //  console.log('Action performed: ' + JSON.stringify(notification.notification));
 //         if (data.detailsId) {
 //           this.router.navigateByUrl(``);
 //         }

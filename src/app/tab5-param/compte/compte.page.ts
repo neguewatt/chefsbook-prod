@@ -68,12 +68,12 @@ export class ComptePage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           //  console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
+           //  console.log('Confirm Okay');
             this.dataService.deleteUser();
             this.presentLoading();
           }

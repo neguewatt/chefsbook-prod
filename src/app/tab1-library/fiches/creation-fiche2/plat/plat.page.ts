@@ -97,7 +97,7 @@ export class PlatPage implements OnInit {
       this.dataService.partagePrepaListe.forEach(partagePrepa => {
         this.ficheTechniques.push(partagePrepa);
       });
-      console.log(this.ficheTechniques);
+     //  console.log(this.ficheTechniques);
     }
 
     this.ficheTechniques.sort((a, b) => {
@@ -117,7 +117,7 @@ export class PlatPage implements OnInit {
     this.postes = this.dataService.posteDeTravailListe;
     this.today = new Date();
     this.date = this.today.toLocaleDateString('fr-FR');
-    console.log(this.postes);
+   //  console.log(this.postes);
   }
 
   getItems(ev: any) {
@@ -132,13 +132,13 @@ export class PlatPage implements OnInit {
     } else {
       this.isItemAvailable = false;
       this.ficheTechniques = this.dataService.preparationListe;
-      console.log('retour efface recherche',this.ficheTechniques);
+     //  console.log('retour efface recherche',this.ficheTechniques);
 
       // if (this.dataService.partagePrepaListe) {
       //   this.dataService.partagePrepaListe.forEach(partagePrepa => {
       //     this.ficheTechniques.push(partagePrepa);
       //   });
-      //   console.log(this.ficheTechniques);
+      //  //  console.log(this.ficheTechniques);
       // }
     }
   }
@@ -170,7 +170,7 @@ export class PlatPage implements OnInit {
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
     this.newType = this.creationFiche2Page.newType;
-    console.log(this.denrees);
+   //  console.log(this.denrees);
     
     if(this.newTitre === undefined ){
       this.erreurTitre();
@@ -210,7 +210,7 @@ export class PlatPage implements OnInit {
         newPlat.livre = this.plat.livre;
         this.plat = newPlat;
 
-        console.log(this.plat);
+       //  console.log(this.plat);
         const navigationExtras: NavigationExtras = {
           state: {
             value: this.plat

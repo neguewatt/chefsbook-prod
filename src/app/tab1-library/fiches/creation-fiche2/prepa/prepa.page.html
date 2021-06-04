@@ -15,7 +15,8 @@
                 </ion-item> -->
             <ion-item lines="none">
                 <ion-icon slot="start" src="../../../assets/icon/icon-type-plat.svg" class="iconFiche"></ion-icon>
-                <ion-select class="form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste" interface="popover">
+                <ion-select class="form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste"
+                    interface="popover">
                     <ion-select-option *ngFor="let poste of postes" [value]="poste.nom">{{poste.nom}}
                     </ion-select-option>
                 </ion-select>
@@ -27,7 +28,8 @@
                 </ion-item> -->
             <ion-item lines="none">
                 <ion-icon slot="start" src="../../../assets/icon/icon-ref.svg" class="iconFiche"></ion-icon>
-                <ion-select class="form-control" id="produitRef" placeholder="Produit de référence" [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
+                <ion-select class="form-control" id="produitRef" placeholder="Produit de référence"
+                    [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
                     <ion-select-option *ngFor="let denree of denrees" [value]="denree">{{denree.produit}}
                     </ion-select-option>
                 </ion-select>
@@ -69,7 +71,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()"
+                                    name="add-circle-outline">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -90,6 +93,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="deleteProduit(denree)" name="trash">
+                                </ion-icon>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -111,7 +116,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()"
+                                    name="add-circle-outline">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -132,6 +138,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="deleteProduit(denree)" name="trash">
+                                </ion-icon>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -150,7 +158,9 @@
                 </ion-label>
             </ion-item-divider>
             <ion-item lines="none" color="transparent">
-                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss" placeholder="Ecris les details techniques, le dressage, tes notes..." rows="8" [(ngModel)]="newDescriptionTechniques">
+                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss"
+                    placeholder="Ecris les details techniques, le dressage, tes notes..." rows="8"
+                    [(ngModel)]="newDescriptionTechniques">
                 </ion-textarea>
             </ion-item>
         </ion-col>

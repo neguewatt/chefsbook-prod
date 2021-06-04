@@ -39,7 +39,7 @@ export class VueAvantSauvegardePage implements OnInit {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
-        console.log(this.fiche);
+       //  console.log(this.fiche);
       }
     });
   }
@@ -73,7 +73,7 @@ export class VueAvantSauvegardePage implements OnInit {
   //       this.tableau1 = true;
   //       this.tableau2 = false;
   //     }
-  //     console.log('getOrdreTableau', res[0].natureUniteQuantite);
+  //    //  console.log('getOrdreTableau', res[0].natureUniteQuantite);
   //   });
   // }
   // getUtilisateur() {

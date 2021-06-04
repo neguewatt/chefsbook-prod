@@ -28,7 +28,7 @@ export class PartagerModalPage implements OnInit {
   ngOnInit() {
     console.table(this.navParams);
     this.fiche = this.navParams.data.fiche;
-    console.log(this.fiche);
+   //  console.log(this.fiche);
     this.modalTitle = this.navParams.data.paramTitle;
 
   }
@@ -53,11 +53,11 @@ export class PartagerModalPage implements OnInit {
         )
       )
     ).subscribe(res => {
-      console.log(res[0]);
+     //  console.log(res[0]);
 
       if (res[0]){
         this.userId = res[0].idUtilisateur;
-        console.log('id by email : ', this.userId);
+       //  console.log('id by email : ', this.userId);
         this.updateFicheIdPartage();
 
       }else{
@@ -80,7 +80,7 @@ export class PartagerModalPage implements OnInit {
   }
 
   updateFicheIdPartage(){
-    console.log(this.newMessage);
+   //  console.log(this.newMessage);
 
     if (this.newMessage ===  undefined){
       this.newMessage = 'vide';

@@ -19,12 +19,12 @@ export class ChoixDuLivrePage implements OnInit {
     }
 
   ngOnInit() {
-    console.log(this.livres);
+   //  console.log(this.livres);
 
   }
 
   async addLivre() {
-    console.log('choix livre: ', this.choixLivre);
+   //  console.log('choix livre: ', this.choixLivre);
     await this.modalController.dismiss(this.choixLivre);
   }
 

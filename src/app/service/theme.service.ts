@@ -11,7 +11,7 @@ export class ThemeService {
     this.plt.ready().then(() => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
       prefersDark.addListener(e => {
-        console.log('matches : ', e);
+       //  console.log('matches : ', e);
         this.setAppTheme(e.matches);
       });
     });

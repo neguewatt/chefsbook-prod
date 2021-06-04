@@ -50,10 +50,10 @@ export class CreerUtilisateurPage implements OnInit {
           const newtableau = new AffichageIngredients();
           const newFond = new Fond();
           const newEcran = new EcranDefaut();
-          console.log('createUser');
+         //  console.log('createUser');
           this.creatUsers(this.email, this.password).then(
             (user) => {
-              console.log(user);
+             //  console.log(user);
               if (user) {
                 this.authenticationService.signInUser(this.email, this.password).then(
                   (uid) => {
@@ -64,22 +64,22 @@ export class CreerUtilisateurPage implements OnInit {
                       newUtilisateur.email = this.email;
                       newUtilisateur.idUtilisateur = uid.toString();
                       newUtilisateur.dateCreation = newDateCreation;
-                      console.log(newUtilisateur);
+                     //  console.log(newUtilisateur);
                       newtableau.natureUniteQuantite = true;
                       newtableau.quantiteUniteNature = false;
                       newtableau.idUtilisateur = uid.toString();
-                      console.log(newtableau);
+                     //  console.log(newtableau);
                       newFond.idUtilisateur = uid.toString();
                       newFond.clair = true;
                       newFond.sombre = false;
-                      console.log(newFond);
+                     //  console.log(newFond);
                       newEcran.idUtilisateur = uid.toString();
                       newEcran.mesFiches = false;
                       newEcran.mesLivres = true;
                       newEcran.profil = false;
                       newEcran.recherche = false;
                       newEcran.communaute = false;
-                      console.log(newEcran);
+                     //  console.log(newEcran);
                       this.utilisateur = newUtilisateur;
                       newtableau.natureUniteQuantite = true;
                       newtableau.quantiteUniteNature = false;
@@ -93,20 +93,20 @@ export class CreerUtilisateurPage implements OnInit {
                       this.dataService.addFond(this.fond);
                       this.dataService.addEcranDefaut(this.ecranDefaut);
                       this.dataService.user = firebase.default.auth().currentUser;
-                      console.log(this.dataService.user);
+                     //  console.log(this.dataService.user);
                       this.route.navigate(['chargement']);
                     }
                   }
                 ).catch(
                   (error) => {
-                    console.log(error);
+                   //  console.log(error);
                   }
                 );
               }
             }
           ).catch(
             (error) => {
-              console.log(error);
+             //  console.log(error);
             }
           );
         }else{
@@ -127,10 +127,10 @@ export class CreerUtilisateurPage implements OnInit {
         firebase.default.auth().createUserWithEmailAndPassword(email, password).then(
           (data) => {
             resolve(data.user);
-            console.log('Connecté', data.user.uid);
+           //  console.log('Connecté', data.user.uid);
           },
           (error) => {
-            console.log('error1', error);
+           //  console.log('error1', error);
             reject(error);
           }
         );

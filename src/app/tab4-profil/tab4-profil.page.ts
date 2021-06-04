@@ -26,7 +26,7 @@ export class Tab4ProfilPage implements OnInit {
     this.limitFiches = this.dataService.limitFiches;
     this.toggleConnecte = true; // normalement à verifier en foction de la connection du téléphone
     this.connection();
-    console.log(this.dataService.fichesTechniqueAll);
+   //  console.log(this.dataService.fichesTechniqueAll);
 
     this.countFT = this.dataService.fichesTechniqueAll.length;
     // this.getFicheTechniquesListPrepa();

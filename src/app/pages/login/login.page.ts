@@ -48,14 +48,14 @@ export class LoginPage implements OnInit {
     this.authenticationService.signInUser(email, password).then(
       (uid) => {
         if(uid){
-          console.log(uid);
+         //  console.log(uid);
           this.router.navigate(['chargement']);
         }
       }
     ).catch(
       (error) => {
         this.errorLogin = error;
-        console.log(error);
+       //  console.log(error);
       }
     );
   }

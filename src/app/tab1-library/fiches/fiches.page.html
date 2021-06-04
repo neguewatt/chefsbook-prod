@@ -40,6 +40,7 @@
             <ion-icon slot="end" src="../../assets/icon/icon-ellipsis.svg" style="color:black" (click)="openPopover($event, fiche)"></ion-icon>
         </ion-item>
     </ion-virtual-scroll> -->
+    
     <!-- Les fiches préparation -->
     <ion-virtual-scroll *ngIf="prepaBoolean" [items]="prepa" approxItemHeight="60px" [headerFn]="separateLetter">
         <ion-item-divider *virtualHeader="let header" class="dividerLettre">
@@ -47,7 +48,7 @@
                 {{ header }}
             </ion-label>
         </ion-item-divider>
-        <ion-item lines="none" *virtualItem="let fichePrepa">
+        <ion-item style="border-bottom: 1px solid #dedede !important;" lines="none" *virtualItem="let fichePrepa">
             <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" (click)="openFiche(fichePrepa)">
             </ion-icon>
             <ion-label class="text" (click)="openFiche(fichePrepa)">
@@ -65,8 +66,7 @@
                 {{ header }}
             </ion-label>
         </ion-item-divider>
-
-        <ion-item lines="none" class="list" *virtualItem="let fichePlat">
+        <ion-item style="border-bottom: 1px solid #dedede !important;" lines="none" class="list" *virtualItem="let fichePlat">
             <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" (click)="openFiche(fichePlat)"></ion-icon>
             <ion-label class="text" (click)="openFiche(fichePlat)">
                 <h2 class="ficheElementTable">{{fichePlat.nom}}</h2>

@@ -95,7 +95,7 @@ export class PrepaPage implements OnInit {
     });
     modal.onDidDismiss().then((newDenree) => {
       if (newDenree.data !== undefined) {
-        console.log('newDenree', newDenree.data);
+       //  console.log('newDenree', newDenree.data);
         this.denrees.push(newDenree.data);
         this.map = this.denrees.map((denree) => {
           const retour = Object.assign({}, denree);
@@ -128,13 +128,13 @@ export class PrepaPage implements OnInit {
       newFiche.descriptionTechniques = this.newDescriptionTechniques.charAt(0).toUpperCase() + this.newDescriptionTechniques.substr(1);
       newFiche.poste = this.newPoste;
 
-      console.log('produit ref', this.newProduitRef);
+     //  console.log('produit ref', this.newProduitRef);
 
       newFiche.produitRef = { ...this.newProduitRef };
       newFiche.idUtilisateur = this.dataService.user.uid;
       this.ficheTechnique = newFiche;
 
-      console.log(this.ficheTechnique);
+     //  console.log(this.ficheTechnique);
       const navigationExtras: NavigationExtras = {
         state: {
           value: this.ficheTechnique

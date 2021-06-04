@@ -77,7 +77,7 @@ export class EcranPage implements OnInit {
       this.table.profil = false;
       this.table.recherche = true;
     }
-    console.log(this.table);
+   //  console.log(this.table);
     this.update();
   }
 

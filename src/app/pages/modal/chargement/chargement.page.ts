@@ -44,7 +44,7 @@ export class ChargementPage implements OnInit {
         )
       )
     ).subscribe(res => {
-      console.log('resulta tab', res);
+     //  console.log('resulta tab', res);
       if (res[0].mesFiches){
         const navigationExtras: NavigationExtras = {
           state: {

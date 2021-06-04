@@ -75,7 +75,7 @@ export class FichesPage implements OnInit {
       )
     ).subscribe(res => {
       if (res !== undefined) {
-        console.log('fiche', res);
+       //  console.log('fiche', res);
         this.prepaBoolean = true;
         this.dataService.preparationListe = res;
         this.prepa = res;
@@ -96,7 +96,7 @@ export class FichesPage implements OnInit {
 
   pushFicheIfNotExist(ficheA: any){
     const index = this.ficheTechniquesAll.findIndex((e) => e.key === ficheA.key);
-    console.log(index);
+   //  console.log(index);
 
     if(index === -1){
       this.ficheTechniquesAll.push(ficheA);
@@ -118,6 +118,9 @@ export class FichesPage implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
+
+
+  
   separateLetter(record, recordIndex, records) {
     if (recordIndex ===  0) {
       return record.nom[0].toUpperCase();
@@ -131,7 +134,7 @@ export class FichesPage implements OnInit {
   }
 
   segmentChanged(page: any) {
-    console.log(page);
+   //  console.log(page);
     this.toutesBoolean = false;
     this.prepaBoolean = false;
     this.platsBoolean = false;
@@ -149,7 +152,7 @@ export class FichesPage implements OnInit {
     }
   }
   async openPopover(ev: any, fiche: any) {
-    console.log('popover');
+   //  console.log('popover');
     const popover = await this.popoverController.create({
       component: ModalFichePage,
       componentProps: {

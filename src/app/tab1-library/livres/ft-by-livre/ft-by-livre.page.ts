@@ -86,7 +86,7 @@ export class FtByLivrePage implements OnInit {
         // });
       }
     });
-    console.log('test2424', this.ftByLivre);
+   //  console.log('test2424', this.ftByLivre);
   }
   groupByType(array: any) {
     return array.reduce((r, a) => {
@@ -96,10 +96,10 @@ export class FtByLivrePage implements OnInit {
     }, Object.create(null));
   }
   openFiche(key: string, type: string) {
-    console.log(key);
+   //  console.log(key);
     if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(prepa => {
-        console.log(prepa);
+       //  console.log(prepa);
         const navigationExtras: NavigationExtras = {
           state: {
             value: prepa,
@@ -121,7 +121,7 @@ export class FtByLivrePage implements OnInit {
     }
   }
   async openPopover(ev: any, key: string, type: string) {
-    console.log('popover');
+   //  console.log('popover');
     if ('Préparation' ===  type) {
       this.dataService.getPrepaPartageById(key).then(async fiche => {
         const popover = await this.popoverController.create({
@@ -158,8 +158,8 @@ export class FtByLivrePage implements OnInit {
 
 
   updateLivre(key: string) {
-    console.log(key);
-    console.log(this.newNom);
+   //  console.log(key);
+   //  console.log(this.newNom);
 
     this.dataService.updateLivre(key, this.newNom);
     this.livreNom = this.newNom;

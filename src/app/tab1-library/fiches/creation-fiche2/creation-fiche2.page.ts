@@ -31,12 +31,12 @@ export class CreationFiche2Page implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dataService.posteDeTravailListe);
+   //  console.log(this.dataService.posteDeTravailListe);
     this.newType = 'Préparation';
   }
 
   viewFiche(ev){
-    console.log(ev.target.value);
+   //  console.log(ev.target.value);
     
     if(ev.target.value === 'Préparation') {
       this.prepa = true;

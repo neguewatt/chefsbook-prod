@@ -39,11 +39,11 @@ export class AjoutProduitPage implements OnInit {
 
   ngOnInit() {
     this.unites = this.dataService.unitesListe;
-    console.log(this.unites);
+   //  console.log(this.unites);
 
     this.quantite = 0;
    // this.produits = this.dataService.produitsListe;
-    console.log(this.produits);
+   //  console.log(this.produits);
 
   }
 
@@ -70,7 +70,7 @@ export class AjoutProduitPage implements OnInit {
   }
 
   ajoutNomPtoduit(produit: Produits){
-    console.log(produit);
+   //  console.log(produit);
     this.isnomProduit = true;
     this.isItemAvailable = false;
     this.nomProduit = produit.nomFr;

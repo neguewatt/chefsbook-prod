@@ -44,7 +44,7 @@ export class Tab1LibraryPage implements OnInit {
   ngOnInit() {
     this.routerOutlet.swipeGesture = false;
     this.livrePerso = this.dataService.livresPersoListe;
-    console.log(this.dataService.utilisateur);
+   //  console.log(this.dataService.utilisateur);
     this.getLivresPerso();
   }
 
@@ -64,7 +64,7 @@ export class Tab1LibraryPage implements OnInit {
 
 
   segmentChanged(page: string) {
-    console.log(page);
+   //  console.log(page);
     this.fichesBoolean = false;
     this.comBoolean = false;
     this.livreBoolean = false;
@@ -87,7 +87,7 @@ export class Tab1LibraryPage implements OnInit {
       this.presentAlert();
     } else {
 
-      console.log(this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length);
+     //  console.log(this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length);
 
       if (this.dataService.limitFiches <= this.dataService.fichesTechniqueAll.length) {
         this.limitationFichesAlert();

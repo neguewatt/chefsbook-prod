@@ -30,7 +30,7 @@ export class FichePage implements OnInit {
     ).subscribe(res => {
       this.myTable = res[0];
       this.mykey = res[0].key;
-      console.log(res[0].key);
+     //  console.log(res[0].key);
       if(res[0].natureUniteQuantite){
         this.tableau = 'tableau1';
       }else{

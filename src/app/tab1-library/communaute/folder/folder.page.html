@@ -1,28 +1,31 @@
-<!-- <ion-item-group *ngFor="let fiche of newItems | keyvalue; let i = index">
-  <ion-item-divider>
-    <ion-label>{{fiche.key}}</ion-label>
-  </ion-item-divider>
-  <ion-row *ngFor="let value of fiche.value; let i = index ">
-    <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top" color="secondary">
-      <ion-icon *ngIf="value.type==='Préparation'" slot="start" src="../../../assets/icon/cooking.svg"
-        (click)="openFiche(value.idFiche, value.type)"></ion-icon>
-      <ion-icon *ngIf="value.type==='Plat'" slot="start" src="../../../assets/icon/food.svg"
-        (click)="openFiche(value.idFiche, value.type)"></ion-icon>
-      <ion-label class="text" (click)="openFiche(value.idFiche, value.type)">
-        <h2 class="ficheElementTable">{{value.nom}}</h2>
-        <p> {{value.livre}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-row>
-</ion-item-group> -->
+
+<ion-grid style="padding: 0;">
+  <ion-item-group *ngFor="let fiche of newItems | keyvalue; let i = index">
+    <ion-item-divider>
+      <ion-label>{{fiche.key}}</ion-label>
+    </ion-item-divider>
+    <ion-row *ngFor="let value of fiche.value; let i = index ">
+      <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top" color="secondary">
+        <ion-icon *ngIf="value.type==='Préparation'" slot="start" src="../../../assets/icon/cooking.svg"
+          (click)="openFiche(value.idFiche, value.type)"></ion-icon>
+        <ion-icon *ngIf="value.type==='Plat'" slot="start" src="../../../assets/icon/food.svg"
+          (click)="openFiche(value.idFiche, value.type)"></ion-icon>
+        <ion-label class="text" (click)="openFiche(value.idFiche, value.type)">
+          <h2 class="ficheElementTable">{{value.nom}}</h2>
+          <p> {{value.livre}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-row>
+  </ion-item-group>
+</ion-grid>
 
 
-
-<ion-item-group *ngFor="let fiche of ficheTechniquesAll; let i = index" >
+<!-- 
+<ion-item-group *ngFor="let fiche of ficheTechniquesAll; let i = index">
   <ion-item-divider class="dividerLettre">
     <ion-label>{{fiche.idUtilisateur}}</ion-label>
   </ion-item-divider>
-  <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top" >
+  <ion-item lines="none" class="list ion-padding-end ion-padding-start ion-margin-top">
     <ion-icon *ngIf="fiche.type==='Préparation'" slot="start" src="../../../../assets/icon/icon-prep.svg"
       (click)="openFiche(fiche.idFiche, fiche.type)"></ion-icon>
     <ion-icon *ngIf="fiche.type==='Plat'" slot="start" src="../../../../assets/icon/icon-plat.svg"
@@ -33,4 +36,4 @@
     </ion-label>
   </ion-item>
   <hr>
-</ion-item-group>
+</ion-item-group> -->

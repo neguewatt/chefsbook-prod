@@ -122,12 +122,12 @@ export class AuthFirebaseService {
 
   addFicheTechnique(fiche: Preparation) {
     this.preparationDb = this.db.collection(this.preparationPath, ref => ref);
-    console.log('add fiche prepa');
+   //  console.log('add fiche prepa');
     return this.preparationDb.add({ ...fiche });
   }
   addPlat(plat: Plats) {
     this.platDb = this.db.collection(this.platPath, ref => ref);
-    console.log('add fiche plat');
+   //  console.log('add fiche plat');
     return this.platDb.add({ ...plat });
   }
   addLivre(livre: Livres) {
@@ -140,27 +140,27 @@ export class AuthFirebaseService {
   }
   addUtilisateur(key: string, utilisateur: Utilisateurs) {
     this.utilisateurDb = this.db.collection(this.utilisateurPath, ref => ref);
-    console.log('add Utilisateur');
+   //  console.log('add Utilisateur');
     return this.utilisateurDb.doc(key).set({ ...utilisateur });
   }
   addOrderTable(affichageIngredients: AffichageIngredients) {
     this.ordreTableauFTDb = this.db.collection(this.ordreTableauFTPath, ref => ref);
-    console.log('add order table');
+   //  console.log('add order table');
     return this.ordreTableauFTDb.add({ ...affichageIngredients });
   }
   addEcranDefaut(ecranDefaut: EcranDefaut) {
     this.ecranDefautDb = this.db.collection(this.ecranDefautPath, ref => ref);
-    console.log('add ecran defaut');
+   //  console.log('add ecran defaut');
     return this.ecranDefautDb.add({ ...ecranDefaut });
   }
   addFond(fond: Fond) {
     this.fondDb = this.db.collection(this.fondPath, ref => ref);
-    console.log('add ecran defaut');
+   //  console.log('add ecran defaut');
     return this.fondDb.add({ ...fond });
   }
   addNotification(notification: Notification) {
     this.notificationDb = this.db.collection(this.notificationPath, ref => ref);
-    console.log('add notification');
+   //  console.log('add notification');
     return this.notificationDb.add({ ...notification });
   }
 
@@ -236,7 +236,7 @@ export class AuthFirebaseService {
           )
         )
       ).subscribe((fiches: Preparation[]) => {
-        console.log('test4', fiches);
+       //  console.log('test4', fiches);
         this.partagePrepaListe = fiches;
       });
   }
@@ -344,10 +344,10 @@ export class AuthFirebaseService {
       });
   }
   getAbonnement() {
-    console.log(this.lmitesListe);
+   //  console.log(this.lmitesListe);
     this.lmitesListe.forEach((limite: Abonnement) => {
       if (limite.abonnement === 'G' && this.utilisateur.abonnement === 'G') {
-        console.log(limite.limiteFiche);
+       //  console.log(limite.limiteFiche);
         this.limitFiches = limite.limiteFiche;
       }
       if (limite.abonnement === 'P1' && this.utilisateur.abonnement === 'P1') {
@@ -582,14 +582,14 @@ export class AuthFirebaseService {
   deleteFiche(fiche) {
     if (fiche.type === 'Préparation') {
       this.db.collection(this.preparationPath).doc(fiche.key).delete().then(() => {
-        console.log('Document prepa successfully deleted!');
+       //  console.log('Document prepa successfully deleted!');
         this.getListePreparations();
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
     } else {
       this.db.collection(this.platPath).doc(fiche.key).delete().then(() => {
-        console.log('Document plat successfully deleted!');
+       //  console.log('Document plat successfully deleted!');
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
@@ -600,7 +600,7 @@ export class AuthFirebaseService {
     this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .valueChanges().subscribe(res => {
         res.map((data: Utilisateurs) => {
-          console.log(data);
+         //  console.log(data);
           if (data) {
             this.db.doc(this.utilisateurPath + '/' + data.idUtilisateur).delete();
           }
@@ -615,7 +615,7 @@ export class AuthFirebaseService {
           )
         )
       ).subscribe(res => {
-        console.log(res);
+       //  console.log(res);
         if (res) {
           this.db.doc(this.ordreTableauFTPath + '/' + res[0].key).delete();
         }

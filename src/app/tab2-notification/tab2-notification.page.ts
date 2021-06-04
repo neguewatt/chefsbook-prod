@@ -62,20 +62,20 @@ export class Tab2NotificationPage implements OnInit {
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;
-              console.log('dif: ', difference);
+             //  console.log('dif: ', difference);
               const monthDifference = Math.floor(difference / 1000 / 60 / 60 / 24 / 30);
               difference -= monthDifference * 1000 * 60 * 60 * 24 * 30;
-              console.log('monthDifference : ', monthDifference);
+             //  console.log('monthDifference : ', monthDifference);
               const daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
               difference -= daysDifference * 1000 * 60 * 60 * 24;
-              console.log('daysDifference : ', daysDifference);
+             //  console.log('daysDifference : ', daysDifference);
               const hoursDifference = Math.floor(difference / 1000 / 60 / 60);
               difference -= hoursDifference * 1000 * 60 * 60;
-              console.log('hoursDifference : ', hoursDifference);
+             //  console.log('hoursDifference : ', hoursDifference);
               const minutesDifference = Math.floor(difference / 1000 / 60);
-              console.log('minuteTotal : ', minutesDifference);
+             //  console.log('minuteTotal : ', minutesDifference);
               difference -= minutesDifference * 1000 * 60;
-              console.log('minuteTotal 2 : ', minutesDifference);
+             //  console.log('minuteTotal 2 : ', minutesDifference);
               const secondsDifference = Math.floor(difference / 1000);
               // Algo pour la gestion du temps
               if (monthDifference > 0) {
@@ -121,20 +121,20 @@ export class Tab2NotificationPage implements OnInit {
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;
-              console.log('dif: ', difference);
+             //  console.log('dif: ', difference);
               const monthDifference = Math.floor(difference / 1000 / 60 / 60 / 24 / 30);
               difference -= monthDifference * 1000 * 60 * 60 * 24 * 30;
-              console.log('monthDifference : ', monthDifference);
+             //  console.log('monthDifference : ', monthDifference);
               const daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
               difference -= daysDifference * 1000 * 60 * 60 * 24;
-              console.log('daysDifference : ', daysDifference);
+             //  console.log('daysDifference : ', daysDifference);
               const hoursDifference = Math.floor(difference / 1000 / 60 / 60);
               difference -= hoursDifference * 1000 * 60 * 60;
-              console.log('hoursDifference : ', hoursDifference);
+             //  console.log('hoursDifference : ', hoursDifference);
               const minutesDifference = Math.floor(difference / 1000 / 60);
-              console.log('minuteTotal : ', minutesDifference);
+             //  console.log('minuteTotal : ', minutesDifference);
               difference -= minutesDifference * 1000 * 60;
-              console.log('minuteTotal 2 : ', minutesDifference);
+             //  console.log('minuteTotal 2 : ', minutesDifference);
               const secondsDifference = Math.floor(difference / 1000);
               // finir algo pour aller plus loin dans le temps
               if (monthDifference > 0) {
@@ -181,7 +181,7 @@ export class Tab2NotificationPage implements OnInit {
     this.dataService.updateNotification(notification.key, disabledNotif);
     if ('fiche Préparation' === type) {
       this.dataService.getPrepaPartageById(notification.idDocPartage).then(prepa => {
-        console.log(prepa);
+       //  console.log(prepa);
         const navigationExtras: NavigationExtras = {
           state: {
             value: prepa,

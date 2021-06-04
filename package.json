@@ -6,8 +6,8 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
-        "build:IOS": "",
+        "build": " ionic build",
+        "build:IOS": "ionic build && npx cap sync ios && npx cap open ios",
         "test": "ng test",
         "lint": "npx ng lint",
         "e2e": "ng e2e",

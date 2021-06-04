@@ -8,8 +8,9 @@ import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Livres } from 'src/app/models/livres';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { PartagerModalPage } from 'src/app/pages/modal/partager-modal/partager-modal.page';
+import { AjoutProduitPage } from 'src/app/pages/modal/ajout-produit/ajout-produit.page';
 
 @Component({
   selector: 'app-view-preparation',
@@ -53,7 +54,8 @@ export class ViewPreparationPage implements OnInit {
   tableau1 = true;
   tableau2 = true;
 
-  ficheUpdate: boolean;
+  map: Denrees[];
+  ficheUpdate = false;
   showButtonUpdate = false;
   newNom: string;
   postes: PosteDeTravail[] = [];
@@ -66,10 +68,11 @@ export class ViewPreparationPage implements OnInit {
   constructor(private dataService: AuthFirebaseService,
               private activRoute: ActivatedRoute,
               private route: Router,
+              private toastController: ToastController,
               public modalController: ModalController) {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
-        console.log('param ok ', this.route.getCurrentNavigation().extras.state);
+       //  console.log('param ok ', this.route.getCurrentNavigation().extras.state);
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
         this.fiche.key = this.route.getCurrentNavigation().extras.state.key;
         if (this.route.getCurrentNavigation().extras.state.update){
@@ -86,13 +89,13 @@ export class ViewPreparationPage implements OnInit {
     this.tableau2 = this.dataService.tableau2;
     this.nom = this.fiche.nom;
 
-    console.log(this.fiche.key);
+   //  console.log(this.fiche.key);
     const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.descriptionTechniques = this.fiche.descriptionTechniques;
     // this.description = this.fiche.description;
     this.produitRef = this.fiche.produitRef;
-    console.log('ref: ', this.produitRef);
+   //  console.log('ref: ', this.produitRef);
 
     this.postes = this.dataService.posteDeTravailListe;
     this.denrees = this.fiche.denrees;
@@ -125,7 +128,7 @@ export class ViewPreparationPage implements OnInit {
     }
   }
   // showTypeDenrees(toggle){
-  //   console.log(ev);
+  //  //  console.log(ev);
   //   if (this.denreeToggle ===  true) {
   //     this.denreeToggle = false;
   //   } else {
@@ -152,9 +155,9 @@ export class ViewPreparationPage implements OnInit {
 
   }
   showUpdateFiche() {
-    this.showButtonUpdate = true;
-    this.ficheUpdate = true;
-    console.log(this.poste);
+    this.showButtonUpdate = !this.showButtonUpdate;
+    this.ficheUpdate = !this.ficheUpdate;
+   //  console.log(this.poste);
     
   }
 
@@ -173,7 +176,7 @@ export class ViewPreparationPage implements OnInit {
     newFiche.produitRef = this.produitRef;
     newFiche.type = this.fiche.type;
     this.fiche = newFiche;
-    console.log(this.fiche);
+   //  console.log(this.fiche);
     this.dataService.updateFichePrepa(this.fiche.key ,this.fiche);
   }
 
@@ -185,8 +188,43 @@ export class ViewPreparationPage implements OnInit {
       }, Object.create(null));
   }
 
+  async addProduit() {
+    const modal = await this.modalController.create({
+      component: AjoutProduitPage,
+      cssClass: 'addProduit-custom-modal-css'
+    });
+    modal.onDidDismiss().then((newDenree) => {
+      if (newDenree.data !== undefined) {
+        this.denrees.push(newDenree.data);
+        console.log('newDenree', this.denrees);
+        this.newItems = this.groupByType(this.denrees);
+        this.map = this.denrees.map((denree) => {
+          const retour = Object.assign({}, denree);
+          return retour;
+        });
+      }
+    });
+    return await modal.present();
+  }
 
-
+  deleteProduit(denree: any) {
+    this.suppressionDenree(denree);
+    const index: number = this.fiche.denrees.indexOf(denree);
+    if (index !== -1) {
+      this.fiche.denrees.splice(index, 1);
+    }
+    if (denree.produit === this.newProduitRef.produit) {
+      this.newProduitRef = undefined;
+    }
+    this.newItems = this.groupByType(this.fiche.denrees);
+  }
+  async suppressionDenree(denree: Denrees) {
+    const toast = await this.toastController.create({
+      message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',
+      duration: 2000
+    });
+    toast.present();
+  }
 
 
 }
