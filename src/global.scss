@@ -29,12 +29,8 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
-
-
-:root[mode="ios"],
-:root[mode="md"] {
-    --ion-font-family: 'QuickKiss', 'Roboto' !important;
+:root[mode="ios"] {
+    $font-family-ios-base: 'Roboto', san-serif !default;
 }
 
 :root {
@@ -50,8 +46,8 @@ hr {
 }
 
 .header {
-    --background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
-    --background-repeat: no-repeat;
+    --background: none;
+    background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
     --padding-bottom: 0;
     --padding-end: 0;
     --padding-start: 0;
@@ -66,9 +62,10 @@ hr {
 }
 
 .headerFiche {
-    --background: url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
     height: 100px;
     padding: 0px;
+    --background: none;
+    background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
 }
 
 .iconUpdate {
@@ -251,7 +248,6 @@ ion-segment {
 
 .titreFiche {
     font-family: Roboto;
-    // src: url('./assets/Fonts/Roboto/Roboto-Black.ttf');
     font-size: 20px;
     color: white;
 }
@@ -328,9 +324,10 @@ ion-avatar {
 }
 
 .backround-login {
-    &::part(background) {
-        --background: #fff url("./assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover fixed;
-      }
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    --background: none;
+    background: url("./assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover fixed;
 }
 
 .login-error {
@@ -360,7 +357,6 @@ ion-avatar {
 .font-check {
     color: white;
     font-family: "QuickKiss";
-    // src: url('./assets/Fonts/QuickKiss/QuickKiss.ttf');
     font-size: 0.9rem;
 }
 

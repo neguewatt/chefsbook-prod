@@ -1,34 +1,30 @@
-.backround-login {
-  --background: #fff url("./../../../assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover;
-}
-
 .login-grid {
-  margin-left: 25px;
-  margin-right: 25px;
-  background: #fff url("./../../../assets/Background/HomeBG_iPhone_blur.jpg") no-repeat center center / cover;
-  margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    background: #fff url("./../../../assets/Background/HomeBG_iPhone_blur.jpg") no-repeat center center / cover;
+    margin-top: 50px;
 }
 
 .label-creation {
-  color: white;
-  --ion-font-family: "QuickKiss";
-  src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
-  font-size: 1.2rem;
+    color: white;
+    font-family: "QuickKiss";
+    font-size: 1.2rem;
 }
 
 .label-conditions {
-  color: white;
-  --ion-font-family: "QuickKiss";
-  src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
-  font-style: italic;
-  font-size: 0.7rem;
+    color: white;
+    font-family: "QuickKiss";
+    font-style: italic;
+    font-size: 0.7rem;
 }
-.login-grid ion-item {
-  background-color: red;
+
+.login-grid ion-item {
+    background-color: red;
 }
+
 .p-20-15 {
-  padding-top: 20px;
-  padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 15px;
 }
 
 .colorFleche {
@@ -36,34 +32,33 @@
 }
 
 .m-top-45 {
-  --margin-top: var(--ion-margin, 45px);
-  margin-top: var(--ion-margin, 45px);
+    --margin-top: var(--ion-margin, 45px);
+    margin-top: var(--ion-margin, 45px);
 }
+
 .m-top-100 {
-  --margin-top: var(--ion-margin, 100px);
-  margin-top: var(--ion-margin, 100px);
+    --margin-top: var(--ion-margin, 100px);
+    margin-top: var(--ion-margin, 100px);
 }
 
 .font-check {
-  color: white;
-  --ion-font-family: "QuickKiss";
-  src: url("./../../../assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
-  font-size: 0.9rem;
+    color: white;
+    font-family: "QuickKiss";
+    font-size: 0.9rem;
 }
 
-
 .return-button {
-  font-size: 1.5rem;
-  color: white;
+    font-size: 1.5rem;
+    color: white;
 }
 
 .btn-continuer {
-  --padding-top: 25px;
-  --padding-bottom: 25px;
+    --padding-top: 25px;
+    --padding-bottom: 25px;
 }
 
 .m-side-25 {
-  margin-top: 50px;
-  margin-left: 25px;
-  margin-right: 25px;
+    margin-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
 }

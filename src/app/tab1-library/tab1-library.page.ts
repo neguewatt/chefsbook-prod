@@ -1,6 +1,6 @@
 import { LivresPage } from './livres/livres.page';
 import { Abonnement } from '../models/abonnement';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { Livres } from '../models/livres';
