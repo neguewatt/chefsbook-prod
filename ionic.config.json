@@ -1,7 +1,7 @@
 {
-  "name": "Chef's book",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
+    "name": "Chefsbook",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
 }
