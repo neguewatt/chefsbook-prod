@@ -26,10 +26,6 @@
         "@angular/platform-browser": "~11.2.0",
         "@angular/platform-browser-dynamic": "~11.2.0",
         "@angular/router": "~11.2.0",
-<<<<<<< HEAD
-        "@capacitor/core": "^2.4.7",
-        "@capacitor/ios": "^2.4.7",
-=======
         "@capacitor/android": "^3.0.0-rc.4",
         "@capacitor/core": "^3.0.0",
         "@capacitor/ios": "^3.0.0-rc.4",
@@ -37,7 +33,6 @@
         "@capacitor/splash-screen": "^1.0.0",
         "@ionic-native/core": "^5.33.1",
         "@ionic-native/fcm": "^5.33.1",
->>>>>>> 11d4dc63f08819252622989f2d661410a29dc4a9
         "@ionic-native/native-storage": "^5.33.1",
         "@ionic-native/splash-screen": "^5.33.0",
         "@ionic-native/status-bar": "^5.32.1",
@@ -54,11 +49,7 @@
         "zone.js": "~0.10.2"
     },
     "devDependencies": {
-<<<<<<< HEAD
-        "@angular-devkit/build-angular": "^0.1102.14",
-=======
         "@angular-devkit/build-angular": "^12.0.2",
->>>>>>> 11d4dc63f08819252622989f2d661410a29dc4a9
         "@angular-eslint/builder": "2.0.2",
         "@angular-eslint/eslint-plugin": "2.0.2",
         "@angular-eslint/eslint-plugin-template": "2.0.2",
@@ -67,13 +58,8 @@
         "@angular/compiler": "~11.2.0",
         "@angular/compiler-cli": "~11.2.0",
         "@angular/language-service": "~11.2.0",
-<<<<<<< HEAD
-        "@capacitor/cli": "^2.4.7",
-        "@ionic/angular-toolkit": "^2.1.2",
-=======
         "@capacitor/cli": "^3.0.0",
         "@ionic/angular-toolkit": "^3.1.1",
->>>>>>> 11d4dc63f08819252622989f2d661410a29dc4a9
         "@types/jasmine": "~3.6.0",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.11.1",
