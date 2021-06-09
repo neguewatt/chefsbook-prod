@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
-import { FcmService } from './service/fcm.service';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { FcmService } from './service/fcm.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private fcmService: FcmService) {
+  constructor() {
     this.initializeApp();
   }
 

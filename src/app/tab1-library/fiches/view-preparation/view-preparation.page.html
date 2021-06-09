@@ -1,11 +1,11 @@
 <ion-header>
-    <ion-toolbar class="header">
+    <ion-toolbar class="header" no-border>
         <ion-buttons slot="start" class="buttonBack">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-title class="titrePage titreFiche">{{nom}}</ion-title>
+        <ion-title class="titreFiche">{{nom}}</ion-title>
         <ion-buttons slot="end" *ngIf="!showButtonUpdate">
-            <ion-icon class="iconUpdate" icon="pencil" (click)="showUpdateFiche()"></ion-icon>
+            <ion-icon class="iconUpdate" src="../../../assets/icon/icon-edit.svg" (click)="showUpdateFiche()"></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end" *ngIf="showButtonUpdate">
             <ion-icon class="iconUpdate" icon="close-outline" (click)="showUpdateFiche()"></ion-icon>

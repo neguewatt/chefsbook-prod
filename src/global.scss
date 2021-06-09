@@ -45,7 +45,12 @@ hr {
     margin: 0px !important;
 }
 
+ion-header{
+    min-height: 64px;
+}
+
 .header {
+    min-height: 64px;
     --background: none;
     background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
     --padding-bottom: 0;
@@ -70,9 +75,7 @@ hr {
 
 .iconUpdate {
     color: #ffffff;
-    width: 24px;
-    height: 24px;
-    padding-top: 10px;
+    font-size: 24px;
     padding-right: 15px;
 }
 
@@ -102,32 +105,31 @@ hr {
 
 .buttonBack {
     padding-left: 15px;
-    padding-top: 10px;
 }
 
 .policeFiche {
     font-weight: 400;
     font-family: Roboto !important;
-    font-size: 14px !important;
+    font-size: 12px !important;
     color: #7f7f7f !important;
 }
 
 .classTitreSection {
     font-weight: 400;
     font-family: Roboto !important;
-    font-size: 18px !important;
+    font-size: 14px !important;
     color: #f03434 !important;
 }
 
 .classTitreDenreeTableau {
     font-family: Roboto !important;
-    font-size: 16px !important;
+    font-size: 14px !important;
     --color: #393939 !important;
 }
 
 .classDenreeTableau {
     font-family: Roboto !important;
-    font-size: 16px !important;
+    font-size: 14px !important;
     color: rgb(0, 0, 0, 0.5) !important;
 }
 
@@ -157,7 +159,7 @@ hr {
     font-weight: 400;
     font-family: Roboto !important;
     --color: #7f7f7f !important;
-    font-size: 17px !important;
+    font-size: 14px !important;
     font-weight: 400 !important;
 }
 
@@ -390,4 +392,36 @@ ion-avatar {
     font: 400 17px/25px Roboto !important;
     letter-spacing: normal !important;
     margin: 0px 0 5px !important;
+}
+
+.labelModalFiche{
+    font: 500 14px/25px Roboto !important;
+    color: black;
+}
+.iconModalFiche{
+    font-size: 18px;
+}
+.modalTableBorder{
+    border-bottom: 1px solid #dedede !important;
+}
+
+ion-toolbar{
+    --min-height: 64px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+ion-grid{
+    padding: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+
+.middleMinheight{
+    --min-height: 44px !important;
 }
