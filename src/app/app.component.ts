@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from 'src/environments/environment';
-// import { FcmService } from './service/fcm.service';
-// import { PushNotificationSchema, PushNotifications,
-  // Token, ActionPerformed, } from '@capacitor/push-notifications';
+import { FcmService } from './service/fcm.service';
 
 
 @Component({
@@ -12,7 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private fcmService: FcmService) {
     this.initializeApp();
   }
 

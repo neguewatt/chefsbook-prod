@@ -1,3 +1,4 @@
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
@@ -32,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     DatePipe,
+    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

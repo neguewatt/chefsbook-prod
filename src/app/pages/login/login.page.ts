@@ -1,7 +1,10 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthLoginService } from './../../service/auth-login.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
 
 @Component({
   selector: 'app-login',
@@ -15,14 +18,18 @@ export class LoginPage implements OnInit {
   errorLogin = '';
   colorA = 'color: red;  --ion-item-border-color: red;';
   colorB = '';
+  checked: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthLoginService,
+    private nativeStorage: NativeStorage,
     private router: Router) { }
 
   ngOnInit() {
     this.initSigninForm();
+    this.checked = true;
+    this.getLoginmdp();
   }
 
   creerUtilisateur(){
@@ -31,8 +38,8 @@ export class LoginPage implements OnInit {
 
   initSigninForm() {
     this.loginform = this.formBuilder.group({
-      email: ['davidnzi87@gmail.com', [Validators.required, Validators.email]],
-      password: ['Marine$2502$', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -49,6 +56,7 @@ export class LoginPage implements OnInit {
       (uid) => {
         if(uid){
          //  console.log(uid);
+          this.saveloginmdp();
           this.router.navigate(['chargement']);
         }
       }
@@ -59,4 +67,40 @@ export class LoginPage implements OnInit {
       }
     );
   }
+
+  onChecked(){
+    this.checked = !this.checked;
+  }
+
+  saveloginmdp(){
+    if(this.checked){
+      this.nativeStorage.setItem('loginMdp', {save: this.checked, login: this.loginform.get('email').value, password: this.loginform.get('password').value})
+      .then(
+        () => console.log('Stored item!'),
+        error => console.error('Error storing item', error)
+      );
+    }else{
+      this.nativeStorage.setItem('loginMdp', {save: this.checked, login: '', password: ''})
+      .then(
+        () => console.log('Stored item!'),
+        error => console.error('Error storing item', error)
+      );
+    }
+  }
+
+  getLoginmdp(){
+    try {
+      this.nativeStorage.getItem('loginMdp')
+      .then(
+        data => {
+          this.loginform.setValue({email: data.login, password: data.password})
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
 }

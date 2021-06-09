@@ -64,6 +64,7 @@ export class ViewPreparationPage implements OnInit {
   newDescriptionTechniques: string;
 
   newItems:  Array<any> = [];
+  copieFiche: Preparation;
 
   constructor(private dataService: AuthFirebaseService,
               private activRoute: ActivatedRoute,
@@ -157,8 +158,7 @@ export class ViewPreparationPage implements OnInit {
   showUpdateFiche() {
     this.showButtonUpdate = !this.showButtonUpdate;
     this.ficheUpdate = !this.ficheUpdate;
-   //  console.log(this.poste);
-    
+    // console.log(this.poste);
   }
 
   updateFiche(){
@@ -207,17 +207,24 @@ export class ViewPreparationPage implements OnInit {
     return await modal.present();
   }
 
-  deleteProduit(denree: any) {
+  deleteProduit(denree: Denrees) {
     this.suppressionDenree(denree);
+    console.log(denree);
+
     const index: number = this.fiche.denrees.indexOf(denree);
     if (index !== -1) {
       this.fiche.denrees.splice(index, 1);
     }
-    if (denree.produit === this.newProduitRef.produit) {
-      this.newProduitRef = undefined;
+    console.log(this.fiche.denrees);
+    
+    if (denree.produit === this.produitRef.produit) {
+      this.produitRef = new Denrees();
     }
+    console.log(this.fiche.denrees);
     this.newItems = this.groupByType(this.fiche.denrees);
+
   }
+
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
       message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',

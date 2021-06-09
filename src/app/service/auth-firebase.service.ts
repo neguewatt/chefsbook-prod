@@ -513,7 +513,7 @@ export class AuthFirebaseService {
     const updateFiche = this.db.collection(this.preparationPath).doc(key).update({
        date: fiche.date,
        descriptionTechniques: fiche.descriptionTechniques,
-       //denrees:
+       denrees: fiche.denrees,
        nom: fiche.nom,
        poste: fiche.poste,
        produitRef: fiche.produitRef,
@@ -575,6 +575,7 @@ export class AuthFirebaseService {
     return updateNotif;
   }
 
+
   // end update documents
 
   // start delete
@@ -595,6 +596,9 @@ export class AuthFirebaseService {
       });
     }
   }
+
+
+
 
   deleteUser() {
     this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
