@@ -74,7 +74,8 @@ export class LoginPage implements OnInit {
 
   saveloginmdp(){
     if(this.checked){
-      this.nativeStorage.setItem('loginMdp', {save: this.checked, login: this.loginform.get('email').value, password: this.loginform.get('password').value})
+      this.nativeStorage.setItem('loginMdp', {save: this.checked, login: this.loginform.get('email').value,
+      password: this.loginform.get('password').value})
       .then(
         () => console.log('Stored item!'),
         error => console.error('Error storing item', error)
@@ -93,7 +94,7 @@ export class LoginPage implements OnInit {
       this.nativeStorage.getItem('loginMdp')
       .then(
         data => {
-          this.loginform.setValue({email: data.login, password: data.password})
+          this.loginform.setValue({email: data.login, password: data.password});
         }
       );
     } catch (error) {

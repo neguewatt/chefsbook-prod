@@ -36,7 +36,6 @@ export class FolderPage implements OnInit {
       return r;
     }, Object.create(null));
     console.log(this.ficheTechniquesAll);
-    
   }
 
   getPlatPartage() {

@@ -153,10 +153,8 @@ export class ViewPreparationPage implements OnInit {
     // console.log(this.poste);
     if (this.showButtonUpdate) {
       this.ficheCopy = this.fiche;
-      console.log("updateCopy", this.ficheCopy);
-      console.log("fiche", this.fiche);
     }else{
-      console.log("fiche", this.fiche)
+      console.log('fiche', this.fiche);
     }
   }
   updateFiche() {
@@ -179,9 +177,6 @@ export class ViewPreparationPage implements OnInit {
     this.ficheCopy.idPartage = this.fiche.idPartage;
     this.ficheCopy.type = this.fiche.type;
     this.ficheCopy.livre = this.fiche.livre;
-
-    console.log( this.ficheCopy);
-    
     this.dataService.updateFichePrepa(this.ficheCopy.key, this.ficheCopy);
     this.route.navigate(['tabs']);
   }
@@ -214,7 +209,7 @@ export class ViewPreparationPage implements OnInit {
     return await modal.present();
   }
   async updateProduit(denree: Denrees) {
-    let index = this.denrees.indexOf(denree);
+    const index = this.denrees.indexOf(denree);
     console.log(index);
 
     const modal = await this.modalController.create({
@@ -224,8 +219,8 @@ export class ViewPreparationPage implements OnInit {
     });
     modal.onDidDismiss().then(newDenree => {
       this.denrees[index] = newDenree.data;
-      this.map = this.denrees.map((denree) => {
-        const retour = Object.assign({}, denree);
+      this.map = this.denrees.map((mapDenree) => {
+        const retour = Object.assign({}, mapDenree);
         return retour;
       });
     });
@@ -248,7 +243,7 @@ export class ViewPreparationPage implements OnInit {
     this.newItems = this.groupByType(this.fiche.denrees);
   }
   choixLivre() {
-    this.openModalLivre()
+    this.openModalLivre();
   }
   async openModalLivre() {
     const modal = await this.modalController.create({

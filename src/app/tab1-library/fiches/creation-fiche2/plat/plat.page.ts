@@ -170,8 +170,6 @@ export class PlatPage implements OnInit {
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
     this.newType = this.creationFiche2Page.newType;
-   //  console.log(this.denrees);
-    
     if(this.newTitre === undefined ){
       this.erreurTitre();
     }else if (this.newPoste === undefined) {
@@ -277,7 +275,6 @@ export class PlatPage implements OnInit {
     });
     toast.present();
   }
-  
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
       message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',
@@ -285,7 +282,6 @@ export class PlatPage implements OnInit {
     });
     toast.present();
   }
-
   async erreurPasDeDenrees() {
     const toast = await this.toastController.create({
       message: 'Veuillez ajouter des denrées pour choisir votre aliment de référence.',

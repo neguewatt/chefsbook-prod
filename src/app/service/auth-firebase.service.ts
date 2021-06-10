@@ -92,9 +92,7 @@ export class AuthFirebaseService {
   constructor(public db: AngularFirestore, public authLogin: AuthLoginService) {
 
     if (this.user !== null) {
-
       this.initialiseGet();
-      
     }
   }
 

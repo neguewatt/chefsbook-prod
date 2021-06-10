@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderPage implements OnInit {
 
-  newTitre: string
+  newTitre: string;
 
   constructor() { }
 

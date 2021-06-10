@@ -118,9 +118,6 @@ export class FichesPage implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
-
-
-  
   separateLetter(record, recordIndex, records) {
     if (recordIndex ===  0) {
       return record.nom[0].toUpperCase();

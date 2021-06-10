@@ -92,7 +92,7 @@ export class AjoutProduitPage implements OnInit {
       if (this.quantite <= 0) {
         this.alertErrorQte();
       } else if (this.newUnite.nom === undefined) {
-        this.alertErrorUnite()
+        this.alertErrorUnite();
       }
       else {
         const newDenree = new Denrees();
@@ -106,7 +106,6 @@ export class AjoutProduitPage implements OnInit {
         } else if (newDenree.quantite === undefined || newDenree.unite === undefined) {
           this.presentToast();
         } else {
-          console.log("okici",newDenree);
           await this.modalController.dismiss(newDenree);
         }
       }
@@ -114,7 +113,7 @@ export class AjoutProduitPage implements OnInit {
       if (this.quantite <= 0) {
         this.alertErrorQte();
       } else if (this.newUnite.nom === undefined) {
-        this.alertErrorUnite()
+        this.alertErrorUnite();
       }
       else {
         this.navParams.get('value').produit = this.nomProduit;
@@ -127,8 +126,6 @@ export class AjoutProduitPage implements OnInit {
         } else if (this.denree.quantite === undefined || this.denree.unite === undefined) {
           this.presentToast();
         } else {
-          console.log("okici",this.denree);
-          
           await this.modalController.dismiss(this.denree);
         }
       }
