@@ -13,7 +13,6 @@ ion-tabs {
 //     max-height: 56px;
 //     border: unset;
 // }
-
 .tab-selected ion-icon {
     color: #F03434;
 }
@@ -36,8 +35,6 @@ ion-tab-button:hover {
     }
 }
 
-
-
 // ion-tabs {
 //     //not selected custom image
 //     ion-tab-button.custom-homepage > ion-icon {
@@ -49,7 +46,6 @@ ion-tab-button:hover {
 //         --color: blue;
 //         background-image: url(../../assets/icon/icon-homepage.svg);
 //     }
-
 //     //not selected custom image
 //     ion-tab-button.custom-notif > ion-icon {
 //         --color: #95989a;
@@ -60,7 +56,6 @@ ion-tab-button:hover {
 //         --color: #95989a;
 //         background-image: url(../../assets/icon/icon-notif.svg);
 //     }
-
 //     //not selected custom image
 //     ion-tab-button.custom-search > ion-icon {
 //         --color: white;
@@ -71,7 +66,6 @@ ion-tab-button:hover {
 //         --color: white;
 //         background-image: url(../../assets/icon/icon-search.svg);
 //     }
-
 //     //not selected custom image
 //     ion-tab-button.custom-profile > ion-icon {
 //         --color: #95989a;
@@ -82,7 +76,6 @@ ion-tab-button:hover {
 //         --color: #95989a;
 //         background-image: url(../../assets/icon/icon-profile.svg);
 //     }
-
 //     //not selected custom image
 //     ion-tab-button.custom-settings > ion-icon {
 //         color: #95989a;
@@ -94,18 +87,17 @@ ion-tab-button:hover {
 //         background-image: url(../../assets/icon/icon-settings.svg);
 //     }
 // }
-
 #tab-button-tab1-library {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    //  border-top-left-radius: 30px;
+    // border-bottom-left-radius: 30px;
 }
 
 #tab-button-tab2-notification {
-    border-top-right-radius: 15px;
+    // border-top-right-radius: 15px;
 }
 
 #tab-button-tab4-profil {
-    border-top-left-radius: 15px;
+    // border-top-left-radius: 15px;
 }
 
 #tab-button-tab3-search {
@@ -113,12 +105,10 @@ ion-tab-button:hover {
     // border-radius: 50% !important;
     // width: 68px !important;
     // height: 68px !important;
-
     width: 40px;
     height: 40px;
     border-radius: 20px;
     background: #FF3D51;
-
     ion-icon {
         background-repeat: no-repeat;
         background-position: center;
@@ -135,19 +125,19 @@ ion-tab-button:hover {
 }
 
 #tab-button-tab3-search::part(a) {
-    --margin-top: -2px !important;
+    // --margin-top: -2px !important;
 }
-#tab-button-tab3-search > a {
-    --margin-top: -2px !important;
+
+#tab-button-tab3-search>a {
+    // --margin-top: -2px !important;
 }
+
 #tab-button-tab1-library,
 #tab-button-tab2-notification,
 #tab-button-tab4-profil,
 #tab-button-tab5-param {
-    
-    width: 68px !important;
-    height: 68px !important;
-
+    //  width: 68px !important;
+    //  height: 68px !important;
     ion-icon {
         background-repeat: no-repeat;
         background-position: center;
@@ -176,11 +166,10 @@ ion-tab-button:hover {
 //     margin-top: -8px;
 //     padding-top: 5px;
 // }
-
-#tab-button-tab1-library > ion-icon:after,
-#tab-button-tab2-notification > ion-icon:after,
-#tab-button-tab4-profil > ion-icon:after,
-#tab-button-tab5-param > ion-icon:after {
+#tab-button-tab1-library>ion-icon:after,
+#tab-button-tab2-notification>ion-icon:after,
+#tab-button-tab4-profil>ion-icon:after,
+#tab-button-tab5-param>ion-icon:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -189,7 +178,7 @@ ion-tab-button:hover {
     position: absolute;
     transition: width 0.4s ease 0s, background-color 0.4s ease;
     width: 0;
-    border-radius: 5px;
+    // border-radius: 5px;
 }
 
 // #tab-button-tab1-library.tab-selected > ion-icon:after,

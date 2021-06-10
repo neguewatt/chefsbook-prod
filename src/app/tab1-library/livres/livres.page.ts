@@ -105,7 +105,7 @@ export class LivresPage implements OnInit {
 
   }
   showListeLivre(livre: string) {
-    console.log(livre);
+   //  console.log(livre);
     if (livre ===  'maBibliotheque') {
       this.reference = false;
       this.achat = false;

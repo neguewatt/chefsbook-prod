@@ -1,56 +1,62 @@
 <ion-content [fullscreen]="true" class="backround-login">
-  <form [formGroup]="loginform" (ngSubmit)="onSubmitSigninForm()">
-  <ion-grid class="login-grid">
-    <ion-row class="m-top-100">
-      <ion-col>
-          <div class="ion-text-center">
-            <ion-text class="label-bienvenue" id="#bienvenu">
-              Bienvenue
-            </ion-text>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="errorBox">
-      <ion-col>
-        <div [hidden]="!errorLogin" class="login-error ion-text-center">
-          <ion-icon name="earth-sharp"></ion-icon>
-          <br/>
-          <ion-text>Votre identifiant ou votre mot de passe est incorrect. </ion-text>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="">
-      <ion-col class="ion-margin-top">
-        <div>
-          <ion-item [style]="errorLogin ? colorA : colorB">
-            <ion-input name="email" type="email" placeholder="votre@email.com" formControlName="email" required ></ion-input>
-          </ion-item>
-        </div>
-        <div class="ion-margin-top">
-          <ion-item [style]="errorLogin ? colorA : colorB">
-            <ion-input name="password" type="password" placeholder="Mot de passe" formControlName="password" required ></ion-input>
-          </ion-item>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="font-check ion-text-center">
-        <div>
-          <ion-text>Mot de passe oublié ? </ion-text>
-        </div>
-        <div>
-          <ion-text> Pas enregistré ? <span id="creer-compte" (click)="creerUtilisateur()" style="font-weight: bold;">Créer un compte</span></ion-text>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-margin-top">
-      <ion-col class="ion-text-center">
-        <div>
-          <ion-button class="btn-connexion" id="submit" type="submit"  expand="full" shape="round"><span>CONNEXION</span></ion-button>
-        </div>
-      </ion-col>
-    </ion-row>
-    <!-- <ion-row>
+    <form [formGroup]="loginform" (ngSubmit)="onSubmitSigninForm()">
+        <ion-grid class="login-grid">
+            <ion-row class="m-top-100">
+                <ion-col>
+                    <div class="ion-text-center">
+                        <ion-text class="label-bienvenue" id="#bienvenu">
+                            Bienvenue
+                        </ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="errorBox">
+                <ion-col>
+                    <div [hidden]="!errorLogin" class="login-error ion-text-center">
+                        <ion-icon name="earth-sharp"></ion-icon>
+                        <br/>
+                        <ion-text>Votre identifiant ou votre mot de passe est incorrect. </ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="">
+                <ion-col class="ion-margin-top">
+                    <div>
+                        <ion-item [style]="errorLogin ? colorA : colorB">
+                            <ion-input name="email" type="email" placeholder="votre@email.com" formControlName="email" required></ion-input>
+                        </ion-item>
+                    </div>
+                    <div class="ion-margin-top">
+                        <ion-item [style]="errorLogin ? colorA : colorB">
+                            <ion-input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Mot de passe" formControlName="password"></ion-input>
+                            <ion-icon class="show-option" [hidden]="showPassword" name="eye-off-outline" (click)="toggleShow()"></ion-icon>
+                            <ion-icon class="hide-option" [hidden]="!showPassword" name="eye-outline" (click)="toggleShow()"></ion-icon>
+                        </ion-item>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="font-check ion-text-center">
+                    <div>
+                        <ion-checkbox class="ion-margin-end" slot="start" checked="checked" (click)="onChecked()"></ion-checkbox>
+                        <ion-text class="ion-margin-vertical">Se souvenir de moi</ion-text>
+                    </div>
+                    <div>
+                        <ion-text>Mot de passe oublié ? </ion-text>
+                    </div>
+                    <div>
+                        <ion-text> Pas enregistré ? <span id="creer-compte" (click)="creerUtilisateur()" style="font-weight: bold;">Créer un compte</span></ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-margin-top">
+                <ion-col class="ion-text-center">
+                    <div>
+                        <ion-button class="btn-connexion" id="submit" type="submit" expand="full" shape="round"><span>CONNEXION</span></ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row>
       <ion-col col-4>
         <ion-button color="primary" expand="block">
             <ion-icon name="logo-facebook"></ion-icon>
@@ -67,6 +73,6 @@
         </ion-button>
       </ion-col>
     </ion-row> -->
-  </ion-grid>
-</form>
+        </ion-grid>
+    </form>
 </ion-content>

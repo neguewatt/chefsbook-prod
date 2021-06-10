@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { CreationFiche2PageRoutingModule } from './creation-fiche2-routing.module';
 
 import { CreationFiche2Page } from './creation-fiche2.page';
+import { HeaderPage } from 'src/app/pages/header/header.page';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { CreationFiche2Page } from './creation-fiche2.page';
     IonicModule,
     CreationFiche2PageRoutingModule
   ],
-  declarations: [CreationFiche2Page, PrepaPage, PlatPage]
+  declarations: [CreationFiche2Page, PrepaPage, PlatPage, HeaderPage]
 })
 export class CreationFiche2PageModule {}

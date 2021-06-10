@@ -12,4 +12,5 @@ export class Utilisateurs
     public email = '';
     public dateCreation: any;
     public abonnement = 'G';
+    public partage = 0;
 }

@@ -47,7 +47,7 @@ export class CreationLivresPage implements OnInit {
     this.livre.position = 'personnel';
     this.livre.idUtilisateur.push(this.dataService.user.uid);
 
-    console.log(this.livre);
+   //  console.log(this.livre);
 
     this.dataService.addLivre(this.livre);
     this.route.navigate(['./tabs/tab1-library']);

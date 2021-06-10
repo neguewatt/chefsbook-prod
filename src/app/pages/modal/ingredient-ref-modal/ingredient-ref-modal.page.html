@@ -1,36 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-  </ion-toolbar>
+    <ion-toolbar>
+    </ion-toolbar>
     <ion-buttons slot="start" (click)="closeModal()">
-      <ion-icon color="secondary" size="large" name="arrow-back-outline"></ion-icon>
+        <ion-icon color="secondary" size="large" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="titreModal">Ingrédient de référence</ion-title>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="none">
-          <ion-label class="descTexteCss">{{fiche.produitRef.produit}} </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>Quantité ingrédient : </ion-label>
-          <ion-input name="newQuantite" type="texte" class="ion-text-center" id="qte" placeholder="Qté"
-            [(ngModel)]="newQuantite" (keyup)="onKey($event)"></ion-input><ion-label>{{fiche.produitRef.unite}}</ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none">
+                    <ion-label class="descTexteCss">{{fiche.produitRef.produit}} </ion-label>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-label>Quantité ingrédient : </ion-label>
+                    <ion-input name="newQuantite" type="number" class="ion-text-center" min="0.001" id="qte" placeholder="Qté" step="0.001" [(ngModel)]="newQuantite" (keyup)="onKey($event)"></ion-input>
+                    <ion-label>{{fiche.produitRef.unite}}</ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
 <footer>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block" color="primary" (click)="ajoutFiche()" class="Btn_Validate" type='submit'>
-          AJOUTER LA PREPARATION
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" color="primary" (click)="ajoutFiche()" class="Btn_Validate" type='submit'>
+                    AJOUTER LA PREPARATION
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </footer>

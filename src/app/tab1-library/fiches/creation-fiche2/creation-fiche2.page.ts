@@ -11,8 +11,8 @@ import { Preparation } from 'src/app/models/preparation';
 })
 export class CreationFiche2Page implements OnInit {
 
-  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
-  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto"; font-weight: 500;';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
 
   userNom: string;
   prenom: string;
@@ -20,24 +20,23 @@ export class CreationFiche2Page implements OnInit {
   newTitre: string;
   types: string[] = ['Préparation', 'Plat'];
   prepa = true;
+  plat = false;
   newType: string;
 
 
   constructor(private dataService: AuthFirebaseService) {
-    // if(!this.dataService.produitsListe){
-    //   this.dataService.getProduitListe();
-    // }
   }
 
   ngOnInit() {
-    console.log(this.dataService.posteDeTravailListe);
     this.newType = 'Préparation';
   }
 
   viewFiche(ev){
     if(ev.target.value === 'Préparation') {
       this.prepa = true;
+      this.plat = false;
     }else{
+      this.plat = true;
       this.prepa = false;
     }
   }

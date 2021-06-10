@@ -70,6 +70,14 @@ const routes: Routes = [
   {
     path: 'choix-du-livre',
     loadChildren: () => import('./pages/modal/choix-du-livre/choix-du-livre.module').then( m => m.ChoixDuLivrePageModule)
+  },
+  {
+    path: 'header',
+    loadChildren: () => import('./pages/header/header.module').then( m => m.HeaderPageModule)
+  },
+  {
+    path: 'details',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   }
 ];
 @NgModule({

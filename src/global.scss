@@ -29,17 +29,33 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+:root[mode="ios"] {
+    $font-family-ios-base: 'Roboto', san-serif !default;
+}
+
+:root {
+    --ion-color-primary: #b73636;
+    --ion-color-secondary: #f03434;
+    // autre couleur
+    --ion-toolbar-background: transparent;
+}
+
 hr {
     border-top: 0.5px solid rgb(0, 0, 0, 0.1) !important;
     margin: 0px !important;
 }
 
+ion-header{
+    min-height: 64px;
+}
+
 .header {
-    --background: #312929 url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
+    min-height: 64px;
+    --background: none;
+    background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
     --padding-bottom: 0;
     --padding-end: 0;
     --padding-start: 0;
-
     --color: #ffffff;
 }
 
@@ -51,16 +67,15 @@ hr {
 }
 
 .headerFiche {
-    --background: #fff url("./assets/Background/HeaderImg_Black.jpg") no-repeat center center / cover;
     height: 100px;
     padding: 0px;
+    --background: none;
+    background: url("./assets/Background/HeaderImg_Black.jpg") center center / cover;
 }
 
 .iconUpdate {
     color: #ffffff;
-    width: 24px;
-    height: 24px;
-    padding-top: 10px;
+    font-size: 24px;
     padding-right: 15px;
 }
 
@@ -73,7 +88,7 @@ hr {
 }
 
 .titreModal {
-    font-family: "Roboto";
+    font-family: Roboto !important;
     font-size: 16px;
     color: #f03434 !important;
 }
@@ -90,31 +105,31 @@ hr {
 
 .buttonBack {
     padding-left: 15px;
-    padding-top: 10px;
 }
 
 .policeFiche {
-    font-family: "Roboto-Regular" !important;
-    font-size: 14px !important;
+    font-weight: 400;
+    font-family: Roboto !important;
+    font-size: 12px !important;
     color: #7f7f7f !important;
 }
 
 .classTitreSection {
     font-weight: 400;
-    font-family: "Roboto" !important;
-    font-size: 18px !important;
+    font-family: Roboto !important;
+    font-size: 14px !important;
     color: #f03434 !important;
 }
 
 .classTitreDenreeTableau {
-    font-family: "Roboto" !important;
-    font-size: 16px !important;
+    font-family: Roboto !important;
+    font-size: 14px !important;
     --color: #393939 !important;
 }
 
 .classDenreeTableau {
-    font-family: "Roboto" !important;
-    font-size: 16px !important;
+    font-family: Roboto !important;
+    font-size: 14px !important;
     color: rgb(0, 0, 0, 0.5) !important;
 }
 
@@ -133,17 +148,30 @@ hr {
 }
 
 .descCss {
-    font-family: "Roboto-Regular" !important;
+    font-weight: 400;
+    font-family: Roboto !important;
     --color: #ff4a4a !important;
     font-size: 14px !important;
     font-weight: 500 !important;
 }
 
 .descTexteCss {
-    font-family: "Roboto-Regular" !important;
+    font-weight: 400;
+    font-family: Roboto !important;
     --color: #7f7f7f !important;
-    font-size: 17px !important;
+    font-size: 14px !important;
     font-weight: 400 !important;
+}
+
+.paddingL15 {
+    padding-left: 15px;
+}
+
+.toolbar {
+    --padding-bottom: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --color: #000000;
 }
 
 ion-content {
@@ -221,8 +249,7 @@ ion-segment {
 }
 
 .titreFiche {
-    --ion-font-family: "Roboto";
-    src: url("./assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype");
+    font-family: Roboto;
     font-size: 20px;
     color: white;
 }
@@ -237,12 +264,6 @@ ion-avatar {
     border-radius: 50%;
     width: 64px;
     height: 64px;
-}
-
-:root {
-    --ion-color-primary: #b73636;
-    --ion-color-secondary: #f03434;
-    // autre couleur
 }
 
 .centerTable {
@@ -305,15 +326,17 @@ ion-avatar {
 }
 
 .backround-login {
-    --background: #fff url("./assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    --background: none;
+    background: url("./assets/Background/HomeBG_iPhone.jpg") no-repeat center center / cover fixed;
 }
 
 .login-error {
     --margin-bottom: var(--ion-margin, 20px);
     margin-bottom: var(--ion-margin, 20px);
     color: red;
-    --ion-font-family: "Roboto";
-    src: url("./assets/Fonts/Roboto/Roboto-Black.ttf") format("truetype");
+    font-family: Roboto !important;
     font-size: 0.8rem;
 }
 
@@ -322,10 +345,9 @@ ion-avatar {
     margin-top: var(--ion-margin, 45px);
 }
 
-.label-bienvenu {
+.label-bienvenue {
     color: white;
-    --ion-font-family: "QuickKiss";
-    src: url("./assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
+    font-family: "QuickKiss" !important;
     font-size: 3rem;
 }
 
@@ -336,8 +358,7 @@ ion-avatar {
 
 .font-check {
     color: white;
-    --ion-font-family: "QuickKiss";
-    src: url("./assets/Fonts/QuickKiss/QuickKiss.ttf") format("truetype");
+    font-family: "QuickKiss";
     font-size: 0.9rem;
 }
 
@@ -362,13 +383,45 @@ ion-avatar {
 }
 
 .ficheElementTable {
-    font: 500 14px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    font: 500 14px/25px Roboto !important;
     letter-spacing: normal !important;
     margin: 0px !important;
 }
 
 .notificationTable {
-    font: 400 17px/25px Roboto, "Helvetica Neue", sans-serif !important;
+    font: 400 17px/25px Roboto !important;
     letter-spacing: normal !important;
     margin: 0px 0 5px !important;
+}
+
+.labelModalFiche{
+    font: 500 14px/25px Roboto !important;
+    color: black;
+}
+.iconModalFiche{
+    font-size: 18px;
+}
+.modalTableBorder{
+    border-bottom: 1px solid #dedede !important;
+}
+
+ion-toolbar{
+    --min-height: 64px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+ion-grid{
+    padding: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+
+.middleMinheight{
+    --min-height: 44px !important;
 }

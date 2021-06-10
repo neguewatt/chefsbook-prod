@@ -1,3 +1,4 @@
+import { AuthLoginService } from './../../service/auth-login.service';
 import { Router } from '@angular/router';
 import { Utilisateurs } from './../../models/Utilisateurs';
 import { Component, OnInit, Input } from '@angular/core';
@@ -21,7 +22,7 @@ export class ComptePage implements OnInit {
   emailFillo: string;
   boolButton = false;
 
-  constructor(private dataService: AuthFirebaseService,
+  constructor(private dataService: AuthFirebaseService, private authLogin: AuthLoginService,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private route: Router) {
@@ -67,12 +68,12 @@ export class ComptePage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+           //  console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
+           //  console.log('Confirm Okay');
             this.dataService.deleteUser();
             this.presentLoading();
           }
@@ -85,12 +86,17 @@ export class ComptePage implements OnInit {
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
       message: 'Aurevoir...',
-      duration: 3000
+      duration: 1500
     });
     await loading.present();
 
     await loading.onDidDismiss();
-    this.route.navigate(['']);
+    this.route.navigate(['login']);
+  }
+
+  deconnexion(){
+    this.authLogin.signOutUser();
+    this.presentLoading();
   }
 
 }

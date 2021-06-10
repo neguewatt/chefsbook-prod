@@ -43,11 +43,11 @@ export class ViewPlatPage implements OnInit {
 
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation() !== null) {
-        console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
+       //  console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
         this.plat = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiche2 [plat]
       }
       if (this.route.getCurrentNavigation().extras.state) {
-        console.log('param ok ', this.route.getCurrentNavigation().extras.state);
+       //  console.log('param ok ', this.route.getCurrentNavigation().extras.state);
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
         this.fiche.key = this.route.getCurrentNavigation().extras.state.key;
         if (this.route.getCurrentNavigation().extras.state.update){
@@ -59,7 +59,7 @@ export class ViewPlatPage implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.plat);
+   //  console.log(this.plat);
     const _date = new Date(this.plat.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.getUtilisateurById();
@@ -99,7 +99,7 @@ export class ViewPlatPage implements OnInit {
   //       this.tableau1 = true;
   //       this.tableau2 = false;
   //     }
-  //     console.log('getOrdreTableau', res[0].natureUniteQuantite);
+  //    //  console.log('getOrdreTableau', res[0].natureUniteQuantite);
   //   });
   // }
 
@@ -144,7 +144,7 @@ export class ViewPlatPage implements OnInit {
     newFiche.portion = this.plat.portion;
     newFiche.fichePreparation = this.plat.fichePreparation;
     this.fiche = newFiche;
-    console.log(this.fiche);
+   //  console.log(this.fiche);
     this.dataService.updateFichePlat(this.fiche.key ,this.fiche);
   }
 

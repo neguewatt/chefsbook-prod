@@ -10,16 +10,16 @@ export class AuthLoginService {
   constructor() { }
 
   signInUser(email: string, password: string) {
-    console.log(email, password);
+   //  console.log(email, password);
     return new Promise(
       (resolve, reject) => {
         firebase.default.auth().signInWithEmailAndPassword(email, password).then(
           (data) => {
             resolve(data.user.uid);
-            console.log('Connecté', data.user.uid);
+           //  console.log('Connecté', data.user.uid);
           },
           (error) => {
-            console.log('error1', error);
+           //  console.log('error1', error);
             reject(error);
           }
         );
@@ -30,6 +30,6 @@ export class AuthLoginService {
 
   signOutUser() {
     firebase.default.auth().signOut();
-    console.log('déconnecté');
+   //  console.log('déconnecté');
   }
 }

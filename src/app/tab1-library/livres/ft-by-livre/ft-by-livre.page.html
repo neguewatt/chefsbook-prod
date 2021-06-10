@@ -3,7 +3,7 @@
         <ion-buttons slot="start" class="buttonBack">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
-        <ion-title *ngIf="!livreUpdate" class="titrePage titreFiche" >{{livreNom}}</ion-title>
+        <ion-title *ngIf="!livreUpdate" class="titrePage titreFiche">{{livreNom}}</ion-title>
         <div *ngIf="livreUpdate">
             <ion-title>
                 <ion-input class="titrePage titreFiche" placeholder="{{livreNom}}" type="text" [(ngModel)]="newNom" name="title"></ion-input>
@@ -13,12 +13,21 @@
             <ion-icon class="iconUpdate" icon="pencil" (click)="showUpdateLivre()"></ion-icon>
         </ion-buttons>
         <ion-buttons slot="end" *ngIf="showButtonUpdate">
-            <ion-icon class="iconUpdate" icon="arrow-redo-outline" (click)="updateLivre(livre.key)"></ion-icon>
+            <ion-icon class="iconUpdate" icon="close" (click)="showCloseUpdate()"></ion-icon>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid *ngIf="livreUpdate">
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-input contenteditable="true" class="pLR50 " placeholder="Titre du livre" type="text" [(ngModel)]="newNom" name="title"></ion-input>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
     <ion-list>
         <ion-item-group *ngFor="let fiche of newFtByLivre | keyvalue; let i = index">
             <ion-item-divider (click)="fiche.value.toggle=!fiche.value.toggle" class="dividerLettre" style="margin-bottom: 1px;">
@@ -30,10 +39,8 @@
                 <ion-row *ngFor="let value of fiche.value; let i = index ">
                     <ion-col>
                         <ion-item lines="none">
-                            <ion-icon *ngIf="value.type==='Préparation'" slot="start"
-                                src="../../../../assets/icon/icon-prep.svg" (click)="openFiche(value.idFiche, value.type)"></ion-icon>
-                            <ion-icon *ngIf="value.type==='Plat'" slot="start"
-                                src="../../../../assets/icon/icon-plat.svg" (click)="openFiche(value.idFiche, value.type)"></ion-icon>
+                            <ion-icon *ngIf="value.type==='Préparation'" slot="start" src="../../../../assets/icon/icon-prep.svg" (click)="openFiche(value.idFiche, value.type)"></ion-icon>
+                            <ion-icon *ngIf="value.type==='Plat'" slot="start" src="../../../../assets/icon/icon-plat.svg" (click)="openFiche(value.idFiche, value.type)"></ion-icon>
                             <ion-label class="text" (click)="openFiche(value.idFiche, value.type)">
                                 <h2 class="ficheElementTable">{{value.nom}}</h2>
                                 <p> {{value.livre}}</p>
@@ -46,3 +53,10 @@
         </ion-item-group>
     </ion-list>
 </ion-content>
+<ion-footer *ngIf="livreUpdate">
+    <ion-toolbar>
+        <ion-button slot="end" expand="block" color="primary" (click)="updateLivre(livre.key)">
+            Enregistrer
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

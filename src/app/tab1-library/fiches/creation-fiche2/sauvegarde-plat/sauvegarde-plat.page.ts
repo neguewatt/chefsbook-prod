@@ -37,7 +37,7 @@ export class SauvegardePlatPage implements OnInit {
 
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation() !== null) {
-        console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
+       //  console.log('queryparam ', this.route.getCurrentNavigation().extras.state);
         this.plat = this.route.getCurrentNavigation().extras.state.value; // arrive de creation-fiche2 [plat]
       }
     });
@@ -45,7 +45,7 @@ export class SauvegardePlatPage implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.plat);
+   //  console.log(this.plat);
   //  this.getUtilisateur();
   //  this.getOrdreTableau();
     this.userNom = this.dataService.utilisateur.nom;
@@ -94,7 +94,7 @@ export class SauvegardePlatPage implements OnInit {
   //       this.tableau1 = true;
   //       this.tableau2 = false;
   //     }
-  //     console.log('getOrdreTableau', res[0].natureUniteQuantite);
+  //    //  console.log('getOrdreTableau', res[0].natureUniteQuantite);
   //   });
   // }
 

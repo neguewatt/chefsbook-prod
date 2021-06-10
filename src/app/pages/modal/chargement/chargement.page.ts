@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { IonRouterOutlet, LoadingController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
+// import { registerPlugin } from '@capacitor/core'
+// const { PushNotifications } = registerPlugin('Echo');
+
+
 
 @Component({
   selector: 'app-chargement',
@@ -17,13 +21,21 @@ export class ChargementPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
-    private loadingController: LoadingController) {
+    private loadingController: LoadingController,
+    private routerOutlet: IonRouterOutlet) {
 
     }
 
   ngOnInit() {
+    this.routerOutlet.swipeGesture = false;
     this.presentLoading();
+    // this.resetBadgeCount();
   }
+
+  // resetBadgeCount() {
+  //   PushNotifications.removeAllDeliveredNotifications();
+  // }
+
   ecranDefaut() {
     this.dataService.getEcranDefaut().snapshotChanges().pipe(
       map(changes =>
@@ -32,7 +44,7 @@ export class ChargementPage implements OnInit {
         )
       )
     ).subscribe(res => {
-      console.log('resulta tab', res);
+     //  console.log('resulta tab', res);
       if (res[0].mesFiches){
         const navigationExtras: NavigationExtras = {
           state: {
@@ -77,10 +89,10 @@ export class ChargementPage implements OnInit {
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
+
     this.dataService.getCompteUtilisateur();
     this.ecranDefaut();
-    this.dataService.getFichesTechniqueAll();
-    this.dataService.getformule();
+    this.dataService.initialiseGet();
   }
 
 }

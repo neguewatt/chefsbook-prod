@@ -71,7 +71,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()"
+                                    name="add-circle-outline">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -92,6 +93,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="deleteProduit(denree)" name="trash">
+                                </ion-icon>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -113,7 +116,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()"
+                                    name="add-circle-outline">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -134,6 +138,8 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
+                                <ion-icon color="secondary" class="iconFiche" (click)="deleteProduit(denree)" name="trash">
+                                </ion-icon>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -152,8 +158,8 @@
                 </ion-label>
             </ion-item-divider>
             <ion-item lines="none" color="transparent">
-                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCSS"
-                    placeholder="Ecris les details techniques, le dressage, tes notes..." rows="12"
+                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss"
+                    placeholder="Ecris les details techniques, le dressage, tes notes..." rows="8"
                     [(ngModel)]="newDescriptionTechniques">
                 </ion-textarea>
             </ion-item>
@@ -161,12 +167,12 @@
     </ion-row>
 </ion-grid>
 
-<ion-grid style="bottom: 1px">
+<ion-toolbar>
     <ion-row>
         <ion-col>
             <ion-button expand="block" (click)="addNewFiche()">
-                <ion-icon src="../../../assets/icon/icon-arrow-forward.svg" class="iconFiche" color="white"></ion-icon>
+               <ion-label style="color:#ffffff;">Valider</ion-label>
             </ion-button>
         </ion-col>
     </ion-row>
-</ion-grid>
+</ion-toolbar>

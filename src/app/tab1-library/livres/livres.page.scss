@@ -1,58 +1,62 @@
 .carre {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  background-color: #7c7c7c;
-  color: white;
-  min-height: 118px;
-  min-width: 118px;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #7c7c7c;
+    color: white;
+    min-height: 118px;
+    min-width: 118px;
+    font-weight: 400;
 }
 
 .iconAdd {
-  font-size: 90px !important;
-  color: #ff4a4a !important;
-  --ionicon-stroke-width: 16px !important;
+    font-size: 90px !important;
+    color: #ff4a4a !important;
+    --ionicon-stroke-width: 16px !important;
 }
 
 .carreAjout {
-  border: #ff4a4a;
-  --border-radius: 32px;
-  height: 64px;
-  width: 64px;
-  --background: #ff4a4a;
-  --background-activated: #ff4a4a;
+    border: #ff4a4a;
+    --border-radius: 32px;
+    height: 64px;
+    width: 64px;
+    --background: #ff4a4a;
+    --background-activated: #ff4a4a;
 }
 
 .listLivre {
-  height: 100%;
-  overflow-y: scroll;
-  padding: 0px;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0px;
 }
 
 .listLivre ion-row {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .ion-list-size {
-  max-height: 450px;
-  overflow-y: scroll;
+    max-height: 450px;
+    overflow-y: scroll;
 }
+
 .listFT {
-  max-height: 300px;
+    max-height: 300px;
 }
+
 .list {
-  --background: #f1f9ff;
-  color: #2699fb;
+    --background: #f1f9ff;
+    color: #2699fb;
 }
 
 ion-item-divider ion-label {
-  color: white;
-  font-size: 0.8rem;
-  --ion-font-family: "Roboto" !important;
+    color: white;
+    font-size: 0.8rem;
+    font-family: "Roboto" !important;
 }
+
 ion-item-divider ion-icon {
-  color: white;
-  font-size: 1rem;
-  margin-right: 20px;
+    color: white;
+    font-size: 1rem;
+    margin-right: 20px;
 }

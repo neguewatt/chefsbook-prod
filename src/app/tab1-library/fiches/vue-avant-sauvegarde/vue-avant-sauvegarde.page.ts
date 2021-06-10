@@ -39,7 +39,7 @@ export class VueAvantSauvegardePage implements OnInit {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
-        console.log(this.fiche);
+       //  console.log(this.fiche);
       }
     });
   }
@@ -47,8 +47,8 @@ export class VueAvantSauvegardePage implements OnInit {
 
   ngOnInit() {
     this.denrees = this.fiche.denrees;
-    const _date = new Date(this.fiche.date.seconds * 1000);
-    this.date = _date.toLocaleDateString();
+
+    this.date = this.fiche.date.toLocaleDateString('fr-FR');
     //  this.getUtilisateur();
     this.userNom = this.dataService.utilisateur.nom;
     this.prenom = this.dataService.utilisateur.prenom;
@@ -73,7 +73,7 @@ export class VueAvantSauvegardePage implements OnInit {
   //       this.tableau1 = true;
   //       this.tableau2 = false;
   //     }
-  //     console.log('getOrdreTableau', res[0].natureUniteQuantite);
+  //    //  console.log('getOrdreTableau', res[0].natureUniteQuantite);
   //   });
   // }
   // getUtilisateur() {

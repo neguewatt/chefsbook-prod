@@ -1,63 +1,74 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{titre}}</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start" class="paddingL15">
+            <ion-back-button style="color:#000000" text="" icon="arrow-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{titre}}
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
+
 <ion-item-divider color="secondary"></ion-item-divider>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="none">
-          <ion-icon slot="start" src="../../../assets/icon/icon-profile.svg" style="color:#707070"></ion-icon>
-          <ion-label>
-            {{nom}} - {{prenom}}
-          </ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-item lines="none">
-        <ion-icon slot="start" src="../../../assets/icon/icon-mail.svg" style="color:#707070"></ion-icon>
-        <ion-label>
-          {{email}}
-        </ion-label>
-      </ion-item>
-    </ion-row>
-    <ion-row>
-      <ion-item lines="none">
-        <ion-label type="password" placeholder="Mot de passe">
-          Réinitialiser le mot de passe. <a href="">Cliquez ici</a>
-        </ion-label>
-      </ion-item>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="7">
+                <ion-item lines="none">
+                    <ion-icon slot="start" src="../../../assets/icon/icon-profile.svg" style="color:#707070"></ion-icon>
+                    <ion-label>
+                        {{nom}} - {{prenom}}
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col size="5">
+                <ion-item lines="none">
+                    <ion-label (click)="deconnexion()">
+                        <a href="">Déconnexion</a>
+                    </ion-label>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-item lines="none">
+                <ion-icon slot="start" src="../../../assets/icon/icon-mail.svg" style="color:#707070"></ion-icon>
+                <ion-label>
+                    {{email}}
+                </ion-label>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item lines="none">
+                <ion-label type="password" placeholder="Mot de passe">
+                    Réinitialiser le mot de passe. <a href="">Cliquez ici</a>
+                </ion-label>
+            </ion-item>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
 
-  </ion-grid>
-  <hr>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item lines="none">
-          <ion-label class="ion-margin-horizontal">Parrainer un ami</ion-label>
-          <ion-input name="email" type="email" placeholder="filleul(e)@email.com" [(ngModel)]="emailFillo"
-            style="color:#F03434" (keyup)="getItems($event)"></ion-input>
-        </ion-item>
-        <ion-button *ngIf="boolButton">Envoyer mail</ion-button>
-        <ion-item lines="none" class="marginTop24px ">
-          <ion-label>Version actuelle : {{abonnement}}</ion-label>
-        </ion-item>        
-        <!-- <ion-button [disabled] expand="block" style="text-transform: uppercase;">Voir les options de mise à niveau</ion-button> -->
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    </ion-grid>
+    <hr>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item lines="none">
+                    <ion-label class="ion-margin-horizontal">Parrainer un ami</ion-label>
+                    <ion-input name="email" type="email" placeholder="filleul(e)@email.com" [(ngModel)]="emailFillo" style="color:#F03434" (keyup)="getItems($event)"></ion-input>
+                </ion-item>
+                <ion-button *ngIf="boolButton">Envoyer mail</ion-button>
+                <ion-item lines="none" class="marginTop24px ">
+                    <ion-label>Version actuelle : {{abonnement}}</ion-label>
+                </ion-item>
+                <!-- <ion-button [disabled] expand="block" style="text-transform: uppercase;">Voir les options de mise à niveau</ion-button> -->
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>
 <ion-footer>
-  <ion-button expand=block color="primary" (click)="deleteUser()">Supprimer compte</ion-button>
+    <ion-toolbar>
+        <ion-button expand=block color="primary" (click)="deleteUser()">Supprimer compte</ion-button>
+    </ion-toolbar>
 </ion-footer>

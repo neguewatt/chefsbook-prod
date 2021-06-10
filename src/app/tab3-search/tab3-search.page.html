@@ -2,7 +2,7 @@
     <ion-toolbar class="header">
         <ion-grid class="padding-0">
             <ion-grid class="padding-0">
-                <ion-row >
+                <ion-row>
                     <ion-row class="margin-auto">
                         <ion-col>
                             <h1 class="ion-margin-top">Recherche</h1>
@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-toolbar>
+    <ion-toolbar style="padding-top: 10px;">
 
         <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="getItems($event)"></ion-searchbar>
 

@@ -1,12 +1,13 @@
 <ion-header>
     <ion-toolbar>
-    </ion-toolbar>
         <ion-buttons slot="start" (click)="cancel()">
             <ion-icon color="secondary" size="large" name="arrow-back-outline"></ion-icon>
         </ion-buttons>
         <ion-title class="titreModal">Choix du livre</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
+
     <ion-row>
         <ion-col>
             <ion-select class="form-control" interface="popover" value="choixLivre" [(ngModel)]="choixLivre" placeholder="Choix du livre">

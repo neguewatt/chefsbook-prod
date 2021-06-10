@@ -48,7 +48,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.arrayFichePlat);
+   //  console.log(this.arrayFichePlat);
     this.denrees = this.fiche.denrees;
     const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
@@ -83,7 +83,7 @@ export class VuFicheAvantAjoutPage implements OnInit {
   //       this.tableau1 = true;
   //       this.tableau2 = false;
   //     }
-  //     console.log('getOrdreTableau');
+  //    //  console.log('getOrdreTableau');
   //   });
   // }
 

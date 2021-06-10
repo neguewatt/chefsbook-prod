@@ -18,8 +18,8 @@ export class FichesPage implements OnInit {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  cssButtonSelect = '--color: #F03434;  font-family: "Roboto-Medium";';
-  cssButtonSelectNo = '--color: #F03434; opacity: 50%';
+  cssButtonSelect = '--color: #F03434;  font-family: "Roboto"; font-weight: 500;';
+  cssButtonSelectNo = '--color: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
 
   toutesBoolean = false;
   prepaBoolean = false;
@@ -75,7 +75,7 @@ export class FichesPage implements OnInit {
       )
     ).subscribe(res => {
       if (res !== undefined) {
-        console.log('fiche', res);
+       //  console.log('fiche', res);
         this.prepaBoolean = true;
         this.dataService.preparationListe = res;
         this.prepa = res;
@@ -96,7 +96,7 @@ export class FichesPage implements OnInit {
 
   pushFicheIfNotExist(ficheA: any){
     const index = this.ficheTechniquesAll.findIndex((e) => e.key === ficheA.key);
-    console.log(index);
+   //  console.log(index);
 
     if(index === -1){
       this.ficheTechniquesAll.push(ficheA);
@@ -131,7 +131,7 @@ export class FichesPage implements OnInit {
   }
 
   segmentChanged(page: any) {
-    console.log(page);
+   //  console.log(page);
     this.toutesBoolean = false;
     this.prepaBoolean = false;
     this.platsBoolean = false;
@@ -149,7 +149,7 @@ export class FichesPage implements OnInit {
     }
   }
   async openPopover(ev: any, fiche: any) {
-    console.log('popover');
+   //  console.log('popover');
     const popover = await this.popoverController.create({
       component: ModalFichePage,
       componentProps: {
@@ -160,8 +160,6 @@ export class FichesPage implements OnInit {
     popover.onDidDismiss().then((res) => {
       this.ngOnInit();
     });
-
-
     return await popover.present();
   }
   openFiche(fiche: any) {

@@ -24,18 +24,18 @@ export class FolderPage implements OnInit {
   plats: Plats[] = [];
 
   constructor(private dataService: AuthFirebaseService,
-    private route: Router) { }
+    private route: Router) {
+      this.getPlatPartage();
+      this.getFicheTechniquespartage(); }
 
 
   ngOnInit() {
-    this.getPlatPartage();
-    this.getFicheTechniquespartage();
     this.newItems = this.ficheTechniquesAll.reduce((r, a) => {
       r[a.idUtilisateur] = r[a.idUtilisateur] || [];
       r[a.idUtilisateur].push(a);
       return r;
     }, Object.create(null));
-
+    console.log(this.ficheTechniquesAll);
   }
 
   getPlatPartage() {
@@ -46,7 +46,7 @@ export class FolderPage implements OnInit {
         )
       )
     ).subscribe((resPlat: any) => {
-      console.log('partagé :', resPlat);
+     //  console.log('partagé :', resPlat);
       if (resPlat !== undefined) {
         this.dataService.partagePlatsListe = resPlat;
         resPlat.forEach(plat => {
@@ -74,7 +74,7 @@ export class FolderPage implements OnInit {
       if (res !== undefined) {
         this.dataService.partagePrepaListe = res;
         res.forEach(resFiche => {
-          console.log('partagé :', resFiche);
+         //  console.log('partagé :', resFiche);
           this.dataService.getUtilisateurById(resFiche.idUtilisateur).then((user: Utilisateurs) => {
             const fiche = new FicheByCom();
             fiche.idFiche = resFiche.key;
@@ -90,18 +90,18 @@ export class FolderPage implements OnInit {
   }
 
 
-  groupByName(array: any) {
-    return array.reduce((r, a) => {
-      r[a.idUtilisateur] = r[a.idUtilisateur] || [];
-      r[a.idUtilisateur].push(a);
-      return r;
-    }, Object.create(null));
-  }
+  // groupByName(array: any) {
+  //   return array.reduce((r, a) => {
+  //     r[a.idUtilisateur] = r[a.idUtilisateur] || [];
+  //     r[a.idUtilisateur].push(a);
+  //     return r;
+  //   }, Object.create(null));
+  // }
 
   openFiche(keyFiche: string, type: string) {
     if ('Préparation' === type) {
       this.dataService.getPrepaPartageById(keyFiche).then(prepa => {
-        console.log(prepa);
+       //  console.log(prepa);
         const navigationExtras: NavigationExtras = {
           state: {
             value: prepa,
@@ -124,5 +124,7 @@ export class FolderPage implements OnInit {
       });
     }
   }
+
+
 
 }
