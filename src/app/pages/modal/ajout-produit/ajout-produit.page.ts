@@ -1,10 +1,10 @@
 import { Unites } from './../../../models/unites';
 import { Denrees } from './../../../models/denrees';
 import { Produits } from './../../../models/produits';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
-import { ModalController, ToastController } from '@ionic/angular';
-import  produitsListe  from './../../../../produits.json';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
+import produitsListe from './../../../../produits.json';
 
 @Component({
   selector: 'app-ajout-produit',
@@ -13,6 +13,7 @@ import  produitsListe  from './../../../../produits.json';
 })
 export class AjoutProduitPage implements OnInit {
 
+  @Input() value: any;
   // URL du CSS de la modal : global.scss voir .addProduit-custom-modal-css
 
   denree: Denrees;
@@ -28,23 +29,27 @@ export class AjoutProduitPage implements OnInit {
   quantite: number;
   typeProduit: string;
   qteSupBool = false;
-
   constructor(
     private modalController: ModalController,
     public toastController: ToastController,
-    private dataService: AuthFirebaseService) {
-      // creation de la liste produitsListe
-      this.produits = produitsListe;
-     }
+    private dataService: AuthFirebaseService,
+    private navParams: NavParams) {
+    // creation de la liste produitsListe
+    this.produits = produitsListe;
+  }
 
   ngOnInit() {
     this.unites = this.dataService.unitesListe;
-   //  console.log(this.unites);
-
     this.quantite = 0;
-   // this.produits = this.dataService.produitsListe;
-   //  console.log(this.produits);
 
+    if (this.navParams.get('value') !== undefined) {
+      this.produitUpdate = true;
+      this.nomProduit = this.navParams.get('value').produit;
+      this.typeProduit = this.navParams.get('value').typeProduit;
+      this.isnomProduit = true;
+      this.newUnite = this.navParams.get('value').unite;
+      this.quantite = this.navParams.get('value').quantite;
+    }
   }
 
   getItems(ev: KeyboardEvent) {
@@ -60,17 +65,15 @@ export class AjoutProduitPage implements OnInit {
       this.produits = produitsListe;
     }
   }
-
-  qteChange(){
-    if(this.quantite > 0){
+  qteChange() {
+    if (this.quantite > 0) {
       this.qteSupBool = true;
-    }else{
+    } else {
       this.qteSupBool = false;
     }
   }
-
-  ajoutNomPtoduit(produit: Produits){
-   //  console.log(produit);
+  ajoutNomPtoduit(produit: Produits) {
+    //  console.log(produit);
     this.isnomProduit = true;
     this.isItemAvailable = false;
     this.nomProduit = produit.nomFr;
@@ -85,30 +88,53 @@ export class AjoutProduitPage implements OnInit {
     this.qteChange();
   }
   async addProduitArray() {
-
-    if(this.quantite <= 0){
-      this.alertError();
+    if (!this.produitUpdate) {
+      if (this.quantite <= 0) {
+        this.alertErrorQte();
+      } else if (this.newUnite.nom === undefined) {
+        this.alertErrorUnite()
+      }
+      else {
+        const newDenree = new Denrees();
+        newDenree.produit = this.nomProduit;
+        newDenree.quantite = this.quantite;
+        newDenree.typeProduit = this.typeProduit;
+        newDenree.unite = this.newUnite.nom;
+       // this.denree = newDenree;
+        if (newDenree.produit === undefined) {
+          this.presentToastProduit();
+        } else if (newDenree.quantite === undefined || newDenree.unite === undefined) {
+          this.presentToast();
+        } else {
+          console.log("okici",newDenree);
+          await this.modalController.dismiss(newDenree);
+        }
+      }
     }else{
-      const newDenree = new Denrees();
-      newDenree.produit = this.nomProduit;
-      newDenree.quantite = this.quantite;
-      newDenree.typeProduit = this.typeProduit;
-      newDenree.unite = this.newUnite.nom;
-      this.denree = newDenree;
-      // this.produits.forEach(element => {
-      //   if(this.denree.produit === element.nomFr){
-  
-      //   }
-      // });
-      if(this.denree.produit === null){
-        this.presentToastProduit();
-      }else if(this.denree.quantite === null || this.denree.unite === null){
-        this.presentToast();
-      }else{
-        await this.modalController.dismiss(this.denree);
+      if (this.quantite <= 0) {
+        this.alertErrorQte();
+      } else if (this.newUnite.nom === undefined) {
+        this.alertErrorUnite()
+      }
+      else {
+        this.navParams.get('value').produit = this.nomProduit;
+        this.navParams.get('value').quantite = this.quantite;
+        this.navParams.get('value').typeProduit = this.typeProduit;
+        this.navParams.get('value').unite = this.newUnite.nom;
+        this.denree = this.navParams.get('value');
+        if (this.denree.produit === undefined) {
+          this.presentToastProduit();
+        } else if (this.denree.quantite === undefined || this.denree.unite === undefined) {
+          this.presentToast();
+        } else {
+          console.log("okici",this.denree);
+          
+          await this.modalController.dismiss(this.denree);
+        }
       }
     }
   }
+
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Merci d\'indiquer les quantités souhaitées !',
@@ -123,13 +149,20 @@ export class AjoutProduitPage implements OnInit {
     });
     toast.present();
   }
-  async cancel(){
+  async cancel() {
     await this.modalController.dismiss();
   }
 
-  async alertError() {
+  async alertErrorQte() {
     const toast = await this.toastController.create({
       message: 'Erreur sur la quantité !',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async alertErrorUnite() {
+    const toast = await this.toastController.create({
+      message: 'Erreur sur l\'unité !',
       duration: 2000
     });
     toast.present();

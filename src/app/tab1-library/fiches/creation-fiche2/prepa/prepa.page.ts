@@ -15,7 +15,7 @@ import { PosteDeTravail } from 'src/app/models/postes';
   styleUrls: ['./prepa.page.scss'],
 })
 export class PrepaPage implements OnInit {
-  ficheTechnique: Preparation ;
+  ficheTechnique: Preparation;
 
   userNom: string;
   prenom: string;
@@ -95,7 +95,7 @@ export class PrepaPage implements OnInit {
     });
     modal.onDidDismiss().then((newDenree) => {
       if (newDenree.data !== undefined) {
-       //  console.log('newDenree', newDenree.data);
+        console.log('newDenree', newDenree.data);
         this.denrees.push(newDenree.data);
         this.map = this.denrees.map((denree) => {
           const retour = Object.assign({}, denree);
@@ -108,17 +108,17 @@ export class PrepaPage implements OnInit {
 
   addNewFiche() {
     this.newTitre = this.creationFiche2Page.newTitre;
-    if(this.newTitre === undefined ){
+    if (this.newTitre === undefined) {
       this.erreurTitre();
-    }else if (this.newPoste === undefined) {
+    } else if (this.newPoste === undefined) {
       this.erreurPoste();
-    }else if (this.newProduitRef === undefined) {
+    } else if (this.newProduitRef === undefined) {
       this.erreurProduitRef();
-    }else if (this.denrees.length === 0) {
+    } else if (this.denrees.length === 0) {
       this.erreurDenrées();
-    }else if (this.newDescriptionTechniques === undefined ) {
+    } else if (this.newDescriptionTechniques === undefined) {
       this.erreurDescription();
-    }else {
+    } else {
       const newFiche = new Preparation();
       newFiche.type = 'Préparation';
       newFiche.nom = this.newTitre.charAt(0).toUpperCase() + this.newTitre.substr(1);
@@ -128,13 +128,13 @@ export class PrepaPage implements OnInit {
       newFiche.descriptionTechniques = this.newDescriptionTechniques.charAt(0).toUpperCase() + this.newDescriptionTechniques.substr(1);
       newFiche.poste = this.newPoste;
 
-     //  console.log('produit ref', this.newProduitRef);
+      //  console.log('produit ref', this.newProduitRef);
 
       newFiche.produitRef = { ...this.newProduitRef };
       newFiche.idUtilisateur = this.dataService.user.uid;
       this.ficheTechnique = newFiche;
 
-     //  console.log(this.ficheTechnique);
+      //  console.log(this.ficheTechnique);
       const navigationExtras: NavigationExtras = {
         state: {
           value: this.ficheTechnique
@@ -189,7 +189,7 @@ export class PrepaPage implements OnInit {
 
 
 
-  
+
   async erreurPasDeDenrees() {
     const toast = await this.toastController.create({
       message: 'Veuillez ajouter des denrées pour choisir votre aliment de référence.',

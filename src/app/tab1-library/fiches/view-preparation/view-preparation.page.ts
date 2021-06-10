@@ -11,6 +11,7 @@ import { Livres } from 'src/app/models/livres';
 import { ModalController, ToastController } from '@ionic/angular';
 import { PartagerModalPage } from 'src/app/pages/modal/partager-modal/partager-modal.page';
 import { AjoutProduitPage } from 'src/app/pages/modal/ajout-produit/ajout-produit.page';
+import { ChoixDuLivrePage } from 'src/app/pages/modal/choix-du-livre/choix-du-livre.page';
 
 @Component({
   selector: 'app-view-preparation',
@@ -22,7 +23,7 @@ export class ViewPreparationPage implements OnInit {
 
   dataReturned: any;
   ficheTechniquesAll: Preparation[] = [];
-  fiche: Preparation ;
+  fiche: Preparation;
   keyFiche: any;
   dataDenrees: any[] = [];
   dataProduits: Produits[] = [];
@@ -40,7 +41,7 @@ export class ViewPreparationPage implements OnInit {
   description: string;
   dressage: string;
   idUtilisateur: string[] = [];
-  livre: Livres[] = [];
+  livre: Livres;
   nom: string;
   nombreDePortion: number;
   photo: string;
@@ -63,20 +64,20 @@ export class ViewPreparationPage implements OnInit {
   newProduitRef: Denrees;
   newDescriptionTechniques: string;
 
-  newItems:  Array<any> = [];
-  copieFiche: Preparation;
+  newItems: Array<any> = [];
+  ficheCopy: Preparation;
 
   constructor(private dataService: AuthFirebaseService,
-              private activRoute: ActivatedRoute,
-              private route: Router,
-              private toastController: ToastController,
-              public modalController: ModalController) {
+    private activRoute: ActivatedRoute,
+    private route: Router,
+    private toastController: ToastController,
+    public modalController: ModalController) {
     this.activRoute.queryParams.subscribe(params => {
       if (this.route.getCurrentNavigation().extras.state) {
-       //  console.log('param ok ', this.route.getCurrentNavigation().extras.state);
+        //  console.log('param ok ', this.route.getCurrentNavigation().extras.state);
         this.fiche = this.route.getCurrentNavigation().extras.state.value;
         this.fiche.key = this.route.getCurrentNavigation().extras.state.key;
-        if (this.route.getCurrentNavigation().extras.state.update){
+        if (this.route.getCurrentNavigation().extras.state.update) {
           this.showUpdateFiche();
         }
       }
@@ -85,18 +86,18 @@ export class ViewPreparationPage implements OnInit {
 
   ngOnInit() {
     this.getUtilisateurById();
-  //  this.getOrdreTableau();
+    //  this.getOrdreTableau();
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
     this.nom = this.fiche.nom;
 
-   //  console.log(this.fiche.key);
+    //  console.log(this.fiche.key);
     const _date = new Date(this.fiche.date.seconds * 1000);
     this.date = _date.toLocaleDateString();
     this.descriptionTechniques = this.fiche.descriptionTechniques;
     // this.description = this.fiche.description;
     this.produitRef = this.fiche.produitRef;
-   //  console.log('ref: ', this.produitRef);
+    //  console.log('ref: ', this.produitRef);
 
     this.postes = this.dataService.posteDeTravailListe;
     this.denrees = this.fiche.denrees;
@@ -106,7 +107,7 @@ export class ViewPreparationPage implements OnInit {
 
   getFicheTechniqueById() {
     this.ficheTechniquesAll.forEach(resFiche => {
-      if (resFiche.key ===  this.keyFiche) {
+      if (resFiche.key === this.keyFiche) {
         this.fiche = resFiche;
       }
     });
@@ -120,7 +121,7 @@ export class ViewPreparationPage implements OnInit {
   }
 
   showDenrees() {
-    if (this.denreesDisabled ===  true) {
+    if (this.denreesDisabled === true) {
       this.denreesDisabled = false;
       this.chevronDenreesOn = 'chevron-down-outline';
     } else {
@@ -128,15 +129,6 @@ export class ViewPreparationPage implements OnInit {
       this.chevronDenreesOn = 'chevron-forward-outline';
     }
   }
-  // showTypeDenrees(toggle){
-  //  //  console.log(ev);
-  //   if (this.denreeToggle ===  true) {
-  //     this.denreeToggle = false;
-  //   } else {
-  //     this.denreeToggle = true;
-  //   }
-  // }
-
   async openModal() {
     const modal = await this.modalController.create({
       component: PartagerModalPage,
@@ -159,41 +151,56 @@ export class ViewPreparationPage implements OnInit {
     this.showButtonUpdate = !this.showButtonUpdate;
     this.ficheUpdate = !this.ficheUpdate;
     // console.log(this.poste);
+    if (this.showButtonUpdate) {
+      this.ficheCopy = this.fiche;
+      console.log("updateCopy", this.ficheCopy);
+      console.log("fiche", this.fiche);
+    }else{
+      console.log("fiche", this.fiche)
+    }
   }
-
-  updateFiche(){
+  updateFiche() {
+    this.ficheCopy.key = this.fiche.key;
+    this.ficheCopy.nom = this.nom;
     const _date = new Date();
-    const newFiche = new Preparation();
-    newFiche.key = this.fiche.key;
-    newFiche.date = new Date(_date);
-    newFiche.descriptionTechniques = this.descriptionTechniques;
-    newFiche.denrees = this.fiche.denrees;
-    newFiche.idPartage = this.fiche.idPartage;
-    newFiche.idUtilisateur = this.fiche.idUtilisateur;
-    newFiche.livre = this.fiche.livre;
-    newFiche.nom = this.nom;
-    newFiche.poste = this.poste;
-    newFiche.produitRef = this.produitRef;
-    newFiche.type = this.fiche.type;
-    this.fiche = newFiche;
-   //  console.log(this.fiche);
-    this.dataService.updateFichePrepa(this.fiche.key ,this.fiche);
+    this.ficheCopy.date = new Date(_date);
+    if (this.poste !== undefined) {
+      this.ficheCopy.poste = this.poste;
+    } else {
+      this.ficheCopy.poste = this.fiche.poste;
+    }
+    if (this.produitRef !== undefined) {
+      this.ficheCopy.produitRef = this.produitRef;
+    } else {
+      this.ficheCopy.produitRef = this.fiche.produitRef;
+    }
+    this.ficheCopy.descriptionTechniques = this.descriptionTechniques;
+    this.ficheCopy.denrees = this.map;
+    this.ficheCopy.idPartage = this.fiche.idPartage;
+    this.ficheCopy.type = this.fiche.type;
+    this.ficheCopy.livre = this.fiche.livre;
+
+    console.log( this.ficheCopy);
+    
+    this.dataService.updateFichePrepa(this.ficheCopy.key, this.ficheCopy);
+    this.route.navigate(['tabs']);
   }
 
-  groupByType(array: any){
+  groupByType(array: any) {
     return array.reduce((r, a) => {
-          r[a.typeProduit] = r[a.typeProduit] || [];
-          r[a.typeProduit].push(a);
-          return r;
-      }, Object.create(null));
+      r[a.typeProduit] = r[a.typeProduit] || [];
+      r[a.typeProduit].push(a);
+      return r;
+    }, Object.create(null));
   }
-
   async addProduit() {
     const modal = await this.modalController.create({
       component: AjoutProduitPage,
       cssClass: 'addProduit-custom-modal-css'
     });
-    modal.onDidDismiss().then((newDenree) => {
+    modal.onDidDismiss().then(newDenree => {
+      console.log(newDenree);
+
       if (newDenree.data !== undefined) {
         this.denrees.push(newDenree.data);
         console.log('newDenree', this.denrees);
@@ -206,7 +213,24 @@ export class ViewPreparationPage implements OnInit {
     });
     return await modal.present();
   }
+  async updateProduit(denree: Denrees) {
+    let index = this.denrees.indexOf(denree);
+    console.log(index);
 
+    const modal = await this.modalController.create({
+      component: AjoutProduitPage,
+      componentProps: { value: denree },
+      cssClass: 'addProduit-custom-modal-css'
+    });
+    modal.onDidDismiss().then(newDenree => {
+      this.denrees[index] = newDenree.data;
+      this.map = this.denrees.map((denree) => {
+        const retour = Object.assign({}, denree);
+        return retour;
+      });
+    });
+    return await modal.present();
+  }
   deleteProduit(denree: Denrees) {
     this.suppressionDenree(denree);
     console.log(denree);
@@ -216,15 +240,32 @@ export class ViewPreparationPage implements OnInit {
       this.fiche.denrees.splice(index, 1);
     }
     console.log(this.fiche.denrees);
-    
+
     if (denree.produit === this.produitRef.produit) {
       this.produitRef = new Denrees();
     }
     console.log(this.fiche.denrees);
     this.newItems = this.groupByType(this.fiche.denrees);
-
   }
+  choixLivre() {
+    this.openModalLivre()
+  }
+  async openModalLivre() {
+    const modal = await this.modalController.create({
+      component: ChoixDuLivrePage,
+      cssClass: 'choix-du-livre-modal-css'
+    });
+    modal.onDidDismiss().then((res) => {
+      if (res !== null) {
+        this.livre = res.data;
+        this.ficheCopy.livre = this.livre.nom;
 
+        // this.ajoutFiche();
+        // this.route.navigate(['tabs']);
+      }
+    });
+    return await modal.present();
+  }
   async suppressionDenree(denree: Denrees) {
     const toast = await this.toastController.create({
       message: 'Le produit ' + denree.produit + ' vient d\'être retiré du tableau.',

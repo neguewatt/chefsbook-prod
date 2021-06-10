@@ -21,7 +21,7 @@
     <ion-grid style="background:#ffffff" style="padding: 10px 0">
         <ion-row>
             <ion-col class="ion-padding-horizontal" style="padding: 0;" size="6">
-                <ion-item lines="none">
+                <ion-item lines="none" *ngIf="!ficheUpdate">
                     <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-calendar.svg"></ion-icon>
                     <p style="margin:0;" class="policeFiche">{{date}}</p>
                 </ion-item>
@@ -29,15 +29,14 @@
                     <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-prep.svg">
                     </ion-icon>
                     <p *ngIf="!ficheUpdate" style="margin:0;" class="policeFiche">{{fiche.poste}}</p>
-                    <ion-select *ngIf="ficheUpdate" class="form-control" id="poste" placeholder="{{fiche.poste}}" class="policeFiche ion-text-wrap" [(ngModel)]="poste" name="poste" interface="popover">
-                        <ion-select-option [value]="fiche.poste" selected>{{fiche.poste}}</ion-select-option>
+                    <ion-select *ngIf="ficheUpdate" class="form-control" id="poste" placeholder="{{ficheCopy.poste}}" class="policeFiche ion-text-wrap" [(ngModel)]="poste" name="poste" interface="popover">
                         <ion-select-option *ngFor="let poste of postes" [value]="poste.nom">{{poste.nom}}
                         </ion-select-option>
                     </ion-select>
                 </ion-item>
             </ion-col>
             <ion-col class="ion-padding-horizontal" style="padding: 0;" size="6">
-                <ion-item lines="none">
+                <ion-item lines="none" *ngIf="!ficheUpdate">
                     <ion-icon class="iconFiche" slot="start" src="../../../assets/icon/icon-profile.svg"></ion-icon>
                     <p style="margin:0;" class="policeFiche">{{userNom}} {{prenom}}</p>
                 </ion-item>
@@ -94,19 +93,35 @@
                                     <ion-icon class="iconFiche" slot="end" [name]="!denree.value.toggle ? 'chevron-down-outline' : 'chevron-forward-outline'">
                                     </ion-icon>
                                 </ion-item-divider>
-                                <div *ngIf="!denree.value.toggle">
-                                    <ion-row *ngFor="let value of denree.value; let i = index ">
-                                        <ion-col class="ion-text-left" size="5">
+                                <div *ngIf="!denree.value.toggle" >
+                                    <ion-row *ngFor="let value of denree.value; let i = index ">  
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-left" size="5" >
                                             <ion-label class="classDenreeTableau">
                                                 {{value.produit}}
                                             </ion-label>
                                         </ion-col>
-                                        <ion-col class="ion-text-center" size="3">
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-center" size="3" >
                                             <ion-label class="classDenreeTableau">
                                                 {{value.unite}}
                                             </ion-label>
                                         </ion-col>
-                                        <ion-col class="ion-text-center" size="3">
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-center" size="3" >
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-left" size="5" (click)="updateProduit(value)">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-center" size="3" (click)="updateProduit(value)">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-center" size="3" (click)="updateProduit(value)">
                                             <ion-label class="classDenreeTableau">
                                                 {{value.quantite}}
                                             </ion-label>
@@ -145,20 +160,40 @@
                                 </ion-item-divider>
                                 <div *ngIf="!denree.value.toggle">
                                     <ion-row *ngFor="let value of denree.value; let i = index ">
-                                        <ion-col class="ion-text-left" size="6">
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-left" size="6">
                                             <ion-label class="classDenreeTableau">
                                                 {{value.quantite}}
                                             </ion-label>
                                         </ion-col>
-                                        <ion-col class="ion-text-center" size="3">
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-center" size="3">
                                             <ion-label class="classDenreeTableau">
                                                 {{value.unite}}
                                             </ion-label>
                                         </ion-col>
-                                        <ion-col class="ion-text-center" size="3">
+                                        <ion-col *ngIf="!ficheUpdate" class="ion-text-center" size="3">
                                             <ion-label class="classDenreeTableau">
                                                 {{value.produit}}
                                             </ion-label>
+                                        </ion-col>
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-left" size="6" (click)="updateProduit(value)">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.quantite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-center" size="3" (click)="updateProduit(value)">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.unite}}
+                                            </ion-label>
+                                        </ion-col>
+                                        <ion-col *ngIf="ficheUpdate" class="ion-text-center" size="3" (click)="updateProduit(value)">
+                                            <ion-label class="classDenreeTableau">
+                                                {{value.produit}}
+                                            </ion-label>
+                                        </ion-col>
+                                        
+                                        <ion-col class="ion-text-center" *ngIf="ficheUpdate">
+                                            <ion-icon color="secondary" class="iconFiche" (click)="deleteProduit(value)" name="trash">
+                                            </ion-icon>
                                         </ion-col>
                                     </ion-row>
                                 </div>
@@ -189,7 +224,15 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+    <ion-grid *ngIf="ficheUpdate">
+        <ion-row>
+            <ion-col>
+                <a  class="classTitreSection" (click)="choixLivre()"> Changer de livre </a>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
+<!-- Footer de la fiche affiché à l'update -->
 <ion-footer *ngIf="ficheUpdate">
     <ion-grid>
         <ion-row>

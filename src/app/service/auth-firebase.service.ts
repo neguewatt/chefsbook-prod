@@ -517,6 +517,7 @@ export class AuthFirebaseService {
        nom: fiche.nom,
        poste: fiche.poste,
        produitRef: fiche.produitRef,
+       livre: fiche.livre,
     });
 
     // const notification = new Notification();

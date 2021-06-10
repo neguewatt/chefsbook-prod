@@ -46,7 +46,6 @@
             <ion-col size="4">
                 <ion-item lines="none">
                     <ion-select class="ion-text-center" interface="popover" placeholder="Unité" [(ngModel)]="newUnite">
-                        <ion-select-option value="unite.nom" selected="selected">Unité</ion-select-option>
                         <ion-select-option *ngFor="let unite of unites" [value]="unite">{{unite.nom}}</ion-select-option>
                     </ion-select>
                 </ion-item>
