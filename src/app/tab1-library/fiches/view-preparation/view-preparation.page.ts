@@ -153,7 +153,7 @@ export class ViewPreparationPage implements OnInit {
     // console.log(this.poste);
     if (this.showButtonUpdate) {
       this.ficheCopy = this.fiche;
-    }else{
+    } else {
       console.log('fiche', this.fiche);
     }
   }
@@ -173,12 +173,21 @@ export class ViewPreparationPage implements OnInit {
       this.ficheCopy.produitRef = this.fiche.produitRef;
     }
     this.ficheCopy.descriptionTechniques = this.descriptionTechniques;
-    this.ficheCopy.denrees = this.map;
+    if (this.map !== undefined) {
+      this.ficheCopy.denrees = this.map;
+    } else {
+      this.ficheCopy.denrees = this.fiche.denrees;
+    }
     this.ficheCopy.idPartage = this.fiche.idPartage;
     this.ficheCopy.type = this.fiche.type;
     this.ficheCopy.livre = this.fiche.livre;
-    this.dataService.updateFichePrepa(this.ficheCopy.key, this.ficheCopy);
-    this.route.navigate(['tabs']);
+    console.log(this.ficheCopy);
+    try {
+      this.dataService.updateFichePrepa(this.ficheCopy.key, this.ficheCopy);
+      this.route.navigate(['tabs']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   groupByType(array: any) {
@@ -268,6 +277,5 @@ export class ViewPreparationPage implements OnInit {
     });
     toast.present();
   }
-
 
 }
