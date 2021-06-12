@@ -21,6 +21,7 @@ import { ChoixDuLivrePage } from 'src/app/pages/modal/choix-du-livre/choix-du-li
 export class ViewPreparationPage implements OnInit {
 
 
+  private htmlString: string;
   dataReturned: any;
   ficheTechniquesAll: Preparation[] = [];
   fiche: Preparation;
@@ -197,6 +198,7 @@ export class ViewPreparationPage implements OnInit {
       return r;
     }, Object.create(null));
   }
+
   async addProduit() {
     const modal = await this.modalController.create({
       component: AjoutProduitPage,
@@ -217,6 +219,7 @@ export class ViewPreparationPage implements OnInit {
     });
     return await modal.present();
   }
+
   async updateProduit(denree: Denrees) {
     const index = this.denrees.indexOf(denree);
     console.log(index);
@@ -227,11 +230,13 @@ export class ViewPreparationPage implements OnInit {
       cssClass: 'addProduit-custom-modal-css'
     });
     modal.onDidDismiss().then(newDenree => {
-      this.denrees[index] = newDenree.data;
-      this.map = this.denrees.map((mapDenree) => {
-        const retour = Object.assign({}, mapDenree);
-        return retour;
-      });
+      if (newDenree.data !== undefined) {
+        this.denrees[index] = newDenree.data;
+        this.map = this.denrees.map((mapDenree) => {
+          const retour = Object.assign({}, mapDenree);
+          return retour;
+        });
+      }
     });
     return await modal.present();
   }

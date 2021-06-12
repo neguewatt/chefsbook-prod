@@ -1,5 +1,8 @@
-ion-toolbar{
+ion-toolbar {
     --min-height: 64px;
     --padding: 0px;
 }
 
+.clickEnableCls {
+    pointer-events: visible !important;
+}
