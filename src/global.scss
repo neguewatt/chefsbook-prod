@@ -45,7 +45,7 @@ hr {
     margin: 0px !important;
 }
 
-ion-header{
+ion-header {
     min-height: 64px;
 }
 
@@ -394,18 +394,20 @@ ion-avatar {
     margin: 0px 0 5px !important;
 }
 
-.labelModalFiche{
+.labelModalFiche {
     font: 500 14px/25px Roboto !important;
     color: black;
 }
-.iconModalFiche{
+
+.iconModalFiche {
     font-size: 18px;
 }
-.modalTableBorder{
+
+.modalTableBorder {
     border-bottom: 1px solid #dedede !important;
 }
 
-ion-toolbar{
+ion-toolbar {
     --min-height: 64px;
     --padding-top: 0px;
     --padding-bottom: 0px;
@@ -413,7 +415,7 @@ ion-toolbar{
     --padding-end: 0px;
 }
 
-ion-grid{
+ion-grid {
     padding: 0px;
     --padding-top: 0px;
     --padding-bottom: 0px;
@@ -421,7 +423,10 @@ ion-grid{
     --padding-end: 0px;
 }
 
-
-.middleMinheight{
+.middleMinheight {
     --min-height: 44px !important;
+}
+
+ion-item[button] {
+    pointer-events: visible !important;
 }
