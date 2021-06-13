@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar class="headerFiche">
+    <ion-toolbar class="header">
         <ion-buttons slot="start" class="buttonBack">
             <ion-back-button style="color:#ffffff" text="" icon="arrow-back-outline"></ion-back-button>
         </ion-buttons>
@@ -14,35 +14,44 @@
         <ion-row>
             <ion-col>
                 <ion-item lines="none">
-                    <ion-input contenteditable="true" class="pLR50 " placeholder="Titre de la fiche" type="text" [(ngModel)]="newTitre" name="title"></ion-input>
+                    <ion-input class="descTexteCss pLR50" contenteditable="true" placeholder="Titre de la fiche" type="text" [(ngModel)]="newTitre" name="title"></ion-input>
                 </ion-item>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <hr>
+    <!-- <hr> -->
     <ion-grid style="background:#ffffff">
         <ion-radio-group [(ngModel)]="newType">
             <ion-row>
+                <ion-col>
+                    <ion-item-divider class="list">
+                        <ion-label class="classTitreSection">
+                            Choix du type de fiche
+                        </ion-label>
+                    </ion-item-divider>
+                </ion-col>
+            </ion-row>
+            <ion-row>
                 <ion-col size="6" style="padding: 0;">
-                    <ion-item lines="none" style="border-right: solid;">
-                        <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" class="iconFiche"></ion-icon>
-                        <ion-label>Préparation</ion-label>
-                        <ion-radio value="Préparation" (click)="viewFiche($event)"></ion-radio>
+                    <ion-item lines="none" >
+                        <!-- <ion-icon slot="start" src="../../../assets/icon/icon-prep.svg" class="iconFiche"></ion-icon> -->
+                        <ion-label class="descTexteCss">Préparation</ion-label>
+                        <ion-radio slot="start" value="Préparation" (click)="viewFiche($event)"></ion-radio>
                         <!-- <ion-checkbox slot="end" value="Préparation" (click)="viewFiche($event)" checked="{{prepa}}"></ion-checkbox> -->
                     </ion-item>
                 </ion-col>
                 <ion-col size="6" style="padding: 0;" class="ion-padding-horizontal">
                     <ion-item lines="none">
-                        <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" class="iconFiche"></ion-icon>
-                        <ion-label>Plat</ion-label>
-                        <ion-radio value="Plat" (click)="viewFiche($event)"></ion-radio>
+                        <!-- <ion-icon slot="start" src="../../../assets/icon/icon-plat.svg" class="iconFiche"></ion-icon> -->
+                        <ion-label class="descTexteCss">Plat</ion-label>
+                        <ion-radio slot="start" value="Plat" (click)="viewFiche($event)"></ion-radio>
                         <!-- <ion-checkbox value="Plat" slot="end" (click)="viewFiche($event)" checked="{{plat}}"></ion-checkbox> -->
                     </ion-item>
                 </ion-col>
             </ion-row>
         </ion-radio-group>
     </ion-grid>
-    <hr>
+    <!-- <hr> -->
     <app-prepa *ngIf="prepa"></app-prepa>
     <app-plat *ngIf="!prepa"></app-plat>
 </ion-content>

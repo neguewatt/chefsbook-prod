@@ -20,8 +20,8 @@ export class Tab1LibraryPage implements OnInit {
   livrePerso: Livres[];
   ficheTechniquesAll: any[] = [];
   dataReturned: any;
-  chosen = 'border-bottom: 5px solid #fff;';
-  notChosen = 'margin-bottom: 5px;';
+  chosen = 'border-bottom: 3px solid #fff;';
+  notChosen = 'margin-bottom: 3px;';
   textChosen = 'color:white';
   textNotChosen = 'color:#ccc';
 
