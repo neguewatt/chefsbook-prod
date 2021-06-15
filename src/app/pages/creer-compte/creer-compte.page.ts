@@ -138,7 +138,7 @@ export class CreerUtilisateurPage implements OnInit {
     );
   }
 
-  testValidationDif($event) {
+  testValidationDif() {
     if (this.password2 === this.password) {
       this.booleanIconValidDif = true;
     } else {
@@ -146,7 +146,7 @@ export class CreerUtilisateurPage implements OnInit {
     }
   }
 
-  testValidation($event) {
+  testValidation() {
     if (this.password.match(/[0-9]/g) && this.password.match(/[A-Z]/g) &&
       this.password.match(/[a-z]/g) && this.password.match(/[^a-zA-Z\d]/g) &&
       this.password.length >= 10) {

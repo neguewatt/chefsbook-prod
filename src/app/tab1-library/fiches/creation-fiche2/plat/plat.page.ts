@@ -180,8 +180,9 @@ export class PlatPage implements OnInit {
       this.erreurPortionNeg();
     }else if (this.newDescriptionCommercial === undefined) {
       this.erreurDescription();
-    }else if (this.denrees.length === 0) {
-      this.erreurDenrées();
+    // }
+    // else if (this.denrees.length === 0) {
+    //   this.erreurDenrées();
     }else if (this.newDescriptionTechnique === undefined) {
       this.erreurDescription();
     }else {
@@ -261,13 +262,13 @@ export class PlatPage implements OnInit {
     });
     toast.present();
   }
-  async erreurDenrées() {
-    const toast = await this.toastController.create({
-      message: 'Merci de bien vouiloir ajouter au moins une denrées !',
-      duration: 2000
-    });
-    toast.present();
-  }
+  // async erreurDenrées() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Merci de bien vouiloir ajouter au moins une denrées !',
+  //     duration: 2000
+  //   });
+  //   toast.present();
+  // }
   async erreurDescription() {
     const toast = await this.toastController.create({
       message: 'Merci de bien vouiloir remplir la partie description !',

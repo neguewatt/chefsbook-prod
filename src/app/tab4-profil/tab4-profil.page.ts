@@ -14,6 +14,7 @@ export class Tab4ProfilPage implements OnInit {
  countFT: number;
  limitFiches: number;
  supprimeMoiPlusTard = false;
+ urlPhoto = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
 
   constructor( private dataService: AuthFirebaseService ) {
 

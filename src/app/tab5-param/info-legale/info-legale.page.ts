@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-info-legale',
@@ -8,10 +10,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InfoLegalePage implements OnInit {
   @Input() titre: string;
 
-  constructor() { }
+  constructor(public sanitizer: DomSanitizer
+    ) { }
 
   ngOnInit() {
     this.titre = 'Information légale';
+  }
+
+  openURL() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(localStorage.getItem("url"));
   }
 
 }

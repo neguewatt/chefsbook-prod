@@ -3,14 +3,19 @@
   }
   
   .errorBox {
-      --margin-top: var(--ion-margin, 100px);
-      margin-top: var(--ion-margin, 100px);
+      --margin-top: var(--ion-margin, 30%);
+      margin-top: var(--ion-margin, 30%);
       height: 50px;
   }
   
+  .marginTop{
+    --margin-top: var(--ion-margin, 30%);
+    margin-top: var(--ion-margin, 30%);
+  }
+
   .login-error {
-      --margin-bottom: var(--ion-margin, 20px);
-      margin-bottom: var(--ion-margin, 20px);
+      --margin-bottom: var(--ion-margin, 5%);
+      margin-bottom: var(--ion-margin, 5%);
       color: white;
       font-weight: bold;
       font-family: "QuickKiss";

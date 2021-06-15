@@ -46,15 +46,19 @@ export class ModalFichePage implements OnInit {
     this.popoverController.dismiss('modifier');
   }
   partager() {
-   //  console.log('partager : ' + this.fiche);
-    this.openModalPartager();
-    this.popoverController.dismiss();
+    console.log(this.dataService.utilisateur.partage)
+    if(this.dataService.utilisateur.partage < this.dataService.limitePartage){
+      this.openModalPartager();
+      this.popoverController.dismiss('partager');
+    }else{
+      this.popoverController.dismiss('partager');
+    }
   }
   supprimer() {
    //  console.log(this.fiche);
-    this.presentAlertConfirm();
+    this.supprAlertConfirm();
   }
-  async presentAlertConfirm() {
+  async supprAlertConfirm() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Attention ! ',
@@ -79,7 +83,6 @@ export class ModalFichePage implements OnInit {
     });
     await alert.present();
   }
-
   async openModalPartager() {
     const modal = await this.modalController.create({
       component: PartagerModalPage,
@@ -91,7 +94,8 @@ export class ModalFichePage implements OnInit {
     });
 
     modal.onDidDismiss().then((dataReturned) => {
-      if (dataReturned !== null) {
+      console.log(dataReturned);      
+      if (dataReturned.data !== 'close') {
         this.dataReturned = dataReturned.data;
       }
     });
