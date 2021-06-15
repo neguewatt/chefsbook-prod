@@ -15,7 +15,7 @@ import { AffichageIngredients } from '../models/affichageIngredients';
 import { EcranDefaut } from '../models/ecranDefaut';
 import { Fond } from '../models/fond';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { PosteDeTravail } from '../models/postes';
 
 
@@ -42,8 +42,9 @@ export class AuthFirebaseService {
   tableau2 = false;
   utilisateur: Utilisateurs;
   tableData: Preparation[];
-  lmitesListe: Abonnement[];
-  limitFiches = 0;
+  abonnement: Abonnement;
+  limitePartage: number;
+  limitFiches: number;
   badgeNotif: number;
 
 
@@ -79,7 +80,7 @@ export class AuthFirebaseService {
   private platDb: AngularFirestoreCollection<Plats> = null;
   private denreesDb: AngularFirestoreCollection<Denrees> = null;
 
-   /** poour l'instant utilisé en JSON car trop lourd voir si une solution est envisageable au moment ou l'app sera vendu **/
+  /** poour l'instant utilisé en JSON car trop lourd voir si une solution est envisageable au moment ou l'app sera vendu **/
   private produitDb: AngularFirestoreCollection<Produits> = null;
 
   private ordreTableauFTDb: AngularFirestoreCollection<AffichageIngredients> = null;
@@ -92,12 +93,13 @@ export class AuthFirebaseService {
   constructor(public db: AngularFirestore, public authLogin: AuthLoginService) {
 
     if (this.user !== null) {
-      this.initialiseGet();
+      this.getCompteUtilisateur();  // Au démarage application
     }
   }
 
-  initialiseGet(){
-    this.getCompteUtilisateur();  // Au démarage application
+  initialiseGet() {
+    const date = new Date();
+    const first = new Date(date.getFullYear(), date.getMonth(), 1);
     this.getformule(); // Au démarage application
     this.getLivrePerso(); // Au démarage application
     this.getFicheTechniquesPartage();  // Au démarage application
@@ -113,6 +115,10 @@ export class AuthFirebaseService {
     if (this.platListe.length === 0) {
       this.getListePlats();  // Au démarage application
     }
+    if(this.utilisateur.partage !== 0 && date.getDate() === 14){
+      console.log('remise a zero de partage');
+      this.updateUtilisateurPartageZero()
+    }
   }
 
 
@@ -120,12 +126,12 @@ export class AuthFirebaseService {
 
   addFicheTechnique(fiche: Preparation) {
     this.preparationDb = this.db.collection(this.preparationPath, ref => ref);
-   //  console.log('add fiche prepa');
+    //  console.log('add fiche prepa');
     return this.preparationDb.add({ ...fiche });
   }
   addPlat(plat: Plats) {
     this.platDb = this.db.collection(this.platPath, ref => ref);
-   //  console.log('add fiche plat');
+    //  console.log('add fiche plat');
     return this.platDb.add({ ...plat });
   }
   addLivre(livre: Livres) {
@@ -138,27 +144,27 @@ export class AuthFirebaseService {
   }
   addUtilisateur(key: string, utilisateur: Utilisateurs) {
     this.utilisateurDb = this.db.collection(this.utilisateurPath, ref => ref);
-   //  console.log('add Utilisateur');
+    //  console.log('add Utilisateur');
     return this.utilisateurDb.doc(key).set({ ...utilisateur });
   }
   addOrderTable(affichageIngredients: AffichageIngredients) {
     this.ordreTableauFTDb = this.db.collection(this.ordreTableauFTPath, ref => ref);
-   //  console.log('add order table');
+    //  console.log('add order table');
     return this.ordreTableauFTDb.add({ ...affichageIngredients });
   }
   addEcranDefaut(ecranDefaut: EcranDefaut) {
     this.ecranDefautDb = this.db.collection(this.ecranDefautPath, ref => ref);
-   //  console.log('add ecran defaut');
+    //  console.log('add ecran defaut');
     return this.ecranDefautDb.add({ ...ecranDefaut });
   }
   addFond(fond: Fond) {
     this.fondDb = this.db.collection(this.fondPath, ref => ref);
-   //  console.log('add ecran defaut');
+    //  console.log('add ecran defaut');
     return this.fondDb.add({ ...fond });
   }
   addNotification(notification: Notification) {
     this.notificationDb = this.db.collection(this.notificationPath, ref => ref);
-   //  console.log('add notification');
+    //  console.log('add notification');
     return this.notificationDb.add({ ...notification });
   }
 
@@ -168,21 +174,6 @@ export class AuthFirebaseService {
 
   /** Start  : GETER au démarage de l'application  **/
 
-  getBadgeNotif() {
-    this.db.collection<Notification>(this.notificationPath, ref => ref
-      .where('idUtilisateur', '==', this.user.uid)
-      .where('notifDisabled', '==', true)
-      .orderBy('date', 'desc'))
-      .snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
-        this.badgeNotif = res.length;
-    });
-  }
 
   getCompteUtilisateur() {
     this.db.collection<Utilisateurs>(this.utilisateurPath, ref => ref
@@ -194,6 +185,26 @@ export class AuthFirebaseService {
         )
       ).subscribe((utilisateur: Utilisateurs[]) => {
         this.utilisateur = utilisateur[0];
+        console.log(this.utilisateur);
+        this.initialiseGet();
+    });
+        
+  }
+
+
+  getBadgeNotif() {
+    this.db.collection<Notification>(this.notificationPath, ref => ref
+      .where('idUtilisateur', '==', this.user.uid)
+      .where('notifDisabled', '==', true)
+      .orderBy('date', 'desc'))
+      .snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+          )
+        )
+      ).subscribe(res => {
+        this.badgeNotif = res.length;
       });
   }
   getLivrePerso() {
@@ -234,7 +245,7 @@ export class AuthFirebaseService {
           )
         )
       ).subscribe((fiches: Preparation[]) => {
-       //  console.log('test4', fiches);
+        //  console.log('test4', fiches);
         this.partagePrepaListe = fiches;
       });
   }
@@ -315,7 +326,6 @@ export class AuthFirebaseService {
         this.posteDeTravailListe = poste;
       });
   }
-
   getUnitesListe() {
     this.db.collection<Unites>(this.unitePath, ref => ref)
       .snapshotChanges().pipe(
@@ -329,7 +339,7 @@ export class AuthFirebaseService {
       });
   }
   getformule() {
-    this.db.collection<Abonnement>(this.formulePath, ref => ref)
+    this.db.collection<Abonnement>(this.formulePath, ref => ref.where('abonnement', '==', this.utilisateur.abonnement))
       .snapshotChanges().pipe(
         map(changes =>
           changes.map(c =>
@@ -337,31 +347,32 @@ export class AuthFirebaseService {
           )
         )
       ).subscribe((limite: Abonnement[]) => {
-        this.lmitesListe = limite;
-        this.getAbonnement();
+        this.abonnement = limite[0];
+
+        this.limitePartage = this.abonnement.partage;
+        this.limitFiches = this.abonnement.limiteFiche;
+        // this.getAbonnement();
       });
   }
-  getAbonnement() {
-   //  console.log(this.lmitesListe);
-    this.lmitesListe.forEach((limite: Abonnement) => {
-      if (limite.abonnement === 'G' && this.utilisateur.abonnement === 'G') {
-       //  console.log(limite.limiteFiche);
-        this.limitFiches = limite.limiteFiche;
-      }
-      if (limite.abonnement === 'P1' && this.utilisateur.abonnement === 'P1') {
-        this.limitFiches = limite.limiteFiche;
-      }
-      if (limite.abonnement === 'P2E' && this.utilisateur.abonnement === 'P2E') {
-        this.limitFiches = limite.limiteFiche;
-      }
-      if (limite.abonnement === 'P3' && this.utilisateur.abonnement === 'P3') {
-        this.limitFiches = limite.limiteFiche;
-      }
-      if (limite.abonnement === 'P4' && this.utilisateur.abonnement === 'P4') {
-        this.limitFiches = limite.limiteFiche;
-      }
-    });
-  }
+  // getAbonnement() {
+  //   this.lmitesListe.forEach((limite: Abonnement) => {
+  //     if (limite.abonnement === 'G' && this.utilisateur.abonnement === 'G') {
+  //       this.limitFiches = limite.limiteFiche;
+  //     }
+  //     if (limite.abonnement === 'P1' && this.utilisateur.abonnement === 'P1') {
+  //       this.limitFiches = limite.limiteFiche;
+  //     }
+  //     if (limite.abonnement === 'P2E' && this.utilisateur.abonnement === 'P2E') {
+  //       this.limitFiches = limite.limiteFiche;
+  //     }
+  //     if (limite.abonnement === 'P3' && this.utilisateur.abonnement === 'P3') {
+  //       this.limitFiches = limite.limiteFiche;
+  //     }
+  //     if (limite.abonnement === 'P4' && this.utilisateur.abonnement === 'P4') {
+  //       this.limitFiches = limite.limiteFiche;
+  //     }
+  //   });
+  // }
 
 
   /** END GET **/
@@ -504,18 +515,33 @@ export class AuthFirebaseService {
     notification.notification = 'la fiche technique ' + fiche.nom + ' de type : ' + fiche.type + ' vient d\'être partagé avec vous !';
     notification.message = message;
     this.addNotification(notification);
+    this.UpdateUtilisateurPartageIncrement();
     return updateFiche;
   }
+  async updateUtilisateurPartageZero(){
+    console.log(this.utilisateur.idUtilisateur);
+    
+    await delay(1500);
+    this.utilisateur.partage = 0;
+    const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);
+    return updateUtilisater;
+  }
+  UpdateUtilisateurPartageIncrement() {
+    console.log(this.utilisateur);
+    this.utilisateur.partage++;
+    const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);
+    return updateUtilisater;
+  }
 
-  updateFichePrepa(key: string, fiche: Preparation ) {
+  updateFichePrepa(key: string, fiche: Preparation) {
     const updateFiche = this.db.collection(this.preparationPath).doc(key).update({
-       date: fiche.date,
-       descriptionTechniques: fiche.descriptionTechniques,
-       denrees: fiche.denrees,
-       nom: fiche.nom,
-       poste: fiche.poste,
-       produitRef: fiche.produitRef,
-       livre: fiche.livre,
+      date: fiche.date,
+      descriptionTechniques: fiche.descriptionTechniques,
+      denrees: fiche.denrees,
+      nom: fiche.nom,
+      poste: fiche.poste,
+      produitRef: fiche.produitRef,
+      livre: fiche.livre,
     });
 
     // const notification = new Notification();
@@ -531,7 +557,7 @@ export class AuthFirebaseService {
   }
 
 
-  updateFichePlat(key: string, fiche: Plats ) {
+  updateFichePlat(key: string, fiche: Plats) {
     const updateFiche = this.db.collection(this.preparationPath).doc(key).update({
       date: fiche.date,
       // denrees:
@@ -582,14 +608,14 @@ export class AuthFirebaseService {
   deleteFiche(fiche) {
     if (fiche.type === 'Préparation') {
       this.db.collection(this.preparationPath).doc(fiche.key).delete().then(() => {
-       //  console.log('Document prepa successfully deleted!');
+        //  console.log('Document prepa successfully deleted!');
         this.getListePreparations();
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
     } else {
       this.db.collection(this.platPath).doc(fiche.key).delete().then(() => {
-       //  console.log('Document plat successfully deleted!');
+        //  console.log('Document plat successfully deleted!');
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
@@ -603,7 +629,7 @@ export class AuthFirebaseService {
     this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', this.user.uid))
       .valueChanges().subscribe(res => {
         res.map((data: Utilisateurs) => {
-         //  console.log(data);
+          //  console.log(data);
           if (data) {
             this.db.doc(this.utilisateurPath + '/' + data.idUtilisateur).delete();
           }
@@ -618,7 +644,7 @@ export class AuthFirebaseService {
           )
         )
       ).subscribe(res => {
-       //  console.log(res);
+        //  console.log(res);
         if (res) {
           this.db.doc(this.ordreTableauFTPath + '/' + res[0].key).delete();
         }
@@ -743,8 +769,8 @@ export class AuthFirebaseService {
           });
         }
       });
-      this.user.delete();
-      this.authLogin.signOutUser();
+    this.user.delete();
+    this.authLogin.signOutUser();
   }
 
 

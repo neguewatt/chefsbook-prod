@@ -87,12 +87,8 @@ export class ChargementPage implements OnInit {
       duration: 1500
     });
     await loading.present();
-
     const { role, data } = await loading.onDidDismiss();
-
-    this.dataService.getCompteUtilisateur();
-    this.ecranDefaut();
     this.dataService.initialiseGet();
+    this.ecranDefaut();
   }
-
 }

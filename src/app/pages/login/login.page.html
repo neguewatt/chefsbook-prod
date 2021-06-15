@@ -10,14 +10,17 @@
                     </div>
                 </ion-col>
             </ion-row>
-            <ion-row class="errorBox">
+            <ion-row class="errorBox" [hidden]="!errorLogin">
                 <ion-col>
-                    <div [hidden]="!errorLogin" class="login-error ion-text-center">
+                    <div  class="login-error ion-text-center">
                         <ion-icon name="earth-sharp"></ion-icon>
                         <br/>
                         <ion-text>Votre identifiant ou votre mot de passe est incorrect. </ion-text>
                     </div>
                 </ion-col>
+            </ion-row>
+            <ion-row [hidden]="errorLogin" class="marginTop">
+
             </ion-row>
             <ion-row class="">
                 <ion-col class="ion-margin-top">

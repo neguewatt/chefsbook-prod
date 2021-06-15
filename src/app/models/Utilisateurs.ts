@@ -13,4 +13,5 @@ export class Utilisateurs
     public dateCreation: any;
     public abonnement = 'G';
     public partage = 0;
+    public newConnection = true;
 }

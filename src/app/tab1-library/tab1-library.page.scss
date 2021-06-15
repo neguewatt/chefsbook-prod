@@ -17,6 +17,10 @@ ion-button {
 .padding-0 {
     padding: 0px;
 }
+.paddingLR-0{
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .addFiche {
     // color: white;
@@ -33,6 +37,7 @@ ion-fab-button {
     --background-activated: #FF3D51 !important;
     border-color: #F03434 !important;
 }
+
 
 .boutonHeader {
     width: 100%;

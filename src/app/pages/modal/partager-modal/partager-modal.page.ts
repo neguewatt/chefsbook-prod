@@ -30,20 +30,16 @@ export class PartagerModalPage implements OnInit {
     this.fiche = this.navParams.data.fiche;
    //  console.log(this.fiche);
     this.modalTitle = this.navParams.data.paramTitle;
-
   }
 
   async closeModal() {
-    const onClosedData = 'close';
-    await this.modalController.dismiss(onClosedData);
+    await this.modalController.dismiss('close');
   }
 
   async partageFiche() {
-    const onClosedData = 'close';
-    await this.modalController.dismiss(onClosedData);
+    await this.modalController.dismiss('close');
     this.getUtilisateurByEmail();
   }
-
 
   getUtilisateurByEmail(){
     this.dataService.getUtilisateurByEmail(this.email).snapshotChanges().pipe(
@@ -53,11 +49,8 @@ export class PartagerModalPage implements OnInit {
         )
       )
     ).subscribe(res => {
-     //  console.log(res[0]);
-
       if (res[0]){
         this.userId = res[0].idUtilisateur;
-       //  console.log('id by email : ', this.userId);
         this.updateFicheIdPartage();
 
       }else{
@@ -80,15 +73,12 @@ export class PartagerModalPage implements OnInit {
   }
 
   updateFicheIdPartage(){
-   //  console.log(this.newMessage);
-
     if (this.newMessage ===  undefined){
       this.newMessage = 'vide';
     }
     this.dataService.updateFicheIdPartage(this.fiche, this.userId, this.newMessage);
     this.presentToast();
   }
-
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Le partage de fiche a fonctionné !',

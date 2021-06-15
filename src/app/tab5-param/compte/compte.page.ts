@@ -75,7 +75,7 @@ export class ComptePage implements OnInit {
           handler: () => {
            //  console.log('Confirm Okay');
             this.dataService.deleteUser();
-            this.presentLoading();
+            this.deconnexion();
           }
         }
       ]
