@@ -20,8 +20,6 @@ import { ChoixDuLivrePage } from 'src/app/pages/modal/choix-du-livre/choix-du-li
 })
 export class ViewPreparationPage implements OnInit {
 
-
-  private htmlString: string;
   dataReturned: any;
   ficheTechniquesAll: Preparation[] = [];
   fiche: Preparation;

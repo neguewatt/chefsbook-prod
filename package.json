@@ -1,13 +1,13 @@
 {
-    "name": "chefs-book",
-    "version": "0.0.1",
-    "author": "Tana-Tech",
-    "homepage": "https://tana-tech.fr/",
+    "name": "chefsbook",
+    "version": "0.0.3",
+    "author": "Dahu",
+    "homepage": "https://chefsbookapp.fr/",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
         "build": " ionic build",
-        "build:IOS": "ionic build && npx cap sync ios && npx cap open ios",
+        "IOS": "ionic build --prod && npx cap sync ios && npx cap open ios",
         "test": "ng test",
         "lint": "npx ng lint",
         "e2e": "ng e2e",
