@@ -6,6 +6,7 @@ import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { FindValueSubscriber } from 'rxjs/internal/operators/find';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-compte',
@@ -22,10 +23,12 @@ export class ComptePage implements OnInit {
   emailFillo: string;
   boolButton = false;
 
-  constructor(private dataService: AuthFirebaseService, private authLogin: AuthLoginService,
-    private alertController: AlertController,
-    private loadingController: LoadingController,
-    private route: Router) {
+  constructor(private dataService: AuthFirebaseService, 
+              private authLogin: AuthLoginService,
+              private alertController: AlertController,
+              private loadingController: LoadingController,
+              private route: Router,
+              private nativeStorage: NativeStorage,) {
     this.titre = 'Compte';
    }
 
@@ -95,6 +98,10 @@ export class ComptePage implements OnInit {
   }
 
   deconnexion(){
+    this.nativeStorage.setItem('loginMdp', {save: false}).then(
+      () => console.log('Stored item!'),
+      error => console.error('Error storing item', error)
+    );
     this.authLogin.signOutUser();
     this.presentLoading();
   }

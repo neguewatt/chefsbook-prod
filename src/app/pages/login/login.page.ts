@@ -18,18 +18,19 @@ export class LoginPage implements OnInit {
   errorLogin = '';
   colorA = 'color: red;  --ion-item-border-color: red;';
   colorB = '';
-  checked: boolean;
+  checked = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthLoginService,
     private nativeStorage: NativeStorage,
-    private router: Router) { }
+    private router: Router) {}
+
+
 
   ngOnInit() {
+    console.log('ngOnInit', this.checked);
     this.initSigninForm();
-    this.checked = true;
-    this.getLoginmdp();
   }
 
   creerUtilisateur(){
@@ -69,10 +70,14 @@ export class LoginPage implements OnInit {
   }
 
   onChecked(){
+    console.log('onChecked 1', this.checked);
     this.checked = !this.checked;
+    console.log('onChecked 2', this.checked);
+    
   }
 
   saveloginmdp(){
+    console.log('saveloginmdp', this.checked);
     if(this.checked){
       this.nativeStorage.setItem('loginMdp', {save: this.checked, login: this.loginform.get('email').value,
       password: this.loginform.get('password').value})
@@ -88,20 +93,5 @@ export class LoginPage implements OnInit {
       );
     }
   }
-
-  getLoginmdp(){
-    try {
-      this.nativeStorage.getItem('loginMdp')
-      .then(
-        data => {
-          this.loginform.setValue({email: data.login, password: data.password});
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-
 
 }

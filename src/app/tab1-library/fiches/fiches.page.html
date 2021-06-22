@@ -40,9 +40,9 @@
             <ion-icon slot="end" src="../../assets/icon/icon-ellipsis.svg" style="color:black" (click)="openPopover($event, fiche)"></ion-icon>
         </ion-item>
     </ion-virtual-scroll> -->
-    
+
     <!-- Les fiches préparation -->
-    <ion-virtual-scroll *ngIf="prepaBoolean" [items]="prepa" approxItemHeight="60px" [headerFn]="separateLetter">
+    <ion-virtual-scroll *ngIf="!platsBoolean" [items]="prepa" approxItemHeight="60px" [headerFn]="separateLetter">
         <ion-item-divider *virtualHeader="let header" class="dividerLettre">
             <ion-label>
                 {{ header }}

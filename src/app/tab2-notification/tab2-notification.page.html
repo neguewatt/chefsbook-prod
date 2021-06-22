@@ -2,7 +2,7 @@
     <ion-toolbar class="header">
         <ion-grid class="padding-0">
             <ion-grid class="padding-0">
-                <ion-row >
+                <ion-row>
                     <ion-row class="margin-auto">
                         <ion-col>
                             <h1 class="ion-margin-top">Notification</h1>
@@ -16,7 +16,6 @@
 
 
 <ion-content>
-
     <ion-item *ngFor="let notification of notifications" lines="none">
         <ion-avatar slot="start" style="height: 50px; width: 50px;">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
@@ -29,7 +28,11 @@
             </p>
 
         </ion-label>
-        <ion-note slot="end" class="noteSize-s">{{notification.date}}</ion-note>
+        <ion-list>
+            <ion-note slot="end" class="noteSize-s">{{notification.date}}</ion-note><br>
+            <ion-icon slot="end" name="ellipsis-horizontal-outline" class="ellipsisHoriz" (click)="openPopover($event, notification)">
+            </ion-icon>
+        </ion-list>
     </ion-item>
     <hr>
 </ion-content>

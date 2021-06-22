@@ -15,8 +15,7 @@
                 </ion-item> -->
             <ion-item lines="none">
                 <ion-icon slot="start" src="../../../assets/icon/icon-type-plat.svg" class="iconFiche"></ion-icon>
-                <ion-select class="policeFichecreat form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste"
-                    interface="popover">
+                <ion-select class="policeFichecreat form-control" id="poste" placeholder="Poste" [(ngModel)]="newPoste" name="poste" interface="popover">
                     <ion-select-option class="policeFichecreat" *ngFor="let poste of postes" [value]="poste.nom">{{poste.nom}}
                     </ion-select-option>
                 </ion-select>
@@ -28,8 +27,7 @@
                 </ion-item> -->
             <ion-item lines="none">
                 <ion-icon slot="start" src="../../../assets/icon/icon-ref.svg" class="iconFiche"></ion-icon>
-                <ion-select class="policeFichecreat form-control" id="produitRef" placeholder="Produit de référence"
-                    [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
+                <ion-select class="policeFichecreat form-control" id="produitRef" placeholder="Produit de référence" [(ngModel)]="newProduitRef" name="produitRef" interface="popover" (click)="refSelect()">
                     <ion-select-option class="policeFichecreat" *ngFor="let denree of denrees" [value]="denree">{{denree.produit}}
                     </ion-select-option>
                 </ion-select>
@@ -71,8 +69,7 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon class="addIconCreat" (click)="addProduit()"
-                                    src="../../../../assets/icon/icon-add.svg">
+                                <ion-icon class="addIconCreat" (click)="addProduit()" src="../../../../assets/icon/icon-add.svg">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -116,8 +113,7 @@
                                 </ion-label>
                             </ion-col>
                             <ion-col class="ion-text-center">
-                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()"
-                                    name="add-circle-outline">
+                                <ion-icon color="secondary" class="iconFiche" (click)="addProduit()" name="add-circle-outline">
                                 </ion-icon>
                             </ion-col>
                         </ion-row>
@@ -143,10 +139,10 @@
                             </ion-col>
                         </ion-row>
                     </ion-grid>
-                </div >
+                </div>
             </ion-list>
         </ion-col>
-    </ion-row>         
+    </ion-row>
     <!-- <ion-fab vertical="bottom" horizontal="end" slot="center" (click)="addProduit()">
         <ion-fab-button>
             <ion-icon class="addFiche" src="../../assets/icon/icon-add.svg" style="color:white"></ion-icon>
@@ -163,9 +159,7 @@
                 </ion-label>
             </ion-item-divider>
             <ion-item lines="none" color="transparent">
-                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss"
-                    placeholder="Ecris les details techniques, le dressage, tes notes..." rows="8"
-                    [(ngModel)]="newDescriptionTechniques">
+                <ion-textarea wrap="hard" id="DescriptionTechnique" class="descTexteCss" placeholder="Ecris les détails techniques, le dressage, tes notes..." rows="8" [(ngModel)]="newDescriptionTechniques">
                 </ion-textarea>
             </ion-item>
         </ion-col>
@@ -175,7 +169,7 @@
     <ion-row>
         <ion-col>
             <ion-button expand="block" (click)="addNewFiche()">
-               <ion-label style="color:#ffffff;">Valider</ion-label>
+                <ion-label style="color:#ffffff;">Valider</ion-label>
             </ion-button>
         </ion-col>
     </ion-row>

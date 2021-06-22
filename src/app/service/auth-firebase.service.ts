@@ -2,7 +2,7 @@ import { Preparation } from 'src/app/models/preparation';
 import { Abonnement } from '../models/abonnement';
 import { Unites } from './../models/unites';
 import { Plats } from './../models/plats';
-import { Notification } from './../models/notification';
+import { Notification, NotificationFiche } from './../models/notification';
 import { Produits } from './../models/produits';
 import { Denrees } from './../models/denrees';
 import { Livres } from 'src/app/models/livres';
@@ -620,8 +620,30 @@ export class AuthFirebaseService {
         console.error('Error removing document: ', error);
       });
     }
+    this.db.collection(this.notificationPath, ref => ref.where('idDocPartage', '==', fiche.key))
+    .snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id })
+        )
+      )
+    ).subscribe(data => {
+      if (data.length !== 0) {
+        try {
+          this.db.doc(this.notificationPath + '/' + data[0].key).delete();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   }
 
+  deleteNotif(notifiaction: NotificationFiche){
+    this.db.collection(this.notificationPath).doc(notifiaction.key).delete().then(() => {
+    }).catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+  }
 
 
 

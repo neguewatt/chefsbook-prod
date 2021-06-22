@@ -79,7 +79,7 @@ ion-header {
     padding-right: 15px;
 }
 
-.addIconCreat{    
+.addIconCreat {
     font-size: 14px;
     background-color: #FF3D51;
     color: white;
@@ -90,7 +90,7 @@ ion-header {
     padding: 6px
 }
 
-.iconFicheTrash{    
+.iconFicheTrash {
     font-size: 20px;
     --ionicon-stroke-width: 16px;
     margin-top: 0;
@@ -132,6 +132,7 @@ ion-header {
     color: #7f7f7f !important;
     --placeholder-opacity: 1 !important;
 }
+
 .policeFichecreat {
     font-weight: 400;
     font-family: Roboto !important;
@@ -398,6 +399,26 @@ ion-avatar {
     display: block;
 }
 
+.modal-Notif-css .modal-wrapper {
+    position: absolute;
+    display: block;
+    height: 30%;
+    top: 70%;
+    width: 100%;
+}
+
+.sc-ion-modal-md-h:last-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+}
+
+ion-modal {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.4);
+}
+
+.sc-ion-modal-ios-h:last-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+}
+
 .addProduit-custom-modal-css .modal-wrapper {
     position: absolute;
     display: block;
@@ -455,4 +476,8 @@ ion-grid {
 
 ion-item[button] {
     pointer-events: visible !important;
+}
+
+.ellipsisHoriz {
+    padding-top: 5px;
 }

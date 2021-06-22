@@ -123,8 +123,8 @@ export class ViewPlatPage implements OnInit {
   }
 
   showUpdateFiche(){
-    this.showButtonUpdate = true;
-    this.ficheUpdate = true;
+    this.showButtonUpdate = !this.showButtonUpdate;
+    this.ficheUpdate = !this.ficheUpdate;
   }
 
 
@@ -145,7 +145,14 @@ export class ViewPlatPage implements OnInit {
     newFiche.fichePreparation = this.plat.fichePreparation;
     this.fiche = newFiche;
    //  console.log(this.fiche);
-    this.dataService.updateFichePlat(this.fiche.key ,this.fiche);
+    try {
+      this.dataService.updateFichePlat(this.fiche.key ,this.fiche);
+      this.route.navigate(['tabs']);
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }
 
 }

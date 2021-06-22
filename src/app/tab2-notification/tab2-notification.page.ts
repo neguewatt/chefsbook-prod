@@ -1,3 +1,4 @@
+import { ModalNotificationPage } from './../pages/modal/modal-notification/modal-notification.page';
 import { Utilisateurs } from '../models/Utilisateurs';
 import { Preparation } from 'src/app/models/preparation';
 import { NotificationFiche } from '../models/notification';
@@ -6,7 +7,7 @@ import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
 import { Plats } from '../models/plats';
-import { IonRouterOutlet } from '@ionic/angular';
+import { IonRouterOutlet, ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2-notification',
@@ -29,6 +30,7 @@ export class Tab2NotificationPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
+    private modalController: ModalController,
     private routerOutlet: IonRouterOutlet
   ) {
 
@@ -170,11 +172,27 @@ export class Tab2NotificationPage implements OnInit {
           });
           this.notifications.push(this.notificationFiche);
         }
+        console.log(this.notifications);
       });
     });
   }
 
-
+  async openPopover(ev, notification){
+    const modal = await this.modalController.create({
+      component: ModalNotificationPage,
+      cssClass: 'modal-Notif-css',
+      componentProps: {
+        notif: notification
+      },
+      backdropDismiss: false,
+      showBackdrop: true,
+      animated: true,
+    });
+    modal.onDidDismiss().then((res) => {
+      this.ngOnInit();
+    });
+    return await modal.present();
+  }
 
   openFiche(notification: NotificationFiche, type: string) {
     const disabledNotif = false;

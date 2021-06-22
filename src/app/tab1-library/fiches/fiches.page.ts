@@ -22,7 +22,7 @@ export class FichesPage implements OnInit {
   cssButtonSelectNo = '--color: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
 
   toutesBoolean = false;
-  prepaBoolean = false;
+  prepaBoolean = true;
   platsBoolean = false;
   disabledplat = true;
   livres: Livres[] = [];
@@ -61,8 +61,8 @@ export class FichesPage implements OnInit {
         this.disabledplat = false;
         this.dataService.platListe = res;
         this.plats = res;
-        this.ficheTechniquesAll = [];
-        this.getAllFiche();
+        // this.ficheTechniquesAll = [];
+       //s this.getAllFiche();
       }
     });
   }
@@ -79,42 +79,43 @@ export class FichesPage implements OnInit {
         this.prepaBoolean = true;
         this.dataService.preparationListe = res;
         this.prepa = res;
-        this.ficheTechniquesAll = [];
-        this.getAllFiche();
+       // this.ficheTechniquesAll = [];
+       // this.getAllFiche();
       }
     });
   }
 
-  getAllFiche(){
-    this.prepa.forEach(element => {
-      this.pushFicheIfNotExist(element);
-    });
-    this.plats.forEach(element => {
-      this.pushFicheIfNotExist(element);
-    });
-  }
+  // getAllFiche(){
+  //   this.prepa.forEach(element => {
+  //     this.pushFicheIfNotExist(element);
+  //   });
+  //   this.plats.forEach(element => {
+  //     this.pushFicheIfNotExist(element);
+  //   });
+  // }
 
-  pushFicheIfNotExist(ficheA: any){
-    const index = this.ficheTechniquesAll.findIndex((e) => e.key === ficheA.key);
-   //  console.log(index);
+  // pushFicheIfNotExist(ficheA: any){
+  //   const index = this.ficheTechniquesAll.findIndex((e) => e.key === ficheA.key);
+  //  //  console.log(index);
 
-    if(index === -1){
-      this.ficheTechniquesAll.push(ficheA);
-    }else{
-      this.ficheTechniquesAll[index] = ficheA;
-    }
-    this.dataService.fichesTechniqueAll = this.ficheTechniquesAll;
-  }
+  //   if(index === -1){
+  //     this.ficheTechniquesAll.push(ficheA);
+  //   }else{
+  //     this.ficheTechniquesAll[index] = ficheA;
+  //   }
+  //   this.dataService.fichesTechniqueAll = this.ficheTechniquesAll;
+  // }
 
   loadData(event) {
     setTimeout(() => {
       event.target.complete();
       this.virtualScroll.checkEnd();
-      if (this.ficheTechniquesAll.length ===  3) {
-        event.target.disabled = true;
-      }
+      // if (this.ficheTechniquesAll.length ===  3) {
+      //   event.target.disabled = true;
+      // }
     }, 500);
   }
+
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
@@ -131,22 +132,30 @@ export class FichesPage implements OnInit {
   }
 
   segmentChanged(page: any) {
-   //  console.log(page);
-    this.toutesBoolean = false;
-    this.prepaBoolean = false;
-    this.platsBoolean = false;
-    const section = page;
-    switch (section) {
-      case 'toutesBoolean':
-        this.toutesBoolean = true;
-        break;
-      case 'prepaBoolean':
-        this.prepaBoolean = true;
-        break;
-      case 'platsBoolean':
-        this.platsBoolean = true;
-        break;
+    console.log(page);
+    // this.toutesBoolean = false;
+    // this.prepaBoolean = false;
+    // this.platsBoolean = false;
+    // const section = page;
+    // switch (section) {
+    //   case 'toutesBoolean':
+    //     this.toutesBoolean = true;
+    //     break;
+    //   case 'prepaBoolean':
+    //     this.prepaBoolean = true;
+    //     break;
+    //   case 'platsBoolean':
+    //     this.platsBoolean = true;
+    //     break;
+    // }
+    if(page === 'prepaBoolean'){
+      this.prepaBoolean = true;
+      this.platsBoolean = false;
+    }else if(page === 'platsBoolean'){
+      this.prepaBoolean = false;
+      this.platsBoolean = true;
     }
+    
   }
   async openPopover(ev: any, fiche: any) {
    //  console.log('popover');

@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule],
