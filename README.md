@@ -45,13 +45,13 @@ Soit le déroulé technique avec l&#39;ensemble du/des descriptif technique qui 
 
 Mise en place d&#39;une application mobile Tabs
 
-Technologie : Ionic et Angular, reactive database sous Firebase
+Technologie : Ionic 5 et Angular 11, reactive database sous Firebase
 
 Installation :
 
-- Installation de nodeJs
+- Installation de nodeJs version 16.1.0
 - Copier le dossier git
-- CD chef&#39;sBook
+- CD "nom du dossier"
 - npm install
 
 adresse du design
