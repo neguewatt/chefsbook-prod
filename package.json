@@ -50,6 +50,7 @@
         "zone.js": "~0.10.2"
     },
     "devDependencies": {
+        "@angular-builders/jest": "^12.1.0",
         "@angular-devkit/build-angular": "^12.0.2",
         "@angular-eslint/builder": "2.0.2",
         "@angular-eslint/eslint-plugin": "2.0.2",
@@ -85,6 +86,10 @@
         "testPathIgnorePatterns": [
             "./node_modules/",
             "./dist/"
+        ],
+        "moduleDirectories":[
+          "node_modules",
+          "./"
         ],
         "globals": {
             "ts-jest": {
