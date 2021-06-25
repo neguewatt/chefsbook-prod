@@ -21,13 +21,7 @@ export class FichePage implements OnInit {
   }
 
   getOrdreTableau(){
-    this.dataService.getOrdreTableauFT().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getOrdreTableauFT().subscribe((res: any[])=> {
       this.myTable = res[0];
       this.mykey = res[0].key;
      //  console.log(res[0].key);

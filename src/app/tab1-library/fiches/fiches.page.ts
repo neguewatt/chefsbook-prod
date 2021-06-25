@@ -50,13 +50,7 @@ export class FichesPage implements OnInit {
   }
 
   getFicheTechniquesListPlat() {
-    this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getFicheTechniquesListPlat().subscribe(res => {
       if (res !== undefined) {
         this.disabledplat = false;
         this.dataService.platListe = res;
@@ -67,15 +61,8 @@ export class FichesPage implements OnInit {
     });
   }
    getFicheTechniquesListPrepa() {
-    this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getFicheTechniquesListPrepa().subscribe(res => {
       if (res !== undefined) {
-       //  console.log('fiche', res);
         this.prepaBoolean = true;
         this.dataService.preparationListe = res;
         this.prepa = res;

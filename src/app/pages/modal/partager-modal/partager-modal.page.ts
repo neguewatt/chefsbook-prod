@@ -42,13 +42,7 @@ export class PartagerModalPage implements OnInit {
   }
 
   getUtilisateurByEmail(){
-    this.dataService.getUtilisateurByEmail(this.email).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getUtilisateurByEmail(this.email).subscribe(res => {
       if (res[0]){
         this.userId = res[0].idUtilisateur;
         this.updateFicheIdPartage();

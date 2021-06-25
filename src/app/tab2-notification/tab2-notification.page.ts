@@ -44,22 +44,16 @@ export class Tab2NotificationPage implements OnInit {
   }
 
   getNotification() {
-    this.dataService.getNotification().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getNotification().subscribe(res => {
       this.notifications = [];
       res.forEach(notification => {
         if ('fiche Préparation' === notification.type) {
           // fiche technique préparation partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
           this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: Preparation) => {
-            this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
-              this.userNom = user.nom;
-              this.userPrenom = user.prenom;
+            this.dataService.getUtilisateurById(prepa.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+              this.userNom = user[0].nom;
+              this.userPrenom = user[0].prenom;
 
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
@@ -117,9 +111,9 @@ export class Tab2NotificationPage implements OnInit {
           // fiche technique plats partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
           this.dataService.getPlatPartageById(notification.idDocPartage).then((plat: Plats) => {
-            this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
-              this.userNom = user.nom;
-              this.userPrenom = user.prenom;
+            this.dataService.getUtilisateurById(plat.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+              this.userNom = user[0].nom;
+              this.userPrenom = user[0].prenom;
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;

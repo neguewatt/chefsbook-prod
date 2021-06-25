@@ -51,13 +51,7 @@ export class Tab1LibraryPage implements OnInit {
 
   getLivresPerso() {
     // TODO faire un tri pour les livre (bibliotheque / ref / achat)
-    this.dataService.getLivrePersoList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(dataLivres => {
+    this.dataService.getLivrePersoList().subscribe(dataLivres => {
       this.livrePerso = dataLivres;
     });
   }
