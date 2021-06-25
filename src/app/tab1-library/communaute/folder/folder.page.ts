@@ -39,16 +39,9 @@ export class FolderPage implements OnInit {
   }
 
   getPlatPartage() {
-    this.dataService.getPlatPartage().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe((resPlat: any) => {
+    this.dataService.getPlatPartage().subscribe((resPlat: Plats[]) => {
      //  console.log('partagé :', resPlat);
       if (resPlat !== undefined) {
-        this.dataService.partagePlatsListe = resPlat;
         resPlat.forEach(plat => {
           this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
             const fiche = new FicheByCom();

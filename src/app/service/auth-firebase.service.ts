@@ -188,7 +188,7 @@ export class AuthFirebaseService {
         console.log(this.utilisateur);
         this.initialiseGet();
     });
-        
+
   }
 
 
@@ -249,6 +249,7 @@ export class AuthFirebaseService {
         this.partagePrepaListe = fiches;
       });
   }
+
   getListePlats() {
     this.db.collection<Plats>(this.platPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
@@ -393,9 +394,15 @@ export class AuthFirebaseService {
     const prepa = this.db.collection(this.platPath).doc(key).get().toPromise();
     return (await prepa).data();
   }
-  getPlatPartage(): AngularFirestoreCollection<Plats> {
+  getPlatPartage(): Observable<Plats[]> {
     this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', 'array-contains', this.user.uid));
-    return this.platDb;
+    return  this.platDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
 
   getFicheTechniquesListPrepa(): AngularFirestoreCollection<Preparation> {
@@ -520,7 +527,7 @@ export class AuthFirebaseService {
   }
   async updateUtilisateurPartageZero(){
     console.log(this.utilisateur.idUtilisateur);
-    
+
     await delay(1500);
     this.utilisateur.partage = 0;
     const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);
