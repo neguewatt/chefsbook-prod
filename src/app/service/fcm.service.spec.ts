@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { FcmService } from './fcm.service';
 
@@ -6,7 +7,11 @@ describe('FcmService', () => {
   let service: FcmService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([])
+      ]
+    });
     service = TestBed.inject(FcmService);
   });
 

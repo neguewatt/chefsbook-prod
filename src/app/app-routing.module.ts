@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'details',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  },
+  {
+    path: 'modal-notification',
+    loadChildren: () => import('./pages/modal/modal-notification/modal-notification.module').then( m => m.ModalNotificationPageModule)
   }
 ];
 @NgModule({

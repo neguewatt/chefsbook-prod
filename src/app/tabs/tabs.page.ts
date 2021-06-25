@@ -1,3 +1,4 @@
+import { Notification } from './../models/notification';
 import { Component, ViewChild } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
 import { map } from 'rxjs/operators';
@@ -42,13 +43,7 @@ export class TabsPage {
   };
 
   getBadgeNotif() {
-    this.dataService.getNotificationBadge().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getNotificationBadge().subscribe((res: Notification[]) => {
       if (res.length > 0) {
         this.disabled = false;
         this.notifNumber = res.length;

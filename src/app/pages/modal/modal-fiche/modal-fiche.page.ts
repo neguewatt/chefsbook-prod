@@ -1,7 +1,7 @@
 import { Tab3SearchPage } from './../../../tab3-search/tab3-search.page';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { NavParams, PopoverController, ModalController, AlertController } from '@ionic/angular';
+import { NavParams, PopoverController, ModalController, AlertController, ToastController } from '@ionic/angular';
 import { AuthFirebaseService } from 'src/app/service/auth-firebase.service';
 import { PartagerModalPage } from '../partager-modal/partager-modal.page';
 import { FichesPage } from './../../../tab1-library/fiches/fiches.page';
@@ -24,6 +24,7 @@ export class ModalFichePage implements OnInit {
     private route: Router,
     public modalController: ModalController,
     private dataService: AuthFirebaseService,
+    private toastController: ToastController,
     private alertController: AlertController) {
 
   }
@@ -35,7 +36,15 @@ export class ModalFichePage implements OnInit {
   }
 
   modifier() {
-   //  console.log('modifier : ' + this.fiche);
+    if(this.fiche.type === 'Plat'){
+      const navigationExtras: NavigationExtras = {
+        state: {
+          value: this.fiche,
+          update: this.ficheUpdate
+      }
+    };
+    this.route.navigate(['view-plat'], navigationExtras);
+   }else{
     const navigationExtras: NavigationExtras = {
       state: {
         value: this.fiche,
@@ -43,7 +52,8 @@ export class ModalFichePage implements OnInit {
       }
     };
     this.route.navigate(['view-preparation'], navigationExtras);
-    this.popoverController.dismiss('modifier');
+   }
+   this.popoverController.dismiss('modifier');
   }
   partager() {
     console.log(this.dataService.utilisateur.partage)
@@ -51,6 +61,7 @@ export class ModalFichePage implements OnInit {
       this.openModalPartager();
       this.popoverController.dismiss('partager');
     }else{
+      this.erreurFinPArtage()
       this.popoverController.dismiss('partager');
     }
   }
@@ -103,8 +114,13 @@ export class ModalFichePage implements OnInit {
     return await modal.present();
 
   }
-
-
+  async erreurFinPArtage() {
+    const toast = await this.toastController.create({
+      message: 'Vous avez atteint votre nombre maximum de partage mensuel.',
+      duration: 3000
+    });
+    toast.present();
+  }
 
 }
 

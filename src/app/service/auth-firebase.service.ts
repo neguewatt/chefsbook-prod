@@ -2,7 +2,7 @@ import { Preparation } from 'src/app/models/preparation';
 import { Abonnement } from '../models/abonnement';
 import { Unites } from './../models/unites';
 import { Plats } from './../models/plats';
-import { Notification } from './../models/notification';
+import { Notification, NotificationFiche } from './../models/notification';
 import { Produits } from './../models/produits';
 import { Denrees } from './../models/denrees';
 import { Livres } from 'src/app/models/livres';
@@ -87,33 +87,34 @@ export class AuthFirebaseService {
   private ecranDefautDb: AngularFirestoreCollection<EcranDefaut> = null;
   private fondDb: AngularFirestoreCollection<Fond> = null;
   private utilisateurDb: AngularFirestoreCollection<Utilisateurs> = null;
+  private utilisateurByIdDb: AngularFirestoreCollection<Utilisateurs> = null;
 
   // end appel de la classe AngularFirestore
 
   constructor(public db: AngularFirestore, public authLogin: AuthLoginService) {
 
     if (this.user !== null) {
-      this.getCompteUtilisateur();  // Au démarage application
+      this.initCompteUtilisateur();  // Au démarage application
     }
   }
 
   initialiseGet() {
     const date = new Date();
     const first = new Date(date.getFullYear(), date.getMonth(), 1);
-    this.getformule(); // Au démarage application
-    this.getLivrePerso(); // Au démarage application
-    this.getFicheTechniquesPartage();  // Au démarage application
-    this.getPlatsPartage();  // Au démarage application
-    this.getOrdreTableau();  // Au démarage application
-    this.getPosteDeTravail();  // Au démarage de la page creation de fiche
+    this.initformule(); // Au démarage application
+    this.initLivrePerso(); // Au démarage application
+    this.initFicheTechniquesPartage();  // Au démarage application
+    this.initPlatsPartage();  // Au démarage application
+    this.initOrdreTableau();  // Au démarage application
+    this.initPosteDeTravail();  // Au démarage de la page creation de fiche
     //this.getProduitListe();  // Au démarage de la page creation de fiche
-    this.getUnitesListe(); // Au démarage de la page creation de fiche
-    this.getFichesTechniqueAll();
+    this.initUnitesListe(); // Au démarage de la page creation de fiche
+    this.initFichesTechniqueAll();
     if (this.preparationListe.length === 0) {
-      this.getListePreparations();  // Au démarage application
+      this.initListePreparations();  // Au démarage application
     }
     if (this.platListe.length === 0) {
-      this.getListePlats();  // Au démarage application
+      this.initListePlats();  // Au démarage application
     }
     if(this.utilisateur.partage !== 0 && date.getDate() === 14){
       console.log('remise a zero de partage');
@@ -172,10 +173,10 @@ export class AuthFirebaseService {
 
   /** ----------------------------------------------- **/
 
-  /** Start  : GETER au démarage de l'application  **/
+  /** Start  : INIT au démarage de l'application  **/
 
 
-  getCompteUtilisateur() {
+  initCompteUtilisateur() {
     this.db.collection<Utilisateurs>(this.utilisateurPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)).snapshotChanges().pipe(
         map(changes =>
@@ -188,7 +189,7 @@ export class AuthFirebaseService {
         console.log(this.utilisateur);
         this.initialiseGet();
     });
-        
+
   }
 
 
@@ -207,7 +208,7 @@ export class AuthFirebaseService {
         this.badgeNotif = res.length;
       });
   }
-  getLivrePerso() {
+  initLivrePerso() {
     this.db.collection<Livres>(this.livresPath, ref => ref
       .where('idUtilisateur', '==', [this.user.uid])
       .where('position', '==', 'personnel'))
@@ -221,7 +222,7 @@ export class AuthFirebaseService {
         this.livresPersoListe = livres;
       });
   }
-  getListePreparations() {
+  initListePreparations() {
     this.db.collection<Preparation>(this.preparationPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
       .orderBy('nom', 'asc')).snapshotChanges().pipe(
@@ -234,7 +235,7 @@ export class AuthFirebaseService {
         this.preparationListe = fiches;
       });
   }
-  getFicheTechniquesPartage() {
+  initFicheTechniquesPartage() {
     this.db.collection<Preparation>(this.preparationPath, ref => ref
       .where('idPartage', 'array-contains', this.user.uid)
       .orderBy('nom', 'asc'))
@@ -249,7 +250,7 @@ export class AuthFirebaseService {
         this.partagePrepaListe = fiches;
       });
   }
-  getListePlats() {
+  initListePlats() {
     this.db.collection<Plats>(this.platPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
       .orderBy('nom', 'asc'))
@@ -263,7 +264,7 @@ export class AuthFirebaseService {
         this.platListe = plats;
       });
   }
-  getPlatsPartage() {
+  initPlatsPartage() {
     this.db.collection<Plats>(this.platPath, ref => ref
       .where('idPartage', 'array-contains', this.user.uid)
       .orderBy('nom', 'asc')).snapshotChanges().pipe(
@@ -276,7 +277,7 @@ export class AuthFirebaseService {
         this.partagePlatsListe = plats;
       });
   }
-  getFichesTechniqueAll() {
+  initFichesTechniqueAll() {
     if (this.preparationListe) {
       this.preparationListe.forEach((fiche: any) => {
         this.fichesTechniqueAll.push(fiche);
@@ -288,14 +289,10 @@ export class AuthFirebaseService {
       });
     }
   }
-  async getUtilisateurById(key: string) {
-    const user = this.db.collection(this.utilisateurPath).doc(key).get().toPromise();
-    return (await user).data();
-  }
 
   /** ------ordre d'affichage des denrées (Nature Unite Quantite ou Quantite Unite Nature)------ **/
 
-  getOrdreTableau() {
+  initOrdreTableau() {
     this.db.collection<AffichageIngredients>(this.ordreTableauFTPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)).snapshotChanges().pipe(
         map(changes =>
@@ -313,7 +310,7 @@ export class AuthFirebaseService {
         }
       });
   }
-  getPosteDeTravail() {
+  initPosteDeTravail() {
     this.db.collection<PosteDeTravail>(this.posteDeTravailPath, ref => ref
       .orderBy('nom', 'asc'))
       .snapshotChanges().pipe(
@@ -326,7 +323,7 @@ export class AuthFirebaseService {
         this.posteDeTravailListe = poste;
       });
   }
-  getUnitesListe() {
+  initUnitesListe() {
     this.db.collection<Unites>(this.unitePath, ref => ref)
       .snapshotChanges().pipe(
         map(changes =>
@@ -338,7 +335,7 @@ export class AuthFirebaseService {
         this.unitesListe = unites;
       });
   }
-  getformule() {
+  initformule() {
     this.db.collection<Abonnement>(this.formulePath, ref => ref.where('abonnement', '==', this.utilisateur.abonnement))
       .snapshotChanges().pipe(
         map(changes =>
@@ -354,7 +351,7 @@ export class AuthFirebaseService {
         // this.getAbonnement();
       });
   }
-  // getAbonnement() {
+  // initAbonnement() {
   //   this.lmitesListe.forEach((limite: Abonnement) => {
   //     if (limite.abonnement === 'G' && this.utilisateur.abonnement === 'G') {
   //       this.limitFiches = limite.limiteFiche;
@@ -384,80 +381,163 @@ export class AuthFirebaseService {
     const prepa = this.db.collection(this.preparationPath).doc(key).get().toPromise();
     return (await prepa).data();
   }
-  getPrepaPartage(): AngularFirestoreCollection<Preparation> {
+  getPrepaPartage(): Observable<Preparation[]> {
     this.preparationDb = this.db.collection(this.preparationPath, ref => ref
       .where('idPartage', 'array-contains', this.user.uid).orderBy('nom', 'asc'));
-    return this.preparationDb;
+    return this.preparationDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
   async getPlatPartageById(key: string) {
     const prepa = this.db.collection(this.platPath).doc(key).get().toPromise();
     return (await prepa).data();
   }
-  getPlatPartage(): AngularFirestoreCollection<Plats> {
-    this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', 'array-contains', this.user.uid));
-    return this.platDb;
+
+  getUtilisateurById(key: string): Observable<Utilisateurs[]> {
+    this.utilisateurByIdDb = this.db.collection(this.utilisateurPath, ref => ref
+      .where('idUtilisateur', '==', key));
+    return this.utilisateurByIdDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
 
-  getFicheTechniquesListPrepa(): AngularFirestoreCollection<Preparation> {
+
+  getPlatPartage(): Observable<Plats[]> {
+    this.platDb = this.db.collection(this.platPath, ref => ref.where('idPartage', 'array-contains', this.user.uid));
+    return  this.platDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
+  }
+
+  getFicheTechniquesListPrepa(): Observable<Preparation[]> {
     this.preparationDb = this.db.collection<Preparation>(this.preparationPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
       .orderBy('nom', 'asc'));
-    return this.preparationDb;
+    return this.preparationDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
 
-  getFicheTechniquesListPlat(): AngularFirestoreCollection<Plats> {
+  getFicheTechniquesListPlat(): Observable<Plats[]> {
     this.platDb = this.db.collection(this.platPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid)
       .orderBy('nom'));
-    return this.platDb;
+    return this.platDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getFicheTechniquesByLivre(livreNom: string): AngularFirestoreCollection<Preparation> {
-    this.ficheTechniqueByLivreDb = this.db.collection(this.preparationPath, ref =>
-      ref.where('idUtilisateur', '==', this.user.uid)
-        .where('livre', '==', livreNom));
-    return this.ficheTechniqueByLivreDb;
-  }
-  getFicheTechniquesByLivrePartage(livreNom: string, userId: string): AngularFirestoreCollection<Preparation> {
-    this.ficheTechniqueByLivreDb = this.db.collection(this.preparationPath, ref =>
-      ref.where('idUtilisateur', '==', this.user.uid)
-        .where('idPartage', '==', [userId])
-        .where('livre', '==', livreNom));
-    return this.ficheTechniqueByLivreDb;
-  }
-  getDenreesList(): AngularFirestoreCollection<Denrees> {
-    this.denreesDb = this.db.collection(this.denreesPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
-    return this.denreesDb;
-  }
+  // getFicheTechniquesByLivre(livreNom: string): Observable<Preparation[]> {
+  //   this.ficheTechniqueByLivreDb = this.db.collection(this.preparationPath, ref =>
+  //     ref.where('idUtilisateur', '==', this.user.uid)
+  //       .where('livre', '==', livreNom));
+  //   return this.ficheTechniqueByLivreDb.snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c =>
+  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+  //       )
+  //     )
+  //   );
+  // }
+
+  // getFicheTechniquesByLivrePartage(livreNom: string, userId: string): Observable<Preparation[]> {
+  //   this.ficheTechniqueByLivreDb = this.db.collection(this.preparationPath, ref =>
+  //     ref.where('idUtilisateur', '==', this.user.uid)
+  //       .where('idPartage', '==', [userId])
+  //       .where('livre', '==', livreNom));
+  //   return this.ficheTechniqueByLivreDb.snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c =>
+  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+  //       )
+  //     )
+  //   );
+  // }
+
+  // getDenreesList(): Observable<Denrees[]> {
+  //   this.denreesDb = this.db.collection(this.denreesPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
+  //   return this.denreesDb.snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c =>
+  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+  //       )
+  //     )
+  //   );
+  // }
+
   // getProduitList(): AngularFirestoreCollection<Produits> {
   //   this.produitDb = this.db.collection(this.produitPath, ref => ref.orderBy('type', 'asc'));
   //   return this.produitDb;
   // }
-  getOrdreTableauFT(): AngularFirestoreCollection<AffichageIngredients> {
+
+  getOrdreTableauFT(): Observable<AffichageIngredients[]> {
     this.ordreTableauFTDb = this.db.collection(this.ordreTableauFTPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
-    return this.ordreTableauFTDb;
+    return this.ordreTableauFTDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getLivreList(): AngularFirestoreCollection<Livres> {
-    this.livresDb = this.db.collection(this.livresPath, ref => ref.where('idUtilisateur', '==', [this.user.uid]));
-    return this.livresDb;
-  }
-  getLivrePersoList(): AngularFirestoreCollection<Livres> {
+
+  // getLivreList(): AngularFirestoreCollection<Livres> {
+  //   this.livresDb = this.db.collection(this.livresPath, ref => ref.where('idUtilisateur', '==', [this.user.uid]));
+  //   return this.livresDb;
+  // }
+
+  getLivrePersoList(): Observable<Livres[]> {
     this.livresPersoDb = this.db.collection(this.livresPath, ref => ref
       .where('idUtilisateur', '==', [this.user.uid]).where('position', '==', 'personnel'));
-    return this.livresPersoDb;
+    return this.livresPersoDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getLivreRefList(): AngularFirestoreCollection<Livres> {
-    this.livresRefDb = this.db.collection(this.livresPath, ref => ref
-      .where('idUtilisateur', '==', [this.user.uid]).where('référence', '==', true));
-    return this.livresRefDb;
-  }
-  getLivreAchatList(): AngularFirestoreCollection<Livres> {
-    this.livresAchatDb = this.db.collection(this.livresPath, ref => ref
-      .where('idUtilisateur', '==', [this.user.uid]).where('position', '==', 'achat'));
-    return this.livresAchatDb;
-  }
-  getUtilisateur(): AngularFirestoreCollection<Utilisateurs> {
+
+  // getLivreRefList(): AngularFirestoreCollection<Livres> {
+  //   this.livresRefDb = this.db.collection(this.livresPath, ref => ref
+  //     .where('idUtilisateur', '==', [this.user.uid]).where('référence', '==', true));
+  //   return this.livresRefDb;
+  // }
+
+  // getLivreAchatList(): AngularFirestoreCollection<Livres> {
+  //   this.livresAchatDb = this.db.collection(this.livresPath, ref => ref
+  //     .where('idUtilisateur', '==', [this.user.uid]).where('position', '==', 'achat'));
+  //   return this.livresAchatDb;
+  // }
+
+  getUtilisateur(): Observable<Utilisateurs[]> {
     this.utilisateurDb = this.db.collection(this.utilisateurPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
-    return this.utilisateurDb;
+    return this.utilisateurDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
 
   // getUtilisateurById(userId: string): AngularFirestoreCollection<Utilisateurs> {
@@ -465,27 +545,52 @@ export class AuthFirebaseService {
   //   return this.utilisateurDb;
   // }
 
-  getUtilisateurByEmail(email: string) {
+  getUtilisateurByEmail(email: string): Observable <Utilisateurs[]>{
     this.utilisateurDb = this.db.collection(this.utilisateurPath, ref => ref.where('email', '==', email));
-    return this.utilisateurDb;
+    return this.utilisateurDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getEcranDefautByUID(uid: string): AngularFirestoreCollection<EcranDefaut> {
-    this.ecranDefautDb = this.db.collection(this.ecranDefautPath, ref => ref.where('idUtilisateur', '==', uid));
-    return this.ecranDefautDb;
-  }
-  getEcranDefaut(): AngularFirestoreCollection<EcranDefaut> {
+  // getEcranDefautByUID(uid: string): AngularFirestoreCollection<EcranDefaut> {
+  //   this.ecranDefautDb = this.db.collection(this.ecranDefautPath, ref => ref.where('idUtilisateur', '==', uid));
+  //   return this.ecranDefautDb;
+  // }
+  getEcranDefaut(): Observable<EcranDefaut[]> {
     this.ecranDefautDb = this.db.collection(this.ecranDefautPath, ref => ref.where('idUtilisateur', '==', this.user.uid));
-    return this.ecranDefautDb;
+    return this.ecranDefautDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getNotification(): AngularFirestoreCollection<Notification> {
+  getNotification(): Observable<Notification[]> {
     this.notificationAllDb = this.db.collection(this.notificationPath, ref => ref
       .where('idUtilisateur', '==', this.user.uid).orderBy('date', 'desc'));
-    return this.notificationAllDb;
+    return this.notificationAllDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );
   }
-  getNotificationBadge(): AngularFirestoreCollection<Notification> {
+  getNotificationBadge(): Observable<Notification[]> {
     this.notificationDb = this.db.collection(this.notificationPath, ref => ref
-      .where('idUtilisateur', '==', this.user.uid).where('notifDisabled', '==', true).orderBy('date', 'desc'));
-    return this.notificationDb;
+      .where('idUtilisateur', '==', this.user.uid)
+      .where('notifDisabled', '==', true).orderBy('date', 'desc'))
+    return this.notificationDb.snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    );;
   }
 
   // end affichage des documents
@@ -520,7 +625,7 @@ export class AuthFirebaseService {
   }
   async updateUtilisateurPartageZero(){
     console.log(this.utilisateur.idUtilisateur);
-    
+
     await delay(1500);
     this.utilisateur.partage = 0;
     const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);
@@ -609,7 +714,7 @@ export class AuthFirebaseService {
     if (fiche.type === 'Préparation') {
       this.db.collection(this.preparationPath).doc(fiche.key).delete().then(() => {
         //  console.log('Document prepa successfully deleted!');
-        this.getListePreparations();
+        this.initListePreparations();
       }).catch((error) => {
         console.error('Error removing document: ', error);
       });
@@ -620,8 +725,30 @@ export class AuthFirebaseService {
         console.error('Error removing document: ', error);
       });
     }
+    this.db.collection(this.notificationPath, ref => ref.where('idDocPartage', '==', fiche.key))
+    .snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.doc.id })
+        )
+      )
+    ).subscribe(data => {
+      if (data.length !== 0) {
+        try {
+          this.db.doc(this.notificationPath + '/' + data[0].key).delete();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   }
 
+  deleteNotif(notifiaction: NotificationFiche){
+    this.db.collection(this.notificationPath).doc(notifiaction.key).delete().then(() => {
+    }).catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+  }
 
 
 

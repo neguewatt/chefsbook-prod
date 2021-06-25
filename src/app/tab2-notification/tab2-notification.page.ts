@@ -1,3 +1,4 @@
+import { ModalNotificationPage } from './../pages/modal/modal-notification/modal-notification.page';
 import { Utilisateurs } from '../models/Utilisateurs';
 import { Preparation } from 'src/app/models/preparation';
 import { NotificationFiche } from '../models/notification';
@@ -6,7 +7,7 @@ import { AuthFirebaseService } from '../service/auth-firebase.service';
 import { map } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
 import { Plats } from '../models/plats';
-import { IonRouterOutlet } from '@ionic/angular';
+import { IonRouterOutlet, ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2-notification',
@@ -29,6 +30,7 @@ export class Tab2NotificationPage implements OnInit {
   constructor(
     private dataService: AuthFirebaseService,
     private route: Router,
+    private modalController: ModalController,
     private routerOutlet: IonRouterOutlet
   ) {
 
@@ -42,22 +44,16 @@ export class Tab2NotificationPage implements OnInit {
   }
 
   getNotification() {
-    this.dataService.getNotification().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getNotification().subscribe(res => {
       this.notifications = [];
       res.forEach(notification => {
         if ('fiche Préparation' === notification.type) {
           // fiche technique préparation partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
           this.dataService.getPrepaPartageById(notification.idDocPartage).then((prepa: Preparation) => {
-            this.dataService.getUtilisateurById(prepa.idUtilisateur).then((user: Utilisateurs) => {
-              this.userNom = user.nom;
-              this.userPrenom = user.prenom;
+            this.dataService.getUtilisateurById(prepa.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+              this.userNom = user[0].nom;
+              this.userPrenom = user[0].prenom;
 
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
@@ -115,9 +111,9 @@ export class Tab2NotificationPage implements OnInit {
           // fiche technique plats partagé gestion du temps du partage
           const resNotif = new NotificationFiche();
           this.dataService.getPlatPartageById(notification.idDocPartage).then((plat: Plats) => {
-            this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
-              this.userNom = user.nom;
-              this.userPrenom = user.prenom;
+            this.dataService.getUtilisateurById(plat.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+              this.userNom = user[0].nom;
+              this.userPrenom = user[0].prenom;
               resNotif.idDocPartage = notification.idDocPartage;
               // calcul du temps
               let difference = this.toDay * 1000 - notification.date.seconds * 1000;
@@ -170,11 +166,27 @@ export class Tab2NotificationPage implements OnInit {
           });
           this.notifications.push(this.notificationFiche);
         }
+        console.log(this.notifications);
       });
     });
   }
 
-
+  async openPopover(ev, notification){
+    const modal = await this.modalController.create({
+      component: ModalNotificationPage,
+      cssClass: 'modal-Notif-css',
+      componentProps: {
+        notif: notification
+      },
+      backdropDismiss: false,
+      showBackdrop: true,
+      animated: true,
+    });
+    modal.onDidDismiss().then((res) => {
+      this.ngOnInit();
+    });
+    return await modal.present();
+  }
 
   openFiche(notification: NotificationFiche, type: string) {
     const disabledNotif = false;

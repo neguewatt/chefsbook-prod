@@ -30,13 +30,7 @@ export class Tab3SearchPage implements OnInit {
   }
 
   getPlat() {
-    this.dataService.getFicheTechniquesListPlat().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(resPlat => {
+    this.dataService.getFicheTechniquesListPlat().subscribe(resPlat => {
       if (resPlat !== undefined) {
         resPlat.forEach(res => {
           this.ficheTechniquesAll.push(res);
@@ -45,26 +39,14 @@ export class Tab3SearchPage implements OnInit {
     });
   }
   getFicheTechniquespartage() {
-    this.dataService.getPrepaPartage().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(resPrepa => {
+    this.dataService.getPrepaPartage().subscribe(resPrepa => {
       if (resPrepa !== undefined) {
         resPrepa.forEach(res => {
           this.ficheTechniquesAll.push(res);
         });
       }
     });
-    this.dataService.getPlatPartage().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(resPlat => {
+    this.dataService.getPlatPartage().subscribe(resPlat => {
       if (resPlat !== undefined) {
         resPlat.forEach(res => {
           this.ficheTechniquesAll.push(res);
@@ -73,13 +55,7 @@ export class Tab3SearchPage implements OnInit {
     });
   }
   getPreparation() {
-    this.dataService.getFicheTechniquesListPrepa().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(resPrepa => {
+    this.dataService.getFicheTechniquesListPrepa().subscribe(resPrepa => {
       if (resPrepa !== undefined) {
         resPrepa.forEach(res => {
           this.ficheTechniquesAll.push(res);

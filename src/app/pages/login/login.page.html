@@ -12,7 +12,7 @@
             </ion-row>
             <ion-row class="errorBox" [hidden]="!errorLogin">
                 <ion-col>
-                    <div  class="login-error ion-text-center">
+                    <div class="login-error ion-text-center">
                         <ion-icon name="earth-sharp"></ion-icon>
                         <br/>
                         <ion-text>Votre identifiant ou votre mot de passe est incorrect. </ion-text>
@@ -41,7 +41,7 @@
             <ion-row>
                 <ion-col class="font-check ion-text-center">
                     <div>
-                        <ion-checkbox class="ion-margin-end" slot="start" checked="checked" (click)="onChecked()"></ion-checkbox>
+                        <ion-checkbox type="checkbox" class="ion-margin-end" slot="start" (click)="onChecked()"></ion-checkbox>
                         <ion-text class="ion-margin-vertical">Se souvenir de moi</ion-text>
                     </div>
                     <div>

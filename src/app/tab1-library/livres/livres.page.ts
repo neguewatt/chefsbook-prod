@@ -52,13 +52,7 @@ export class LivresPage implements OnInit {
   getLivresPerso() {
     // TODO faire un tri pour les livre (bibliotheque / ref / achat)
     try {
-      this.dataService.getLivrePersoList().snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c =>
-            ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-          )
-        )
-      ).subscribe(dataLivres => {
+      this.dataService.getLivrePersoList().subscribe(dataLivres => {
         this.livresPerso = dataLivres;
       });
     } catch (error) {

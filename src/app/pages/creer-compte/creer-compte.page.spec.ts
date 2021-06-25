@@ -21,7 +21,8 @@ describe('CreerUtilisateurPage', () => {
       imports: [IonicModule.forRoot(),
         RouterTestingModule,
         FormsModule,
-        ReactiveFormsModule]
+        ReactiveFormsModule,
+        AuthLoginService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CreerUtilisateurPage);

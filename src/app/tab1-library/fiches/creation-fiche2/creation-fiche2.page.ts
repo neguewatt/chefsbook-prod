@@ -11,8 +11,8 @@ import { Preparation } from 'src/app/models/preparation';
 })
 export class CreationFiche2Page implements OnInit {
 
-  cssButtonSelect = '--color: #F03434;  font-family: "Roboto"; font-weight: 500;';
-  cssButtonSelectNo = '--color: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
+  cssButtonSelect = '--background-activated: #F03434;  font-family: "Roboto"; font-weight: 500;';
+  cssButtonSelectNo = '--background-activated: #F03434; opacity: 50%; font-family: "Roboto"; font-weight: 300;';
 
   userNom: string;
   prenom: string;
@@ -22,6 +22,7 @@ export class CreationFiche2Page implements OnInit {
   prepa = true;
   plat = false;
   newType: string;
+  
 
 
   constructor(private dataService: AuthFirebaseService) {
