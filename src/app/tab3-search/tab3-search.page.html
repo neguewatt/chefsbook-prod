@@ -17,7 +17,7 @@
 <ion-content>
     <ion-toolbar style="padding-top: 10px;">
 
-        <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="getItems($event)"></ion-searchbar>
+        <ion-searchbar #input animated="true" color="primary" placeholder="Rechercher" type="text" debounce="500" [(ngModel)]="ficheRecherche" (ionChange)="ionChange($event)" (ionInput)="ionInput($event)"></ion-searchbar>
 
         <!-- <ion-searchbar animated color="primary" placeholder="Recherché" type="text" debounce="500"
     (ionChange)="getItems($event)"></ion-searchbar> -->

@@ -24,7 +24,7 @@ export class PlatPage implements OnInit {
 
   // recherche fiche techniques
   ficheTechnique: Preparation ;
-  ficheTechniques: Preparation[] = [];
+  ficheTechniques: any[] = [];
   isItemAvailable = false;
   items = [];
 
@@ -93,25 +93,11 @@ export class PlatPage implements OnInit {
     if (this.plat ===  undefined) {
       this.plat = new Plats();
     }
-    if (this.dataService.partagePrepaListe) {
-      this.dataService.partagePrepaListe.forEach(partagePrepa => {
-        this.ficheTechniques.push(partagePrepa);
-      });
-     //  console.log(this.ficheTechniques);
-    }
-
-    this.ficheTechniques.sort((a, b) => {
-      if (a.nom < b.nom) {
-        return -1;
-      }
-      if (a.nom > b.nom) {
-        return 1;
-      }
-      return 0;
-    });
+    this.getFicheTechniquespartage();
+    this.getPreparation();
+    
     this.userNom = this.dataService.utilisateur.nom;
     this.prenom = this.dataService.utilisateur.prenom;
-    this.ficheTechniques = this.dataService.preparationListe;
     this.tableau1 = this.dataService.tableau1;
     this.tableau2 = this.dataService.tableau2;
     this.postes = this.dataService.posteDeTravailListe;
@@ -120,27 +106,61 @@ export class PlatPage implements OnInit {
    //  console.log(this.postes);
   }
 
-  getItems(ev: any) {
-    const val = ev.target.value;
-
-    if (val && val.trim() !== '') {
-      this.ficheTechniques = this.ficheTechniques.filter((fiche) => {
-        const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
-        return retour;
+  getFicheTechniquespartage() {
+    this.dataService.getPrepaPartage().subscribe(resPrepa => {
+      if (resPrepa !== undefined) {
+        resPrepa.forEach(res => {
+          this.ficheTechniques.push(res);
+        });
+      }
+    });
+  }
+  getPreparation() {
+    this.dataService.getFicheTechniquesListPrepa().subscribe(resPrepa => {
+      if (resPrepa !== undefined) {
+        resPrepa.forEach(res => {
+          this.ficheTechniques.push(res);
+        });
+      }
+      this.ficheTechniques.sort((a, b) => {
+        if (a.nom < b.nom) {
+          return -1;
+        }
+        if (a.nom > b.nom) {
+          return 1;
+        }
+        return 0;
       });
+    });
+  }
+
+  ionInput(ev: any){
+    const val = ev.detail.inputType;
+    if (val === 'deleteContentBackward') {
+      this.hideItems();
+      this.showItems(val);
+    }
+  }
+  ionChange(ev: any) {
+    const val = (ev.detail as HTMLInputElement).value;
+    if (val && val.trim() !== '') {
+      this.showItems(val);
       this.isItemAvailable = true;
     } else {
-      this.isItemAvailable = false;
-      this.ficheTechniques = this.dataService.preparationListe;
-     //  console.log('retour efface recherche',this.ficheTechniques);
-
-      // if (this.dataService.partagePrepaListe) {
-      //   this.dataService.partagePrepaListe.forEach(partagePrepa => {
-      //     this.ficheTechniques.push(partagePrepa);
-      //   });
-      //  //  console.log(this.ficheTechniques);
-      // }
+      this.hideItems();
     }
+  }
+  showItems(val : any){
+    this.ficheTechniques = this.ficheTechniques.filter((fiche: any) => {
+      const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return retour;
+    });
+  }
+  hideItems(){
+    this.isItemAvailable = false;
+    this.ficheTechniques = [];
+    this.getFicheTechniquespartage();
+    this.getPreparation();
   }
 
   showDenrees() {

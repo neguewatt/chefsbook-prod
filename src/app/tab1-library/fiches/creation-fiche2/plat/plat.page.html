@@ -52,7 +52,7 @@
     <ion-row>
         <ion-col>
             <ion-toolbar>
-                <ion-searchbar type="text" debounce="200" (ionChange)="getItems($event)" [(ngModel)]="prepaRecherche" placeholder="Rechercher une préparation">
+                <ion-searchbar type="text" debounce="200" (ionChange)="ionChange($event)" (ionInput)="ionInput($event)" [(ngModel)]="prepaRecherche" placeholder="Rechercher une préparation">
                 </ion-searchbar>
                 <ion-list *ngIf="isItemAvailable">
                     <ion-item *ngFor="let fiche of ficheTechniques" (click)="addFiche(fiche)">

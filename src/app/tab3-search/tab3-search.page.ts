@@ -73,22 +73,36 @@ export class Tab3SearchPage implements OnInit {
     });
   }
 
-  getItems(ev: any) {
-    const val = (ev.target as HTMLInputElement).value;
-
+  ionInput(ev: any){
+    console.log('input', ev);
+    const val = ev.detail.inputType;
+    console.log('valinput', val);
+    if (val === 'deleteContentBackward') {
+      this.hideItems();
+      this.showItems(val);
+    }
+  }
+  ionChange(ev: any) {
+    const val = (ev.detail as HTMLInputElement).value;
     if (val && val.trim() !== '') {
-      this.ficheTechniquesAll = this.ficheTechniquesAll.filter((fiche: any) => {
-        const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
-        return retour;
-      });
+      this.showItems(val);
       this.isItemAvailable = true;
     } else {
-      this.isItemAvailable = false;
-      this.ficheTechniquesAll = [];
-      this.getPlat();
-      this.getFicheTechniquespartage();
-      this.getPreparation();
+      this.hideItems();
     }
+  }
+  showItems(val : any){
+    this.ficheTechniquesAll = this.ficheTechniquesAll.filter((fiche: any) => {
+      const retour = (fiche.nom.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      return retour;
+    });
+  }
+  hideItems(){
+    this.isItemAvailable = false;
+    this.ficheTechniquesAll = [];
+    this.getPlat();
+    this.getFicheTechniquespartage();
+    this.getPreparation();
   }
 
 
