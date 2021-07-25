@@ -113,9 +113,9 @@ export class ViewPreparationPage implements OnInit {
   }
 
   getUtilisateurById() {
-    this.dataService.getUtilisateurById(this.fiche.idUtilisateur).then((user: Utilisateurs) => {
-      this.userNom = user.nom;
-      this.prenom = user.prenom;
+    this.dataService.getUtilisateurById(this.fiche.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+      this.userNom = user[0].nom;
+      this.prenom = user[0].prenom;
     });
   }
 

@@ -8,8 +8,13 @@
         "start": "ng serve",
         "build": " ionic build",
         "IOS": "ionic build --prod && npx cap sync ios && npx cap open ios",
+<<<<<<< HEAD
         "Android": "ionic build --prod && npx cap sync android && npx cap open android",
         "test": "ng test",
+=======
+        "test": "jest ./src/sum.test.ts",
+        "test:coverage": "jest --coverage",
+>>>>>>> c307128a48a406c6abcde76d0bc07bb302b1f79f
         "lint": "npx ng lint",
         "e2e": "ng e2e",
         "build:ci": "ionic build --prod --sourceMap=false --base-href /chefsbook-prod/",
@@ -51,6 +56,7 @@
         "zone.js": "~0.10.2"
     },
     "devDependencies": {
+        "@angular-builders/jest": "^12.1.0",
         "@angular-devkit/build-angular": "^12.0.2",
         "@angular-eslint/builder": "2.0.2",
         "@angular-eslint/eslint-plugin": "2.0.2",
@@ -62,8 +68,7 @@
         "@angular/language-service": "~11.2.0",
         "@capacitor/cli": "^3.0.0",
         "@ionic/angular-toolkit": "^3.1.1",
-        "@types/jasmine": "~3.6.0",
-        "@types/jasminewd2": "~2.0.3",
+        "@types/jest": "^26.0.23",
         "@types/node": "^12.11.1",
         "@typescript-eslint/eslint-plugin": "4.16.1",
         "@typescript-eslint/parser": "4.16.1",
@@ -71,14 +76,10 @@
         "eslint-plugin-import": "^2.2.0",
         "eslint-plugin-jsdoc": "30.7.6",
         "eslint-plugin-prefer-arrow": "1.2.2",
-        "jasmine-core": "~3.6.0",
-        "jasmine-spec-reporter": "~5.0.0",
-        "karma": "^6.3.2",
-        "karma-chrome-launcher": "~3.1.0",
+        "jest": "^27.0.5",
+        "jest-html-reporter": "^3.4.1",
+        "jest-preset-angular": "^9.0.4",
         "karma-coverage": "~2.0.3",
-        "karma-coverage-istanbul-reporter": "~3.0.2",
-        "karma-jasmine": "~4.0.0",
-        "karma-jasmine-html-reporter": "^1.5.0",
         "protractor": "~7.0.0",
         "ts-node": "~8.3.0",
         "typescript": "~4.0.2"

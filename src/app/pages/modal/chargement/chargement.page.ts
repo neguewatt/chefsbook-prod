@@ -37,13 +37,7 @@ export class ChargementPage implements OnInit {
   // }
 
   ecranDefaut() {
-    this.dataService.getEcranDefaut().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getEcranDefaut().subscribe(res => {
      //  console.log('resulta tab', res);
       if (res[0].mesFiches){
         const navigationExtras: NavigationExtras = {

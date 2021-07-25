@@ -78,9 +78,9 @@ export class ViewPlatPage implements OnInit {
 
 
   getUtilisateurById() {
-    this.dataService.getUtilisateurById(this.plat.idUtilisateur).then((user: Utilisateurs) => {
-      this.userNom = user.nom;
-      this.prenom = user.prenom;
+    this.dataService.getUtilisateurById(this.plat.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+      this.userNom = user[0].nom;
+      this.prenom = user[0].prenom;
     });
   }
 

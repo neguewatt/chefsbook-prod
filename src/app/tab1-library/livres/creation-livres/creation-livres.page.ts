@@ -55,13 +55,7 @@ export class CreationLivresPage implements OnInit {
 
   getUtilisateur() {
     let array = [];
-    this.dataService.getUtilisateur().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(dataUtilisateur => {
+    this.dataService.getUtilisateur().subscribe(dataUtilisateur => {
       array = dataUtilisateur;
       this.user = array[0];
       this.nom = this.user.nom;

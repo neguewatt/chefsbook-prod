@@ -21,13 +21,7 @@ export class EcranPage implements OnInit {
   }
 
   getEcranDefaut() {
-    this.dataService.getEcranDefaut().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(res => {
+    this.dataService.getEcranDefaut().subscribe((res: any[] )=> {
       this.table = res[0];
       this.key = res[0].key;
       if (res[0].mesFiches) {

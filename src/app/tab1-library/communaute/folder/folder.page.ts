@@ -39,50 +39,40 @@ export class FolderPage implements OnInit {
   }
 
   getPlatPartage() {
-    this.dataService.getPlatPartage().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe((resPlat: any) => {
-     //  console.log('partagé :', resPlat);
-      if (resPlat !== undefined) {
-        this.dataService.partagePlatsListe = resPlat;
+    this.dataService.getPlatPartage().subscribe((resPlat: Plats[]) => {
+      if (resPlat.length !== 0) {
         resPlat.forEach(plat => {
-          this.dataService.getUtilisateurById(plat.idUtilisateur).then((user: Utilisateurs) => {
-            const fiche = new FicheByCom();
-            fiche.idFiche = plat.key;
-            fiche.idUtilisateur = user.nom + ' ' + user.prenom;
-            fiche.nom = plat.nom;
-            fiche.livre = plat.livre;
-            fiche.type = plat.type;
-            this.ficheTechniquesAll.push(fiche);
+          this.dataService.getUtilisateurById(plat.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+            if (user.length !== 0) {
+              const fiche = new FicheByCom();
+              fiche.idFiche = plat.key;
+              fiche.idUtilisateur = user[0].nom + ' ' + user[0].prenom;
+              fiche.nom = plat.nom;
+              fiche.livre = plat.livre;
+              fiche.type = plat.type;
+              this.ficheTechniquesAll.push(fiche);
+            }
           });
         });
       }
     });
   }
   getFicheTechniquespartage() {
-    this.dataService.getPrepaPartage().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe((res: any) => {
-      if (res !== undefined) {
-        this.dataService.partagePrepaListe = res;
-        res.forEach(resFiche => {
-         //  console.log('partagé :', resFiche);
-          this.dataService.getUtilisateurById(resFiche.idUtilisateur).then((user: Utilisateurs) => {
-            const fiche = new FicheByCom();
-            fiche.idFiche = resFiche.key;
-            fiche.idUtilisateur = user.nom + ' ' + user.prenom;
-            fiche.nom = resFiche.nom;
-            fiche.livre = resFiche.livre;
-            fiche.type = resFiche.type;
-            this.ficheTechniquesAll.push(fiche);
+    this.dataService.getPrepaPartage().subscribe((resPrepa: Preparation[]) => {
+      console.log('ftPartagé :', resPrepa);
+      if (resPrepa.length !== 0) {
+        this.dataService.partagePrepaListe = resPrepa;
+        resPrepa.forEach(resFiche => {
+          this.dataService.getUtilisateurById(resFiche.idUtilisateur).subscribe((user: Utilisateurs[]) => {
+            if (user.length !== 0) {
+              const fiche = new FicheByCom();
+              fiche.idFiche = resFiche.key;
+              fiche.idUtilisateur = user[0].nom + ' ' + user[0].prenom;
+              fiche.nom = resFiche.nom;
+              fiche.livre = resFiche.livre;
+              fiche.type = resFiche.type;
+              this.ficheTechniquesAll.push(fiche);
+            }
           });
         });
       }
