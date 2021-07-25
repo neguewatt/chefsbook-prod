@@ -20,7 +20,6 @@ export class ModalNotificationPage implements OnInit {
   ngOnInit() {
     this.notification = this.navParams.get('notif');
     console.log(this.notification);
-    
   }
 
   supprimer(){

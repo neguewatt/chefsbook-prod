@@ -22,8 +22,6 @@ export class CreationFiche2Page implements OnInit {
   prepa = true;
   plat = false;
   newType: string;
-  
-
 
   constructor(private dataService: AuthFirebaseService) {
   }

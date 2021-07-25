@@ -23,7 +23,7 @@ export class ComptePage implements OnInit {
   emailFillo: string;
   boolButton = false;
 
-  constructor(private dataService: AuthFirebaseService, 
+  constructor(private dataService: AuthFirebaseService,
               private authLogin: AuthLoginService,
               private alertController: AlertController,
               private loadingController: LoadingController,

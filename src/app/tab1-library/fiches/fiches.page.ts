@@ -155,7 +155,6 @@ export class FichesPage implements OnInit {
       this.prepaBoolean = false;
       this.platsBoolean = true;
     }
-    
   }
   async openPopover(ev: any, fiche: any) {
    //  console.log('popover');

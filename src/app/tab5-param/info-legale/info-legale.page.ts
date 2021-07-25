@@ -17,8 +17,8 @@ export class InfoLegalePage implements OnInit {
     this.titre = 'Information légale';
   }
 
-  openURL() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(localStorage.getItem("url"));
-  }
+  // openURL() {
+  //   return this.sanitizer.bypassSecurityTrustResourceUrl(localStorage.getItem('url'));
+  // }
 
 }

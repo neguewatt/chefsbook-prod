@@ -56,12 +56,12 @@ export class ModalFichePage implements OnInit {
    this.popoverController.dismiss('modifier');
   }
   partager() {
-    console.log(this.dataService.utilisateur.partage)
+    console.log(this.dataService.utilisateur.partage);
     if(this.dataService.utilisateur.partage < this.dataService.limitePartage){
       this.openModalPartager();
       this.popoverController.dismiss('partager');
     }else{
-      this.erreurFinPArtage()
+      this.erreurFinPArtage();
       this.popoverController.dismiss('partager');
     }
   }
@@ -105,7 +105,7 @@ export class ModalFichePage implements OnInit {
     });
 
     modal.onDidDismiss().then((dataReturned) => {
-      console.log(dataReturned);      
+      console.log(dataReturned);
       if (dataReturned.data !== 'close') {
         this.dataReturned = dataReturned.data;
       }

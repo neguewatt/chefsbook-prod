@@ -73,7 +73,6 @@ export class LoginPage implements OnInit {
     console.log('onChecked 1', this.checked);
     this.checked = !this.checked;
     console.log('onChecked 2', this.checked);
-    
   }
 
   saveloginmdp(){

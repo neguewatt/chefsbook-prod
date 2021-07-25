@@ -117,7 +117,7 @@ export class AuthFirebaseService {
     }
     if(this.utilisateur.partage !== 0 && date.getDate() === 14){
       console.log('remise a zero de partage');
-      this.updateUtilisateurPartageZero()
+      this.updateUtilisateurPartageZero();
     }
   }
 
@@ -188,7 +188,6 @@ export class AuthFirebaseService {
         console.log(this.utilisateur);
         this.initialiseGet();
     });
-        
   }
 
 
@@ -515,18 +514,17 @@ export class AuthFirebaseService {
     notification.notification = 'la fiche technique ' + fiche.nom + ' de type : ' + fiche.type + ' vient d\'être partagé avec vous !';
     notification.message = message;
     this.addNotification(notification);
-    this.UpdateUtilisateurPartageIncrement();
+    this.updateUtilisateurPartageIncrement();
     return updateFiche;
   }
   async updateUtilisateurPartageZero(){
     console.log(this.utilisateur.idUtilisateur);
-    
     await delay(1500);
     this.utilisateur.partage = 0;
     const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);
     return updateUtilisater;
   }
-  UpdateUtilisateurPartageIncrement() {
+  updateUtilisateurPartageIncrement() {
     console.log(this.utilisateur);
     this.utilisateur.partage++;
     const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);

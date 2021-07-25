@@ -31,7 +31,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       console.log('source', this.platform);
       firebase.default.initializeApp(environment.firebaseConfig);
-      if(this.platform.is("desktop")){
+      if(this.platform.is('desktop')){
         this.afAuth.authState.subscribe(auth => {
         if (!auth) {
           console.log('non connecté');
