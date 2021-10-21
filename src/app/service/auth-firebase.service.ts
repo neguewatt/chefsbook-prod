@@ -189,10 +189,6 @@ export class AuthFirebaseService {
         console.log(this.utilisateur);
         this.initialiseGet();
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> c307128a48a406c6abcde76d0bc07bb302b1f79f
   }
 
 
@@ -628,10 +624,6 @@ export class AuthFirebaseService {
   }
   async updateUtilisateurPartageZero(){
     console.log(this.utilisateur.idUtilisateur);
-<<<<<<< HEAD
-=======
-
->>>>>>> c307128a48a406c6abcde76d0bc07bb302b1f79f
     await delay(1500);
     this.utilisateur.partage = 0;
     const updateUtilisater = this.db.collection(this.utilisateurPath).doc(this.utilisateur.idUtilisateur).update(this.utilisateur);

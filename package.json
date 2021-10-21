@@ -8,13 +8,9 @@
         "start": "ng serve",
         "build": " ionic build",
         "IOS": "ionic build --prod && npx cap sync ios && npx cap open ios",
-<<<<<<< HEAD
         "Android": "ionic build --prod && npx cap sync android && npx cap open android",
-        "test": "ng test",
-=======
         "test": "jest ./src/sum.test.ts",
         "test:coverage": "jest --coverage",
->>>>>>> c307128a48a406c6abcde76d0bc07bb302b1f79f
         "lint": "npx ng lint",
         "e2e": "ng e2e",
         "build:ci": "ionic build --prod --sourceMap=false --base-href /chefsbook-prod/",
