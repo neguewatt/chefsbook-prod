@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyBzpo_i7EaNUOOh30g_Icp8OBwTTpWOPLI',
-    authDomain: 'chefsbook-test.firebaseapp.com',
-    databaseURL: 'https://chefsbook-test.firebaseio.com',
-    projectId: 'chefsbook-test',
-    storageBucket: 'chefsbook-test.appspot.com',
-    messagingSenderId: '425415146991',
-    appId: '1:425415146991:web:2b4ab044225c1ef0160a1a',
-    measurementId: 'G-TQDV32NCX5'
+    apiKey: "AIzaSyDwvhfLCjTviM9Zwel2Q9_xvM6NjSlFYoM",
+    authDomain: "dahu-ef718.firebaseapp.com",
+    databaseURL: "https://dahu-ef718-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "dahu-ef718",
+    storageBucket: "dahu-ef718.appspot.com",
+    messagingSenderId: "156259880726",
+    appId: "1:156259880726:web:d310a1a7f6f7474a61ca37",
+    measurementId: "G-0WZJ2XM192"
   }
 };
 

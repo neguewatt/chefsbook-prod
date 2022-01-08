@@ -71,19 +71,19 @@ export class ModalFichePage implements OnInit {
   }
   async supprAlertConfirm() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Attention ! ',
-      message: 'Suppression de la fiche <strong>' + this.fiche.nom + '</strong>!!!',
+      cssClass: 'my-custom-class textClass',
+      header: '',
+      message: 'Vous êtes sur le point de supprimer la fiche <strong>' + this.fiche.nom + '</strong>.',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Annuler',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
            //  console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Okay',
+          text: 'Confirmer',
           handler: () => {
            //  console.log('Confirm Okay');
             this.popoverController.dismiss('Suppression');

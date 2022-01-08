@@ -1,18 +1,18 @@
 <ion-content>
   <ion-list>
-    <ion-item lines="none" button (click)="modifier()" class="modalTableBorder">
+    <ion-item lines="none" button (click)="modifier()" class="modalTableBorder" detail="false">
       <ion-icon class="iconModalFiche" slot="start" src="../../../assets/icon/icon-edit.svg"></ion-icon>
       <ion-label class="labelModalFiche">
         Modifier
       </ion-label>
     </ion-item >
-    <ion-item lines="none" button (click)="partager()" class="modalTableBorder">
+    <ion-item lines="none" button (click)="partager()" class="modalTableBorder" detail="false">
       <ion-icon class="iconModalFiche" slot="start"src="../../../assets/icon/icon-share.svg"></ion-icon>
       <ion-label class="labelModalFiche">
         Partager
       </ion-label>
     </ion-item>
-    <ion-item lines="none" button (click)="supprimer()">
+    <ion-item lines="none" button (click)="supprimer()" detail="false">
       <ion-icon class="iconModalFiche" slot="start" src="../../../assets/icon/icon-delete.svg"></ion-icon>
       <ion-label class="labelModalFiche">
         Supprimer
