@@ -6,7 +6,7 @@ import { Produits } from './produits';
 
 export class Utilisateurs
  {
-    public idUtilisateur = '';
+    public idUtilisateur = 'toto';
     public nom = '';
     public prenom = '';
     public email = '';
